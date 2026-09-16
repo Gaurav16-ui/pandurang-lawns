@@ -85,8 +85,8 @@
 
   <div id="toastContainer" class="fixed top-5 right-5 z-[100] flex flex-col gap-3 pointer-events-none"></div>
 
-  <!-- Luxury Top Contact Bar (Clean & Structured on Mobile) -->
-  <div class="bg-brand-forest text-brand-goldLight text-[11px] sm:text-xs py-2 px-3 sm:px-4 border-b border-brand-gold/30 tracking-wider">
+  <!-- Luxury Top Contact Bar -->
+  <div class="bg-brand-forest text-brand-goldLight text-[11px] sm:text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-brand-gold/30 tracking-wider">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
       <div class="flex items-center justify-center gap-2 sm:gap-4 flex-wrap text-center">
         <a href="tel:9579520187" class="inline-flex items-center gap-1 hover:text-white transition px-2 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
@@ -110,10 +110,10 @@
   <!-- Main Sticky Navbar -->
   <header id="mainNavbar" class="sticky top-0 z-40 bg-brand-forest/95 backdrop-blur-md border-b border-brand-gold/20 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16 sm:h-20">
+      <div class="flex items-center justify-between h-14 sm:h-20">
         
         <a href="#home" class="flex items-center space-x-2.5 sm:space-x-3 group">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-brand-gold/80 flex items-center justify-center bg-brand-forestLight shadow-gold-sm group-hover:scale-105 transition-transform overflow-hidden p-0.5 flex-shrink-0">
+          <div class="w-9 h-9 sm:w-12 sm:h-12 rounded-full border border-brand-gold/80 flex items-center justify-center bg-brand-forestLight shadow-gold-sm group-hover:scale-105 transition-transform overflow-hidden p-0.5 flex-shrink-0">
             <img 
               src="https://w0.peakpx.com/wallpaper/861/277/HD-wallpaper-vithal-god-mauli-pandurang-vitu-mauli.jpg" 
               alt="Pandurang Lawns Logo" 
@@ -121,10 +121,10 @@
             />
           </div>
           <div class="flex flex-col text-left">
-            <span class="font-cinzel text-base sm:text-xl font-bold tracking-wider text-brand-ivory group-hover:text-brand-gold transition-colors leading-tight">
+            <span class="font-cinzel text-sm sm:text-xl font-bold tracking-wider text-brand-ivory group-hover:text-brand-gold transition-colors leading-tight">
               PANDURANG LAWNS
             </span>
-            <span class="text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.25em] text-brand-gold uppercase font-light truncate max-w-[200px] sm:max-w-none">
+            <span class="text-[8px] sm:text-[10px] tracking-[0.16em] sm:tracking-[0.25em] text-brand-gold uppercase font-light truncate max-w-[190px] sm:max-w-none">
               Where Beautiful Celebrations Begin
             </span>
           </div>
@@ -150,7 +150,7 @@
 
         <div class="flex lg:hidden items-center space-x-2">
           <button onclick="openBookingModal()" class="px-3 py-1.5 text-xs font-bold uppercase bg-brand-gold text-brand-dark rounded-full">Book</button>
-          <button id="mobileMenuBtn" aria-label="Toggle Menu" class="text-brand-ivory p-2 focus:outline-none hover:text-brand-gold text-xl">
+          <button id="mobileMenuBtn" aria-label="Toggle Menu" class="text-brand-ivory p-1.5 focus:outline-none hover:text-brand-gold text-lg">
             <i class="fa-solid fa-bars-staggered"></i>
           </button>
         </div>
@@ -158,7 +158,7 @@
     </div>
 
     <!-- Mobile Dropdown Menu -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-brand-forest border-t border-brand-gold/20 px-6 py-5 space-y-4">
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-forest border-t border-brand-gold/20 px-6 py-4 space-y-3">
       <a href="#home" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Home</a>
       <a href="#about" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">About Venue</a>
       <a href="#facilities" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Facilities</a>
@@ -167,15 +167,15 @@
       <a href="#calendar-section" class="mobile-nav-link block text-brand-gold font-semibold py-1">Check Availability</a>
       <a href="#contact" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Contact & Directions</a>
       <div class="pt-2">
-        <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-3 text-center text-xs font-cinzel font-bold tracking-wider uppercase bg-brand-gold text-brand-dark rounded-md">
+        <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-2.5 text-center text-xs font-cinzel font-bold tracking-wider uppercase bg-brand-gold text-brand-dark rounded-md">
           Book Your Date
         </button>
       </div>
     </div>
   </header>
 
-  <!-- 1. Hero Section (Balanced Spacing, Complete Full Lord Pandurang Murti) -->
-  <section id="home" class="relative min-h-[88vh] sm:min-h-[92vh] flex items-center justify-center text-center overflow-hidden py-8 sm:py-12">
+  <!-- 1. Hero Section (मोकळी जागा पूर्णपणे काढून कॉम्पॅक्ट व बॅलन्स्ड केली आहे) -->
+  <section id="home" class="relative flex items-center justify-center text-center overflow-hidden pt-4 pb-8 sm:py-12">
     <img 
       src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80" 
       alt="Pandurang Lawns Grand Outdoor Wedding Venue" 
@@ -185,9 +185,9 @@
 
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center">
       
-      <!-- Full Frame Pandurang Murti (Head-to-Toe, No Cropping) -->
-      <div class="mb-3 sm:mb-4 flex items-center justify-center">
-        <div class="w-32 sm:w-44 h-52 sm:h-64 rounded-2xl overflow-hidden border-2 border-brand-gold/80 shadow-gold-lg bg-black/50 backdrop-blur-sm p-1 flex items-center justify-center">
+      <!-- Complete Pandurang Murti Without Extra Top Spacing -->
+      <div class="mb-2 sm:mb-3 flex items-center justify-center">
+        <div class="w-28 sm:w-44 h-44 sm:h-64 rounded-2xl overflow-hidden border-2 border-brand-gold/80 shadow-gold-lg bg-black/50 backdrop-blur-sm p-1 flex items-center justify-center">
           <img 
             src="https://w0.peakpx.com/wallpaper/861/277/HD-wallpaper-vithal-god-mauli-pandurang-vitu-mauli.jpg" 
             alt="Bhagwan Shri Vitthal Pandurang" 
@@ -196,23 +196,23 @@
         </div>
       </div>
 
-      <h1 class="font-cinzel text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-wider leading-tight mb-2 drop-shadow-md">
+      <h1 class="font-cinzel text-xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-wider leading-tight mb-1.5 sm:mb-2 drop-shadow-md">
         PANDURANG LAWNS
       </h1>
 
-      <p class="font-serif italic text-lg sm:text-2xl text-brand-goldLight mb-3 sm:mb-4">
+      <p class="font-serif italic text-base sm:text-2xl text-brand-goldLight mb-2 sm:mb-4">
         “Where Beautiful Celebrations Begin”
       </p>
 
-      <p class="max-w-2xl text-brand-ivory/90 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 font-light">
+      <p class="max-w-2xl text-brand-ivory/90 text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-7 font-light">
         An elegant open-air sanctuary designed for grand Indian weddings, royal receptions, engagements, and unforgettable celebrations amidst lush greenery and bespoke hospitality.
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
-        <a href="#calendar-section" class="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full shadow-gold-lg hover:brightness-110 active:scale-95 transition-all text-center">
+      <div class="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-4 w-full sm:w-auto">
+        <a href="#calendar-section" class="w-full sm:w-auto px-7 py-3 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full shadow-gold-lg hover:brightness-110 active:scale-95 transition-all text-center">
           <i class="fa-regular fa-calendar-days mr-2"></i> Check Availability
         </a>
-        <button onclick="openBookingModal()" class="w-full sm:w-auto px-7 py-3.5 bg-brand-forest/80 backdrop-blur-sm border border-brand-gold text-brand-gold font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all text-center">
+        <button onclick="openBookingModal()" class="w-full sm:w-auto px-7 py-3 bg-brand-forest/80 backdrop-blur-sm border border-brand-gold text-brand-gold font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all text-center">
           <i class="fa-solid fa-champagne-glasses mr-2"></i> Book Your Date
         </button>
       </div>
@@ -449,98 +449,70 @@
     </div>
   </section>
 
-  <!-- 7. Contact Section (Direct Coordinates & Maps Sync) -->
+  <!-- 7. Contact Section (मॅपचा आयफ्रेम बॉक्स काढला आहे आणि अचूक पत्ता टाकला आहे) -->
   <section id="contact" class="py-16 sm:py-20 bg-brand-ivory">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
         <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-[0.25em]">Reach Out To Us</span>
         <h2 class="text-2xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">Let's Plan Your Celebration</h2>
         <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
         
-        <div class="lg:col-span-5 space-y-4 sm:space-y-5">
-          
-          <!-- Rakesh Chavan Contact -->
-          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-lg sm:text-xl">
-              <i class="fa-solid fa-user-tie"></i>
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Booking & Management</h3>
-              <p class="text-base font-bold text-brand-forest mt-0.5">Rakesh Chavan</p>
-              <p class="text-sm font-semibold text-brand-charcoal">+91 95795 20187</p>
-              <div class="flex items-center gap-2 mt-3">
-                <a href="tel:9579520187" class="px-3.5 py-1.5 bg-brand-ivory border border-brand-gold text-brand-forest rounded-lg text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
-                  <i class="fa-solid fa-phone mr-1"></i> Call Now
-                </a>
-                <button onclick="openWhatsAppUser('919579520187')" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-cinzel font-semibold hover:bg-emerald-700 transition">
-                  <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
-                </button>
-              </div>
-            </div>
+        <!-- Rakesh Chavan Contact -->
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
+            <i class="fa-solid fa-user-tie"></i>
           </div>
-
-          <!-- Santosh Chavan Contact -->
-          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-lg sm:text-xl">
-              <i class="fa-solid fa-user-tie"></i>
-            </div>
-            <div class="flex-grow">
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Enquiry & Logistics</h3>
-              <p class="text-base font-bold text-brand-forest mt-0.5">Santosh Chavan</p>
-              <p class="text-sm font-semibold text-brand-charcoal">+91 90215 67601</p>
-              <div class="flex items-center gap-2 mt-3">
-                <a href="tel:9021567601" class="px-3.5 py-1.5 bg-brand-ivory border border-brand-gold text-brand-forest rounded-lg text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
-                  <i class="fa-solid fa-phone mr-1"></i> Call Now
-                </a>
-                <button onclick="openWhatsAppUser('919021567601')" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-cinzel font-semibold hover:bg-emerald-700 transition">
-                  <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Address Card (Direct Link: https://maps.app.goo.gl/GDsZPAjN2cCpKq9A7) -->
-          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-lg sm:text-xl">
-              <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <div>
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Venue Location</h3>
-              <p class="text-sm font-semibold text-brand-forest mt-0.5">
-                Pandurang Lawns, Warur Bk. (Wavare Patil Farm Area), Maharashtra, India
-              </p>
-              <a href="https://maps.app.goo.gl/GDsZPAjN2cCpKq9A7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-3 px-4 py-1.5 bg-brand-ivory border border-brand-gold text-brand-forest rounded-lg text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
-                <i class="fa-solid fa-diamond-turn-right text-brand-gold"></i> Open in Google Maps
+          <div class="flex-grow">
+            <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Booking & Management</h3>
+            <p class="text-base font-bold text-brand-forest mt-0.5">Rakesh Chavan</p>
+            <p class="text-sm font-semibold text-brand-charcoal">+91 95795 20187</p>
+            <div class="flex items-center gap-2 mt-3">
+              <a href="tel:9579520187" class="px-3.5 py-1.5 bg-brand-ivory border border-brand-gold text-brand-forest rounded-lg text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
+                <i class="fa-solid fa-phone mr-1"></i> Call Now
               </a>
+              <button onclick="openWhatsAppUser('919579520187')" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-cinzel font-semibold hover:bg-emerald-700 transition">
+                <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
+              </button>
             </div>
           </div>
-
         </div>
 
-        <!-- Google Maps Embed Matching Exact Pinpoint (Wavare Farm / Warur Bk Coordinates) -->
-        <div class="lg:col-span-7 flex flex-col">
-          <div class="bg-white p-3 rounded-2xl border border-brand-border shadow-sm flex-grow overflow-hidden flex flex-col">
-            <div class="flex items-center justify-between p-3 border-b border-brand-border">
-              <span class="text-xs font-cinzel font-bold text-brand-forest flex items-center gap-2">
-                <i class="fa-solid fa-map-pin text-brand-gold"></i> Pandurang Lawns Pinpoint
-              </span>
-              <a href="https://maps.app.goo.gl/GDsZPAjN2cCpKq9A7" target="_blank" rel="noopener noreferrer" class="text-xs text-brand-gold hover:underline font-semibold flex items-center gap-1">
-                Open Directions <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        <!-- Santosh Chavan Contact -->
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <div class="flex-grow">
+            <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Enquiry & Logistics</h3>
+            <p class="text-base font-bold text-brand-forest mt-0.5">Santosh Chavan</p>
+            <p class="text-sm font-semibold text-brand-charcoal">+91 90215 67601</p>
+            <div class="flex items-center gap-2 mt-3">
+              <a href="tel:9021567601" class="px-3.5 py-1.5 bg-brand-ivory border border-brand-gold text-brand-forest rounded-lg text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
+                <i class="fa-solid fa-phone mr-1"></i> Call Now
               </a>
+              <button onclick="openWhatsAppUser('919021567601')" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-cinzel font-semibold hover:bg-emerald-700 transition">
+                <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
+              </button>
             </div>
-            <div class="relative w-full h-[320px] sm:h-[400px] rounded-xl overflow-hidden mt-2">
-              <iframe 
-                id="gmapFrame"
-                title="Pandurang Lawns Location" 
-                src="https://maps.google.com/maps?q=20.038446,74.015243&hl=mr&z=16&output=embed" 
-                class="absolute inset-0 w-full h-full border-0" 
-                allowfullscreen="" 
-                loading="lazy">
-              </iframe>
-            </div>
+          </div>
+        </div>
+
+        <!-- Venue Location (Updated Address & Map Link) -->
+        <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4 md:col-span-2">
+          <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="flex-grow">
+            <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Venue Location</h3>
+            <p class="text-sm sm:text-base font-bold text-brand-forest mt-0.5">
+              Pandurang Lawns Ugaon, Shivadi, Maharashtra 422304
+            </p>
+            <a href="https://maps.app.goo.gl/GDsZPAjN2cCpKq9A7" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 mt-3 px-4 py-2 bg-brand-ivory border border-brand-gold text-brand-forest rounded-xl text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
+              <i class="fa-solid fa-diamond-turn-right text-brand-gold"></i> Open in Google Maps
+            </a>
           </div>
         </div>
 
@@ -783,6 +755,7 @@
 
     const VENUE_CONFIG = {
       name: "Pandurang Lawns",
+      address: "Pandurang Lawns Ugaon, Shivadi, Maharashtra 422304",
       contactRakesh: { name: "Rakesh Chavan", phone: "+91 95795 20187", wa: "919579520187" },
       contactSantosh: { name: "Santosh Chavan", phone: "+91 90215 67601", wa: "919021567601" },
       email: "contact@panduranglawns.com",
@@ -1193,13 +1166,13 @@
       if (tab === 'bookings') {
         document.getElementById('adminTabBookings').classList.remove('hidden');
         document.getElementById('adminTabSettings').classList.add('hidden');
-        document.getElementById('tabBtnBookings').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark";
-        document.getElementById('tabBtnSettings').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white";
+        document.getElementById('tabBtnBookings').className = "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark";
+        document.getElementById('tabBtnSettings').className = "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white";
       } else {
         document.getElementById('adminTabBookings').classList.add('hidden');
         document.getElementById('adminTabSettings').classList.remove('hidden');
-        document.getElementById('tabBtnSettings').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark";
-        document.getElementById('tabBtnBookings').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white";
+        document.getElementById('tabBtnSettings').className = "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark";
+        document.getElementById('tabBtnBookings').className = "px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white";
       }
     };
 
@@ -1244,7 +1217,7 @@
                 </button>
               ` : ''}
               ${b.status !== 'Cancelled' ? `
-                <button onclick="cancelDirect('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
+                <button onclick="cancelDirect('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
                   Cancel & Auto-Notify
                 </button>
               ` : ''}
