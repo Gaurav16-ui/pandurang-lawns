@@ -68,8 +68,17 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    .cal-day-cell { min-height: 72px; transition: all 0.2s ease; }
-    @media (max-width: 640px) { .cal-day-cell { min-height: 52px; } }
+    /* Mobile Calendar Box Dimension Fix */
+    .cal-day-cell { 
+      min-height: 72px; 
+      transition: all 0.2s ease; 
+    }
+    @media (max-width: 640px) { 
+      .cal-day-cell { 
+        min-height: 48px; 
+        padding: 4px !important; 
+      } 
+    }
 
     .orange-vithal-glow {
       filter: drop-shadow(0 0 16px rgba(230, 130, 40, 0.7)) drop-shadow(0 0 28px rgba(197, 160, 89, 0.4));
@@ -174,7 +183,7 @@
     </div>
   </header>
 
-  <!-- 1. Hero Section (मोकळी जागा पूर्णपणे काढून कॉम्पॅक्ट व बॅलन्स्ड केली आहे) -->
+  <!-- 1. Hero Section -->
   <section id="home" class="relative flex items-center justify-center text-center overflow-hidden pt-4 pb-8 sm:py-12">
     <img 
       src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80" 
@@ -185,7 +194,7 @@
 
     <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center">
       
-      <!-- Complete Pandurang Murti Without Extra Top Spacing -->
+      <!-- Complete Pandurang Murti -->
       <div class="mb-2 sm:mb-3 flex items-center justify-center">
         <div class="w-28 sm:w-44 h-44 sm:h-64 rounded-2xl overflow-hidden border-2 border-brand-gold/80 shadow-gold-lg bg-black/50 backdrop-blur-sm p-1 flex items-center justify-center">
           <img 
@@ -385,7 +394,7 @@
     </div>
   </div>
 
-  <!-- 6. Realtime Availability Calendar -->
+  <!-- 6. Realtime Availability Calendar (Clean Dots on Mobile, Full Text on Desktop) -->
   <section id="calendar-section" class="py-16 sm:py-20 bg-brand-cream/30">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
@@ -396,8 +405,8 @@
         <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
       </div>
 
-      <div class="bg-white rounded-3xl border border-brand-border shadow-forest-lg p-5 sm:p-10">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-brand-border">
+      <div class="bg-white rounded-3xl border border-brand-border shadow-forest-lg p-3 sm:p-10">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 sm:pb-6 border-b border-brand-border">
           <div class="flex items-center space-x-3">
             <button onclick="changeCalendarMonth(-1)" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-forest hover:bg-brand-forest hover:text-brand-gold transition shadow-sm">
               <i class="fa-solid fa-chevron-left text-sm"></i>
@@ -421,13 +430,14 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-[11px] sm:text-xs font-cinzel font-bold text-brand-muted py-3 sm:py-4 uppercase tracking-wider">
+        <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-[11px] sm:text-xs font-cinzel font-bold text-brand-muted py-2.5 sm:py-4 uppercase tracking-wider">
           <div class="text-rose-700">Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div class="text-emerald-800">Sat</div>
         </div>
 
+        <!-- Date Grid -->
         <div id="calendarGrid" class="grid grid-cols-7 gap-1 sm:gap-2"></div>
 
-        <div id="selectedDateBar" class="mt-6 sm:mt-8 p-4 sm:p-5 rounded-2xl bg-brand-ivory border border-brand-gold/50 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all">
+        <div id="selectedDateBar" class="mt-5 sm:mt-8 p-4 sm:p-5 rounded-2xl bg-brand-ivory border border-brand-gold/50 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all">
           <div class="flex items-center space-x-3 text-left w-full sm:w-auto">
             <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-base sm:text-lg flex-shrink-0">
               <i class="fa-regular fa-calendar"></i>
@@ -449,7 +459,7 @@
     </div>
   </section>
 
-  <!-- 7. Contact Section (मॅपचा आयफ्रेम बॉक्स काढला आहे आणि अचूक पत्ता टाकला आहे) -->
+  <!-- 7. Contact Section -->
   <section id="contact" class="py-16 sm:py-20 bg-brand-ivory">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
@@ -500,7 +510,7 @@
           </div>
         </div>
 
-        <!-- Venue Location (Updated Address & Map Link) -->
+        <!-- Venue Location (Exact Address & Map Link) -->
         <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4 md:col-span-2">
           <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
             <i class="fa-solid fa-location-dot"></i>
@@ -943,8 +953,8 @@
       for (let i = firstDayIndex - 1; i >= 0; i--) {
         const d = prevMonthDays - i;
         const cell = document.createElement('div');
-        cell.className = "cal-day-cell bg-slate-50/50 rounded-xl p-2 text-slate-300 text-xs border border-transparent";
-        cell.innerHTML = `<span>${d}</span>`;
+        cell.className = "cal-day-cell bg-slate-50/50 rounded-xl p-1 sm:p-2 text-slate-300 text-xs border border-transparent";
+        cell.innerHTML = `<span class="text-[11px] sm:text-xs">${d}</span>`;
         calendarGrid.appendChild(cell);
       }
 
@@ -959,32 +969,49 @@
         const isSelected = (selectedCalendarDateStr === dateStr);
 
         const cell = document.createElement('div');
-        let statusBadge = "";
+        let statusContent = "";
         let statusClasses = "";
 
         if (isPast) {
           statusClasses = "bg-slate-50 text-slate-400 border border-slate-200 cursor-not-allowed opacity-50";
-          statusBadge = `<span class="text-[9px] font-mono">Past</span>`;
+          statusContent = `
+            <span class="text-[8px] sm:text-[9px] font-mono block text-center sm:text-left">Past</span>
+          `;
         } else if (avail.status === "Booked") {
           statusClasses = "bg-rose-50 text-rose-900 border border-rose-300 cursor-pointer";
-          statusBadge = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-rose-700"><span class="w-2 h-2 rounded-full bg-rose-600"></span> Booked</span>`;
+          statusContent = `
+            <div class="flex items-center justify-center sm:justify-start gap-1">
+              <span class="w-2 h-2 rounded-full bg-rose-600 flex-shrink-0"></span>
+              <span class="hidden sm:inline text-[10px] font-bold text-rose-700 truncate">Booked</span>
+            </div>
+          `;
         } else if (avail.status === "Pending") {
           statusClasses = "bg-amber-50 text-amber-900 border border-amber-300 cursor-pointer";
-          statusBadge = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Pending (${avail.count})</span>`;
+          statusContent = `
+            <div class="flex items-center justify-center sm:justify-start gap-1">
+              <span class="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0"></span>
+              <span class="hidden sm:inline text-[10px] font-bold text-amber-700 truncate">Pending</span>
+            </div>
+          `;
         } else {
           statusClasses = "bg-emerald-50 text-emerald-950 border border-emerald-200 hover:border-emerald-500 cursor-pointer";
-          statusBadge = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Available</span>`;
+          statusContent = `
+            <div class="flex items-center justify-center sm:justify-start gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
+              <span class="hidden sm:inline text-[10px] font-bold text-emerald-700 truncate">Available</span>
+            </div>
+          `;
         }
 
-        if (isSelected) statusClasses += " ring-2 ring-brand-gold border-brand-gold bg-brand-gold/10";
+        if (isSelected) statusClasses += " ring-2 ring-brand-gold border-brand-gold bg-brand-gold/15";
 
-        cell.className = `cal-day-cell rounded-xl p-1.5 sm:p-2.5 flex flex-col justify-between transition-all ${statusClasses}`;
+        cell.className = `cal-day-cell rounded-xl flex flex-col justify-between transition-all ${statusClasses}`;
         cell.innerHTML = `
           <div class="flex justify-between items-start">
-            <span class="font-bold text-xs sm:text-sm font-cinzel">${day}</span>
-            ${isSelected ? '<i class="fa-solid fa-check text-brand-goldDark text-xs"></i>' : ''}
+            <span class="font-bold text-[11px] sm:text-sm font-cinzel leading-none">${day}</span>
+            ${isSelected ? '<i class="fa-solid fa-check text-brand-goldDark text-[10px] sm:text-xs"></i>' : ''}
           </div>
-          <div class="mt-1">${statusBadge}</div>
+          <div class="mt-1">${statusContent}</div>
         `;
 
         if (!isPast) cell.onclick = () => selectCalendarDate(dateStr, avail);
@@ -1217,7 +1244,7 @@
                 </button>
               ` : ''}
               ${b.status !== 'Cancelled' ? `
-                <button onclick="cancelDirect('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
+                <button onclick="cancelDirect('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
                   Cancel & Auto-Notify
                 </button>
               ` : ''}
