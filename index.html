@@ -83,8 +83,6 @@
 
 <body class="bg-brand-ivory text-brand-charcoal font-sans antialiased selection:bg-brand-gold selection:text-brand-dark flex flex-col min-h-screen">
 
-  <div id="toastContainer" class="fixed top-5 right-5 z-[100] flex flex-col gap-3 pointer-events-none"></div>
-
   <!-- Top Contact Bar -->
   <div class="bg-brand-forest text-brand-goldLight text-[11px] sm:text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-brand-gold/30 tracking-wider">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
@@ -203,7 +201,7 @@
       </p>
 
       <p class="max-w-2xl text-brand-ivory/90 text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-7 font-light">
-        A multi-venue sanctuary offering an expansive <strong>Open Lawn (Evening/Night)</strong>, a grand <strong>Function Hall (Daytime)</strong>, and a premium <strong>AC Banquet Hall (Day & Night)</strong> for royal celebrations.
+        A multi-venue sanctuary offering an expansive <strong>Open Lawn (Night & Day)</strong>, a grand <strong>Function Hall (Daytime)</strong>, and a premium <strong>AC Banquet Hall (Day & Night)</strong>.
       </p>
 
       <div class="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-4 w-full sm:w-auto">
@@ -217,7 +215,7 @@
     </div>
   </section>
 
-  <!-- 2. Venues & Slots Section (New Custom Architecture) -->
+  <!-- 2. Venues & Slots Section -->
   <section id="venues" class="py-16 sm:py-20 bg-brand-cream/60 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
@@ -227,7 +225,6 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-        
         <!-- Open Lawn -->
         <div class="bg-white rounded-3xl border border-brand-border overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
@@ -299,28 +296,20 @@
             </button>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- 3. Realtime Availability Calendar with Venue Filter -->
+  <!-- 3. Availability Calendar with Transparent Slot-Wise Breakdown -->
   <section id="calendar-section" class="py-16 sm:py-20 bg-brand-ivory">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
+      <div class="text-center max-w-3xl mx-auto mb-8">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-gold text-brand-forest text-xs uppercase tracking-widest font-semibold mb-3">
-          <i class="fa-solid fa-cloud text-emerald-600"></i> Cloud Realtime Calendar
+          <i class="fa-solid fa-calendar-check text-emerald-600"></i> Live Venue Status
         </div>
         <h2 class="text-2xl sm:text-4xl font-serif font-bold text-brand-forest">Check Venue Availability</h2>
         <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
-      </div>
-
-      <!-- Calendar Venue Filter -->
-      <div class="flex flex-wrap justify-center gap-2 mb-6" id="calVenueFilterGroup">
-        <button onclick="changeCalVenueFilter('all')" class="cal-v-btn active px-3.5 py-1.5 text-xs font-cinzel rounded-full border border-brand-gold bg-brand-forest text-brand-gold font-semibold">All Venues & Slots</button>
-        <button onclick="changeCalVenueFilter('Open Lawn')" class="cal-v-btn px-3.5 py-1.5 text-xs font-cinzel rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Open Lawn</button>
-        <button onclick="changeCalVenueFilter('Main Function Hall')" class="cal-v-btn px-3.5 py-1.5 text-xs font-cinzel rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Main Function Hall</button>
-        <button onclick="changeCalVenueFilter('AC Banquet Hall')" class="cal-v-btn px-3.5 py-1.5 text-xs font-cinzel rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">AC Banquet Hall</button>
+        <p class="text-xs sm:text-sm text-brand-muted">Click any date to see the real-time breakdown of <strong>Open Lawn</strong>, <strong>Function Hall</strong>, and <strong>AC Banquet Hall</strong> slots.</p>
       </div>
 
       <div class="bg-white rounded-3xl border border-brand-border shadow-forest-lg p-3 sm:p-10">
@@ -343,7 +332,7 @@
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Request Pending
             </span>
             <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 border border-rose-200">
-              <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Fully Booked
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Confirmed Booked
             </span>
           </div>
         </div>
@@ -355,22 +344,19 @@
         <!-- Date Grid -->
         <div id="calendarGrid" class="grid grid-cols-7 gap-1 sm:gap-2"></div>
 
-        <div id="selectedDateBar" class="mt-5 sm:mt-8 p-4 sm:p-5 rounded-2xl bg-brand-ivory border border-brand-gold/50 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all">
-          <div class="flex items-center space-x-3 text-left w-full sm:w-auto">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-base sm:text-lg flex-shrink-0">
-              <i class="fa-regular fa-calendar"></i>
-            </div>
+        <!-- Selected Date Detailed Breakdown Box -->
+        <div id="selectedDateBar" class="mt-6 p-5 rounded-2xl bg-brand-ivory border border-brand-gold/60 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-brand-border pb-3">
             <div>
-              <div class="text-[10px] sm:text-xs font-cinzel text-brand-muted uppercase tracking-wider">Selected Date</div>
-              <div id="selectedDateText" class="text-sm sm:text-base font-bold text-brand-forest">Please select a date from above</div>
-              <div id="selectedDateStatusBadge" class="inline-block mt-0.5 text-[11px] font-semibold"></div>
+              <span class="text-[10px] font-cinzel uppercase tracking-wider text-brand-muted">Selected Date Details</span>
+              <h3 id="selectedDateText" class="text-base sm:text-lg font-bold text-brand-forest">Please select a date from above</h3>
             </div>
+            <div id="selectedDateSummaryBadge" class="text-xs font-semibold"></div>
           </div>
 
-          <div id="selectedDateActionBtnContainer" class="w-full sm:w-auto">
-            <button id="bookSelectedDateBtn" disabled class="w-full sm:w-auto opacity-50 cursor-not-allowed px-6 py-3 bg-brand-gold text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl transition">
-              Select a Date
-            </button>
+          <!-- 6 Slots Breakdown Container -->
+          <div id="slotsBreakdownContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <p class="text-xs text-brand-muted col-span-full">Select any date to view individual availability of Open Lawn, Function Hall, and AC Banquet Hall.</p>
           </div>
         </div>
       </div>
@@ -381,7 +367,6 @@
   <section id="about" class="py-16 sm:py-20 bg-brand-cream/40 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-        
         <div class="lg:col-span-6 relative">
           <div class="relative z-10 rounded-2xl overflow-hidden shadow-forest-lg border-2 border-brand-gold/40">
             <img 
@@ -391,7 +376,6 @@
             />
           </div>
           <div class="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-brand-gold/50 -z-0 hidden sm:block"></div>
-          
           <div class="absolute bottom-6 left-6 z-20 bg-brand-forest text-brand-ivory p-3.5 sm:p-4 rounded-xl border border-brand-gold shadow-lg flex items-center space-x-3">
             <div class="text-brand-gold text-xl sm:text-2xl font-cinzel font-bold">100%</div>
             <div class="text-[11px] sm:text-xs uppercase tracking-wider text-brand-cream font-medium">
@@ -408,12 +392,8 @@
             Celebrate Your Special Moments With Us
           </h2>
           <p class="text-brand-muted text-xs sm:text-base leading-relaxed">
-            Welcome to <strong class="text-brand-forest font-semibold">Pandurang Lawns</strong>. We cater to every celebration style with multiple venue choices: breathtaking night lawn setups under the sky, traditional grand halls for daytime ceremonies, and our fully equipped AC banquet hall suitable for all celebrations.
+            Welcome to <strong class="text-brand-forest font-semibold">Pandurang Lawns</strong>. We cater to every celebration style with multiple venue choices: breathtaking night lawn setups under the stars, traditional grand halls for daytime ceremonies, and our fully equipped AC banquet hall suitable for all celebrations.
           </p>
-          <p class="text-brand-muted text-xs sm:text-sm leading-relaxed">
-            Whether booking an intimate birthday celebration, a grand wedding, or a royal reception, our flexible day/night slots ensure an organized and stress-free celebration.
-          </p>
-
           <div class="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
             <div class="p-3 sm:p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
               <i class="fa-solid fa-tree text-brand-gold text-lg sm:text-xl mb-1.5 sm:mb-2"></i>
@@ -437,7 +417,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -576,7 +555,7 @@
     </button>
   </aside>
 
-  <!-- Booking Modal (With Venue & Day/Night Slot Selection) -->
+  <!-- Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 sm:my-8">
       <div class="bg-brand-forest px-5 sm:px-8 py-4 sm:py-5 border-b border-brand-gold/30 flex items-center justify-between">
@@ -592,7 +571,6 @@
       <form id="bookingForm" class="p-5 sm:p-8 space-y-4 sm:space-y-5 text-left">
         <div id="bookingFormAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
 
-        <!-- Venue & Time Slot Selection -->
         <div class="border-b border-brand-border pb-3 sm:pb-4">
           <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">1. Select Venue & Timing</h4>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3">
@@ -634,7 +612,6 @@
           </div>
         </div>
 
-        <!-- Personal Info -->
         <div class="border-b border-brand-border pb-3 sm:pb-4">
           <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">2. Personal Details</h4>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
@@ -662,7 +639,7 @@
             </div>
             <div>
               <label for="bNotes" class="block text-xs font-medium text-brand-charcoal mb-1">Special Requirements</label>
-              <textarea id="bNotes" rows="2" placeholder="AC hall decoration, catering style..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
+              <textarea id="bNotes" rows="2" placeholder="Catering setup, decoration style..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
             </div>
           </div>
         </div>
@@ -690,7 +667,7 @@
           <i class="fa-solid fa-user-shield"></i>
         </div>
         <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest">Pandurang Lawns Admin</h3>
-        <p class="text-xs text-brand-muted mt-1 mb-6">Enter credentials to manage bookings and auto-notify customers.</p>
+        <p class="text-xs text-brand-muted mt-1 mb-6">Enter credentials to manage bookings.</p>
 
         <form id="adminLoginForm" autocomplete="off" class="space-y-4 text-left">
           <div>
@@ -756,8 +733,8 @@
           </div>
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
-            <div class="p-3.5 sm:p-4 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-              <span>Smart Booking Actions: Approving confirms customer & <strong>auto-cancels + sends WhatsApp to others for the same slot</strong>.</span>
+            <div class="p-3.5 sm:p-4 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
+              Smart Booking Actions: Approving confirms customer & auto-notifies others.
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
@@ -778,7 +755,7 @@
           </div>
         </div>
 
-        <!-- Tab 2: Profile & Password Settings -->
+        <!-- Tab 2: Settings -->
         <div id="adminTabSettings" class="p-5 sm:p-6 space-y-5 hidden max-w-xl mx-auto w-full text-left">
           <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm">
             <h3 class="font-cinzel text-sm sm:text-base font-bold text-brand-forest mb-4 border-b pb-2">Update Admin Username & Password</h3>
@@ -835,8 +812,17 @@
     let liveBookings = [];
     let calendarDate = new Date();
     let selectedCalendarDateStr = null;
-    let selectedCalVenueFilter = 'all';
     let isAdminLoggedIn = false;
+
+    // All available venue options and slots in the business
+    const ALL_VENUE_SLOTS = [
+      { venue: "Open Lawn", slot: "Night Slot", label: "Open Lawn (Night)", icon: "fa-moon text-indigo-700" },
+      { venue: "Open Lawn", slot: "Day Slot", label: "Open Lawn (Day)", icon: "fa-sun text-amber-600" },
+      { venue: "Main Function Hall", slot: "Day Slot", label: "Function Hall (Day)", icon: "fa-sun text-amber-600" },
+      { venue: "Main Function Hall", slot: "Night Slot", label: "Function Hall (Night)", icon: "fa-moon text-indigo-700" },
+      { venue: "AC Banquet Hall", slot: "Day Slot", label: "AC Banquet (Day)", icon: "fa-snowflake text-sky-600" },
+      { venue: "AC Banquet Hall", slot: "Night Slot", label: "AC Banquet (Night)", icon: "fa-snowflake text-sky-600" }
+    ];
 
     function formatToIndianDate(isoDateStr) {
       if (!isoDateStr) return "";
@@ -856,7 +842,8 @@
           await setDoc(adminDocRef, currentAdminAuth);
         }
       } catch(e) {}
-      document.getElementById('setAdminUser').value = currentAdminAuth.username;
+      const userField = document.getElementById('setAdminUser');
+      if (userField) userField.value = currentAdminAuth.username;
     }
     initAdminCredentials();
 
@@ -868,8 +855,7 @@
       renderCalendar();
       if (isAdminLoggedIn) renderAdminDashboard();
       if (selectedCalendarDateStr) {
-        const avail = checkDateAvailability(selectedCalendarDateStr, selectedCalVenueFilter);
-        selectCalendarDate(selectedCalendarDateStr, avail);
+        selectCalendarDate(selectedCalendarDateStr);
       }
     });
 
@@ -968,52 +954,23 @@
       openLightbox(currentLightboxIdx);
     };
 
-    // Slot & Venue-Specific Availability Checker
-    function checkDateAvailability(dateStr, venueFilter = 'all') {
-      let bookingsOnDate = liveBookings.filter(b => b.eventDate === dateStr);
-      if (venueFilter !== 'all') {
-        bookingsOnDate = bookingsOnDate.filter(b => (b.venue || "Open Lawn") === venueFilter);
-      }
-
+    // Calendar Status Logic
+    function getDateOverallStatus(dateStr) {
+      const bookingsOnDate = liveBookings.filter(b => b.eventDate === dateStr);
       const confirmed = bookingsOnDate.filter(b => b.status === "Booked");
       const pendings = bookingsOnDate.filter(b => b.status === "Pending");
 
-      // Check if completely booked (e.g. both day and night or full venue booked)
-      if (venueFilter !== 'all' && confirmed.length > 0) {
-        // If a venue specifically has booked slot
-        const hasFullDay = confirmed.some(b => b.slot === "Full Day (Day + Night)");
-        const hasDay = confirmed.some(b => b.slot === "Day Slot");
-        const hasNight = confirmed.some(b => b.slot === "Night Slot");
-        if (hasFullDay || (hasDay && hasNight)) {
-          return { status: "Booked", bookedCount: confirmed.length, details: confirmed };
-        }
+      if (confirmed.length >= 6) { // If all 6 slots are booked
+        return { status: "FullyBooked", label: "Booked", color: "rose", count: confirmed.length };
       }
-
-      if (confirmed.length >= 4) { // multiple venues/slots fully blocked
-        return { status: "Booked", bookedCount: confirmed.length, details: confirmed };
+      if (confirmed.length > 0) { // Some slots booked, some open!
+        return { status: "PartiallyBooked", label: `${confirmed.length} Booked`, color: "amber", bookedCount: confirmed.length };
       }
-
       if (pendings.length > 0) {
-        return { status: "Pending", count: pendings.length, bookedCount: confirmed.length };
+        return { status: "Pending", label: `Pending`, color: "amber", count: pendings.length };
       }
-
-      return { status: "Available", bookedCount: confirmed.length };
+      return { status: "Available", label: "Available", color: "emerald" };
     }
-
-    window.changeCalVenueFilter = (venueName) => {
-      selectedCalVenueFilter = venueName;
-      document.querySelectorAll('#calVenueFilterGroup .cal-v-btn').forEach(btn => {
-        btn.classList.remove('bg-brand-forest', 'text-brand-gold', 'font-semibold');
-        btn.classList.add('bg-white', 'text-brand-charcoal');
-      });
-      event.target.classList.remove('bg-white', 'text-brand-charcoal');
-      event.target.classList.add('bg-brand-forest', 'text-brand-gold', 'font-semibold');
-      renderCalendar();
-      if (selectedCalendarDateStr) {
-        const avail = checkDateAvailability(selectedCalendarDateStr, selectedCalVenueFilter);
-        selectCalendarDate(selectedCalendarDateStr, avail);
-      }
-    };
 
     function renderCalendar() {
       const monthYearLabel = document.getElementById('currentMonthYearLabel');
@@ -1045,28 +1002,37 @@
       for (let day = 1; day <= daysInMonth; day++) {
         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         const currentDateObj = new Date(year, month, day);
-        const avail = checkDateAvailability(dateStr, selectedCalVenueFilter);
+        const overall = getDateOverallStatus(dateStr);
         const isPast = currentDateObj < today;
         const isSelected = (selectedCalendarDateStr === dateStr);
 
         const cell = document.createElement('div');
-        let statusContent = "";
+        let statusBadge = "";
         let statusClasses = "";
 
         if (isPast) {
           statusClasses = "bg-slate-50 text-slate-400 border border-slate-200 cursor-not-allowed opacity-50";
-          statusContent = `<span class="text-[8px] sm:text-[9px] font-mono block text-center sm:text-left">Past</span>`;
-        } else if (avail.status === "Booked") {
+          statusBadge = `<span class="text-[8px] sm:text-[9px] font-mono block text-center sm:text-left">Past</span>`;
+        } else if (overall.status === "FullyBooked") {
           statusClasses = "bg-rose-50 text-rose-900 border border-rose-300 cursor-pointer";
-          statusContent = `
+          statusBadge = `
             <div class="flex items-center justify-center sm:justify-start gap-1">
               <span class="w-2 h-2 rounded-full bg-rose-600 flex-shrink-0"></span>
               <span class="hidden sm:inline text-[10px] font-bold text-rose-700 truncate">Booked</span>
             </div>
           `;
-        } else if (avail.status === "Pending") {
-          statusClasses = "bg-amber-50 text-amber-900 border border-amber-300 cursor-pointer";
-          statusContent = `
+        } else if (overall.status === "PartiallyBooked") {
+          // Shows in distinct color because some slots are confirmed booked!
+          statusClasses = "bg-amber-50 text-amber-950 border border-amber-300 cursor-pointer ring-1 ring-amber-400";
+          statusBadge = `
+            <div class="flex items-center justify-center sm:justify-start gap-1">
+              <span class="w-2 h-2 rounded-full bg-rose-600 flex-shrink-0"></span>
+              <span class="hidden sm:inline text-[10px] font-bold text-rose-700 truncate">${overall.label}</span>
+            </div>
+          `;
+        } else if (overall.status === "Pending") {
+          statusClasses = "bg-amber-50 text-amber-900 border border-amber-200 cursor-pointer";
+          statusBadge = `
             <div class="flex items-center justify-center sm:justify-start gap-1">
               <span class="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0"></span>
               <span class="hidden sm:inline text-[10px] font-bold text-amber-700 truncate">Pending</span>
@@ -1074,7 +1040,7 @@
           `;
         } else {
           statusClasses = "bg-emerald-50 text-emerald-950 border border-emerald-200 hover:border-emerald-500 cursor-pointer";
-          statusContent = `
+          statusBadge = `
             <div class="flex items-center justify-center sm:justify-start gap-1">
               <span class="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></span>
               <span class="hidden sm:inline text-[10px] font-bold text-emerald-700 truncate">Available</span>
@@ -1082,7 +1048,7 @@
           `;
         }
 
-        if (isSelected) statusClasses += " ring-2 ring-brand-gold border-brand-gold bg-brand-gold/15";
+        if (isSelected) statusClasses += " ring-2 ring-brand-gold border-brand-gold bg-brand-gold/20";
 
         cell.className = `cal-day-cell rounded-xl flex flex-col justify-between transition-all ${statusClasses}`;
         cell.innerHTML = `
@@ -1090,10 +1056,10 @@
             <span class="font-bold text-[11px] sm:text-sm font-cinzel leading-none">${day}</span>
             ${isSelected ? '<i class="fa-solid fa-check text-brand-goldDark text-[10px] sm:text-xs"></i>' : ''}
           </div>
-          <div class="mt-1">${statusContent}</div>
+          <div class="mt-1">${statusBadge}</div>
         `;
 
-        if (!isPast) cell.onclick = () => selectCalendarDate(dateStr, avail);
+        if (!isPast) cell.onclick = () => selectCalendarDate(dateStr);
         calendarGrid.appendChild(cell);
       }
     }
@@ -1103,43 +1069,88 @@
       renderCalendar();
     };
 
-    function selectCalendarDate(dateStr, avail) {
+    // Shows transparent slot-wise cards when any date is clicked
+    function selectCalendarDate(dateStr) {
       selectedCalendarDateStr = dateStr;
       renderCalendar();
 
       const textEl = document.getElementById('selectedDateText');
-      const badgeEl = document.getElementById('selectedDateStatusBadge');
-      const btn = document.getElementById('bookSelectedDateBtn');
+      const badgeEl = document.getElementById('selectedDateSummaryBadge');
+      const container = document.getElementById('slotsBreakdownContainer');
 
       const indianFormatted = formatToIndianDate(dateStr);
       textEl.textContent = `${indianFormatted} (${new Date(dateStr + "T00:00:00").toLocaleDateString('en-US', { weekday: 'long', month: 'short' })})`;
 
-      // Get booked venues for this date
-      const activeBookings = liveBookings.filter(b => b.eventDate === dateStr && b.status === "Booked");
-      let bookedVenuesList = activeBookings.map(b => `${b.venue || 'Lawn'} (${b.slot || 'Slot'})`).join(', ');
+      // Get all confirmed & pending for this date
+      const dateBookings = liveBookings.filter(b => b.eventDate === dateStr);
+      const confirmedCount = dateBookings.filter(b => b.status === "Booked").length;
 
-      if (avail.status === "Available") {
-        badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Venues & Slots Open for Booking`;
-        btn.disabled = false;
-        btn.className = "px-6 py-3 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl shadow cursor-pointer";
-        btn.textContent = "Book This Date";
-        btn.onclick = () => openBookingModal(dateStr);
-      } else if (avail.status === "Pending") {
-        badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-hourglass-half mr-1"></i> Requests Pending (${avail.count}). Other Venues/Slots Available!`;
-        btn.disabled = false;
-        btn.className = "px-6 py-3 bg-amber-600 text-white font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-amber-700 cursor-pointer";
-        btn.textContent = "Request Available Slot";
-        btn.onclick = () => openBookingModal(dateStr);
+      if (confirmedCount === 0) {
+        badgeEl.className = "text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full text-xs font-semibold";
+        badgeEl.textContent = "All 6 Venue Slots Available";
       } else {
-        badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-ban mr-1"></i> Booked: ${bookedVenuesList}`;
-        btn.disabled = false;
-        btn.className = "px-6 py-3 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-brand-forestLight cursor-pointer";
-        btn.textContent = "Check / Request Other Slot";
-        btn.onclick = () => openBookingModal(dateStr);
+        badgeEl.className = "text-amber-800 bg-amber-100 px-3 py-1 rounded-full text-xs font-semibold";
+        badgeEl.textContent = `${confirmedCount} Slot(s) Booked • Remaining Slots Open`;
       }
+
+      // Render 6 individual slot status cards
+      container.innerHTML = ALL_VENUE_SLOTS.map(item => {
+        const booked = dateBookings.find(b => 
+          (b.venue || "Open Lawn") === item.venue && 
+          b.status === "Booked" &&
+          (b.slot === item.slot || b.slot === "Full Day (Day + Night)")
+        );
+
+        const pending = dateBookings.find(b => 
+          (b.venue || "Open Lawn") === item.venue && 
+          b.status === "Pending" &&
+          (b.slot === item.slot || b.slot === "Full Day (Day + Night)")
+        );
+
+        if (booked) {
+          return `
+            <div class="p-3.5 rounded-xl border border-rose-300 bg-rose-50 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-rose-900 flex items-center gap-1.5">
+                  <i class="fa-solid ${item.icon}"></i> ${item.label}
+                </div>
+                <div class="text-[11px] text-rose-700 font-semibold mt-0.5">
+                  <i class="fa-solid fa-lock mr-1"></i> Booked (${booked.customerName || 'Reserved'})
+                </div>
+              </div>
+              <span class="px-2.5 py-1 bg-rose-200 text-rose-800 text-[10px] font-bold rounded-md uppercase">Booked</span>
+            </div>
+          `;
+        } else if (pending) {
+          return `
+            <div class="p-3.5 rounded-xl border border-amber-300 bg-amber-50 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-amber-900 flex items-center gap-1.5">
+                  <i class="fa-solid ${item.icon}"></i> ${item.label}
+                </div>
+                <div class="text-[11px] text-amber-700 mt-0.5">Request Pending</div>
+              </div>
+              <button onclick="prefillVenueAndBook('${item.venue}', '${item.slot}', '${dateStr}')" class="px-3 py-1 bg-amber-600 text-white text-[10px] font-bold rounded-lg uppercase hover:bg-amber-700 transition">
+                Request Slot
+              </button>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="p-3.5 rounded-xl border border-emerald-300 bg-emerald-50/70 flex items-center justify-between hover:border-emerald-500 transition">
+              <div>
+                <div class="text-xs font-bold text-emerald-950 flex items-center gap-1.5">
+                  <i class="fa-solid ${item.icon}"></i> ${item.label}
+                </div>
+                <div class="text-[11px] text-emerald-700 mt-0.5 font-medium">Available to Book</div>
+              </div>
+              <button onclick="prefillVenueAndBook('${item.venue}', '${item.slot}', '${dateStr}')" class="px-3 py-1 bg-emerald-700 text-white text-[10px] font-bold rounded-lg uppercase hover:bg-emerald-800 transition">
+                Book Slot
+              </button>
+            </div>
+          `;
+        }
+      }).join('');
     }
 
     window.openBookingModal = (presetDate = null) => {
@@ -1159,8 +1170,8 @@
       document.getElementById('bookingModal').classList.remove('modal-active');
     };
 
-    window.prefillVenueAndBook = (venueName, slotName) => {
-      openBookingModal();
+    window.prefillVenueAndBook = (venueName, slotName, presetDate = null) => {
+      openBookingModal(presetDate);
       document.getElementById('bVenue').value = venueName;
       document.getElementById('bSlot').value = slotName;
       verifyFormSlotConflict();
@@ -1176,7 +1187,6 @@
 
       if (!d) return;
 
-      // Check conflict for EXACT SAME VENUE & OVERLAPPING SLOT
       const conflict = liveBookings.find(b => 
         b.eventDate === d && 
         (b.venue || "Open Lawn") === v && 
@@ -1186,7 +1196,7 @@
 
       if (conflict) {
         alertBox.className = "p-3 rounded-xl text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300 block";
-        alertBox.innerHTML = `⚠️ <strong>${v} (${s})</strong> is officially booked for this date! Please choose another Venue (e.g. AC Banquet / Hall) or another Slot.`;
+        alertBox.innerHTML = `⚠️ <strong>${v} (${s})</strong> is officially booked for this date! Please choose another Venue (e.g. AC Banquet Hall) or another timing slot.`;
         feedback.className = "text-[11px] block mt-1 text-rose-600 font-semibold";
         feedback.textContent = "Slot already booked!";
         submitBtn.disabled = true;
@@ -1213,7 +1223,6 @@
       const venue = document.getElementById('bVenue').value;
       const slot = document.getElementById('bSlot').value;
 
-      // Re-verify slot conflict
       const conflict = liveBookings.find(b => 
         b.eventDate === eventDate && 
         (b.venue || "Open Lawn") === venue && 
@@ -1255,7 +1264,7 @@
       }
     });
 
-    // Admin Authentication & Modal
+    // Admin Portal & Authentication
     window.openAdminModal = () => {
       document.getElementById('adminPortalModal').classList.remove('hidden');
       document.getElementById('adminPortalModal').classList.add('modal-active');
@@ -1328,7 +1337,20 @@
       }
     });
 
-    // Render Admin Table with Venue & Slot Information
+    // 100% Guaranteed Working Delete Function
+    window.deleteBookingById = async (bookingId) => {
+      if (confirm("Are you sure you want to permanently delete this booking record?")) {
+        try {
+          await deleteDoc(doc(db, "bookings", bookingId));
+          alert("Booking deleted successfully!");
+        } catch (error) {
+          console.error("Delete failed:", error);
+          alert("Could not delete record: " + error.message);
+        }
+      }
+    };
+
+    // Render Admin Table
     function renderAdminDashboard() {
       document.getElementById('statTotalBookings').textContent = liveBookings.length;
       document.getElementById('statPendingBookings').textContent = liveBookings.filter(b => b.status === "Pending").length;
@@ -1346,7 +1368,7 @@
 
         return `
           <tr class="hover:bg-brand-cream/30">
-            <td class="py-3 px-3 sm:px-4 font-bold text-brand-forest">${displayDate}</td>
+            <td class="py-3 px-3 sm:px-4 font-bold text-brand-forest whitespace-nowrap">${displayDate}</td>
             <td class="py-3 px-3 sm:px-4">
               <span class="font-bold text-brand-forest">${venueName}</span><br>
               <span class="text-[11px] text-brand-muted"><i class="fa-solid fa-clock text-[10px] mr-1"></i>${slotName}</span>
@@ -1355,18 +1377,18 @@
             <td class="py-3 px-3 sm:px-4">${b.mobile}</td>
             <td class="py-3 px-3 sm:px-4">${b.eventType}</td>
             <td class="py-3 px-3 sm:px-4">${statusBadge}</td>
-            <td class="py-3 px-3 sm:px-4 text-right space-x-1">
+            <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
               ${b.status === 'Pending' ? `
                 <button onclick="approveDirectSmart('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs">
                   Approve & Notify
                 </button>
               ` : ''}
-              ${b.status !== 'Cancelled' ? `
+              ${b.status === 'Booked' ? `
                 <button onclick="cancelDirectSingle('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
                   Cancel
                 </button>
               ` : ''}
-              <button onclick="deleteDoc(doc(db, 'bookings', '${b.id}'))" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs">
+              <button onclick="deleteBookingById('${b.id}')" class="px-2.5 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs">
                 Delete
               </button>
             </td>
@@ -1382,17 +1404,15 @@
       window.open(url, '_blank');
     }
 
-    // Smart Approval: Confirms selected customer AND auto-notifies others who got cancelled!
+    // Smart Approval: Confirms selected customer AND auto-notifies cancelled ones
     window.approveDirectSmart = async (selectedId, eventDate, venue, slot, name, mobile) => {
-      // 1. Confirm this booking
       await updateDoc(doc(db, "bookings", selectedId), { status: "Booked" });
       const indianDate = formatToIndianDate(eventDate);
 
-      // WhatsApp message for CONFIRMED Customer
       const confirmMsg = `Namaskar ${name} ji, Pandurang Lawns kadun aapan kelyelya vinantinusar ${indianDate} roji [${venue} - ${slot}] chi booking CONFIRM zali ahe. Dhanyawad! Contact: Rakesh Chavan (${VENUE_CONFIG.contactRakesh.phone}), Santosh Chavan (${VENUE_CONFIG.contactSantosh.phone}). Location: ${VENUE_CONFIG.mapUrl}`;
       dispatchWhatsAppDirect(mobile, confirmMsg);
 
-      // 2. Find any pending customers for the EXACT SAME VENUE & OVERLAPPING SLOT
+      // Auto cancel conflicting requests for the EXACT venue & slot
       const conflictPendings = liveBookings.filter(b => 
         b.eventDate === eventDate && 
         (b.venue || "Open Lawn") === venue && 
@@ -1401,13 +1421,9 @@
         (b.slot === slot || b.slot === "Full Day (Day + Night)" || slot === "Full Day (Day + Night)")
       );
 
-      // Automatically cancel and notify conflicting requests
       for (let c of conflictPendings) {
         await updateDoc(doc(db, "bookings", c.id), { status: "Cancelled" });
-        
         const autoCancelMsg = `Namaskar ${c.customerName} ji, Pandurang Lawns madhe ${indianDate} roji sathi aapan request kelela slot [${venue} - ${c.slot || slot}] dusrya customer sathi CONFIRM zalya mule aapli hi request cancel zali ahe. Krupaya dusra slot kiwa date select karavi. Dhanyawad! Contact: ${VENUE_CONFIG.contactRakesh.phone}`;
-        
-        // Open cancel WhatsApp alert for the rejected customer
         setTimeout(() => {
           dispatchWhatsAppDirect(c.mobile, autoCancelMsg);
         }, 800);
