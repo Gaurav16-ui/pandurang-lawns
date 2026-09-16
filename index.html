@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pandurang Lawns | Luxury Wedding & Event Venue</title>
-  <meta name="description" content="Pandurang Lawns is an exquisite, grand destination for weddings, royal receptions, engagements and memorable celebrations. Check availability and reserve your date online." />
+  <meta name="description" content="Pandurang Lawns is an exquisite destination for weddings, royal receptions, and celebrations." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +63,7 @@
         <span><i class="fa-solid fa-envelope mr-1.5 text-brand-gold"></i> <span id="topEmail">contact@panduranglawns.com</span></span>
       </div>
       <div class="flex items-center space-x-4">
-        <span><i class="fa-solid fa-gem mr-1.5 text-brand-gold"></i> Premium Wedding Destination</span>
+        <span><i class="fa-solid fa-gem mr-1.5 text-brand-gold"></i> Premier Wedding Destination</span>
         <button onclick="openAdminModal()" class="text-xs text-brand-gold hover:text-white underline transition ml-2">
           <i class="fa-solid fa-lock text-[10px] mr-1"></i>Owner Portal
         </button>
@@ -107,14 +107,6 @@
         </div>
       </div>
     </div>
-
-    <div id="mobileMenu" class="hidden lg:hidden bg-brand-forest border-t border-brand-gold/20 px-6 py-5 space-y-3">
-      <a href="#home" class="mobile-nav-link block text-brand-ivory py-1">Home</a>
-      <a href="#about" class="mobile-nav-link block text-brand-ivory py-1">About Venue</a>
-      <a href="#facilities" class="mobile-nav-link block text-brand-ivory py-1">Facilities</a>
-      <a href="#calendar-section" class="mobile-nav-link block text-brand-gold font-semibold py-1">Check Availability</a>
-      <a href="#contact" class="mobile-nav-link block text-brand-ivory py-1">Contact & Directions</a>
-    </div>
   </header>
 
   <!-- Hero -->
@@ -148,28 +140,9 @@
         <span class="text-xs font-cinzel uppercase tracking-widest text-brand-forest border-b-2 border-brand-gold pb-1 font-bold">About Venue</span>
         <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest">Celebrate Your Special Moments With Us</h2>
         <p class="text-brand-muted text-sm leading-relaxed">
-          Welcome to <strong class="text-brand-forest">Pandurang Lawns</strong>. Our grand venue offers lush green open-air lawns, illuminated stage platforms, separate spacious dining areas, and full vendor facilities to make your wedding truly royal and unforgettable.
+          Welcome to <strong class="text-brand-forest">Pandurang Lawns</strong>. Our grand venue offers lush green open-air lawns, illuminated stage platforms, separate spacious dining areas, and full vendor facilities.
         </p>
-        <div class="grid grid-cols-2 gap-4 pt-2">
-          <div class="p-4 rounded-xl bg-white border border-brand-border">
-            <i class="fa-solid fa-tree text-brand-gold text-xl mb-1"></i>
-            <h3 class="font-cinzel text-xs font-bold uppercase text-brand-forest">Spacious Lawn</h3>
-          </div>
-          <div class="p-4 rounded-xl bg-white border border-brand-border">
-            <i class="fa-solid fa-square-parking text-brand-gold text-xl mb-1"></i>
-            <h3 class="font-cinzel text-xs font-bold uppercase text-brand-forest">Ample Parking</h3>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Facilities -->
-  <section id="facilities" class="py-20 bg-brand-cream/40 border-b border-brand-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-widest">Venue Amenities</span>
-      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest mt-2 mb-10">World-Class Facilities</h2>
-      <div id="facilitiesContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-6"></div>
     </div>
   </section>
 
@@ -181,7 +154,7 @@
           <i class="fa-solid fa-cloud text-emerald-600"></i> Realtime Synchronized
         </div>
         <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest">Check Your Preferred Date</h2>
-        <p class="text-xs text-brand-muted mt-2">Even if a date shows "Pending", you can still place your booking request! The venue owner will select and finalize the client.</p>
+        <p class="text-xs text-brand-muted mt-2">Even if a date shows "Pending", you can still place your booking request! The venue owner will finalize the booking.</p>
       </div>
 
       <div class="bg-white rounded-3xl border border-brand-border shadow-lg p-6 sm:p-10">
@@ -251,13 +224,6 @@
               <button onclick="openWhatsAppChat()" class="inline-block mt-2 px-3 py-1 bg-emerald-600 text-white rounded text-xs font-semibold">Chat Now</button>
             </div>
           </div>
-          <div class="bg-white p-6 rounded-2xl border border-brand-border flex items-start space-x-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-map-location-dot"></i></div>
-            <div>
-              <h3 class="font-cinzel text-xs font-bold uppercase text-brand-muted">Venue Location</h3>
-              <p class="text-sm font-semibold text-brand-forest" id="venueAddressText">Pandurang Lawns, Maharashtra, India</p>
-            </div>
-          </div>
         </div>
 
         <div class="lg:col-span-7">
@@ -289,12 +255,10 @@
       </div>
 
       <form id="bookingForm" class="p-6 space-y-4">
-        <div id="bookingFormAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-medium mb-1">Select Date *</label>
-            <input type="date" id="bEventDate" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-brand-gold" />
+            <input type="date" id="bEventDate" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none" />
           </div>
           <div>
             <label class="block text-xs font-medium mb-1">Occasion *</label>
@@ -332,8 +296,8 @@
         </div>
 
         <div>
-          <label class="block text-xs font-medium mb-1">Special Notes / Requirements</label>
-          <textarea id="bNotes" rows="2" placeholder="Tell us about catering, timing, etc..." class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none"></textarea>
+          <label class="block text-xs font-medium mb-1">Special Notes</label>
+          <textarea id="bNotes" rows="2" placeholder="Catering, decorators setup..." class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none"></textarea>
         </div>
 
         <div class="pt-2 flex justify-end gap-3">
@@ -344,11 +308,11 @@
     </div>
   </div>
 
-  <!-- Admin Portal Modal (With Profile Settings & WhatsApp Trigger) -->
+  <!-- Admin Modal -->
   <div id="adminPortalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4">
       
-      <!-- Login View -->
+      <!-- Login -->
       <div id="adminLoginView" class="p-8 sm:p-12 max-w-md mx-auto text-center">
         <div class="w-14 h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-2xl mb-4 shadow">
           <i class="fa-solid fa-user-shield"></i>
@@ -373,7 +337,7 @@
         </form>
       </div>
 
-      <!-- Dashboard View -->
+      <!-- Dashboard -->
       <div id="adminDashboardView" class="hidden flex flex-col min-h-[85vh]">
         <div class="bg-brand-forest text-white px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-brand-gold/30">
           <div class="flex items-center space-x-3">
@@ -388,7 +352,7 @@
           </div>
         </div>
 
-        <!-- Tab 1: Bookings Management -->
+        <!-- Bookings -->
         <div id="adminTabBookings" class="p-6 space-y-6 overflow-y-auto max-h-[calc(85vh-70px)]">
           <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="bg-white p-4 rounded-2xl border border-brand-border">
@@ -406,9 +370,8 @@
           </div>
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
-            <div class="p-4 bg-slate-50 border-b border-brand-border text-xs font-medium text-brand-muted flex items-center justify-between">
-              <span>Customer Requests (Manage & Select Booking for Any Date)</span>
-              <span class="text-[11px] text-brand-forest font-semibold">Tip: Approving a pending booking will confirm it and auto-cancel others on that date.</span>
+            <div class="p-4 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
+              Direct Action & Instant Automated WhatsApp Dispatch
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
@@ -419,7 +382,7 @@
                     <th class="py-3 px-4">Contact</th>
                     <th class="py-3 px-4">Occasion</th>
                     <th class="py-3 px-4">Status</th>
-                    <th class="py-3 px-4 text-right">Actions & WhatsApp Notify</th>
+                    <th class="py-3 px-4 text-right">Actions (Direct Auto-Notify)</th>
                   </tr>
                 </thead>
                 <tbody id="adminBookingsTableBody" class="divide-y divide-brand-border"></tbody>
@@ -428,7 +391,7 @@
           </div>
         </div>
 
-        <!-- Tab 2: Admin Profile & Credentials Settings -->
+        <!-- Settings -->
         <div id="adminTabSettings" class="p-6 space-y-6 hidden max-w-xl mx-auto w-full">
           <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm">
             <h3 class="font-cinzel text-base font-bold text-brand-forest mb-4 border-b pb-2">Change Admin Username & Password</h3>
@@ -452,7 +415,7 @@
     </div>
   </div>
 
-  <!-- Firebase Scripts -->
+  <!-- Firebase Integration -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
@@ -486,7 +449,6 @@
     let selectedCalendarDateStr = null;
     let isAdminLoggedIn = false;
 
-    // Load or Initialize Cloud Admin Credentials
     async function initAdminCredentials() {
       try {
         const snap = await getDoc(adminDocRef);
@@ -495,15 +457,12 @@
         } else {
           await setDoc(adminDocRef, currentAdminAuth);
         }
-      } catch(e) {
-        console.warn("Using default credentials");
-      }
+      } catch(e) {}
       document.getElementById('adminUsername').value = currentAdminAuth.username;
       document.getElementById('setAdminUser').value = currentAdminAuth.username;
     }
     initAdminCredentials();
 
-    // Listen to realtime bookings
     onSnapshot(bookingsCol, (snapshot) => {
       liveBookings = [];
       snapshot.forEach(docSnap => {
@@ -517,13 +476,6 @@
       }
     });
 
-    const VENUE_FACILITIES = [
-      { name: "Spacious Lawn", icon: "fa-solid fa-tree", desc: "Expansive green grounds for royal celebrations." },
-      { name: "Ample Parking", icon: "fa-solid fa-square-parking", desc: "Hassle-free parking for buses and cars." },
-      { name: "Grand Stage", icon: "fa-solid fa-crown", desc: "Elevated platform for mandap & reception." },
-      { name: "Dining Zone", icon: "fa-solid fa-utensils", desc: "Dedicated courtyard for dining and buffet." }
-    ];
-
     function checkDateAvailability(dateStr) {
       const confirmed = liveBookings.find(b => b.eventDate === dateStr && b.status === "Booked");
       if (confirmed) return { status: "Booked", booking: confirmed };
@@ -532,20 +484,6 @@
       if (pendings.length > 0) return { status: "Pending", count: pendings.length };
 
       return { status: "Available" };
-    }
-
-    function renderFacilities() {
-      const container = document.getElementById('facilitiesContainer');
-      if (!container) return;
-      container.innerHTML = VENUE_FACILITIES.map(fac => `
-        <div class="bg-white p-5 rounded-2xl border border-brand-border text-center shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-brand-forest/10 text-brand-forest flex items-center justify-center text-xl mb-3 mx-auto">
-            <i class="${fac.icon}"></i>
-          </div>
-          <h3 class="font-cinzel text-xs font-bold uppercase text-brand-forest">${fac.name}</h3>
-          <p class="text-[11px] text-brand-muted mt-1">${fac.desc}</p>
-        </div>
-      `).join('');
     }
 
     function renderCalendar() {
@@ -634,21 +572,21 @@
 
       if (avail.status === "Available") {
         badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Date is Completely Available`;
+        badgeEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Date is Available`;
         btn.disabled = false;
         btn.className = "px-6 py-3 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl shadow cursor-pointer";
         btn.textContent = "Book This Date";
         btn.onclick = () => openBookingModal(dateStr);
       } else if (avail.status === "Pending") {
         badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-hourglass-half mr-1"></i> ${avail.count} Pending Request(s). You can still request this date!`;
+        badgeEl.innerHTML = `<i class="fa-solid fa-hourglass-half mr-1"></i> ${avail.count} Request(s) Pending. You can also request this date!`;
         btn.disabled = false;
         btn.className = "px-6 py-3 bg-amber-600 text-white font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-amber-700 cursor-pointer";
         btn.textContent = "Request This Date";
         btn.onclick = () => openBookingModal(dateStr);
       } else {
         badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-ban mr-1"></i> Date Officially Booked & Confirmed`;
+        badgeEl.innerHTML = `<i class="fa-solid fa-ban mr-1"></i> Date Officially Booked`;
         btn.disabled = true;
         btn.className = "opacity-50 cursor-not-allowed px-6 py-3 bg-rose-200 text-rose-800 font-cinzel font-bold text-xs uppercase rounded-xl";
         btn.textContent = "Date Unavailable";
@@ -669,7 +607,6 @@
       document.getElementById('bookingModal').classList.remove('modal-active');
     };
 
-    // Submit Booking Request
     document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
@@ -699,18 +636,17 @@
 
       try {
         await addDoc(bookingsCol, newRecord);
-        alert(`Your request for ${eventDate} has been sent! The owner will review and confirm.`);
+        alert(`Your request for ${eventDate} has been sent!`);
         closeBookingModal();
         document.getElementById('bookingForm').reset();
       } catch (err) {
-        alert("Network error. Please try again.");
+        alert("Network error.");
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
       }
     });
 
-    // Admin Authentication
     window.openAdminModal = () => {
       document.getElementById('adminPortalModal').classList.remove('hidden');
       document.getElementById('adminPortalModal').classList.add('modal-active');
@@ -762,7 +698,6 @@
       }
     };
 
-    // Update Admin Profile (Username & Password)
     document.getElementById('adminSettingsForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const newU = document.getElementById('setAdminUser').value.trim();
@@ -770,10 +705,10 @@
       try {
         currentAdminAuth = { username: newU, password: newP };
         await setDoc(adminDocRef, currentAdminAuth);
-        alert("Admin profile and password updated successfully in Cloud!");
+        alert("Credentials updated!");
         showAdminTab('bookings');
       } catch (err) {
-        alert("Failed to update credentials. Please check internet.");
+        alert("Failed to update credentials.");
       }
     });
 
@@ -797,20 +732,17 @@
             <td class="py-3 px-4">${statusBadge}</td>
             <td class="py-3 px-4 text-right space-x-1">
               ${b.status === 'Pending' ? `
-                <button onclick="approveBookingAndCancelOthers('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs" title="Confirm this person and cancel other pending requests for this date">
-                  Approve & Book
+                <button onclick="approveDirect('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs">
+                  Approve & Auto-Notify
                 </button>
               ` : ''}
               ${b.status !== 'Cancelled' ? `
-                <button onclick="cancelSingleBooking('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
-                  Cancel
+                <button onclick="cancelDirect('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
+                  Cancel & Auto-Notify
                 </button>
               ` : ''}
-              <button onclick="deleteSingleBooking('${b.id}')" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs">
+              <button onclick="deleteDoc(doc(db, 'bookings', '${b.id}'))" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs">
                 Delete
-              </button>
-              <button onclick="sendCustomerWhatsApp('${b.mobile}', '${b.customerName}', '${b.eventDate}', '${b.status}')" class="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold" title="Send WhatsApp Message">
-                <i class="fa-brands fa-whatsapp"></i> Notify
               </button>
             </td>
           </tr>
@@ -818,63 +750,41 @@
       }).join('');
     }
 
-    // 1. APPROVE ONE PERSON & AUTO-CANCEL OTHERS ON SAME DATE
-    window.approveBookingAndCancelOthers = async (selectedId, eventDate, name, mobile) => {
-      if (!confirm(`Are you sure you want to approve ${name} for ${eventDate}? Any other pending requests for this date will be cancelled.`)) return;
+    // थेट मेसेज पाठवणारे फंक्शन (कोणतीही विचारणा न करता थेट WhatsApp ओपन करेल)
+    function dispatchWhatsAppDirect(mobile, message) {
+      let formatted = mobile.replace(/\D/g, '');
+      if (formatted.length === 10) formatted = '91' + formatted;
+      const url = `https://wa.me/${formatted}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
 
-      // Update selected to Booked
+    // १. APPROVE दाबताच थेट बुक होईल आणि ग्राहकाला डायरेक्ट मेसेज ट्रिगर होईल
+    window.approveDirect = async (selectedId, eventDate, name, mobile) => {
+      // १. सिलेक्ट केलेल्या व्यक्तीला Booked करणे
       await updateDoc(doc(db, "bookings", selectedId), { status: "Booked" });
 
-      // Find and auto-cancel other pending bookings on the same date
+      // २. थेट त्या ग्राहकाला WhatsApp मेसेज पाठवणे
+      const confirmMsg = `Namaskar ${name} ji, Pandurang Lawns kadun aapan kelyelya vinantinusar ${eventDate} roji chi booking CONFIRM zali ahe. Dhanyawad! Contact: ${VENUE_CONFIG.phone}`;
+      dispatchWhatsAppDirect(mobile, confirmMsg);
+
+      // ३. त्या तारखेचे इतर पेंडिंग ग्राहक ऑटोमॅटिक Cancel करणे
       const others = liveBookings.filter(b => b.eventDate === eventDate && b.id !== selectedId && b.status === "Pending");
       for (let o of others) {
         await updateDoc(doc(db, "bookings", o.id), { status: "Cancelled" });
       }
-
-      // Prompt to notify the approved client
-      if (confirm(`Booking confirmed! Do you want to send a WhatsApp confirmation message to ${name} now?`)) {
-        sendCustomerWhatsApp(mobile, name, eventDate, "Booked");
-      }
     };
 
-    // 2. CANCEL SINGLE BOOKING
-    window.cancelSingleBooking = async (id, eventDate, name, mobile) => {
-      if (!confirm(`Cancel booking for ${name} on ${eventDate}?`)) return;
+    // २. CANCEL दाबताच थेट रद्द होईल आणि ग्राहकाला डायरेक्ट मेसेज ट्रिगर होईल
+    window.cancelDirect = async (id, eventDate, name, mobile) => {
       await updateDoc(doc(db, "bookings", id), { status: "Cancelled" });
-      if (confirm(`Do you want to send a WhatsApp cancellation message to ${name}?`)) {
-        sendCustomerWhatsApp(mobile, name, eventDate, "Cancelled");
-      }
-    };
-
-    window.deleteSingleBooking = async (id) => {
-      if (confirm("Delete this record permanently?")) {
-        await deleteDoc(doc(db, "bookings", id));
-      }
-    };
-
-    // 3. WHATSAPP NOTIFICATION TRIGGER (Automated text generator)
-    window.sendCustomerWhatsApp = (mobile, name, date, status) => {
-      let formattedPhone = mobile.replace(/\D/g, '');
-      if (formattedPhone.length === 10) formattedPhone = '91' + formattedPhone;
-
-      let msg = "";
-      if (status === "Booked") {
-        msg = `Namaskar ${name} ji, Pandurang Lawns kadun aapan kelyelya vinantinusar ${date} roji chi booking CONFIRM zali ahe. Dhanyawad! Contact: ${VENUE_CONFIG.phone}`;
-      } else if (status === "Cancelled") {
-        msg = `Namaskar ${name} ji, Pandurang Lawns madhil ${date} roji chi booking request kahi karanastav Cancel zali ahe / Dusrya client sathi confirm zali ahe. Krupaya dusri date select karavi. Dhanyawad.`;
-      } else {
-        msg = `Namaskar ${name} ji, Pandurang Lawns kadun aamhi aapan kelyelya ${date} chya booking request babat samparka karat ahot.`;
-      }
-
-      const url = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(msg)}`;
-      window.open(url, '_blank');
+      const cancelMsg = `Namaskar ${name} ji, Pandurang Lawns madhil ${eventDate} roji chi booking request Cancel zali ahe. Krupaya dusri date select karavi. Dhanyawad! Contact: ${VENUE_CONFIG.phone}`;
+      dispatchWhatsAppDirect(mobile, cancelMsg);
     };
 
     window.openWhatsAppChat = () => {
       window.open(`https://wa.me/${VENUE_CONFIG.whatsappNumber}?text=Hello%20Pandurang%20Lawns,%20I%20am%20interested%20in%20booking%20a%20date`, '_blank');
     };
 
-    renderFacilities();
     renderCalendar();
   </script>
 </body>
