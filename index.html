@@ -72,11 +72,11 @@
     @media (max-width: 640px) { .cal-day-cell { min-height: 52px; } }
 
     .orange-vithal-glow {
-      filter: drop-shadow(0 0 16px rgba(230, 130, 40, 0.65)) drop-shadow(0 0 30px rgba(197, 160, 89, 0.4));
+      filter: drop-shadow(0 0 16px rgba(230, 130, 40, 0.7)) drop-shadow(0 0 28px rgba(197, 160, 89, 0.4));
       transition: transform 0.3s ease;
     }
     .orange-vithal-glow:hover {
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
   </style>
 </head>
@@ -85,17 +85,22 @@
 
   <div id="toastContainer" class="fixed top-5 right-5 z-[100] flex flex-col gap-3 pointer-events-none"></div>
 
-  <!-- Top Bar -->
-  <div class="bg-brand-forest text-brand-goldLight text-xs py-2.5 px-4 border-b border-brand-gold/30 tracking-wider">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-        <span><i class="fa-solid fa-phone mr-1 text-brand-gold"></i> Rakesh Chavan: <a href="tel:9579520187" class="hover:underline font-semibold">+91 95795 20187</a></span>
-        <span class="hidden sm:inline text-brand-gold/50">|</span>
-        <span><i class="fa-solid fa-phone mr-1 text-brand-gold"></i> Santosh Chavan: <a href="tel:9021567601" class="hover:underline font-semibold">+91 90215 67601</a></span>
+  <!-- Luxury Top Contact Bar (Clean & Structured on Mobile) -->
+  <div class="bg-brand-forest text-brand-goldLight text-[11px] sm:text-xs py-2 px-3 sm:px-4 border-b border-brand-gold/30 tracking-wider">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
+      <div class="flex items-center justify-center gap-2 sm:gap-4 flex-wrap text-center">
+        <a href="tel:9579520187" class="inline-flex items-center gap-1 hover:text-white transition px-2 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
+          <i class="fa-solid fa-phone text-[10px] text-brand-gold"></i>
+          <span>Rakesh: <strong>+91 95795 20187</strong></span>
+        </a>
+        <a href="tel:9021567601" class="inline-flex items-center gap-1 hover:text-white transition px-2 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
+          <i class="fa-solid fa-phone text-[10px] text-brand-gold"></i>
+          <span>Santosh: <strong>+91 90215 67601</strong></span>
+        </a>
       </div>
-      <div class="flex items-center space-x-4">
-        <span class="hidden md:inline"><i class="fa-solid fa-gem mr-1.5 text-brand-gold"></i> Premier Wedding & Reception Destination</span>
-        <button onclick="openAdminModal()" class="text-xs text-brand-gold hover:text-white underline transition ml-2">
+      <div class="flex items-center space-x-3">
+        <span class="hidden md:inline text-brand-ivory/80"><i class="fa-solid fa-gem mr-1 text-brand-gold"></i> Premier Wedding & Event Venue</span>
+        <button onclick="openAdminModal()" class="text-[11px] text-brand-gold hover:text-white underline transition">
           <i class="fa-solid fa-lock text-[10px] mr-1"></i>Owner Portal
         </button>
       </div>
@@ -105,22 +110,21 @@
   <!-- Main Sticky Navbar -->
   <header id="mainNavbar" class="sticky top-0 z-40 bg-brand-forest/95 backdrop-blur-md border-b border-brand-gold/20 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
+      <div class="flex items-center justify-between h-16 sm:h-20">
         
-        <a href="#home" class="flex items-center space-x-3 group">
-          <!-- Orange Pandurang Logo -->
-          <div class="w-12 h-12 rounded-full border border-brand-gold/80 flex items-center justify-center bg-brand-forestLight shadow-gold-sm group-hover:scale-105 transition-transform overflow-hidden p-0.5">
+        <a href="#home" class="flex items-center space-x-2.5 sm:space-x-3 group">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-brand-gold/80 flex items-center justify-center bg-brand-forestLight shadow-gold-sm group-hover:scale-105 transition-transform overflow-hidden p-0.5 flex-shrink-0">
             <img 
               src="https://w0.peakpx.com/wallpaper/861/277/HD-wallpaper-vithal-god-mauli-pandurang-vitu-mauli.jpg" 
               alt="Pandurang Lawns Logo" 
               class="w-full h-full object-cover object-top rounded-full"
             />
           </div>
-          <div class="flex flex-col">
-            <span class="font-cinzel text-lg sm:text-xl font-bold tracking-widest text-brand-ivory group-hover:text-brand-gold transition-colors">
+          <div class="flex flex-col text-left">
+            <span class="font-cinzel text-base sm:text-xl font-bold tracking-wider text-brand-ivory group-hover:text-brand-gold transition-colors leading-tight">
               PANDURANG LAWNS
             </span>
-            <span class="text-[10px] tracking-[0.25em] text-brand-gold uppercase font-light">
+            <span class="text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.25em] text-brand-gold uppercase font-light truncate max-w-[200px] sm:max-w-none">
               Where Beautiful Celebrations Begin
             </span>
           </div>
@@ -170,8 +174,8 @@
     </div>
   </header>
 
-  <!-- 1. Hero Section (Original Orange Vitthal Murti) -->
-  <section id="home" class="relative min-h-[92vh] flex items-center justify-center text-center overflow-hidden">
+  <!-- 1. Hero Section (Balanced Spacing, Complete Full Lord Pandurang Murti) -->
+  <section id="home" class="relative min-h-[88vh] sm:min-h-[92vh] flex items-center justify-center text-center overflow-hidden py-8 sm:py-12">
     <img 
       src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80" 
       alt="Pandurang Lawns Grand Outdoor Wedding Venue" 
@@ -179,36 +183,36 @@
     />
     <div class="absolute inset-0 bg-gradient-to-b from-brand-forest/90 via-brand-dark/85 to-brand-forest/95"></div>
 
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-10 flex flex-col items-center">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center">
       
-      <!-- Original Sacred Orange Vitthal Image -->
-      <div class="mb-4 flex items-center justify-center">
-        <div class="w-32 sm:w-36 h-44 sm:h-52 rounded-2xl overflow-hidden border-2 border-brand-gold/70 shadow-gold-lg bg-black/40 backdrop-blur-sm p-1.5 flex items-center justify-center">
+      <!-- Full Frame Pandurang Murti (Head-to-Toe, No Cropping) -->
+      <div class="mb-3 sm:mb-4 flex items-center justify-center">
+        <div class="w-32 sm:w-44 h-52 sm:h-64 rounded-2xl overflow-hidden border-2 border-brand-gold/80 shadow-gold-lg bg-black/50 backdrop-blur-sm p-1 flex items-center justify-center">
           <img 
             src="https://w0.peakpx.com/wallpaper/861/277/HD-wallpaper-vithal-god-mauli-pandurang-vitu-mauli.jpg" 
             alt="Bhagwan Shri Vitthal Pandurang" 
-            class="orange-vithal-glow w-full h-full object-cover object-center rounded-xl" 
+            class="orange-vithal-glow w-full h-full object-contain rounded-xl" 
           />
         </div>
       </div>
 
-      <h1 class="font-cinzel text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wider leading-tight mb-3 drop-shadow-md">
+      <h1 class="font-cinzel text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-wider leading-tight mb-2 drop-shadow-md">
         PANDURANG LAWNS
       </h1>
 
-      <p class="font-serif italic text-xl sm:text-2xl md:text-3xl text-brand-goldLight mb-5">
+      <p class="font-serif italic text-lg sm:text-2xl text-brand-goldLight mb-3 sm:mb-4">
         “Where Beautiful Celebrations Begin”
       </p>
 
-      <p class="max-w-2xl text-brand-ivory/90 text-sm sm:text-base leading-relaxed mb-8 font-light">
-        An elegant open-air sanctuary designed for grand Indian weddings, royal receptions, engagements, and unforgettable corporate galas amidst lush greenery and bespoke hospitality.
+      <p class="max-w-2xl text-brand-ivory/90 text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8 font-light">
+        An elegant open-air sanctuary designed for grand Indian weddings, royal receptions, engagements, and unforgettable celebrations amidst lush greenery and bespoke hospitality.
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-        <a href="#calendar-section" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full shadow-gold-lg hover:brightness-110 active:scale-95 transition-all text-center">
+      <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto">
+        <a href="#calendar-section" class="w-full sm:w-auto px-7 py-3.5 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full shadow-gold-lg hover:brightness-110 active:scale-95 transition-all text-center">
           <i class="fa-regular fa-calendar-days mr-2"></i> Check Availability
         </a>
-        <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 bg-brand-forest/80 backdrop-blur-sm border border-brand-gold text-brand-gold font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all text-center">
+        <button onclick="openBookingModal()" class="w-full sm:w-auto px-7 py-3.5 bg-brand-forest/80 backdrop-blur-sm border border-brand-gold text-brand-gold font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all text-center">
           <i class="fa-solid fa-champagne-glasses mr-2"></i> Book Your Date
         </button>
       </div>
@@ -216,62 +220,62 @@
   </section>
 
   <!-- 2. About Pandurang Lawns -->
-  <section id="about" class="py-20 bg-brand-ivory border-b border-brand-border">
+  <section id="about" class="py-16 sm:py-20 bg-brand-ivory border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         
         <div class="lg:col-span-6 relative">
           <div class="relative z-10 rounded-2xl overflow-hidden shadow-forest-lg border-2 border-brand-gold/40">
             <img 
               src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80" 
               alt="Pandurang Lawns Main Stage and Garden" 
-              class="w-full h-[400px] sm:h-[480px] object-cover hover:scale-105 transition duration-700"
+              class="w-full h-[360px] sm:h-[460px] object-cover hover:scale-105 transition duration-700"
             />
           </div>
           <div class="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-brand-gold/50 -z-0 hidden sm:block"></div>
           
-          <div class="absolute bottom-6 left-6 z-20 bg-brand-forest text-brand-ivory p-4 rounded-xl border border-brand-gold shadow-lg flex items-center space-x-3">
-            <div class="text-brand-gold text-2xl font-cinzel font-bold">100%</div>
-            <div class="text-xs uppercase tracking-wider text-brand-cream font-medium">
+          <div class="absolute bottom-6 left-6 z-20 bg-brand-forest text-brand-ivory p-3.5 sm:p-4 rounded-xl border border-brand-gold shadow-lg flex items-center space-x-3">
+            <div class="text-brand-gold text-xl sm:text-2xl font-cinzel font-bold">100%</div>
+            <div class="text-[11px] sm:text-xs uppercase tracking-wider text-brand-cream font-medium">
               Dedicated Event<br>Support Team
             </div>
           </div>
         </div>
 
-        <div class="lg:col-span-6 space-y-6">
+        <div class="lg:col-span-6 space-y-5 sm:space-y-6">
           <div class="inline-block border-b-2 border-brand-gold pb-1 text-xs font-cinzel uppercase tracking-[0.2em] text-brand-forest">
             About Pandurang Lawns
           </div>
-          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest leading-tight">
+          <h2 class="text-2xl sm:text-4xl font-serif font-bold text-brand-forest leading-tight">
             Celebrate Your Special Moments With Us
           </h2>
-          <p class="text-brand-muted text-sm sm:text-base leading-relaxed">
+          <p class="text-brand-muted text-xs sm:text-base leading-relaxed">
             Welcome to <strong class="text-brand-forest font-semibold">Pandurang Lawns</strong>, where your dream ceremonies unfold in scenic grandeur. Conveniently situated, our picturesque venue offers expansive manicured lawns, majestic ambient illumination, dedicated culinary dining courtyards, and lavish staging designed to make every auspicious milestone memorable.
           </p>
-          <p class="text-brand-muted text-sm leading-relaxed">
+          <p class="text-brand-muted text-xs sm:text-sm leading-relaxed">
             Whether preparing for an intimate ring ceremony or a multi-day grand royal wedding, our venue offers versatile configurations, seamless logistics, and warm hospitality to delight your guests from entry to farewell.
           </p>
 
-          <div class="grid grid-cols-2 gap-4 pt-4">
-            <div class="p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
-              <i class="fa-solid fa-tree text-brand-gold text-xl mb-2"></i>
+          <div class="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
+            <div class="p-3 sm:p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
+              <i class="fa-solid fa-tree text-brand-gold text-lg sm:text-xl mb-1.5 sm:mb-2"></i>
               <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest">Spacious Lawn</h3>
-              <p class="text-[12px] text-brand-muted mt-1">Lush outdoor greenery for grand stage setups.</p>
+              <p class="text-[11px] sm:text-[12px] text-brand-muted mt-1">Lush outdoor greenery for grand setups.</p>
             </div>
             <div class="p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
-              <i class="fa-solid fa-champagne-glasses text-brand-gold text-xl mb-2"></i>
+              <i class="fa-solid fa-champagne-glasses text-brand-gold text-lg sm:text-xl mb-1.5 sm:mb-2"></i>
               <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest">Perfect Celebrations</h3>
-              <p class="text-[12px] text-brand-muted mt-1">Ideal acoustic and lighting infrastructure.</p>
+              <p class="text-[11px] sm:text-[12px] text-brand-muted mt-1">Ideal acoustic and lighting layout.</p>
             </div>
             <div class="p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
-              <i class="fa-solid fa-square-parking text-brand-gold text-xl mb-2"></i>
+              <i class="fa-solid fa-square-parking text-brand-gold text-lg sm:text-xl mb-1.5 sm:mb-2"></i>
               <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest">Valet & Parking</h3>
-              <p class="text-[12px] text-brand-muted mt-1">Spacious, hassle-free vehicle parking area.</p>
+              <p class="text-[11px] sm:text-[12px] text-brand-muted mt-1">Spacious vehicle parking space.</p>
             </div>
             <div class="p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
-              <i class="fa-solid fa-heart text-brand-gold text-xl mb-2"></i>
+              <i class="fa-solid fa-heart text-brand-gold text-lg sm:text-xl mb-1.5 sm:mb-2"></i>
               <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest">Memorable Moments</h3>
-              <p class="text-[12px] text-brand-muted mt-1">A photogenic backdrop for every family portrait.</p>
+              <p class="text-[11px] sm:text-[12px] text-brand-muted mt-1">Photogenic backdrops for every picture.</p>
             </div>
           </div>
         </div>
@@ -281,33 +285,33 @@
   </section>
 
   <!-- 3. Facilities Section -->
-  <section id="facilities" class="py-20 bg-brand-cream/50 border-b border-brand-border">
+  <section id="facilities" class="py-16 sm:py-20 bg-brand-cream/50 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="text-center max-w-3xl mx-auto mb-12">
         <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-[0.25em]">Venue Amenities</span>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">World-Class Facilities</h2>
-        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4 mb-4"></div>
+        <h2 class="text-2xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">World-Class Facilities</h2>
+        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
       </div>
-      <div id="facilitiesContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6"></div>
+      <div id="facilitiesContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-6"></div>
     </div>
   </section>
 
   <!-- 4. Events Occasions -->
-  <section id="events" class="py-20 bg-brand-forest text-brand-ivory">
+  <section id="events" class="py-16 sm:py-20 bg-brand-forest text-brand-ivory">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <span class="text-xs font-cinzel text-brand-gold font-semibold uppercase tracking-[0.25em]">Bespoke Gatherings</span>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white mt-2">Perfect Venue For Every Occasion</h2>
-        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4 mb-4"></div>
+        <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white mt-2">Perfect Venue For Every Occasion</h2>
+        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
         <div class="bg-brand-forestLight/70 border border-brand-gold/30 rounded-2xl overflow-hidden hover:border-brand-gold transition duration-300 flex flex-col">
-          <div class="h-48 overflow-hidden relative">
+          <div class="h-44 sm:h-48 overflow-hidden relative">
             <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Weddings" class="w-full h-full object-cover hover:scale-110 transition duration-500" />
             <span class="absolute top-3 right-3 bg-brand-forest/90 text-brand-gold border border-brand-gold/40 text-[11px] px-3 py-1 rounded-full font-cinzel font-semibold">Wedding</span>
           </div>
-          <div class="p-6 flex flex-col flex-grow justify-between">
+          <div class="p-5 sm:p-6 flex flex-col flex-grow justify-between">
             <div>
               <h3 class="font-cinzel text-lg font-bold text-brand-gold mb-2">Grand Weddings</h3>
               <p class="text-xs sm:text-sm text-brand-ivory/80 leading-relaxed mb-4">Create timeless wedding memories with magnificent floral mandap setups, royal bridal entries, and expansive seating.</p>
@@ -317,11 +321,11 @@
         </div>
 
         <div class="bg-brand-forestLight/70 border border-brand-gold/30 rounded-2xl overflow-hidden hover:border-brand-gold transition duration-300 flex flex-col">
-          <div class="h-48 overflow-hidden relative">
+          <div class="h-44 sm:h-48 overflow-hidden relative">
             <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" alt="Receptions" class="w-full h-full object-cover hover:scale-110 transition duration-500" />
             <span class="absolute top-3 right-3 bg-brand-forest/90 text-brand-gold border border-brand-gold/40 text-[11px] px-3 py-1 rounded-full font-cinzel font-semibold">Reception</span>
           </div>
-          <div class="p-6 flex flex-col flex-grow justify-between">
+          <div class="p-5 sm:p-6 flex flex-col flex-grow justify-between">
             <div>
               <h3 class="font-cinzel text-lg font-bold text-brand-gold mb-2">Grand Receptions</h3>
               <p class="text-xs sm:text-sm text-brand-ivory/80 leading-relaxed mb-4">A sophisticated, illuminated evening backdrop to greet your well-wishers and dine under ambient lights.</p>
@@ -331,11 +335,11 @@
         </div>
 
         <div class="bg-brand-forestLight/70 border border-brand-gold/30 rounded-2xl overflow-hidden hover:border-brand-gold transition duration-300 flex flex-col">
-          <div class="h-48 overflow-hidden relative">
+          <div class="h-44 sm:h-48 overflow-hidden relative">
             <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80" alt="Engagements" class="w-full h-full object-cover hover:scale-110 transition duration-500" />
             <span class="absolute top-3 right-3 bg-brand-forest/90 text-brand-gold border border-brand-gold/40 text-[11px] px-3 py-1 rounded-full font-cinzel font-semibold">Engagement</span>
           </div>
-          <div class="p-6 flex flex-col flex-grow justify-between">
+          <div class="p-5 sm:p-6 flex flex-col flex-grow justify-between">
             <div>
               <h3 class="font-cinzel text-lg font-bold text-brand-gold mb-2">Ring Ceremonies</h3>
               <p class="text-xs sm:text-sm text-brand-ivory/80 leading-relaxed mb-4">Celebrate your special beginning in an intimate yet majestic atmosphere with customized floral backdrops.</p>
@@ -348,24 +352,24 @@
   </section>
 
   <!-- 5. Photo Gallery -->
-  <section id="gallery" class="py-20 bg-brand-ivory border-b border-brand-border">
+  <section id="gallery" class="py-16 sm:py-20 bg-brand-ivory border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
         <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-[0.25em]">Visual Splendor</span>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">Venue Photo Gallery</h2>
-        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4 mb-4"></div>
+        <h2 class="text-2xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">Venue Photo Gallery</h2>
+        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-2 mb-10" id="galleryFilterContainer">
-        <button onclick="filterGallery('all')" class="gallery-btn active px-4 py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-gold bg-brand-forest text-brand-gold">All</button>
-        <button onclick="filterGallery('Lawn')" class="gallery-btn px-4 py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Lawn</button>
-        <button onclick="filterGallery('Weddings')" class="gallery-btn px-4 py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Weddings</button>
-        <button onclick="filterGallery('Stage')" class="gallery-btn px-4 py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Stage</button>
-        <button onclick="filterGallery('Decorations')" class="gallery-btn px-4 py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Decorations</button>
-        <button onclick="filterGallery('Dining')" class="gallery-btn px-4 py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Dining</button>
+      <div class="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10" id="galleryFilterContainer">
+        <button onclick="filterGallery('all')" class="gallery-btn active px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-gold bg-brand-forest text-brand-gold">All</button>
+        <button onclick="filterGallery('Lawn')" class="gallery-btn px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Lawn</button>
+        <button onclick="filterGallery('Weddings')" class="gallery-btn px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Weddings</button>
+        <button onclick="filterGallery('Stage')" class="gallery-btn px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Stage</button>
+        <button onclick="filterGallery('Decorations')" class="gallery-btn px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Decorations</button>
+        <button onclick="filterGallery('Dining')" class="gallery-btn px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs font-cinzel tracking-wider rounded-full border border-brand-border bg-white text-brand-charcoal hover:border-brand-gold">Dining</button>
       </div>
 
-      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6"></div>
     </div>
   </section>
 
@@ -382,61 +386,61 @@
   </div>
 
   <!-- 6. Realtime Availability Calendar -->
-  <section id="calendar-section" class="py-20 bg-brand-cream/30">
+  <section id="calendar-section" class="py-16 sm:py-20 bg-brand-cream/30">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-10">
+      <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-gold text-brand-forest text-xs uppercase tracking-widest font-semibold mb-3">
           <i class="fa-solid fa-cloud text-emerald-600"></i> Cloud Realtime Synchronized
         </div>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest">Check Your Preferred Date</h2>
+        <h2 class="text-2xl sm:text-4xl font-serif font-bold text-brand-forest">Check Your Preferred Date</h2>
         <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
       </div>
 
-      <div class="bg-white rounded-3xl border border-brand-border shadow-forest-lg p-6 sm:p-10">
+      <div class="bg-white rounded-3xl border border-brand-border shadow-forest-lg p-5 sm:p-10">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-brand-border">
           <div class="flex items-center space-x-3">
-            <button onclick="changeCalendarMonth(-1)" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-forest hover:bg-brand-forest hover:text-brand-gold transition shadow-sm">
+            <button onclick="changeCalendarMonth(-1)" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-forest hover:bg-brand-forest hover:text-brand-gold transition shadow-sm">
               <i class="fa-solid fa-chevron-left text-sm"></i>
             </button>
-            <h3 id="currentMonthYearLabel" class="font-cinzel text-xl sm:text-2xl font-bold text-brand-forest">Month Year</h3>
-            <button onclick="changeCalendarMonth(1)" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-forest hover:bg-brand-forest hover:text-brand-gold transition shadow-sm">
+            <h3 id="currentMonthYearLabel" class="font-cinzel text-lg sm:text-2xl font-bold text-brand-forest">Month Year</h3>
+            <button onclick="changeCalendarMonth(1)" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-forest hover:bg-brand-forest hover:text-brand-gold transition shadow-sm">
               <i class="fa-solid fa-chevron-right text-sm"></i>
             </button>
           </div>
 
-          <div class="flex flex-wrap items-center gap-3 text-xs font-medium">
-            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+          <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-medium">
+            <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Available
             </span>
-            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
+            <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
               <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Pending
             </span>
-            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-800 border border-rose-200">
+            <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 border border-rose-200">
               <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Booked
             </span>
           </div>
         </div>
 
-        <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-xs font-cinzel font-bold text-brand-muted py-4 uppercase tracking-wider">
+        <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-[11px] sm:text-xs font-cinzel font-bold text-brand-muted py-3 sm:py-4 uppercase tracking-wider">
           <div class="text-rose-700">Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div class="text-emerald-800">Sat</div>
         </div>
 
         <div id="calendarGrid" class="grid grid-cols-7 gap-1 sm:gap-2"></div>
 
-        <div id="selectedDateBar" class="mt-8 p-5 rounded-2xl bg-brand-ivory border border-brand-gold/50 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all">
-          <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-lg">
+        <div id="selectedDateBar" class="mt-6 sm:mt-8 p-4 sm:p-5 rounded-2xl bg-brand-ivory border border-brand-gold/50 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all">
+          <div class="flex items-center space-x-3 text-left w-full sm:w-auto">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-base sm:text-lg flex-shrink-0">
               <i class="fa-regular fa-calendar"></i>
             </div>
             <div>
-              <div class="text-xs font-cinzel text-brand-muted uppercase tracking-wider">Selected Date</div>
-              <div id="selectedDateText" class="text-base font-bold text-brand-forest">Please select a date from above</div>
+              <div class="text-[10px] sm:text-xs font-cinzel text-brand-muted uppercase tracking-wider">Selected Date</div>
+              <div id="selectedDateText" class="text-sm sm:text-base font-bold text-brand-forest">Please select a date from above</div>
               <div id="selectedDateStatusBadge" class="inline-block mt-0.5 text-[11px] font-semibold"></div>
             </div>
           </div>
 
-          <div id="selectedDateActionBtnContainer">
-            <button id="bookSelectedDateBtn" disabled class="opacity-50 cursor-not-allowed px-6 py-3 bg-brand-gold text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl transition">
+          <div id="selectedDateActionBtnContainer" class="w-full sm:w-auto">
+            <button id="bookSelectedDateBtn" disabled class="w-full sm:w-auto opacity-50 cursor-not-allowed px-6 py-3 bg-brand-gold text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl transition">
               Select an Available Date
             </button>
           </div>
@@ -445,22 +449,22 @@
     </div>
   </section>
 
-  <!-- 7. Contact Section (Directly Linked to: https://maps.app.goo.gl/GDsZPAjN2cCpKq9A7) -->
-  <section id="contact" class="py-20 bg-brand-ivory">
+  <!-- 7. Contact Section (Direct Coordinates & Maps Sync) -->
+  <section id="contact" class="py-16 sm:py-20 bg-brand-ivory">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
         <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-[0.25em]">Reach Out To Us</span>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">Let's Plan Your Celebration</h2>
-        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4 mb-4"></div>
+        <h2 class="text-2xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">Let's Plan Your Celebration</h2>
+        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
         
-        <div class="lg:col-span-5 space-y-5">
+        <div class="lg:col-span-5 space-y-4 sm:space-y-5">
           
           <!-- Rakesh Chavan Contact -->
-          <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-lg sm:text-xl">
               <i class="fa-solid fa-user-tie"></i>
             </div>
             <div class="flex-grow">
@@ -479,8 +483,8 @@
           </div>
 
           <!-- Santosh Chavan Contact -->
-          <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-lg sm:text-xl">
               <i class="fa-solid fa-user-tie"></i>
             </div>
             <div class="flex-grow">
@@ -498,9 +502,9 @@
             </div>
           </div>
 
-          <!-- Address Card (Direct Link to Exact Location: https://maps.app.goo.gl/GDsZPAjN2cCpKq9A7) -->
-          <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
+          <!-- Address Card (Direct Link: https://maps.app.goo.gl/GDsZPAjN2cCpKq9A7) -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-lg sm:text-xl">
               <i class="fa-solid fa-location-dot"></i>
             </div>
             <div>
@@ -527,11 +531,11 @@
                 Open Directions <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
               </a>
             </div>
-            <div class="relative w-full h-[360px] sm:h-[400px] rounded-xl overflow-hidden mt-2">
+            <div class="relative w-full h-[320px] sm:h-[400px] rounded-xl overflow-hidden mt-2">
               <iframe 
                 id="gmapFrame"
                 title="Pandurang Lawns Location" 
-                src="https://maps.google.com/maps?q=20.0384,74.0152&hl=en&z=15&output=embed" 
+                src="https://maps.google.com/maps?q=20.038446,74.015243&hl=mr&z=16&output=embed" 
                 class="absolute inset-0 w-full h-full border-0" 
                 allowfullscreen="" 
                 loading="lazy">
@@ -545,15 +549,15 @@
   </section>
 
   <!-- 8. Footer -->
-  <footer class="bg-brand-forest border-t border-brand-gold/20 text-brand-ivory pt-16 pb-12 mt-auto">
+  <footer class="bg-brand-forest border-t border-brand-gold/20 text-brand-ivory pt-14 pb-10 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center pb-8 border-b border-brand-forestLight flex flex-col items-center">
-        <h3 class="font-cinzel text-xl font-bold tracking-wider text-brand-gold">PANDURANG LAWNS</h3>
-        <p class="font-serif italic text-sm text-brand-goldLight mt-1">“Where Beautiful Celebrations Begin”</p>
+      <div class="text-center pb-6 border-b border-brand-forestLight flex flex-col items-center">
+        <h3 class="font-cinzel text-lg sm:text-xl font-bold tracking-wider text-brand-gold">PANDURANG LAWNS</h3>
+        <p class="font-serif italic text-xs sm:text-sm text-brand-goldLight mt-1">“Where Beautiful Celebrations Begin”</p>
       </div>
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-cream/60">
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-cream/60 gap-2">
         <p>© 2026 Pandurang Lawns. All Rights Reserved.</p>
-        <button onclick="openAdminModal()" class="text-xs text-brand-gold hover:underline mt-2 sm:mt-0">
+        <button onclick="openAdminModal()" class="text-xs text-brand-gold hover:underline">
           <i class="fa-solid fa-lock text-[10px] mr-1"></i> Owner Login & Settings
         </button>
       </div>
@@ -562,31 +566,31 @@
 
   <!-- Floating WhatsApp Button -->
   <aside aria-label="Quick WhatsApp Inquiry" class="fixed bottom-6 right-6 z-50">
-    <button onclick="openWhatsAppUser('919579520187')" class="group relative flex items-center justify-center w-14 h-14 bg-emerald-600 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all">
+    <button onclick="openWhatsAppUser('919579520187')" class="group relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 bg-emerald-600 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all p-3.5 sm:p-4">
       <i class="fa-brands fa-whatsapp text-2xl"></i>
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-30"></span>
     </button>
   </aside>
 
   <!-- Booking Modal -->
-  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-8">
-      <div class="bg-brand-forest px-6 sm:px-8 py-5 border-b border-brand-gold/30 flex items-center justify-between">
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 sm:my-8">
+      <div class="bg-brand-forest px-5 sm:px-8 py-4 sm:py-5 border-b border-brand-gold/30 flex items-center justify-between">
         <div>
           <span class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Online Reservation</span>
-          <h3 class="text-xl font-serif font-bold text-white">Reserve Your Special Date</h3>
+          <h3 class="text-lg sm:text-xl font-serif font-bold text-white">Reserve Your Special Date</h3>
         </div>
         <button onclick="closeBookingModal()" class="text-brand-ivory/70 hover:text-brand-gold text-xl transition">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <form id="bookingForm" class="p-6 sm:p-8 space-y-5">
-        <div id="bookingFormAlert" class="hidden p-3.5 rounded-xl text-xs font-semibold"></div>
+      <form id="bookingForm" class="p-5 sm:p-8 space-y-4 sm:space-y-5 text-left">
+        <div id="bookingFormAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
 
-        <div class="border-b border-brand-border pb-4">
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-3">1. Event Schedule & Type</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="border-b border-brand-border pb-3 sm:pb-4">
+          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">1. Event Schedule & Type</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label for="bEventDate" class="block text-xs font-medium text-brand-charcoal mb-1">Select Event Date *</label>
               <input type="date" id="bEventDate" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
@@ -606,9 +610,9 @@
           </div>
         </div>
 
-        <div class="border-b border-brand-border pb-4">
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-3">2. Personal Details</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="border-b border-brand-border pb-3 sm:pb-4">
+          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">2. Personal Details</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             <div>
               <label for="bFullName" class="block text-xs font-medium text-brand-charcoal mb-1">Full Name *</label>
               <input type="text" id="bFullName" placeholder="e.g. Rahul Patil" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
@@ -625,20 +629,20 @@
         </div>
 
         <div>
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-3">3. Gathering Details</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">3. Gathering Details</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label for="bGuests" class="block text-xs font-medium text-brand-charcoal mb-1">Approximate Guest Count *</label>
               <input type="number" id="bGuests" placeholder="e.g. 500" min="50" max="5000" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
             </div>
             <div>
               <label for="bNotes" class="block text-xs font-medium text-brand-charcoal mb-1">Special Requirements</label>
-              <textarea id="bNotes" rows="2" placeholder="Catering setup, bridal room timing, decoration style..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
+              <textarea id="bNotes" rows="2" placeholder="Catering setup, decoration style..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
             </div>
           </div>
         </div>
 
-        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
           <p class="text-[11px] text-brand-muted">
             <i class="fa-solid fa-cloud text-brand-gold mr-1"></i> Live Realtime Protection
           </p>
@@ -656,11 +660,11 @@
     <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4">
       
       <!-- Login View -->
-      <div id="adminLoginView" class="p-8 sm:p-12 max-w-md mx-auto text-center">
-        <div class="w-14 h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-2xl mb-4 shadow-md">
+      <div id="adminLoginView" class="p-6 sm:p-12 max-w-md mx-auto text-center">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-xl sm:text-2xl mb-4 shadow-md">
           <i class="fa-solid fa-user-shield"></i>
         </div>
-        <h3 class="text-2xl font-serif font-bold text-brand-forest">Pandurang Lawns Admin</h3>
+        <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest">Pandurang Lawns Admin</h3>
         <p class="text-xs text-brand-muted mt-1 mb-6">Enter credentials to manage bookings and change password.</p>
 
         <form id="adminLoginForm" autocomplete="off" class="space-y-4 text-left">
@@ -696,50 +700,50 @@
 
       <!-- Dashboard View -->
       <div id="adminDashboardView" class="hidden flex flex-col min-h-[85vh]">
-        <div class="bg-brand-forest text-white px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-brand-gold/30">
-          <div class="flex items-center space-x-3">
-            <div class="w-8 h-8 rounded-full border border-brand-gold flex items-center justify-center text-brand-gold text-xs"><i class="fa-solid fa-crown"></i></div>
-            <h2 class="text-base font-cinzel font-bold">Pandurang Lawns Command Center</h2>
+        <div class="bg-brand-forest text-white px-5 sm:px-6 py-3.5 sm:py-4 flex flex-wrap items-center justify-between gap-3 border-b border-brand-gold/30">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-brand-gold flex items-center justify-center text-brand-gold text-xs"><i class="fa-solid fa-crown"></i></div>
+            <h2 class="text-sm sm:text-base font-cinzel font-bold">Pandurang Lawns Command Center</h2>
           </div>
-          <div class="flex items-center space-x-3">
-            <button onclick="showAdminTab('bookings')" id="tabBtnBookings" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark">Bookings List</button>
-            <button onclick="showAdminTab('settings')" id="tabBtnSettings" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white">Owner Settings</button>
-            <button onclick="handleAdminLogout()" class="px-3 py-1.5 rounded-lg bg-rose-900/80 hover:bg-rose-900 text-xs font-semibold text-white">Logout</button>
-            <button onclick="closeAdminModal()" class="text-brand-ivory/70 hover:text-brand-gold text-xl ml-2"><i class="fa-solid fa-xmark"></i></button>
+          <div class="flex items-center space-x-2 sm:space-x-3">
+            <button onclick="showAdminTab('bookings')" id="tabBtnBookings" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark">Bookings</button>
+            <button onclick="showAdminTab('settings')" id="tabBtnSettings" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white">Settings</button>
+            <button onclick="handleAdminLogout()" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-rose-900/80 hover:bg-rose-900 text-xs font-semibold text-white">Logout</button>
+            <button onclick="closeAdminModal()" class="text-brand-ivory/70 hover:text-brand-gold text-lg sm:text-xl ml-1"><i class="fa-solid fa-xmark"></i></button>
           </div>
         </div>
 
         <!-- Tab 1: Bookings Management -->
-        <div id="adminTabBookings" class="p-6 space-y-6 overflow-y-auto max-h-[calc(85vh-70px)]">
-          <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-xs font-cinzel uppercase text-brand-muted">Total Requests</span>
-              <div id="statTotalBookings" class="text-2xl font-cinzel font-bold text-brand-forest mt-1">0</div>
+        <div id="adminTabBookings" class="p-4 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto max-h-[calc(85vh-70px)]">
+          <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-brand-muted">Total Requests</span>
+              <div id="statTotalBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-brand-forest mt-1">0</div>
             </div>
-            <div class="bg-white p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-xs font-cinzel uppercase text-amber-700">Pending Review</span>
-              <div id="statPendingBookings" class="text-2xl font-cinzel font-bold text-amber-600 mt-1">0</div>
+            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-amber-700">Pending Review</span>
+              <div id="statPendingBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-amber-600 mt-1">0</div>
             </div>
-            <div class="bg-white p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-xs font-cinzel uppercase text-emerald-700">Confirmed Booked</span>
-              <div id="statConfirmedBookings" class="text-2xl font-cinzel font-bold text-emerald-700 mt-1">0</div>
+            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-emerald-700">Confirmed Booked</span>
+              <div id="statConfirmedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-emerald-700 mt-1">0</div>
             </div>
           </div>
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
-            <div class="p-4 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest flex items-center justify-between">
-              <span>Direct Booking Decision (Approve auto-confirms date & dispatches WhatsApp)</span>
+            <div class="p-3.5 sm:p-4 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest flex items-center justify-between">
+              <span>Direct Booking Decision (Auto-confirms date & dispatches WhatsApp)</span>
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
                 <thead class="bg-brand-forest text-brand-gold text-[11px] uppercase tracking-wider font-cinzel">
                   <tr>
-                    <th class="py-3 px-4">Date (DD-MM-YYYY)</th>
-                    <th class="py-3 px-4">Customer</th>
-                    <th class="py-3 px-4">Contact</th>
-                    <th class="py-3 px-4">Occasion</th>
-                    <th class="py-3 px-4">Status</th>
-                    <th class="py-3 px-4 text-right">Instant Action</th>
+                    <th class="py-3 px-3 sm:px-4">Date</th>
+                    <th class="py-3 px-3 sm:px-4">Customer</th>
+                    <th class="py-3 px-3 sm:px-4">Contact</th>
+                    <th class="py-3 px-3 sm:px-4">Occasion</th>
+                    <th class="py-3 px-3 sm:px-4">Status</th>
+                    <th class="py-3 px-3 sm:px-4 text-right">Instant Action</th>
                   </tr>
                 </thead>
                 <tbody id="adminBookingsTableBody" class="divide-y divide-brand-border"></tbody>
@@ -749,9 +753,9 @@
         </div>
 
         <!-- Tab 2: Profile & Password Settings -->
-        <div id="adminTabSettings" class="p-6 space-y-6 hidden max-w-xl mx-auto w-full">
-          <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm">
-            <h3 class="font-cinzel text-base font-bold text-brand-forest mb-4 border-b pb-2">Update Admin Username & Password</h3>
+        <div id="adminTabSettings" class="p-5 sm:p-6 space-y-5 hidden max-w-xl mx-auto w-full text-left">
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm">
+            <h3 class="font-cinzel text-sm sm:text-base font-bold text-brand-forest mb-4 border-b pb-2">Update Admin Username & Password</h3>
             <form id="adminSettingsForm" autocomplete="off" class="space-y-4">
               <div>
                 <label class="block text-xs font-medium mb-1">New Admin Username</label>
@@ -761,7 +765,7 @@
                 <label class="block text-xs font-medium mb-1">New Password</label>
                 <input type="password" id="setAdminPass" autocomplete="new-password" placeholder="Enter new password" required class="w-full px-3 py-2 text-xs rounded-xl border outline-none" />
               </div>
-              <button type="submit" class="px-6 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl hover:bg-brand-forestLight transition">
+              <button type="submit" class="px-5 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl hover:bg-brand-forestLight transition">
                 Update Admin Profile
               </button>
             </form>
@@ -873,11 +877,11 @@
       const container = document.getElementById('facilitiesContainer');
       if (!container) return;
       container.innerHTML = VENUE_FACILITIES.map(fac => `
-        <div class="bg-white p-5 rounded-2xl border border-brand-border hover:border-brand-gold hover:shadow-md transition-all flex flex-col items-center text-center group">
-          <div class="w-12 h-12 rounded-xl bg-brand-forest/10 text-brand-forest flex items-center justify-center text-xl mb-3 group-hover:bg-brand-forest group-hover:text-brand-gold transition-colors">
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-brand-border hover:border-brand-gold hover:shadow-md transition-all flex flex-col items-center text-center group">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-forest/10 text-brand-forest flex items-center justify-center text-lg sm:text-xl mb-2.5 group-hover:bg-brand-forest group-hover:text-brand-gold transition-colors">
             <i class="${fac.icon}"></i>
           </div>
-          <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest mb-1.5">${fac.name}</h3>
+          <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest mb-1">${fac.name}</h3>
           <p class="text-[11px] text-brand-muted leading-snug">${fac.desc}</p>
         </div>
       `).join('');
@@ -889,12 +893,12 @@
       visibleGalleryItems = (filter === 'all') ? GALLERY_IMAGES : GALLERY_IMAGES.filter(img => img.category.toLowerCase() === filter.toLowerCase());
 
       container.innerHTML = visibleGalleryItems.map((img, idx) => `
-        <div onclick="openLightbox(${idx})" class="group relative h-64 rounded-2xl overflow-hidden cursor-pointer shadow-sm border border-brand-border/60 hover:shadow-lg transition-all duration-300">
+        <div onclick="openLightbox(${idx})" class="group relative h-56 sm:h-64 rounded-2xl overflow-hidden cursor-pointer shadow-sm border border-brand-border/60 hover:shadow-lg transition-all duration-300">
           <img src="${img.url}" alt="${img.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-out" />
-          <div class="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+          <div class="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-5">
             <span class="text-[10px] font-cinzel tracking-widest text-brand-gold uppercase font-semibold">${img.category}</span>
-            <h4 class="text-white font-serif font-bold text-base mt-0.5">${img.title}</h4>
-            <span class="text-white/80 text-xs mt-2 flex items-center gap-1"><i class="fa-solid fa-expand text-brand-gold text-xs"></i> View Fullscreen</span>
+            <h4 class="text-white font-serif font-bold text-sm sm:text-base mt-0.5">${img.title}</h4>
+            <span class="text-white/80 text-xs mt-1.5 flex items-center gap-1"><i class="fa-solid fa-expand text-brand-gold text-xs"></i> View Fullscreen</span>
           </div>
         </div>
       `).join('');
@@ -1001,7 +1005,7 @@
 
         if (isSelected) statusClasses += " ring-2 ring-brand-gold border-brand-gold bg-brand-gold/10";
 
-        cell.className = `cal-day-cell rounded-xl p-2 sm:p-2.5 flex flex-col justify-between transition-all ${statusClasses}`;
+        cell.className = `cal-day-cell rounded-xl p-1.5 sm:p-2.5 flex flex-col justify-between transition-all ${statusClasses}`;
         cell.innerHTML = `
           <div class="flex justify-between items-start">
             <span class="font-bold text-xs sm:text-sm font-cinzel">${day}</span>
@@ -1084,7 +1088,7 @@
 
       const avail = checkDateAvailability(dateVal);
       if (avail.status === "Booked") {
-        alertBox.className = "p-3.5 rounded-xl text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300 block";
+        alertBox.className = "p-3 rounded-xl text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300 block";
         alertBox.innerHTML = `Sorry! This date is already booked and confirmed.`;
         feedback.className = "text-[11px] block mt-1 text-rose-600 font-semibold";
         feedback.textContent = "Unavailable";
@@ -1228,12 +1232,12 @@
 
         return `
           <tr class="hover:bg-brand-cream/30">
-            <td class="py-3 px-4 font-bold text-brand-forest">${displayDate}</td>
-            <td class="py-3 px-4 font-semibold">${b.customerName}</td>
-            <td class="py-3 px-4">${b.mobile}</td>
-            <td class="py-3 px-4">${b.eventType}</td>
-            <td class="py-3 px-4">${statusBadge}</td>
-            <td class="py-3 px-4 text-right space-x-1">
+            <td class="py-3 px-3 sm:px-4 font-bold text-brand-forest">${displayDate}</td>
+            <td class="py-3 px-3 sm:px-4 font-semibold">${b.customerName}</td>
+            <td class="py-3 px-3 sm:px-4">${b.mobile}</td>
+            <td class="py-3 px-3 sm:px-4">${b.eventType}</td>
+            <td class="py-3 px-3 sm:px-4">${statusBadge}</td>
+            <td class="py-3 px-3 sm:px-4 text-right space-x-1">
               ${b.status === 'Pending' ? `
                 <button onclick="approveDirect('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs">
                   Approve & Auto-Notify
