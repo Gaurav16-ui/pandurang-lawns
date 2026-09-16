@@ -6,15 +6,11 @@
   <title>Pandurang Lawns | Luxury Wedding & Event Venue</title>
   <meta name="description" content="Pandurang Lawns is an exquisite, grand destination for weddings, royal receptions, engagements and memorable celebrations. Check availability and reserve your date online." />
   
-  <!-- Google Fonts: Playfair Display, Cinzel, Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- FontAwesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
   <script>
@@ -42,11 +38,6 @@
             cinzel: ['Cinzel', 'serif'],
             serif: ['"Playfair Display"', 'Georgia', 'serif'],
             sans: ['"Plus Jakarta Sans"', 'sans-serif']
-          },
-          boxShadow: {
-            'gold-sm': '0 2px 10px rgba(197, 160, 89, 0.15)',
-            'gold-lg': '0 10px 30px rgba(197, 160, 89, 0.25)',
-            'forest-lg': '0 10px 35px rgba(12, 43, 34, 0.2)'
           }
         }
       }
@@ -54,48 +45,25 @@
   </script>
 
   <style>
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #FAF8F5; }
-    ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #9F7B33; }
-
-    /* Luxury Gold Shimmer Effect */
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #E6C987 0%, #C5A059 50%, #A47E35 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Modal Animation */
-    .modal-active {
-      display: flex !important;
-      animation: modalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
+    .modal-active { display: flex !important; animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
     .cal-day-cell { min-height: 72px; transition: all 0.2s ease; }
     @media (max-width: 640px) { .cal-day-cell { min-height: 52px; } }
   </style>
 </head>
 
-<body class="bg-brand-ivory text-brand-charcoal font-sans antialiased selection:bg-brand-gold selection:text-brand-dark flex flex-col min-h-screen">
+<body class="bg-brand-ivory text-brand-charcoal font-sans antialiased flex flex-col min-h-screen selection:bg-brand-gold selection:text-brand-dark">
 
-  <div id="toastContainer" class="fixed top-5 right-5 z-[100] flex flex-col gap-3 pointer-events-none"></div>
-
-  <!-- Top Banner -->
+  <!-- Top Bar -->
   <div class="bg-brand-forest text-brand-goldLight text-xs py-2 px-4 border-b border-brand-gold/30 tracking-wider">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
       <div class="flex items-center space-x-4">
-        <span><i class="fa-solid fa-phone mr-1.5 text-brand-gold"></i> +91 98765 43210</span>
+        <span><i class="fa-solid fa-phone mr-1.5 text-brand-gold"></i> <span id="topPhone">+91 98765 43210</span></span>
         <span class="hidden sm:inline">|</span>
-        <span><i class="fa-solid fa-envelope mr-1.5 text-brand-gold"></i> concierge@panduranglawns.com</span>
+        <span><i class="fa-solid fa-envelope mr-1.5 text-brand-gold"></i> <span id="topEmail">contact@panduranglawns.com</span></span>
       </div>
       <div class="flex items-center space-x-4">
-        <span><i class="fa-solid fa-gem mr-1.5 text-brand-gold"></i> Premium Wedding & Reception Destination</span>
+        <span><i class="fa-solid fa-gem mr-1.5 text-brand-gold"></i> Premium Wedding Destination</span>
         <button onclick="openAdminModal()" class="text-xs text-brand-gold hover:text-white underline transition ml-2">
           <i class="fa-solid fa-lock text-[10px] mr-1"></i>Owner Portal
         </button>
@@ -103,189 +71,105 @@
     </div>
   </div>
 
-  <!-- Main Navbar -->
-  <header id="mainNavbar" class="sticky top-0 z-40 bg-brand-forest/95 backdrop-blur-md border-b border-brand-gold/20 transition-all duration-300">
+  <!-- Navbar -->
+  <header class="sticky top-0 z-40 bg-brand-forest/95 backdrop-blur-md border-b border-brand-gold/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        <a href="#home" class="flex items-center space-x-3 group">
-          <div class="w-11 h-11 rounded-full border border-brand-gold flex items-center justify-center bg-brand-forestLight shadow-gold-sm group-hover:scale-105 transition-transform">
-            <i class="fa-solid fa-place-of-worship text-brand-gold text-lg"></i>
+        <a href="#home" class="flex items-center space-x-3">
+          <div class="w-11 h-11 rounded-full border border-brand-gold flex items-center justify-center bg-brand-forestLight text-brand-gold">
+            <i class="fa-solid fa-place-of-worship text-lg"></i>
           </div>
-          <div class="flex flex-col">
-            <span class="font-cinzel text-lg sm:text-xl font-bold tracking-widest text-brand-ivory group-hover:text-brand-gold transition-colors">
-              PANDURANG LAWNS
-            </span>
-            <span class="text-[10px] tracking-[0.25em] text-brand-gold uppercase font-light">
-              Where Beautiful Celebrations Begin
-            </span>
+          <div>
+            <span class="font-cinzel text-lg sm:text-xl font-bold tracking-widest text-brand-ivory">PANDURANG LAWNS</span>
+            <span class="text-[10px] tracking-[0.25em] text-brand-gold uppercase block">Where Beautiful Celebrations Begin</span>
           </div>
         </a>
 
         <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium tracking-wider text-brand-ivory/90">
-          <a href="#home" class="hover:text-brand-gold transition-colors">Home</a>
-          <a href="#about" class="hover:text-brand-gold transition-colors">About</a>
-          <a href="#facilities" class="hover:text-brand-gold transition-colors">Facilities</a>
-          <a href="#events" class="hover:text-brand-gold transition-colors">Events</a>
-          <a href="#gallery" class="hover:text-brand-gold transition-colors">Gallery</a>
-          <a href="#calendar-section" class="hover:text-brand-gold transition-colors flex items-center gap-1.5 text-brand-goldLight">
+          <a href="#home" class="hover:text-brand-gold transition">Home</a>
+          <a href="#about" class="hover:text-brand-gold transition">About</a>
+          <a href="#facilities" class="hover:text-brand-gold transition">Facilities</a>
+          <a href="#calendar-section" class="hover:text-brand-gold transition flex items-center gap-1.5 text-brand-goldLight">
             <i class="fa-regular fa-calendar-check"></i> Availability
           </a>
-          <a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a>
+          <a href="#contact" class="hover:text-brand-gold transition">Contact</a>
         </nav>
 
         <div class="hidden lg:flex items-center space-x-4">
-          <button onclick="openBookingModal()" class="px-5 py-2.5 text-xs font-cinzel font-bold tracking-widest uppercase bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark rounded-full shadow-gold-sm hover:shadow-gold-lg hover:scale-105 active:scale-95 transition-all duration-200">
+          <button onclick="openBookingModal()" class="px-5 py-2.5 text-xs font-cinzel font-bold tracking-widest uppercase bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark rounded-full shadow hover:scale-105 transition">
             Book Now
           </button>
         </div>
 
         <div class="flex lg:hidden items-center space-x-2">
-          <button onclick="openBookingModal()" class="px-3 py-1.5 text-xs font-bold uppercase bg-brand-gold text-brand-dark rounded-full">
-            Book
-          </button>
-          <button id="mobileMenuBtn" aria-label="Toggle Menu" class="text-brand-ivory p-2 focus:outline-none hover:text-brand-gold text-xl">
-            <i class="fa-solid fa-bars-staggered"></i>
-          </button>
+          <button onclick="openBookingModal()" class="px-3 py-1.5 text-xs font-bold uppercase bg-brand-gold text-brand-dark rounded-full">Book</button>
+          <button id="mobileMenuBtn" class="text-brand-ivory p-2 text-xl"><i class="fa-solid fa-bars-staggered"></i></button>
         </div>
       </div>
     </div>
 
-    <div id="mobileMenu" class="hidden lg:hidden bg-brand-forest border-t border-brand-gold/20 px-6 py-5 space-y-4">
-      <a href="#home" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Home</a>
-      <a href="#about" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">About Venue</a>
-      <a href="#facilities" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Facilities</a>
-      <a href="#events" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Occasions</a>
-      <a href="#gallery" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Photo Gallery</a>
+    <div id="mobileMenu" class="hidden lg:hidden bg-brand-forest border-t border-brand-gold/20 px-6 py-5 space-y-3">
+      <a href="#home" class="mobile-nav-link block text-brand-ivory py-1">Home</a>
+      <a href="#about" class="mobile-nav-link block text-brand-ivory py-1">About Venue</a>
+      <a href="#facilities" class="mobile-nav-link block text-brand-ivory py-1">Facilities</a>
       <a href="#calendar-section" class="mobile-nav-link block text-brand-gold font-semibold py-1">Check Availability</a>
-      <a href="#contact" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Contact & Directions</a>
-      <div class="pt-2">
-        <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-3 text-center text-xs font-cinzel font-bold tracking-wider uppercase bg-brand-gold text-brand-dark rounded-md">
+      <a href="#contact" class="mobile-nav-link block text-brand-ivory py-1">Contact & Directions</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative min-h-[85vh] flex items-center justify-center text-center overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80" alt="Venue" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-forest/85 via-brand-dark/75 to-brand-forest/95"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 py-20 flex flex-col items-center">
+      <div class="px-4 py-1.5 rounded-full border border-brand-gold/40 bg-brand-forest/60 text-brand-gold text-xs uppercase tracking-[0.25em] mb-6">
+        <i class="fa-solid fa-award mr-1"></i> Grand Wedding Experience
+      </div>
+      <h1 class="font-cinzel text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wider mb-4">PANDURANG LAWNS</h1>
+      <p class="font-serif italic text-xl sm:text-2xl text-brand-goldLight mb-6">“Where Beautiful Celebrations Begin”</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#calendar-section" class="px-8 py-4 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase tracking-widest rounded-full shadow-lg hover:brightness-110 transition">
+          Check Availability
+        </a>
+        <button onclick="openBookingModal()" class="px-8 py-4 border border-brand-gold text-brand-gold font-cinzel font-bold text-xs uppercase tracking-widest rounded-full hover:bg-brand-gold hover:text-brand-dark transition">
           Book Your Date
         </button>
       </div>
     </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home" class="relative min-h-[90vh] flex items-center justify-center text-center overflow-hidden">
-    <img 
-      src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80" 
-      alt="Pandurang Lawns Grand Outdoor Wedding Venue" 
-      class="absolute inset-0 w-full h-full object-cover object-center scale-105 transform animate-pulse duration-[10000ms]"
-      onerror="this.src='https://placehold.co/1920x1080/0c2b22/c5a059?text=Pandurang+Lawns+Venue'"
-    />
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-forest/85 via-brand-dark/75 to-brand-forest/95"></div>
-
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-20 flex flex-col items-center">
-      <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-brand-gold/40 bg-brand-forest/60 backdrop-blur-sm text-brand-gold text-xs uppercase tracking-[0.25em] mb-6">
-        <i class="fa-solid fa-award text-brand-gold"></i> Premier Event Experience
-      </div>
-
-      <h1 class="font-cinzel text-3xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wider leading-tight mb-4 drop-shadow-md">
-        PANDURANG LAWNS
-      </h1>
-
-      <p class="font-serif italic text-xl sm:text-2xl md:text-3xl text-brand-goldLight mb-6">
-        “Where Beautiful Celebrations Begin”
-      </p>
-
-      <p class="max-w-2xl text-brand-ivory/90 text-sm sm:text-base leading-relaxed mb-10 font-light">
-        An elegant open-air sanctuary designed for grand Indian weddings, royal receptions, engagements, and unforgettable corporate galas amidst lush greenery and bespoke hospitality.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-        <a href="#calendar-section" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full shadow-gold-lg hover:brightness-110 active:scale-95 transition-all text-center">
-          <i class="fa-regular fa-calendar-days mr-2"></i> Check Availability
-        </a>
-        <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 bg-brand-forest/80 backdrop-blur-sm border border-brand-gold text-brand-gold font-cinzel font-bold text-xs sm:text-sm tracking-widest uppercase rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all text-center">
-          <i class="fa-solid fa-champagne-glasses mr-2"></i> Book Your Date
-        </button>
-      </div>
-
-      <a href="#about" class="mt-14 inline-flex flex-col items-center text-brand-gold/80 hover:text-brand-gold transition group">
-        <span class="text-[11px] tracking-widest uppercase font-mono mb-2">Explore Venue</span>
-        <i class="fa-solid fa-chevron-down animate-bounce text-sm"></i>
-      </a>
-    </div>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section id="about" class="py-20 bg-brand-ivory border-b border-brand-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-6 relative">
-          <div class="relative z-10 rounded-2xl overflow-hidden shadow-forest-lg border-2 border-brand-gold/40">
-            <img 
-              src="https://images.unsplash.com/photo-1545232979-fbf68fe9c10d?auto=format&fit=crop&w=1200&q=80" 
-              alt="Pandurang Lawns Main Stage and Garden" 
-              class="w-full h-[400px] sm:h-[480px] object-cover hover:scale-105 transition duration-700"
-              onerror="this.src='https://placehold.co/800x600/0c2b22/c5a059?text=Pandurang+Lawns'"
-            />
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6">
+        <img src="https://images.unsplash.com/photo-1545232979-fbf68fe9c10d?auto=format&fit=crop&w=1200&q=80" alt="About Lawn" class="w-full h-[420px] object-cover rounded-2xl shadow-xl border-2 border-brand-gold/30" />
+      </div>
+      <div class="lg:col-span-6 space-y-6">
+        <span class="text-xs font-cinzel uppercase tracking-widest text-brand-forest border-b-2 border-brand-gold pb-1 font-bold">About Venue</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest">Celebrate Your Special Moments With Us</h2>
+        <p class="text-brand-muted text-sm leading-relaxed">
+          Welcome to <strong class="text-brand-forest">Pandurang Lawns</strong>. Our grand venue offers lush green open-air lawns, illuminated stage platforms, separate spacious dining areas, and full vendor facilities to make your wedding truly royal and unforgettable.
+        </p>
+        <div class="grid grid-cols-2 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-white border border-brand-border">
+            <i class="fa-solid fa-tree text-brand-gold text-xl mb-1"></i>
+            <h3 class="font-cinzel text-xs font-bold uppercase text-brand-forest">Spacious Lawn</h3>
           </div>
-          <div class="absolute -bottom-4 -right-4 w-full h-full rounded-2xl border-2 border-brand-gold/50 -z-0 hidden sm:block"></div>
-          
-          <div class="absolute bottom-6 left-6 z-20 bg-brand-forest text-brand-ivory p-4 rounded-xl border border-brand-gold shadow-lg flex items-center space-x-3">
-            <div class="text-brand-gold text-2xl font-cinzel font-bold">100%</div>
-            <div class="text-xs uppercase tracking-wider text-brand-cream font-medium">
-              Dedicated Event<br>Support Team
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 space-y-6">
-          <div class="inline-block border-b-2 border-brand-gold pb-1 text-xs font-cinzel uppercase tracking-[0.2em] text-brand-forest">
-            About Pandurang Lawns
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest leading-tight">
-            Celebrate Your Special Moments With Us
-          </h2>
-          <p class="text-brand-muted text-sm sm:text-base leading-relaxed">
-            Welcome to <strong class="text-brand-forest font-semibold">Pandurang Lawns</strong>, where your dream ceremonies unfold in scenic grandeur. Conveniently situated, our picturesque venue offers expansive manicured lawns, majestic ambient illumination, dedicated culinary dining courtyards, and lavish staging designed to make every auspicious milestone memorable.
-          </p>
-          <p class="text-brand-muted text-sm leading-relaxed">
-            Whether preparing for an intimate ring ceremony or a multi-day grand royal wedding, our venue offers versatile configurations, seamless logistics, and warm hospitality to delight your guests from entry to farewell.
-          </p>
-
-          <div class="grid grid-cols-2 gap-4 pt-4">
-            <div class="p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
-              <i class="fa-solid fa-tree text-brand-gold text-xl mb-2"></i>
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest">Spacious Lawn</h3>
-              <p class="text-[12px] text-brand-muted mt-1">Lush outdoor greenery for grand stage setups.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
-              <i class="fa-solid fa-champagne-glasses text-brand-gold text-xl mb-2"></i>
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest">Perfect Celebrations</h3>
-              <p class="text-[12px] text-brand-muted mt-1">Ideal acoustic and lighting infrastructure.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
-              <i class="fa-solid fa-square-parking text-brand-gold text-xl mb-2"></i>
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest">Valet & Parking</h3>
-              <p class="text-[12px] text-brand-muted mt-1">Spacious, hassle-free vehicle parking area.</p>
-            </div>
-            <div class="p-4 rounded-xl bg-white border border-brand-border shadow-sm hover:border-brand-gold transition">
-              <i class="fa-solid fa-heart text-brand-gold text-xl mb-2"></i>
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest">Memorable Moments</h3>
-              <p class="text-[12px] text-brand-muted mt-1">A photogenic backdrop for every family portrait.</p>
-            </div>
+          <div class="p-4 rounded-xl bg-white border border-brand-border">
+            <i class="fa-solid fa-square-parking text-brand-gold text-xl mb-1"></i>
+            <h3 class="font-cinzel text-xs font-bold uppercase text-brand-forest">Ample Parking</h3>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Facilities Section -->
+  <!-- Facilities -->
   <section id="facilities" class="py-20 bg-brand-cream/40 border-b border-brand-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-14">
-        <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-[0.25em]">Venue Amenities</span>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">World-Class Facilities</h2>
-        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4 mb-4"></div>
-        <p class="text-sm text-brand-muted">
-          Our amenities are thoughtfully arranged to provide comfort and efficiency to hosts, guests, and event vendors alike.
-        </p>
-      </div>
-
-      <div id="facilitiesContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-widest">Venue Amenities</span>
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest mt-2 mb-10">World-Class Facilities</h2>
+      <div id="facilitiesContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-6"></div>
     </div>
   </section>
 
@@ -294,69 +178,46 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-10">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-gold text-brand-forest text-xs uppercase tracking-widest font-semibold mb-3">
-          <i class="fa-solid fa-circle-check text-emerald-600"></i> Realtime Cloud Synchronized
+          <i class="fa-solid fa-cloud text-emerald-600"></i> Realtime Synchronized
         </div>
         <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest">Check Your Preferred Date</h2>
-        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-4"></div>
-        <p class="text-sm text-brand-muted">
-          Our real-time date availability system prevents double bookings and lets you confirm available dates instantly.
-        </p>
+        <p class="text-xs text-brand-muted mt-2">Even if a date shows "Pending", you can still place your booking request! The venue owner will select and finalize the client.</p>
       </div>
 
-      <div class="bg-white rounded-3xl border border-brand-border shadow-forest-lg p-6 sm:p-10">
+      <div class="bg-white rounded-3xl border border-brand-border shadow-lg p-6 sm:p-10">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-6 border-b border-brand-border">
           <div class="flex items-center space-x-3">
-            <button onclick="changeCalendarMonth(-1)" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-forest hover:bg-brand-forest hover:text-brand-gold transition shadow-sm">
-              <i class="fa-solid fa-chevron-left text-sm"></i>
-            </button>
-            <h3 id="currentMonthYearLabel" class="font-cinzel text-xl sm:text-2xl font-bold text-brand-forest">
-              Month Year
-            </h3>
-            <button onclick="changeCalendarMonth(1)" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-forest hover:bg-brand-forest hover:text-brand-gold transition shadow-sm">
-              <i class="fa-solid fa-chevron-right text-sm"></i>
-            </button>
+            <button onclick="changeCalendarMonth(-1)" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-brand-forest hover:text-brand-gold transition"><i class="fa-solid fa-chevron-left text-sm"></i></button>
+            <h3 id="currentMonthYearLabel" class="font-cinzel text-xl sm:text-2xl font-bold text-brand-forest">Month Year</h3>
+            <button onclick="changeCalendarMonth(1)" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center hover:bg-brand-forest hover:text-brand-gold transition"><i class="fa-solid fa-chevron-right text-sm"></i></button>
           </div>
 
           <div class="flex flex-wrap items-center gap-3 text-xs font-medium">
-            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Available
-            </span>
-            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Pending Request
-            </span>
-            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-800 border border-rose-200">
-              <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Booked
-            </span>
+            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Available</span>
+            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Pending (Multiple Allowed)</span>
+            <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-800 border border-rose-200"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Booked</span>
           </div>
         </div>
 
         <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-xs font-cinzel font-bold text-brand-muted py-4 uppercase tracking-wider">
-          <div class="text-rose-700">Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div class="text-emerald-800">Sat</div>
+          <div class="text-rose-700">Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div class="text-emerald-800">Sat</div>
         </div>
 
         <div id="calendarGrid" class="grid grid-cols-7 gap-1 sm:gap-2"></div>
 
-        <div id="selectedDateBar" class="mt-8 p-5 rounded-2xl bg-brand-ivory border border-brand-gold/50 flex flex-col sm:flex-row items-center justify-between gap-4 transition-all">
+        <div id="selectedDateBar" class="mt-8 p-5 rounded-2xl bg-brand-ivory border border-brand-gold/50 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-lg">
-              <i class="fa-regular fa-calendar"></i>
-            </div>
+            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-lg"><i class="fa-regular fa-calendar"></i></div>
             <div>
-              <div class="text-xs font-cinzel text-brand-muted uppercase tracking-wider">Selected Date</div>
-              <div id="selectedDateText" class="text-base font-bold text-brand-forest">Please select a date from above</div>
+              <div class="text-xs font-cinzel text-brand-muted uppercase">Selected Date</div>
+              <div id="selectedDateText" class="text-base font-bold text-brand-forest">Select a date from calendar</div>
               <div id="selectedDateStatusBadge" class="inline-block mt-0.5 text-[11px] font-semibold"></div>
             </div>
           </div>
 
           <div id="selectedDateActionBtnContainer">
-            <button id="bookSelectedDateBtn" disabled class="opacity-50 cursor-not-allowed px-6 py-3 bg-brand-gold text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl transition">
-              Select an Available Date
+            <button id="bookSelectedDateBtn" disabled class="opacity-50 cursor-not-allowed px-6 py-3 bg-brand-gold text-brand-dark font-cinzel font-bold text-xs uppercase rounded-xl">
+              Select a Date
             </button>
           </div>
         </div>
@@ -364,82 +225,44 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact" class="py-20 bg-brand-ivory">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-14">
-        <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-[0.25em]">Reach Out To Us</span>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest mt-2">Let's Plan Your Celebration</h2>
-        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4 mb-4"></div>
-        <p class="text-sm text-brand-muted">
-          We welcome you for a personal walk-through of the venue to experience the ambience firsthand.
-        </p>
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-cinzel text-brand-goldDark font-semibold uppercase tracking-widest">Reach Out</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-brand-forest mt-1">Let's Plan Your Celebration</h2>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         <div class="lg:col-span-5 space-y-6">
-          <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
-              <i class="fa-solid fa-phone"></i>
-            </div>
+          <div class="bg-white p-6 rounded-2xl border border-brand-border flex items-start space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-phone"></i></div>
             <div>
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Call For Inquiries</h3>
-              <p class="text-base font-bold text-brand-forest mt-0.5" id="venuePhoneText">+91 98765 43210</p>
-              <p class="text-xs text-brand-muted mt-1">Available 9:00 AM – 9:00 PM IST</p>
-              <a href="tel:+919876543210" class="inline-block mt-3 px-4 py-1.5 bg-brand-ivory border border-brand-gold text-brand-forest rounded-lg text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
-                <i class="fa-solid fa-phone-volume mr-1"></i> Call Now
-              </a>
+              <h3 class="font-cinzel text-xs font-bold uppercase text-brand-muted">Call Us</h3>
+              <p class="text-base font-bold text-brand-forest" id="venuePhoneText">+91 98765 43210</p>
+              <a href="tel:+919876543210" id="phoneCallLink" class="inline-block mt-2 px-3 py-1 bg-brand-ivory border border-brand-gold text-brand-forest rounded text-xs font-semibold">Call Now</a>
             </div>
           </div>
-
-          <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-12 h-12 rounded-xl bg-emerald-700 text-white flex items-center justify-center flex-shrink-0 text-xl">
-              <i class="fa-brands fa-whatsapp"></i>
-            </div>
+          <div class="bg-white p-6 rounded-2xl border border-brand-border flex items-start space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-700 text-white flex items-center justify-center text-xl flex-shrink-0"><i class="fa-brands fa-whatsapp"></i></div>
             <div>
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Direct WhatsApp Concierge</h3>
-              <p class="text-base font-bold text-brand-forest mt-0.5" id="venueWhatsAppText">+91 98765 43210</p>
-              <p class="text-xs text-brand-muted mt-1">Chat directly with the venue reservation team</p>
-              <button onclick="openWhatsAppChat()" class="inline-block mt-3 px-4 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-cinzel font-semibold hover:bg-emerald-700 transition">
-                <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp Message
-              </button>
+              <h3 class="font-cinzel text-xs font-bold uppercase text-brand-muted">WhatsApp Concierge</h3>
+              <p class="text-base font-bold text-brand-forest" id="venueWhatsAppText">+91 98765 43210</p>
+              <button onclick="openWhatsAppChat()" class="inline-block mt-2 px-3 py-1 bg-emerald-600 text-white rounded text-xs font-semibold">Chat Now</button>
             </div>
           </div>
-
-          <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm flex items-start space-x-4">
-            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center flex-shrink-0 text-xl">
-              <i class="fa-solid fa-map-location-dot"></i>
-            </div>
+          <div class="bg-white p-6 rounded-2xl border border-brand-border flex items-start space-x-4">
+            <div class="w-12 h-12 rounded-xl bg-brand-forest text-brand-gold flex items-center justify-center text-xl flex-shrink-0"><i class="fa-solid fa-map-location-dot"></i></div>
             <div>
-              <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-muted">Venue Address</h3>
-              <p class="text-sm font-semibold text-brand-forest mt-0.5" id="venueAddressText">
-                Pandurang Lawns, Bypass Highway Road, Maharashtra, India.
-              </p>
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 px-4 py-1.5 bg-brand-ivory border border-brand-gold text-brand-forest rounded-lg text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
-                <i class="fa-solid fa-diamond-turn-right mr-1"></i> Get Directions
-              </a>
+              <h3 class="font-cinzel text-xs font-bold uppercase text-brand-muted">Venue Location</h3>
+              <p class="text-sm font-semibold text-brand-forest" id="venueAddressText">Pandurang Lawns, Maharashtra, India</p>
             </div>
           </div>
         </div>
 
-        <div class="lg:col-span-7 flex flex-col">
-          <div class="bg-white p-3 rounded-2xl border border-brand-border shadow-sm flex-grow overflow-hidden flex flex-col">
-            <div class="flex items-center justify-between p-3 border-b border-brand-border">
-              <span class="text-xs font-cinzel font-bold text-brand-forest flex items-center gap-2">
-                <i class="fa-solid fa-map-pin text-brand-gold"></i> Pandurang Lawns On Map
-              </span>
-              <span class="text-[11px] text-brand-muted">GPS Navigation Ready</span>
-            </div>
-            <div class="relative w-full h-[320px] sm:h-[380px] rounded-xl overflow-hidden mt-2">
-              <iframe 
-                id="gmapFrame"
-                title="Pandurang Lawns Location" 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.04711156554!2d73.79292688755675!3d18.52459859954714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sMaharashtra!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin" 
-                class="absolute inset-0 w-full h-full border-0" 
-                allowfullscreen="" 
-                loading="lazy">
-              </iframe>
-            </div>
+        <div class="lg:col-span-7">
+          <div class="bg-white p-3 rounded-2xl border border-brand-border h-[350px]">
+            <iframe id="gmapFrame" title="Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.04711156554!2d73.79292688755675!3d18.52459859954714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sMaharashtra!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin" class="w-full h-full rounded-xl border-0" loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -447,132 +270,100 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-brand-forest border-t border-brand-gold/20 text-brand-ivory pt-16 pb-12 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center pb-8 border-b border-brand-forestLight">
-        <h3 class="font-cinzel text-xl font-bold tracking-wider text-brand-gold">PANDURANG LAWNS</h3>
-        <p class="font-serif italic text-sm text-brand-goldLight mt-1">“Where Beautiful Celebrations Begin”</p>
-      </div>
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-cream/60">
-        <p>© 2026 Pandurang Lawns. All Rights Reserved.</p>
-        <button onclick="openAdminModal()" class="text-xs text-brand-gold hover:underline mt-2 sm:mt-0">
-          <i class="fa-solid fa-lock text-[10px] mr-1"></i> Owner Login
-        </button>
-      </div>
+  <footer class="bg-brand-forest text-brand-ivory py-10 mt-auto border-t border-brand-gold/20">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <h3 class="font-cinzel text-xl font-bold text-brand-gold">PANDURANG LAWNS</h3>
+      <p class="text-xs text-brand-cream/60 mt-2">© 2026 Pandurang Lawns. All Rights Reserved.</p>
+      <button onclick="openAdminModal()" class="text-xs text-brand-gold hover:underline mt-4 block mx-auto">
+        <i class="fa-solid fa-lock text-[10px] mr-1"></i> Owner Portal / Settings
+      </button>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp -->
-  <aside aria-label="Quick WhatsApp Inquiry" class="fixed bottom-6 right-6 z-50">
-    <button onclick="openWhatsAppChat()" class="group relative flex items-center justify-center w-14 h-14 bg-emerald-600 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all">
-      <i class="fa-brands fa-whatsapp text-2xl"></i>
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-30"></span>
-    </button>
-  </aside>
-
   <!-- Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-    <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-8">
-      <div class="bg-brand-forest px-6 sm:px-8 py-5 border-b border-brand-gold/30 flex items-center justify-between">
-        <div>
-          <span class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Online Reservation</span>
-          <h3 class="text-xl font-serif font-bold text-white">Reserve Your Special Date</h3>
-        </div>
-        <button onclick="closeBookingModal()" class="text-brand-ivory/70 hover:text-brand-gold text-xl transition">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+    <div class="relative bg-white w-full max-w-xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-8">
+      <div class="bg-brand-forest px-6 py-5 border-b border-brand-gold/30 flex items-center justify-between text-white">
+        <h3 class="text-lg font-serif font-bold">Reserve Your Special Date</h3>
+        <button onclick="closeBookingModal()" class="text-brand-ivory/70 hover:text-brand-gold text-xl"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="p-6 sm:p-8 space-y-5">
-        <div id="bookingFormAlert" class="hidden p-3.5 rounded-xl text-xs font-semibold"></div>
+      <form id="bookingForm" class="p-6 space-y-4">
+        <div id="bookingFormAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
 
-        <div class="border-b border-brand-border pb-4">
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-3">1. Event Schedule & Type</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="bEventDate" class="block text-xs font-medium text-brand-charcoal mb-1">Select Event Date *</label>
-              <input type="date" id="bEventDate" required onchange="checkInputDateAvailability(this.value)" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-              <span id="dateValidationFeedback" class="text-[11px] block mt-1"></span>
-            </div>
-            <div>
-              <label for="bEventType" class="block text-xs font-medium text-brand-charcoal mb-1">Event Occasion *</label>
-              <select id="bEventType" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none bg-white">
-                <option value="">Choose an Occasion</option>
-                <option value="Grand Wedding">Grand Wedding</option>
-                <option value="Evening Reception">Evening Reception</option>
-                <option value="Engagement Ceremony">Engagement Ceremony</option>
-                <option value="Sangeet / Haldi">Sangeet / Haldi</option>
-                <option value="Birthday / Anniversary">Birthday / Anniversary</option>
-                <option value="Corporate Gala">Corporate Gala</option>
-                <option value="Other Social Function">Other Social Function</option>
-              </select>
-            </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium mb-1">Select Date *</label>
+            <input type="date" id="bEventDate" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-brand-gold" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium mb-1">Occasion *</label>
+            <select id="bEventType" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border bg-white outline-none">
+              <option value="Grand Wedding">Grand Wedding</option>
+              <option value="Evening Reception">Evening Reception</option>
+              <option value="Engagement Ceremony">Engagement Ceremony</option>
+              <option value="Sangeet / Haldi">Sangeet / Haldi</option>
+              <option value="Birthday / Anniversary">Birthday / Anniversary</option>
+              <option value="Other Function">Other Function</option>
+            </select>
           </div>
         </div>
 
-        <div class="border-b border-brand-border pb-4">
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-3">2. Personal Details</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <label for="bFullName" class="block text-xs font-medium text-brand-charcoal mb-1">Full Name *</label>
-              <input type="text" id="bFullName" placeholder="e.g. Rahul Patil" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-            </div>
-            <div>
-              <label for="bMobile" class="block text-xs font-medium text-brand-charcoal mb-1">Mobile Number *</label>
-              <input type="tel" id="bMobile" placeholder="10-digit mobile" required pattern="[0-9]{10}" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-            </div>
-            <div>
-              <label for="bEmail" class="block text-xs font-medium text-brand-charcoal mb-1">Email Address *</label>
-              <input type="email" id="bEmail" placeholder="e.g. rahul@example.com" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-            </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium mb-1">Full Name *</label>
+            <input type="text" id="bFullName" placeholder="Your Name" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium mb-1">Mobile Number (WhatsApp) *</label>
+            <input type="tel" id="bMobile" placeholder="10-digit mobile" required pattern="[0-9]{10}" class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium mb-1">Email Address</label>
+            <input type="email" id="bEmail" placeholder="your@email.com" class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium mb-1">Approximate Guests *</label>
+            <input type="number" id="bGuests" placeholder="e.g. 500" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none" />
           </div>
         </div>
 
         <div>
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-3">3. Gathering Details</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label for="bGuests" class="block text-xs font-medium text-brand-charcoal mb-1">Approximate Guest Count *</label>
-              <input type="number" id="bGuests" placeholder="e.g. 500" min="50" max="5000" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-            </div>
-            <div>
-              <label for="bNotes" class="block text-xs font-medium text-brand-charcoal mb-1">Special Requirements / Notes</label>
-              <textarea id="bNotes" rows="2" placeholder="Catering setup, decoration style..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
-            </div>
-          </div>
+          <label class="block text-xs font-medium mb-1">Special Notes / Requirements</label>
+          <textarea id="bNotes" rows="2" placeholder="Tell us about catering, timing, etc..." class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none"></textarea>
         </div>
 
-        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p class="text-[11px] text-brand-muted">
-            <i class="fa-solid fa-cloud text-brand-gold mr-1"></i> Realtime Cloud Database Connected
-          </p>
-          <div class="flex items-center gap-3 w-full sm:w-auto">
-            <button type="button" onclick="closeBookingModal()" class="w-1/2 sm:w-auto px-5 py-2.5 border border-brand-border text-xs font-cinzel rounded-xl hover:bg-slate-100 transition">Cancel</button>
-            <button type="submit" id="submitBookingBtn" class="w-1/2 sm:w-auto px-6 py-2.5 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:shadow-gold-lg transition">Submit Request</button>
-          </div>
+        <div class="pt-2 flex justify-end gap-3">
+          <button type="button" onclick="closeBookingModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold">Cancel</button>
+          <button type="submit" id="submitBookingBtn" class="px-6 py-2 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase rounded-xl">Submit Request</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Admin Modal -->
+  <!-- Admin Portal Modal (With Profile Settings & WhatsApp Trigger) -->
   <div id="adminPortalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4">
+      
+      <!-- Login View -->
       <div id="adminLoginView" class="p-8 sm:p-12 max-w-md mx-auto text-center">
-        <div class="w-14 h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-2xl mb-4 shadow-md">
+        <div class="w-14 h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-2xl mb-4 shadow">
           <i class="fa-solid fa-user-shield"></i>
         </div>
-        <h3 class="text-2xl font-serif font-bold text-brand-forest">Pandurang Lawns Admin</h3>
-        <p class="text-xs text-brand-muted mt-1 mb-6">Enter management password to oversee bookings.</p>
+        <h3 class="text-2xl font-serif font-bold text-brand-forest">Owner Portal</h3>
+        <p class="text-xs text-brand-muted mt-1 mb-6">Login to manage bookings and system settings.</p>
 
-        <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+        <form id="adminLoginForm" class="space-y-4 text-left">
           <div>
-            <label class="block text-xs font-medium text-brand-charcoal mb-1">Username</label>
-            <input type="text" id="adminUsername" value="admin" class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border bg-white" />
+            <label class="block text-xs font-medium mb-1">Admin Username</label>
+            <input type="text" id="adminUsername" required class="w-full px-3.5 py-2 text-xs rounded-xl border bg-white outline-none" />
           </div>
           <div>
-            <label class="block text-xs font-medium text-brand-charcoal mb-1">Password</label>
-            <input type="password" id="adminPassword" placeholder="Default: admin123" required class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border bg-white" />
+            <label class="block text-xs font-medium mb-1">Password</label>
+            <input type="password" id="adminPassword" required class="w-full px-3.5 py-2 text-xs rounded-xl border bg-white outline-none" />
           </div>
           <div id="adminLoginError" class="hidden p-2.5 rounded-lg bg-rose-100 text-rose-800 text-xs font-semibold"></div>
           <div class="flex items-center justify-between pt-2">
@@ -582,45 +373,53 @@
         </form>
       </div>
 
-      <div id="adminDashboardView" class="hidden flex flex-col min-h-[80vh]">
+      <!-- Dashboard View -->
+      <div id="adminDashboardView" class="hidden flex flex-col min-h-[85vh]">
         <div class="bg-brand-forest text-white px-6 py-4 flex flex-wrap items-center justify-between gap-4 border-b border-brand-gold/30">
           <div class="flex items-center space-x-3">
             <div class="w-8 h-8 rounded-full border border-brand-gold flex items-center justify-center text-brand-gold text-xs"><i class="fa-solid fa-crown"></i></div>
-            <h2 class="text-base font-cinzel font-bold">Pandurang Lawns Admin Portal</h2>
+            <h2 class="text-base font-cinzel font-bold">Pandurang Lawns Management</h2>
           </div>
           <div class="flex items-center space-x-3">
-            <button onclick="handleAdminLogout()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-white">Logout</button>
+            <button onclick="showAdminTab('bookings')" id="tabBtnBookings" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark">Bookings</button>
+            <button onclick="showAdminTab('settings')" id="tabBtnSettings" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white">Owner Settings</button>
+            <button onclick="handleAdminLogout()" class="px-3 py-1.5 rounded-lg bg-rose-900/80 hover:bg-rose-900 text-xs font-semibold text-white">Logout</button>
             <button onclick="closeAdminModal()" class="text-brand-ivory/70 hover:text-brand-gold text-xl ml-2"><i class="fa-solid fa-xmark"></i></button>
           </div>
         </div>
 
-        <div class="p-6 space-y-6 flex-grow overflow-y-auto max-h-[calc(85vh-70px)]">
+        <!-- Tab 1: Bookings Management -->
+        <div id="adminTabBookings" class="p-6 space-y-6 overflow-y-auto max-h-[calc(85vh-70px)]">
           <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded-2xl border border-brand-border shadow-sm">
+            <div class="bg-white p-4 rounded-2xl border border-brand-border">
               <span class="text-xs font-cinzel uppercase text-brand-muted">Total Requests</span>
               <div id="statTotalBookings" class="text-2xl font-cinzel font-bold text-brand-forest mt-1">0</div>
             </div>
-            <div class="bg-white p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-xs font-cinzel uppercase text-amber-700">Pending Review</span>
+            <div class="bg-white p-4 rounded-2xl border border-brand-border">
+              <span class="text-xs font-cinzel uppercase text-amber-700">Pending Requests</span>
               <div id="statPendingBookings" class="text-2xl font-cinzel font-bold text-amber-600 mt-1">0</div>
             </div>
-            <div class="bg-white p-4 rounded-2xl border border-brand-border shadow-sm">
+            <div class="bg-white p-4 rounded-2xl border border-brand-border">
               <span class="text-xs font-cinzel uppercase text-emerald-700">Confirmed Booked</span>
               <div id="statConfirmedBookings" class="text-2xl font-cinzel font-bold text-emerald-700 mt-1">0</div>
             </div>
           </div>
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
+            <div class="p-4 bg-slate-50 border-b border-brand-border text-xs font-medium text-brand-muted flex items-center justify-between">
+              <span>Customer Requests (Manage & Select Booking for Any Date)</span>
+              <span class="text-[11px] text-brand-forest font-semibold">Tip: Approving a pending booking will confirm it and auto-cancel others on that date.</span>
+            </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
                 <thead class="bg-brand-forest text-brand-gold text-[11px] uppercase tracking-wider font-cinzel">
                   <tr>
+                    <th class="py-3 px-4">Date</th>
                     <th class="py-3 px-4">Customer</th>
                     <th class="py-3 px-4">Contact</th>
                     <th class="py-3 px-4">Occasion</th>
-                    <th class="py-3 px-4">Reserved Date</th>
                     <th class="py-3 px-4">Status</th>
-                    <th class="py-3 px-4 text-right">Actions</th>
+                    <th class="py-3 px-4 text-right">Actions & WhatsApp Notify</th>
                   </tr>
                 </thead>
                 <tbody id="adminBookingsTableBody" class="divide-y divide-brand-border"></tbody>
@@ -628,16 +427,44 @@
             </div>
           </div>
         </div>
+
+        <!-- Tab 2: Admin Profile & Credentials Settings -->
+        <div id="adminTabSettings" class="p-6 space-y-6 hidden max-w-xl mx-auto w-full">
+          <div class="bg-white p-6 rounded-2xl border border-brand-border shadow-sm">
+            <h3 class="font-cinzel text-base font-bold text-brand-forest mb-4 border-b pb-2">Change Admin Username & Password</h3>
+            <form id="adminSettingsForm" class="space-y-4">
+              <div>
+                <label class="block text-xs font-medium mb-1">Current Admin Username</label>
+                <input type="text" id="setAdminUser" required class="w-full px-3 py-2 text-xs rounded-xl border outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium mb-1">New Password</label>
+                <input type="password" id="setAdminPass" placeholder="Enter new password" required class="w-full px-3 py-2 text-xs rounded-xl border outline-none" />
+              </div>
+              <button type="submit" class="px-6 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl hover:bg-brand-forestLight transition">
+                Update Admin Profile
+              </button>
+            </form>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 
-  <!-- Firebase v10 Realtime Cloud Integration -->
+  <!-- Firebase Scripts -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-    import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
 
-    // Official Project Configuration
+    const VENUE_CONFIG = {
+      name: "Pandurang Lawns",
+      phone: "+91 98765 43210",
+      whatsappNumber: "919876543210",
+      email: "contact@panduranglawns.com",
+      address: "Pandurang Lawns, Maharashtra, India"
+    };
+
     const firebaseConfig = {
       apiKey: "AIzaSyAq4pMWkq2K6T7MSJ3KHx_WZFA-e-oWFno",
       authDomain: "pandurang-lawns.firebaseapp.com",
@@ -651,13 +478,32 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const bookingsCol = collection(db, "bookings");
+    const adminDocRef = doc(db, "settings", "admin_credentials");
 
+    let currentAdminAuth = { username: "admin", password: "admin123" };
     let liveBookings = [];
     let calendarDate = new Date();
     let selectedCalendarDateStr = null;
     let isAdminLoggedIn = false;
 
-    // Realtime Listener
+    // Load or Initialize Cloud Admin Credentials
+    async function initAdminCredentials() {
+      try {
+        const snap = await getDoc(adminDocRef);
+        if (snap.exists()) {
+          currentAdminAuth = snap.data();
+        } else {
+          await setDoc(adminDocRef, currentAdminAuth);
+        }
+      } catch(e) {
+        console.warn("Using default credentials");
+      }
+      document.getElementById('adminUsername').value = currentAdminAuth.username;
+      document.getElementById('setAdminUser').value = currentAdminAuth.username;
+    }
+    initAdminCredentials();
+
+    // Listen to realtime bookings
     onSnapshot(bookingsCol, (snapshot) => {
       liveBookings = [];
       snapshot.forEach(docSnap => {
@@ -667,41 +513,37 @@
       if (isAdminLoggedIn) renderAdminDashboard();
       if (selectedCalendarDateStr) {
         const avail = checkDateAvailability(selectedCalendarDateStr);
-        selectCalendarDate(selectedCalendarDateStr, avail.status);
+        selectCalendarDate(selectedCalendarDateStr, avail);
       }
     });
 
     const VENUE_FACILITIES = [
-      { name: "Spacious Lawn", icon: "fa-solid fa-tree", desc: "Lush green lawn accommodating royal gatherings." },
-      { name: "Parking Area", icon: "fa-solid fa-square-parking", desc: "Spacious parking with dedicated attendants." },
-      { name: "Grand Stage Area", icon: "fa-solid fa-crown", desc: "Elevated platform for royal mandaps and staging." },
-      { name: "Dining Pavilion", icon: "fa-solid fa-utensils", desc: "Dedicated spacious area for banqueting and feasts." },
-      { name: "Guest Seating", icon: "fa-solid fa-chair", desc: "Flexible sofa and banquet chair layout options." },
-      { name: "Power Backup", icon: "fa-solid fa-bolt", desc: "Uninterrupted generator power for smooth celebrations." },
-      { name: "Clean Restrooms", icon: "fa-solid fa-restroom", desc: "Modern, sanitized separate restrooms." },
-      { name: "Vendor Setup Zone", icon: "fa-solid fa-truck-ramp-box", desc: "Easy rear loading access for caterers and decorators." }
+      { name: "Spacious Lawn", icon: "fa-solid fa-tree", desc: "Expansive green grounds for royal celebrations." },
+      { name: "Ample Parking", icon: "fa-solid fa-square-parking", desc: "Hassle-free parking for buses and cars." },
+      { name: "Grand Stage", icon: "fa-solid fa-crown", desc: "Elevated platform for mandap & reception." },
+      { name: "Dining Zone", icon: "fa-solid fa-utensils", desc: "Dedicated courtyard for dining and buffet." }
     ];
 
     function checkDateAvailability(dateStr) {
       const confirmed = liveBookings.find(b => b.eventDate === dateStr && b.status === "Booked");
       if (confirmed) return { status: "Booked", booking: confirmed };
 
-      const pending = liveBookings.find(b => b.eventDate === dateStr && b.status === "Pending");
-      if (pending) return { status: "Pending", booking: pending };
+      const pendings = liveBookings.filter(b => b.eventDate === dateStr && b.status === "Pending");
+      if (pendings.length > 0) return { status: "Pending", count: pendings.length };
 
-      return { status: "Available", booking: null };
+      return { status: "Available" };
     }
 
     function renderFacilities() {
       const container = document.getElementById('facilitiesContainer');
       if (!container) return;
       container.innerHTML = VENUE_FACILITIES.map(fac => `
-        <div class="bg-white p-5 rounded-2xl border border-brand-border hover:border-brand-gold hover:shadow-md transition-all flex flex-col items-center text-center">
-          <div class="w-12 h-12 rounded-xl bg-brand-forest/10 text-brand-forest flex items-center justify-center text-xl mb-3">
+        <div class="bg-white p-5 rounded-2xl border border-brand-border text-center shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-brand-forest/10 text-brand-forest flex items-center justify-center text-xl mb-3 mx-auto">
             <i class="${fac.icon}"></i>
           </div>
-          <h3 class="font-cinzel text-xs font-bold uppercase tracking-wider text-brand-forest mb-1.5">${fac.name}</h3>
-          <p class="text-[11px] text-brand-muted leading-snug">${fac.desc}</p>
+          <h3 class="font-cinzel text-xs font-bold uppercase text-brand-forest">${fac.name}</h3>
+          <p class="text-[11px] text-brand-muted mt-1">${fac.desc}</p>
         </div>
       `).join('');
     }
@@ -725,7 +567,7 @@
       for (let i = firstDayIndex - 1; i >= 0; i--) {
         const d = prevMonthDays - i;
         const cell = document.createElement('div');
-        cell.className = "cal-day-cell bg-slate-50/50 rounded-xl p-2 text-slate-300 text-xs select-none border border-transparent";
+        cell.className = "cal-day-cell bg-slate-50/50 rounded-xl p-2 text-slate-300 text-xs border border-transparent";
         cell.innerHTML = `<span>${d}</span>`;
         calendarGrid.appendChild(cell);
       }
@@ -745,22 +587,20 @@
         let statusClasses = "";
 
         if (isPast) {
-          statusClasses = "bg-slate-50 text-slate-400 border border-slate-200 cursor-not-allowed opacity-60";
-          statusBadge = `<span class="text-[9px] uppercase font-mono">Past</span>`;
+          statusClasses = "bg-slate-50 text-slate-400 border border-slate-200 cursor-not-allowed opacity-50";
+          statusBadge = `<span class="text-[9px] font-mono">Past</span>`;
         } else if (avail.status === "Booked") {
-          statusClasses = "bg-rose-50 text-rose-900 border border-rose-300 shadow-sm cursor-pointer";
+          statusClasses = "bg-rose-50 text-rose-900 border border-rose-300 cursor-pointer";
           statusBadge = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-rose-700"><span class="w-2 h-2 rounded-full bg-rose-600"></span> Booked</span>`;
         } else if (avail.status === "Pending") {
-          statusClasses = "bg-amber-50 text-amber-900 border border-amber-300 shadow-sm cursor-pointer";
-          statusBadge = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Pending</span>`;
+          statusClasses = "bg-amber-50 text-amber-900 border border-amber-300 cursor-pointer";
+          statusBadge = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Pending (${avail.count})</span>`;
         } else {
-          statusClasses = "bg-emerald-50 text-emerald-950 border border-emerald-200 hover:border-emerald-500 shadow-sm cursor-pointer";
+          statusClasses = "bg-emerald-50 text-emerald-950 border border-emerald-200 hover:border-emerald-500 cursor-pointer";
           statusBadge = `<span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Available</span>`;
         }
 
-        if (isSelected) {
-          statusClasses += " ring-2 ring-brand-gold border-brand-gold bg-brand-gold/10";
-        }
+        if (isSelected) statusClasses += " ring-2 ring-brand-gold border-brand-gold bg-brand-gold/10";
 
         cell.className = `cal-day-cell rounded-xl p-2 sm:p-2.5 flex flex-col justify-between transition-all ${statusClasses}`;
         cell.innerHTML = `
@@ -771,9 +611,7 @@
           <div class="mt-1">${statusBadge}</div>
         `;
 
-        if (!isPast) {
-          cell.onclick = () => selectCalendarDate(dateStr, avail.status);
-        }
+        if (!isPast) cell.onclick = () => selectCalendarDate(dateStr, avail);
         calendarGrid.appendChild(cell);
       }
     }
@@ -783,7 +621,7 @@
       renderCalendar();
     };
 
-    function selectCalendarDate(dateStr, status) {
+    function selectCalendarDate(dateStr, avail) {
       selectedCalendarDateStr = dateStr;
       renderCalendar();
 
@@ -794,22 +632,23 @@
       const dateObj = new Date(dateStr + "T00:00:00");
       textEl.textContent = dateObj.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-      if (status === "Available") {
+      if (avail.status === "Available") {
         badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Date is Available`;
+        badgeEl.innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Date is Completely Available`;
         btn.disabled = false;
-        btn.className = "px-6 py-3 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl shadow-gold-sm hover:scale-105 transition cursor-pointer";
+        btn.className = "px-6 py-3 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl shadow cursor-pointer";
         btn.textContent = "Book This Date";
         btn.onclick = () => openBookingModal(dateStr);
-      } else if (status === "Pending") {
-        badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-amber-700 bg-amber-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-hourglass-half mr-1"></i> Reservation Request Under Review`;
-        btn.disabled = true;
-        btn.className = "opacity-50 cursor-not-allowed px-6 py-3 bg-amber-200 text-amber-900 font-cinzel font-bold text-xs uppercase rounded-xl";
-        btn.textContent = "Pending Confirmation";
+      } else if (avail.status === "Pending") {
+        badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full";
+        badgeEl.innerHTML = `<i class="fa-solid fa-hourglass-half mr-1"></i> ${avail.count} Pending Request(s). You can still request this date!`;
+        btn.disabled = false;
+        btn.className = "px-6 py-3 bg-amber-600 text-white font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-amber-700 cursor-pointer";
+        btn.textContent = "Request This Date";
+        btn.onclick = () => openBookingModal(dateStr);
       } else {
         badgeEl.className = "inline-block mt-0.5 text-[11px] font-semibold text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full";
-        badgeEl.innerHTML = `<i class="fa-solid fa-ban mr-1"></i> Sorry, this date is officially booked`;
+        badgeEl.innerHTML = `<i class="fa-solid fa-ban mr-1"></i> Date Officially Booked & Confirmed`;
         btn.disabled = true;
         btn.className = "opacity-50 cursor-not-allowed px-6 py-3 bg-rose-200 text-rose-800 font-cinzel font-bold text-xs uppercase rounded-xl";
         btn.textContent = "Date Unavailable";
@@ -820,51 +659,27 @@
       const modal = document.getElementById('bookingModal');
       const dateInput = document.getElementById('bEventDate');
       dateInput.min = new Date().toISOString().split('T')[0];
-      if (presetDate) {
-        dateInput.value = presetDate;
-        checkInputDateAvailability(presetDate);
-      }
+      if (presetDate) dateInput.value = presetDate;
       modal.classList.remove('hidden');
       modal.classList.add('modal-active');
     };
 
     window.closeBookingModal = () => {
-      const modal = document.getElementById('bookingModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('modal-active');
+      document.getElementById('bookingModal').classList.add('hidden');
+      document.getElementById('bookingModal').classList.remove('modal-active');
     };
 
-    window.checkInputDateAvailability = (dateVal) => {
-      const alertBox = document.getElementById('bookingFormAlert');
-      const feedback = document.getElementById('dateValidationFeedback');
-      const submitBtn = document.getElementById('submitBookingBtn');
-      if (!dateVal) return;
-
-      const avail = checkDateAvailability(dateVal);
-      if (avail.status === "Booked") {
-        alertBox.className = "p-3.5 rounded-xl text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300 block";
-        alertBox.innerHTML = `This date is already booked. Please choose another date.`;
-        feedback.className = "text-[11px] block mt-1 text-rose-600 font-semibold";
-        feedback.textContent = "Unavailable";
-        submitBtn.disabled = true;
-      } else {
-        alertBox.className = "hidden";
-        feedback.className = "text-[11px] block mt-1 text-emerald-700 font-semibold";
-        feedback.textContent = "Date is free!";
-        submitBtn.disabled = false;
-      }
-    };
-
-    window.handleBookingSubmit = async (e) => {
+    // Submit Booking Request
+    document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
       submitBtn.disabled = true;
-      submitBtn.innerText = "Submitting to Cloud...";
+      submitBtn.innerText = "Submitting...";
 
       const eventDate = document.getElementById('bEventDate').value;
-      const check = checkDateAvailability(eventDate);
-      if (check.status === "Booked") {
-        alert("Sorry! This date was just booked by another customer.");
+      const avail = checkDateAvailability(eventDate);
+      if (avail.status === "Booked") {
+        alert("Sorry! This date has officially been confirmed for another customer.");
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
         return;
@@ -884,18 +699,18 @@
 
       try {
         await addDoc(bookingsCol, newRecord);
-        alert(`Booking request for ${eventDate} received! Our concierge team will contact you.`);
+        alert(`Your request for ${eventDate} has been sent! The owner will review and confirm.`);
         closeBookingModal();
         document.getElementById('bookingForm').reset();
       } catch (err) {
-        alert("Cloud submission error. Please try again.");
+        alert("Network error. Please try again.");
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
       }
-    };
+    });
 
-    // Admin Functions
+    // Admin Authentication
     window.openAdminModal = () => {
       document.getElementById('adminPortalModal').classList.remove('hidden');
       document.getElementById('adminPortalModal').classList.add('modal-active');
@@ -911,20 +726,21 @@
       document.getElementById('adminPortalModal').classList.remove('modal-active');
     };
 
-    window.handleAdminLogin = (e) => {
+    document.getElementById('adminLoginForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
+      const u = document.getElementById('adminUsername').value.trim();
       const p = document.getElementById('adminPassword').value;
-      if (p === "admin123") {
+      if (u === currentAdminAuth.username && p === currentAdminAuth.password) {
         isAdminLoggedIn = true;
         document.getElementById('adminLoginView').classList.add('hidden');
         document.getElementById('adminDashboardView').classList.remove('hidden');
         renderAdminDashboard();
       } else {
         const err = document.getElementById('adminLoginError');
-        err.textContent = "Invalid password. (Use: admin123)";
+        err.textContent = "Invalid username or password!";
         err.classList.remove('hidden');
       }
-    };
+    });
 
     window.handleAdminLogout = () => {
       isAdminLoggedIn = false;
@@ -932,49 +748,131 @@
       document.getElementById('adminDashboardView').classList.add('hidden');
     };
 
+    window.showAdminTab = (tab) => {
+      if (tab === 'bookings') {
+        document.getElementById('adminTabBookings').classList.remove('hidden');
+        document.getElementById('adminTabSettings').classList.add('hidden');
+        document.getElementById('tabBtnBookings').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark";
+        document.getElementById('tabBtnSettings').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white";
+      } else {
+        document.getElementById('adminTabBookings').classList.add('hidden');
+        document.getElementById('adminTabSettings').classList.remove('hidden');
+        document.getElementById('tabBtnSettings').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark";
+        document.getElementById('tabBtnBookings').className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white";
+      }
+    };
+
+    // Update Admin Profile (Username & Password)
+    document.getElementById('adminSettingsForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const newU = document.getElementById('setAdminUser').value.trim();
+      const newP = document.getElementById('setAdminPass').value;
+      try {
+        currentAdminAuth = { username: newU, password: newP };
+        await setDoc(adminDocRef, currentAdminAuth);
+        alert("Admin profile and password updated successfully in Cloud!");
+        showAdminTab('bookings');
+      } catch (err) {
+        alert("Failed to update credentials. Please check internet.");
+      }
+    });
+
     function renderAdminDashboard() {
       document.getElementById('statTotalBookings').textContent = liveBookings.length;
       document.getElementById('statPendingBookings').textContent = liveBookings.filter(b => b.status === "Pending").length;
       document.getElementById('statConfirmedBookings').textContent = liveBookings.filter(b => b.status === "Booked").length;
 
       const tbody = document.getElementById('adminBookingsTableBody');
-      tbody.innerHTML = liveBookings.map(b => `
-        <tr class="hover:bg-brand-cream/30 transition">
-          <td class="py-3 px-4 font-bold text-brand-charcoal">${b.customerName}</td>
-          <td class="py-3 px-4">${b.mobile}</td>
-          <td class="py-3 px-4">${b.eventType}</td>
-          <td class="py-3 px-4 font-semibold text-brand-forest">${b.eventDate}</td>
-          <td class="py-3 px-4">
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${b.status === 'Booked' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
-              ${b.status}
-            </span>
-          </td>
-          <td class="py-3 px-4 text-right space-x-1">
-            ${b.status !== 'Booked' ? `<button onclick="updateCloudBookingStatus('${b.id}', 'Booked')" class="px-2 py-1 rounded bg-emerald-700 text-white font-bold text-xs hover:bg-emerald-800">Approve</button>` : ''}
-            <button onclick="deleteCloudBooking('${b.id}')" class="px-2 py-1 rounded bg-rose-700 text-white font-bold text-xs hover:bg-rose-800">Delete</button>
-          </td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = liveBookings.map(b => {
+        let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">Pending</span>`;
+        if (b.status === "Booked") statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Booked</span>`;
+        if (b.status === "Cancelled") statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">Cancelled</span>`;
+
+        return `
+          <tr class="hover:bg-brand-cream/30">
+            <td class="py-3 px-4 font-bold text-brand-forest">${b.eventDate}</td>
+            <td class="py-3 px-4 font-semibold">${b.customerName}</td>
+            <td class="py-3 px-4">${b.mobile}</td>
+            <td class="py-3 px-4">${b.eventType}</td>
+            <td class="py-3 px-4">${statusBadge}</td>
+            <td class="py-3 px-4 text-right space-x-1">
+              ${b.status === 'Pending' ? `
+                <button onclick="approveBookingAndCancelOthers('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs" title="Confirm this person and cancel other pending requests for this date">
+                  Approve & Book
+                </button>
+              ` : ''}
+              ${b.status !== 'Cancelled' ? `
+                <button onclick="cancelSingleBooking('${b.id}', '${b.eventDate}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
+                  Cancel
+                </button>
+              ` : ''}
+              <button onclick="deleteSingleBooking('${b.id}')" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs">
+                Delete
+              </button>
+              <button onclick="sendCustomerWhatsApp('${b.mobile}', '${b.customerName}', '${b.eventDate}', '${b.status}')" class="px-2 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold" title="Send WhatsApp Message">
+                <i class="fa-brands fa-whatsapp"></i> Notify
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
     }
 
-    window.updateCloudBookingStatus = async (id, status) => {
-      await updateDoc(doc(db, "bookings", id), { status });
+    // 1. APPROVE ONE PERSON & AUTO-CANCEL OTHERS ON SAME DATE
+    window.approveBookingAndCancelOthers = async (selectedId, eventDate, name, mobile) => {
+      if (!confirm(`Are you sure you want to approve ${name} for ${eventDate}? Any other pending requests for this date will be cancelled.`)) return;
+
+      // Update selected to Booked
+      await updateDoc(doc(db, "bookings", selectedId), { status: "Booked" });
+
+      // Find and auto-cancel other pending bookings on the same date
+      const others = liveBookings.filter(b => b.eventDate === eventDate && b.id !== selectedId && b.status === "Pending");
+      for (let o of others) {
+        await updateDoc(doc(db, "bookings", o.id), { status: "Cancelled" });
+      }
+
+      // Prompt to notify the approved client
+      if (confirm(`Booking confirmed! Do you want to send a WhatsApp confirmation message to ${name} now?`)) {
+        sendCustomerWhatsApp(mobile, name, eventDate, "Booked");
+      }
     };
 
-    window.deleteCloudBooking = async (id) => {
-      if (confirm("Delete this booking permanently?")) {
+    // 2. CANCEL SINGLE BOOKING
+    window.cancelSingleBooking = async (id, eventDate, name, mobile) => {
+      if (!confirm(`Cancel booking for ${name} on ${eventDate}?`)) return;
+      await updateDoc(doc(db, "bookings", id), { status: "Cancelled" });
+      if (confirm(`Do you want to send a WhatsApp cancellation message to ${name}?`)) {
+        sendCustomerWhatsApp(mobile, name, eventDate, "Cancelled");
+      }
+    };
+
+    window.deleteSingleBooking = async (id) => {
+      if (confirm("Delete this record permanently?")) {
         await deleteDoc(doc(db, "bookings", id));
       }
     };
 
-    window.openWhatsAppChat = () => {
-      window.open('https://wa.me/919876543210?text=Hello%20Pandurang%20Lawns,%20I%20am%20interested%20in%20booking%20a%20date', '_blank');
+    // 3. WHATSAPP NOTIFICATION TRIGGER (Automated text generator)
+    window.sendCustomerWhatsApp = (mobile, name, date, status) => {
+      let formattedPhone = mobile.replace(/\D/g, '');
+      if (formattedPhone.length === 10) formattedPhone = '91' + formattedPhone;
+
+      let msg = "";
+      if (status === "Booked") {
+        msg = `Namaskar ${name} ji, Pandurang Lawns kadun aapan kelyelya vinantinusar ${date} roji chi booking CONFIRM zali ahe. Dhanyawad! Contact: ${VENUE_CONFIG.phone}`;
+      } else if (status === "Cancelled") {
+        msg = `Namaskar ${name} ji, Pandurang Lawns madhil ${date} roji chi booking request kahi karanastav Cancel zali ahe / Dusrya client sathi confirm zali ahe. Krupaya dusri date select karavi. Dhanyawad.`;
+      } else {
+        msg = `Namaskar ${name} ji, Pandurang Lawns kadun aamhi aapan kelyelya ${date} chya booking request babat samparka karat ahot.`;
+      }
+
+      const url = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
     };
 
-    window.toggleMobileMenu = () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
+    window.openWhatsAppChat = () => {
+      window.open(`https://wa.me/${VENUE_CONFIG.whatsappNumber}?text=Hello%20Pandurang%20Lawns,%20I%20am%20interested%20in%20booking%20a%20date`, '_blank');
     };
-    document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
 
     renderFacilities();
     renderCalendar();
