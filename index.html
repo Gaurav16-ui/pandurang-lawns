@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pandurang Lawns | Luxury Wedding, Banquet & Event Venue</title>
-  <meta name="description" content="Pandurang Lawns is an exquisite destination with Open Lawn, Grand Hall and AC Banquet Hall for weddings, receptions and events." />
+  <meta name="description" content="Pandurang Lawns is an exquisite destination with Open Lawn, Grand Hall and AC Banquet Hall for weddings, receptions, meetings and events." />
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -201,7 +201,7 @@
       </p>
 
       <p class="max-w-2xl text-brand-ivory/90 text-xs sm:text-sm md:text-base leading-relaxed mb-5 sm:mb-7 font-light">
-        A multi-venue sanctuary offering an expansive <strong>Open Lawn</strong>, grand <strong>Function Hall</strong>, and premium <strong>AC Banquet Hall</strong> with dedicated 2-day Haldi & Wedding packages.
+        A multi-venue sanctuary offering an expansive <strong>Open Lawn</strong>, grand <strong>Function Hall</strong>, and premium <strong>AC Banquet Hall</strong> for weddings, receptions, business meetings, and social gatherings.
       </p>
 
       <div class="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-4 w-full sm:w-auto">
@@ -257,7 +257,7 @@
             </div>
             <div class="p-6">
               <h3 class="font-cinzel text-lg font-bold text-brand-forest">Spacious Function Hall</h3>
-              <p class="text-xs text-brand-muted mt-2 leading-relaxed">Spacious non-AC ventilated hall with dining infrastructure. Perfect for traditional daytime weddings, Haldi ceremonies, and engagements.</p>
+              <p class="text-xs text-brand-muted mt-2 leading-relaxed">Spacious non-AC ventilated hall with dining infrastructure. Perfect for traditional daytime weddings, Haldi ceremonies, and seminars.</p>
               <div class="mt-4 flex flex-wrap gap-2 text-[11px] font-semibold text-brand-forest">
                 <span class="bg-brand-cream px-2.5 py-1 rounded-md"><i class="fa-solid fa-sun text-amber-600 mr-1"></i> Day Slot</span>
                 <span class="bg-brand-cream px-2.5 py-1 rounded-md"><i class="fa-solid fa-moon text-indigo-800 mr-1"></i> Night Slot</span>
@@ -283,7 +283,7 @@
             </div>
             <div class="p-6">
               <h3 class="font-cinzel text-lg font-bold text-brand-forest">Royal AC Banquet Hall</h3>
-              <p class="text-xs text-brand-muted mt-2 leading-relaxed">Fully air-conditioned luxury hall with ambient lighting, lavish acoustic setup, and stage. Ideal for weddings, receptions, and Haldi/Sangeet functions round the clock.</p>
+              <p class="text-xs text-brand-muted mt-2 leading-relaxed">Fully air-conditioned luxury hall with ambient lighting, stage, and audio setup. Ideal for weddings, receptions, and corporate meetings.</p>
               <div class="mt-4 flex flex-wrap gap-2 text-[11px] font-semibold text-brand-forest">
                 <span class="bg-emerald-50 text-emerald-900 px-2.5 py-1 rounded-md border border-emerald-200"><i class="fa-solid fa-snowflake text-sky-600 mr-1"></i> 100% Central AC</span>
                 <span class="bg-brand-cream px-2.5 py-1 rounded-md"><i class="fa-solid fa-clock mr-1"></i> Day / Night</span>
@@ -554,7 +554,7 @@
     </button>
   </aside>
 
-  <!-- Booking Modal (With 2-Day Haldi Ceremony Support) -->
+  <!-- Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 sm:my-8">
       <div class="bg-brand-forest px-5 sm:px-8 py-4 sm:py-5 border-b border-brand-gold/30 flex items-center justify-between">
@@ -603,6 +603,7 @@
                 <option value="Evening Reception">Evening Reception</option>
                 <option value="Engagement Ceremony">Engagement Ceremony</option>
                 <option value="Sangeet / Haldi">Sangeet / Haldi Ceremony</option>
+                <option value="Meeting">Meeting (Corporate / Business)</option>
                 <option value="Birthday / Anniversary">Birthday / Anniversary</option>
                 <option value="AC Banquet Party">AC Banquet Hall Party</option>
                 <option value="Other Social Function">Other Social Function</option>
@@ -666,7 +667,7 @@
             </div>
             <div>
               <label for="bNotes" class="block text-xs font-medium text-brand-charcoal mb-1">Special Requirements</label>
-              <textarea id="bNotes" rows="2" placeholder="Catering setup, decoration style..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
+              <textarea id="bNotes" rows="2" placeholder="Catering setup, projector for meeting, decoration..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
             </div>
           </div>
         </div>
@@ -840,7 +841,6 @@
     let calendarDate = new Date();
     let selectedCalendarDateStr = null;
 
-    // Check Persistent Login state in this device
     let isAdminLoggedIn = (localStorage.getItem("pandurang_admin_logged_in") === "true");
 
     const ALL_VENUE_SLOTS = [
@@ -900,13 +900,13 @@
     const VENUE_FACILITIES = [
       { name: "Open Green Lawn", icon: "fa-solid fa-tree", desc: "Manicured green lawn with ambient lighting for night events." },
       { name: "AC Banquet Hall", icon: "fa-solid fa-snowflake", desc: "100% Centralized luxury air-conditioned indoor banquet hall." },
-      { name: "Main Function Hall", icon: "fa-solid fa-landmark", desc: "Spacious ventilated grand hall ideal for day weddings." },
-      { name: "Grand Stage Area", icon: "fa-solid fa-crown", desc: "Elevated stage platform ready for royal mandap setups." },
+      { name: "Main Function Hall", icon: "fa-solid fa-landmark", desc: "Spacious ventilated grand hall ideal for day events." },
+      { name: "Grand Stage Area", icon: "fa-solid fa-crown", desc: "Elevated stage platform ready for royal setups." },
       { name: "Dining Pavilion", icon: "fa-solid fa-utensils", desc: "Spacious dedicated dining area for catering and banquets." },
       { name: "Vehicle Parking", icon: "fa-solid fa-square-parking", desc: "Generous vehicle parking space with attendants." },
       { name: "Power Backup", icon: "fa-solid fa-bolt", desc: "Heavy-duty generator backup for uninterrupted functions." },
       { name: "Clean Restrooms", icon: "fa-solid fa-restroom", desc: "Sanitized modern separate restrooms for guests." },
-      { name: "Bridal AC Rooms", icon: "fa-solid fa-person-dress", desc: "Private luxury dressing and resting rooms for bride/groom." },
+      { name: "Bridal AC Rooms", icon: "fa-solid fa-person-dress", desc: "Private luxury dressing and resting rooms for guests." },
       { name: "Fresh Water RO", icon: "fa-solid fa-faucet-drip", desc: "Continuous fresh water & drinking RO points." }
     ];
 
@@ -1278,7 +1278,7 @@
     document.getElementById('bHaldiVenue')?.addEventListener('change', verifyFormSlotConflict);
     document.getElementById('bHaldiSlot')?.addEventListener('change', verifyFormSlotConflict);
 
-    // Online Booking Submission (Handles Main Wedding + Previous Day Haldi)
+    // Online Booking Submission (Handles Main Event + Previous Day Haldi)
     document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
@@ -1290,7 +1290,6 @@
       const slot = document.getElementById('bSlot').value;
       const includeHaldi = document.getElementById('bIncludeHaldi').checked;
 
-      // Re-verify conflicts
       if (isSlotBooked(eventDate, venue, slot)) {
         alert(`Sorry! ${venue} (${slot}) on ${formatToIndianDate(eventDate)} was already confirmed.`);
         submitBtn.disabled = false;
@@ -1309,7 +1308,6 @@
       };
 
       try {
-        // 1. Add Main Event
         await addDoc(bookingsCol, {
           ...commonInfo,
           venue: venue,
@@ -1318,7 +1316,6 @@
           eventDate: eventDate
         });
 
-        // 2. If Haldi is included, automatically create Haldi booking for previous day
         if (includeHaldi) {
           const prevDate = getPreviousDateString(eventDate);
           const haldiVenue = document.getElementById('bHaldiVenue').value;
@@ -1371,7 +1368,7 @@
       const p = document.getElementById('adminPassword').value;
       if (u === currentAdminAuth.username && p === currentAdminAuth.password) {
         isAdminLoggedIn = true;
-        localStorage.setItem("pandurang_admin_logged_in", "true"); // Saved for this device
+        localStorage.setItem("pandurang_admin_logged_in", "true");
         document.getElementById('adminLoginView').classList.add('hidden');
         document.getElementById('adminDashboardView').classList.remove('hidden');
         renderAdminDashboard();
@@ -1385,7 +1382,7 @@
     window.handleAdminLogout = () => {
       if (confirm("Do you want to log out from this device?")) {
         isAdminLoggedIn = false;
-        localStorage.removeItem("pandurang_admin_logged_in"); // Cleared on explicit logout
+        localStorage.removeItem("pandurang_admin_logged_in");
         document.getElementById('adminUsername').value = "";
         document.getElementById('adminPassword').value = "";
         document.getElementById('adminLoginForm').reset();
@@ -1433,9 +1430,7 @@
       }
     };
 
-    // Re-Approve Feature for Cancelled Bookings
     window.reApproveBooking = async (id, eventDate, venue, slot, name, mobile) => {
-      // Check if slot is free right now
       const conflict = isSlotBooked(eventDate, venue, slot);
       if (conflict) {
         alert(`Cannot Re-Approve! ${venue} (${slot}) on this date is already confirmed for another customer (${conflict.customerName}).`);
@@ -1464,7 +1459,6 @@
         const venueName = b.venue || "Open Lawn";
         const slotName = b.slot || "Night Slot";
 
-        // Check if this slot is free to re-approve
         const slotIsFree = !isSlotBooked(b.eventDate, venueName, slotName);
 
         return `
@@ -1486,7 +1480,7 @@
               ` : ''}
 
               ${b.status === 'Booked' ? `
-                <button onclick="cancelDirectSingle('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
+                <button onclick="cancelDirectSingle('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
                   Cancel
                 </button>
               ` : ''}
