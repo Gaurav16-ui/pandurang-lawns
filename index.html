@@ -79,12 +79,24 @@
     }
     .orange-vithal-glow:hover { transform: scale(1.03); }
 
-    /* Royal Metallic Gold Heading Shimmer */
     .brand-hero-title {
       background: linear-gradient(135deg, #FFF6DE 0%, #F5D38A 30%, #D4AF37 55%, #AA7C11 80%, #FEDB9B 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.85));
+    }
+
+    /* Shimmering Badge for Developer Publicity */
+    .dev-badge-glow {
+      box-shadow: 0 0 15px rgba(197, 160, 89, 0.3), inset 0 0 10px rgba(197, 160, 89, 0.15);
+      border: 1px solid rgba(197, 160, 89, 0.4);
+      background: linear-gradient(135deg, rgba(20, 60, 48, 0.9) 0%, rgba(12, 43, 34, 0.95) 100%);
+      transition: all 0.3s ease;
+    }
+    .dev-badge-glow:hover {
+      box-shadow: 0 0 25px rgba(197, 160, 89, 0.5), inset 0 0 15px rgba(197, 160, 89, 0.3);
+      border-color: rgba(230, 201, 135, 0.8);
+      transform: translateY(-2px);
     }
   </style>
 </head>
@@ -202,14 +214,12 @@
         </div>
       </div>
 
-      <!-- Grand Royal Brand Title with Heritage Accent Lines -->
+      <!-- Grand Royal Brand Title -->
       <div class="flex items-center justify-center gap-3 sm:gap-6 my-2 sm:my-3 w-full max-w-4xl">
         <div class="h-[1.5px] sm:h-[2px] flex-grow bg-gradient-to-r from-transparent via-brand-gold to-brand-goldLight opacity-80"></div>
-        
         <h1 class="brand-hero-title font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-[0.08em] sm:tracking-[0.16em] uppercase whitespace-nowrap">
           PANDURANG LAWNS
         </h1>
-
         <div class="h-[1.5px] sm:h-[2px] flex-grow bg-gradient-to-l from-transparent via-brand-gold to-brand-goldLight opacity-80"></div>
       </div>
 
@@ -547,14 +557,41 @@
     </div>
   </section>
 
-  <!-- 8. Footer -->
-  <footer class="bg-brand-forest border-t border-brand-gold/20 text-brand-ivory pt-14 pb-10 mt-auto">
+  <!-- 8. Footer (With Gaurav Chavan Developer Publicity Badge) -->
+  <footer class="bg-brand-forest border-t border-brand-gold/20 text-brand-ivory pt-14 pb-8 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
       <div class="text-center pb-6 border-b border-brand-forestLight flex flex-col items-center">
         <h3 class="font-cinzel text-lg sm:text-xl font-bold tracking-wider text-brand-gold">PANDURANG LAWNS</h3>
         <p class="font-serif italic text-xs sm:text-sm text-brand-goldLight mt-1">“Where Beautiful Celebrations Begin”</p>
       </div>
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-cream/60 gap-2">
+
+      <!-- Prominent Developer Publicity Section -->
+      <div class="py-8 flex justify-center">
+        <div class="dev-badge-glow max-w-xl w-full rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-gold to-brand-goldDark flex items-center justify-center text-brand-dark text-xl font-black shadow-gold-sm flex-shrink-0">
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <div>
+              <div class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Designed & Engineered By</div>
+              <h4 class="text-base font-bold text-white font-cinzel tracking-wide">Gaurav Chavan</h4>
+              <p class="text-xs text-brand-goldLight/90">Web Developer & UI/UX Specialist</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2.5 flex-shrink-0">
+            <a href="tel:9175943224" class="px-3.5 py-1.5 bg-white/10 hover:bg-brand-gold hover:text-brand-dark rounded-xl border border-brand-gold/40 text-xs font-semibold transition flex items-center gap-1.5 text-brand-goldLight">
+              <i class="fa-solid fa-phone text-[11px]"></i> +91 91759 43224
+            </a>
+            <a href="https://wa.me/919175943224?text=Hello%20Gaurav,%20I%20saw%20the%20Pandurang%20Lawns%20website%20and%20would%20like%20to%20develop%20a%20website%20with%20you." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+              <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-brand-cream/60 gap-2">
         <p>© 2026 Pandurang Lawns. All Rights Reserved.</p>
         <button onclick="openAdminModal()" class="text-xs text-brand-gold hover:underline">
           <i class="fa-solid fa-lock text-[10px] mr-1"></i> Owner Login & Settings
@@ -1497,7 +1534,7 @@
               ` : ''}
 
               ${b.status === 'Booked' ? `
-                <button onclick="cancelDirectSingle('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
+                <button onclick="cancelDirectSingle('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
                   Cancel
                 </button>
               ` : ''}
