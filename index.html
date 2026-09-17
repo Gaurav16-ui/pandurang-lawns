@@ -823,7 +823,7 @@
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
             <div class="p-3.5 sm:p-4 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
-              Smart Actions: Past events automatically show as Done. All WhatsApp messages are sent in Marathi.
+              Smart Actions: Past events automatically show as Done. All WhatsApp messages are sent in clean Marathi format.
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
@@ -1576,17 +1576,16 @@
       }
     };
 
-    // Helper to translate venue/slot in Marathi messages
+    // Helper to translate venue/slot in Marathi messages clearly without nested brackets
     function getMarathiSlotDetails(venue, slot) {
-      let v = venue;
       let s = slot;
-      if (slot === "Night Slot") s = "रात्र वेळ (Night)";
-      else if (slot === "Day Slot") s = "दिवस वेळ (Day)";
-      else if (slot === "Full Day (Day + Night)") s = "संपूर्ण दिवस (Full Day)";
-      return `${v} [${s}]`;
+      if (slot === "Night Slot") s = "रात्र वेळ (Night Slot)";
+      else if (slot === "Day Slot") s = "दिवस वेळ (Day Slot)";
+      else if (slot === "Full Day (Day + Night)") s = "संपूर्ण दिवस (Full Day Access)";
+      return `${venue} - ${s}`;
     }
 
-    // 1. RE-APPROVE IN MARATHI
+    // 1. RE-APPROVE IN MARATHI (Clean - No Emoji Bugs)
     window.reApproveBooking = async (id, eventDate, venue, slot, name, mobile) => {
       const conflict = isSlotBooked(eventDate, venue, slot);
       if (conflict) {
@@ -1598,20 +1597,20 @@
       const indianDate = formatToIndianDate(eventDate);
       const slotText = getMarathiSlotDetails(venue, slot);
 
-      const reApproveMsg = `नमस्कार ${name} जी, 
+      const reApproveMsg = `नमस्कार *${name}* जी,
 
-पांडुरंग लॉन्स (Pandurang Lawns) कडून आनंदाची बातमी! 🌸
+*पांडुरंग लॉन्स (Pandurang Lawns)* कडून आनंदाची बातमी!
 
-आपली दिनांक ${indianDate} रोजीसाठीची [${slotText}] ची बुकिंग पुन्हा कन्फर्म (CONFIRMED) करण्यात आली आहे. 
+आपली दिनांक *${indianDate}* रोजीसाठीची *${slotText}* ची बुकिंग पुन्हा *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
 
-📍 लॉन पत्ता: ${VENUE_CONFIG.address}
-🗺️ गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
+• पत्ता: ${VENUE_CONFIG.address}
+• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
 
-अधिक माहिती किंवा मदतीसाठी संपर्क:
-📞 राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
-📞 संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+अधिक माहितीसाठी संपर्क:
+• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
+• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
 
-आपल्या शुभकार्यासाठी पांडुरंग लॉन्स सदैव तत्पर आहे! धन्यवाद!`;
+आपल्या सेवेसाठी पांडुरंग लॉन्स सदैव तत्पर आहे. धन्यवाद!`;
 
       dispatchWhatsAppDirect(mobile, reApproveMsg);
       alert(`${name} यांची बुकिंग पुन्हा कन्फर्म झाली असून व्हॉट्सअ‍ॅप मेसेज पाठवला आहे!`);
@@ -1702,28 +1701,29 @@
       window.open(url, '_blank');
     }
 
-    // 2. CANCELLATION NOTIFICATION IN MARATHI
+    // 2. CANCELLATION NOTIFICATION IN MARATHI (Clean)
     window.sendCancellationWhatsAppOnly = (eventDate, venue, slot, name, mobile) => {
       const indianDate = formatToIndianDate(eventDate);
       const slotText = getMarathiSlotDetails(venue, slot);
 
-      const cancelMsg = `नमस्कार ${name} जी,
+      const cancelMsg = `नमस्कार *${name}* जी,
 
-पांडुरंग लॉन्स (Pandurang Lawns) कडून हा संदेश पाठवत आहोत.
+*पांडुरंग लॉन्स (Pandurang Lawns)* कडून हा संदेश पाठवत आहोत.
 
-आपण दिनांक ${indianDate} रोजीसाठी [${slotText}] ची बुकिंग विनंती केली होती. परंतु हा स्लॉट आधीच इतर ग्राहकासाठी कन्फर्म झाल्यामुळे आपली ही विनंती रद्द (Cancel) करण्यात आली आहे.
+आपण दिनांक *${indianDate}* रोजीसाठी *${slotText}* ची बुकिंग विनंती केली होती. परंतु हा स्लॉट आधीच इतर ग्राहकासाठी कन्फर्म झाल्यामुळे आपली ही विनंती *रद्द (Cancelled)* करण्यात आली आहे.
 
-आपणास विनंती आहे की आपण दुसऱ्या तारखेसाठी किंवा दुसऱ्या स्लॉटसाठी बुकिंग करावी. गैरसोयीबद्दल आम्ही दिलगीर आहोत.
+आपणास विनंती आहे की आपण दुसऱ्या तारखेसाठी किंवा दुसऱ्या वेळेसाठी बुकिंग करावी. गैरसोयीबद्दल आम्ही दिलगीर आहोत.
 
 संपर्क व चौकशी:
-📞 राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
-📞 संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
+• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+
 धन्यवाद!`;
 
       dispatchWhatsAppDirect(mobile, cancelMsg);
     };
 
-    // 3. APPROVAL & NOTIFY IN MARATHI
+    // 3. APPROVAL & NOTIFY IN MARATHI (Clean)
     window.approveDirectSmart = async (selectedId, eventDate, venue, slot, name, mobile) => {
       await updateDoc(doc(db, "bookings", selectedId), { status: "Booked" });
       const indianDate = formatToIndianDate(eventDate);
@@ -1737,18 +1737,18 @@
         (b.slot === slot || b.slot === "Full Day (Day + Night)" || slot === "Full Day (Day + Night)")
       );
 
-      const confirmMsg = `नमस्कार ${name} जी,
+      const confirmMsg = `नमस्कार *${name}* जी,
 
-पांडुरंग लॉन्स (Pandurang Lawns) कडून मनःपूर्वक स्वागत! 🌸
+*पांडुरंग लॉन्स (Pandurang Lawns)* कडून मनःपूर्वक स्वागत!
 
-आपल्या विनंतीनुसार, दिनांक ${indianDate} रोजीसाठी [${slotText}] ची आपली बुकिंग यशस्वीरित्या कन्फर्म (CONFIRMED) करण्यात आली आहे.
+आपल्या विनंतीनुसार, दिनांक *${indianDate}* रोजीसाठी *${slotText}* ची आपली बुकिंग यशस्वीरित्या *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
 
-📍 पत्ता: ${VENUE_CONFIG.address}
-🗺️ गुगल मॅप: ${VENUE_CONFIG.mapUrl}
+• पत्ता: ${VENUE_CONFIG.address}
+• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
 
-आपल्या सोयीसाठी व्यवस्थापक संपर्क क्रमांक:
-📞 राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
-📞 संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+व्यवस्थापक संपर्क क्रमांक:
+• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
+• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
 
 पांडुरंग लॉन्सची निवड केल्याबद्दल आपले खूप खूप धन्यवाद!`;
 
