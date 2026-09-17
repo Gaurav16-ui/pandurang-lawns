@@ -1009,18 +1009,16 @@
     </div>
   </div>
 
-  <!-- COMPLETELY REDESIGNED PDF RECEIPT TEMPLATE WITH TIME OF ISSUE -->
+  <!-- COMPLETELY REDESIGNED PDF RECEIPT TEMPLATE -->
   <div id="pdfReceiptWrapper" style="position: fixed; left: -9999px; top: 0; width: 800px; background: #ffffff; z-index: -10;">
     <div id="pdfPrintableArea" style="width: 740px; margin: 0 auto; padding: 24px 28px; font-family: 'Plus Jakarta Sans', sans-serif; color: #1e293b; background: #ffffff; box-sizing: border-box; border: 1.5px solid #C5A059; border-radius: 4px;">
       
-      <!-- Top Brand Header -->
       <div style="text-align: center; border-bottom: 2px solid #C5A059; padding-bottom: 12px;">
         <h1 style="font-family: 'Cinzel', serif; font-size: 24px; font-weight: 900; color: #0C2B22; margin: 0; letter-spacing: 2px;">PANDURANG LAWNS</h1>
         <p style="font-style: italic; font-size: 13px; color: #9F7B33; margin: 3px 0 0 0; font-family: 'Playfair Display', serif;">“Where Beautiful Celebrations Begin”</p>
         <p style="font-size: 10px; color: #64748b; margin: 3px 0 0 0;">Pandurang Lawns Ugaon, Shivadi, Maharashtra 422304 | Mob: +91 95795 20187 / +91 90215 67601</p>
       </div>
 
-      <!-- Receipt Meta Header with Date & Accurate Time -->
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 10px;">
         <div style="text-align: left; width: 33%;">
           <span style="font-size: 10px; color: #64748b; text-transform: uppercase;">Receipt / Slip No:</span><br>
@@ -1035,7 +1033,6 @@
         </div>
       </div>
 
-      <!-- Customer & Event Grid -->
       <div style="margin-top: 14px;">
         <table style="width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed;">
           <tbody>
@@ -1067,12 +1064,10 @@
         </table>
       </div>
 
-      <!-- Notes / Special Instructions -->
       <div id="pdfSlipNotesWrapper" style="margin-top: 10px; padding: 7px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; color: #475569;">
         <strong>Special Notes / Requirements:</strong> <span id="pdfSlipNotesText">None</span>
       </div>
 
-      <!-- Clean Rendered Terms & Conditions -->
       <div style="margin-top: 16px; border-top: 1.5px solid #C5A059; padding-top: 10px;">
         <h4 style="font-family: 'Cinzel', serif; font-size: 11px; font-weight: bold; color: #0C2B22; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">
           TERMS & CONDITIONS:
@@ -1087,7 +1082,6 @@
         </div>
       </div>
 
-      <!-- Signatures Footer -->
       <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 28px; padding-top: 6px;">
         <div style="text-align: center; width: 180px; border-top: 1px solid #94a3b8; padding-top: 4px; font-size: 10px; color: #64748b;">
           Customer / Organizer Signature
@@ -1100,7 +1094,7 @@
     </div>
   </div>
 
-  <!-- GLOBAL SCRIPT FOR MODALS & PDF -->
+  <!-- SCRIPT -->
   <script>
     window.openAdminModal = function() {
       const modal = document.getElementById('adminPortalModal');
@@ -1427,7 +1421,6 @@ ${directReceiptUrl}
       });
       renderCalendar();
       
-      // FIXED: Always trigger admin dashboard rendering when live data updates
       if (isAdminLoggedIn || localStorage.getItem("pandurang_admin_logged_in") === "true") {
         window.renderAdminDashboard();
       }
@@ -2532,10 +2525,15 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         if (b.status === "Cancellation Requested" || b.status === "Date Change Requested") cancelReqCount++;
       });
 
-      document.getElementById('statTotalBookings').textContent = total;
-      document.getElementById('statPendingBookings').textContent = pending;
-      document.getElementById('statConfirmedBookings').textContent = confirmed;
-      document.getElementById('statCancelRequestedBookings').textContent = cancelReqCount;
+      const totEl = document.getElementById('statTotalBookings');
+      const penEl = document.getElementById('statPendingBookings');
+      const conEl = document.getElementById('statConfirmedBookings');
+      const canEl = document.getElementById('statCancelRequestedBookings');
+
+      if (totEl) totEl.textContent = total;
+      if (penEl) penEl.textContent = pending;
+      if (conEl) conEl.textContent = confirmed;
+      if (canEl) canEl.textContent = cancelReqCount;
 
       const activeBookings = [];
       const doneBookings = [];
@@ -2553,8 +2551,9 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       doneBookings.sort((a, b) => (b.eventDate || "0000-00-00").localeCompare(a.eventDate || "0000-00-00"));
 
       const sortedBookings = [...activeBookings, ...doneBookings];
-
       const tbody = document.getElementById('adminBookingsTableBody');
+      if (!tbody) return;
+
       tbody.innerHTML = sortedBookings.map(b => {
         const effStatus = getEffectiveStatus(b);
         const isCompleted = (effStatus === "Completed");
@@ -2579,7 +2578,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         const bId = b.bookingId || "PL-LEGACY";
 
         const slotIsFree = !isSlotBooked(b.eventDate, venueName, slotName, b.id);
-
         const rowStyle = isCompleted 
           ? "bg-slate-50/70 opacity-60 hover:opacity-100 transition-opacity" 
           : "hover:bg-brand-cream/30";
