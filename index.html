@@ -371,6 +371,7 @@
 
         <div id="calendarGrid" class="grid grid-cols-7 gap-1 sm:gap-2"></div>
 
+        <!-- Selected Date Detailed Breakdown Box -->
         <div id="selectedDateBar" class="mt-6 p-4 sm:p-5 rounded-2xl bg-brand-ivory border border-brand-gold/60 space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-brand-border pb-3">
             <div>
@@ -380,6 +381,7 @@
             <div id="selectedDateSummaryBadge" class="text-xs font-semibold"></div>
           </div>
 
+          <!-- Slots Breakdown Container -->
           <div id="slotsBreakdownContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             <p class="text-xs text-brand-muted col-span-full">Select any date to view individual availability of Open Lawn, Function Hall, and AC Banquet Hall.</p>
           </div>
@@ -583,7 +585,7 @@
             <a href="tel:9175943224" class="px-3.5 py-1.5 bg-white/10 hover:bg-brand-gold hover:text-brand-dark rounded-xl border border-brand-gold/40 text-xs font-semibold transition flex items-center gap-1.5 text-brand-goldLight">
               <i class="fa-solid fa-phone text-[11px]"></i> +91 91759 43224
             </a>
-            <a href="https://wa.me/919175943224?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%97%E0%A5%8C%E0%A4%B0%E0%A4%B5,%20%E0%A4%AE%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A5%81%E0%A4%B0%E0%A4%82%E0%A4%97%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A4%9A%E0%A5%80%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AA%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A5%80.%20%E0%A4%AE%E0%A4%B2%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%80%E0%A4%B2%20%E0%A4%8F%E0%A4%95%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AC%E0%A4%A8%E0%A4%B5%E0%A5%82%E0%A4%A8%20%E0%A4%98%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AF%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%B9%E0%A5%87." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+            <a href="https://wa.me/919175943224?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%97%E0%A5%8C%E0%A4%B0%E0%A4%B5,%20%E0%A4%AE%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A5%81%E0%A4%B0%E0%A4%82%E0%A4%97%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A4%9A%E0%A5%80%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AA%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A5%80.%20%E0%A4%AE%E0%A4%BE%E0%A4%B2%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%80%E0%A4%B2%20%E0%A4%8F%E0%A4%95%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AC%E0%A4%A8%E0%A4%B5%E0%A5%82%E0%A4%A8%20%E0%A4%98%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AF%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%B9%E0%A5%87." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
               <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
             </a>
           </div>
@@ -1200,7 +1202,7 @@
       html2pdf().set(opt).from(printableElement).save();
     };
 
-    // पावती थेट ग्राहकाला अस्सल मराठी भाषेत व्हॉट्सॲपवर पाठवणे (प्रॉपर मराठी मजकूर)
+    // पावती थेट ग्राहकाला अस्सल मराठी भाषेत पाठवणे (Global Scope Attached)
     window.sendReceiptToCustomer = function(docId) {
       if (typeof window.getLiveBookingById !== 'function') return;
       const b = window.getLiveBookingById(docId);
@@ -1243,6 +1245,54 @@ ${directReceiptUrl}
       setTimeout(() => {
         window.open(`https://wa.me/${formatted}?text=${encodeURIComponent(marathiWhatsAppMsg)}`, '_blank');
       }, 500);
+    };
+
+    // Global Admin Shift Modal Opener (FIXED SHIFT BUTTON ISSUE)
+    window.openAdminShiftModal = function(docId) {
+      if (typeof window.getLiveBookingById !== 'function') return;
+      const b = window.getLiveBookingById(docId);
+      if (!b) {
+        alert("Booking not found!");
+        return;
+      }
+
+      const shiftIdInput = document.getElementById('shiftDocId');
+      if (shiftIdInput) shiftIdInput.value = docId;
+
+      const shiftDateInput = document.getElementById('shiftNewDate');
+      if (shiftDateInput) {
+        shiftDateInput.min = new Date().toISOString().split('T')[0];
+        shiftDateInput.value = b.requestedNewDate || "";
+      }
+
+      const venue = b.venue || "Open Lawn";
+      const slot = b.slot || "Night Slot";
+      const customerName = b.customerName || "Customer";
+      const currentEventDate = b.eventDate || "";
+
+      const infoBox = document.getElementById('adminShiftInfo');
+      if (infoBox) {
+        infoBox.innerHTML = `
+          <strong>Customer:</strong> ${customerName}<br>
+          <strong>Current Date:</strong> ${currentEventDate}<br>
+          <strong>Venue/Slot:</strong> ${venue} (${slot})
+          ${b.requestedNewDate ? `<br><span class="text-indigo-700 font-bold">User Suggested Date: ${b.requestedNewDate}</span>` : ''}
+        `;
+      }
+
+      const modal = document.getElementById('adminShiftDateModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.style.display = 'flex';
+      }
+    };
+
+    window.closeAdminShiftModal = function() {
+      const modal = document.getElementById('adminShiftDateModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+      }
     };
   </script>
 
@@ -1962,7 +2012,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         };
 
         document.getElementById('bookingSuccessModal').classList.remove('hidden');
-        document.getElementById('bookingSuccessModal').style.display = 'flex';
+        document.getElementById('bookingSuccessModalstyle').display = 'flex';
 
         const targetMobile = VENUE_CONFIG.contactRakesh.wa;
         setTimeout(() => {
@@ -2329,83 +2379,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // Admin Shift Date Modal Logic
-    window.openAdminShiftModal = (docId) => {
-      const b = liveBookings.find(item => item.id === docId);
-      if (!b) {
-        alert("Booking not found!");
-        return;
-      }
-
-      document.getElementById('shiftDocId').value = docId;
-      const shiftDateInput = document.getElementById('shiftNewDate');
-      shiftDateInput.min = new Date().toISOString().split('T')[0];
-      
-      if (b.requestedNewDate) {
-        shiftDateInput.value = b.requestedNewDate;
-      } else {
-        shiftDateInput.value = "";
-      }
-
-      const venue = b.venue || "Open Lawn";
-      const slot = b.slot || "Night Slot";
-      const customerName = b.customerName || "Customer";
-      const currentEventDate = b.eventDate || "";
-
-      const infoBox = document.getElementById('adminShiftInfo');
-      infoBox.innerHTML = `
-        <strong>Customer:</strong> ${customerName}<br>
-        <strong>Current Date:</strong> ${formatToIndianDate(currentEventDate)}<br>
-        <strong>Venue/Slot:</strong> ${venue} (${slot})
-        ${b.requestedNewDate ? `<br><span class="text-indigo-700 font-bold">User Suggested Date: ${formatToIndianDate(b.requestedNewDate)}</span>` : ''}
-      `;
-
-      verifyAdminShiftConflict();
-
-      const modal = document.getElementById('adminShiftDateModal');
-      modal.classList.remove('hidden');
-      modal.style.display = 'flex';
-    };
-
-    window.closeAdminShiftModal = () => {
-      const modal = document.getElementById('adminShiftDateModal');
-      modal.classList.add('hidden');
-      modal.style.display = 'none';
-    };
-
-    function verifyAdminShiftConflict() {
-      const docId = document.getElementById('shiftDocId').value;
-      const newDate = document.getElementById('shiftNewDate').value;
-      const feedback = document.getElementById('adminShiftConflictFeedback');
-      const submitBtn = document.getElementById('submitAdminShiftBtn');
-
-      if (!newDate) {
-        feedback.textContent = "कृपया नवीन तारीख निवडा.";
-        feedback.className = "text-[11px] font-semibold mt-1 text-slate-500";
-        submitBtn.disabled = true;
-        return;
-      }
-
-      const b = liveBookings.find(item => item.id === docId);
-      if (!b) return;
-
-      const venueName = b.venue || "Open Lawn";
-      const slotName = b.slot || "Night Slot";
-
-      const conflict = isSlotBooked(newDate, venueName, slotName, docId);
-      if (conflict) {
-        feedback.innerHTML = `⚠️ लक्ष द्या: ${formatToIndianDate(newDate)} रोजी ${venueName} (${slotName}) आधीच दुसऱ्या ग्राहकासाठी कन्फर्म आहे!`;
-        feedback.className = "text-[11px] font-semibold mt-1 text-rose-600";
-        submitBtn.disabled = true;
-      } else {
-        feedback.innerHTML = `✅ ही तारीख मोकळी आहे. शिफ्ट केल्यास ग्राहकाला WhatsApp कन्फर्मेशन जाईल.`;
-        feedback.className = "text-[11px] font-semibold mt-1 text-emerald-700";
-        submitBtn.disabled = false;
-      }
-    }
-
-    document.getElementById('shiftNewDate')?.addEventListener('change', verifyAdminShiftConflict);
-
+    // Admin Shift Date Form Submit Handler
     document.getElementById('adminShiftForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const docId = document.getElementById('shiftDocId').value;
@@ -2439,22 +2413,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         });
 
         const slotText = getMarathiSlotDetails(venueName, slotName);
-        const shiftWhatsAppMsg = `नमस्कार *${b.customerName}* जी,
-
-*पांडुरंग लॉन्स (Pandurang Lawns)* कडून महत्त्वाची सूचना!
-
-आपल्या विनंतीनुसार, आपली [${slotText}] ची बुकिंग जुन्या तारखेवरून (${oldDateIndian}) यशस्वीरित्या नवीन तारखेवर दिनांक *${newDateIndian}* रोजी *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
-
-• Booking ID: *${b.bookingId || "PL-CONFIRMED"}*
-• नवीन तारीख: *${newDateIndian}*
-• पत्ता: ${VENUE_CONFIG.address}
-• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
-
-अधिक माहितीसाठी संपर्क:
-• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
-• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
-
-पांडुरंग लॉन्सची निवड केल्याबद्दल धन्यवाद!`;
+        const shiftWhatsAppMsg = `नमस्कार *${b.customerName}* जी,\n\n*पांडुरंग लॉन्स (Pandurang Lawns)* कडून महत्त्वाची सूचना!\n\nआपल्या विनंतीनुसार, आपली [${slotText}] ची बुकिंग जुन्या तारखेवरून (${oldDateIndian}) यशस्वीरित्या नवीन तारखेवर दिनांक *${newDateIndian}* रोजी *कन्फर्म (CONFIRMED)* करण्यात आली आहे.\n\n• Booking ID: *${b.bookingId || "PL-CONFIRMED"}*\n• नवीन तारीख: *${newDateIndian}*\n• पत्ता: ${VENUE_CONFIG.address}\n• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}\n\nअधिक माहितीसाठी संपर्क:\n• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}\n• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}\n\nपांडुरंग लॉन्सची निवड केल्याबद्दल धन्यवाद!`;
 
         closeAdminShiftModal();
         dispatchWhatsAppDirect(b.mobile, shiftWhatsAppMsg);
@@ -2733,72 +2692,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }).join('');
     };
 
-    // Make renderAdminDashboard globally available for admin modal opening
     window.renderAdminDashboard = renderAdminDashboard;
-
-    function dispatchWhatsAppDirect(mobile, message) {
-      let formatted = mobile.replace(/\D/g, '');
-      if (formatted.length === 10) formatted = '91' + formatted;
-      const url = `https://wa.me/${formatted}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
-
-    window.sendCancellationWhatsAppOnly = (eventDate, venue, slot, name, mobile) => {
-      const indianDate = formatToIndianDate(eventDate);
-      const slotText = getMarathiSlotDetails(venue, slot);
-
-      const cancelMsg = `नमस्कार ${name} जी,\n\nपांडुरंग लॉन्स (Pandurang Lawns) कडून हा संदेश पाठवत आहोत.\n\nआपण दिनांक ${indianDate} रोजीसाठी ${slotText} ची बुकिंग विनंती केली होती. परंतु हा स्लॉट आधीच इतर ग्राहकासाठी कन्फर्म झाल्यामुळे आपली ही विनंती रद्द (Cancelled) करण्यात आली आहे.\n\nआपणास विनंती आहे की आपण दुसऱ्या तारखेसाठी किंवा दुसऱ्या वेळेसाठी बुकिंग करावी. गैरसोयीबद्दल आम्ही दिलगीर आहोत.\n\nसंपर्क व चौकशी:\n• राकेश चव्हाण: +91 95795 20187\n• संतोष चव्हाण: +91 90215 67601\n\nधन्यवाद!`;
-
-      dispatchWhatsAppDirect(mobile, cancelMsg);
-    };
-
-    window.approveDirectSmart = async (selectedId, eventDate, venue, slot, name, mobile, bookingId) => {
-      await updateDoc(doc(db, "bookings", selectedId), { status: "Booked" });
-      const indianDate = formatToIndianDate(eventDate);
-      const slotText = getMarathiSlotDetails(venue, slot);
-
-      const conflictPendings = liveBookings.filter(b => 
-        b.eventDate === eventDate && 
-        (b.venue || "Open Lawn") === venue && 
-        b.id !== selectedId && 
-        b.status === "Pending" &&
-        (b.slot === slot || b.slot === "Full Day (Day + Night)" || slot === "Full Day (Day + Night)")
-      );
-
-      const confirmMsg = `नमस्कार ${name} जी,\n\nपांडुरंग लॉन्स (Pandurang Lawns) कडून मनःपूर्वक स्वागत!\n\nआपल्या विनंतीनुसार, दिनांक ${indianDate} रोजीसाठी ${slotText} ची आपली बुकिंग यशस्वीरित्या कन्फर्म (CONFIRMED) करण्यात आली आहे.\n\n• बुकिंग आयडी (Booking ID): ${bookingId}\n• पत्ता: ${VENUE_CONFIG.address}\n• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}\n\nव्यवस्थापक संपर्क क्रमांक:\n• राकेश चव्हाण: +91 95795 20187\n• संतोष चव्हाण: +91 90215 67601\n\nपांडुरंग लॉन्सची निवड केल्याबद्दल आपले खूप खूप धन्यवाद!`;
-
-      dispatchWhatsAppDirect(mobile, confirmMsg);
-
-      for (let c of conflictPendings) {
-        await updateDoc(doc(db, "bookings", c.id), { status: "Cancelled", cancelReason: "Slot allocated to confirmed booking" });
-      }
-
-      if (conflictPendings.length > 0) {
-        setTimeout(() => {
-          conflictPendings.forEach(c => {
-            const sendNow = confirm(`${name} यांची बुकिंग कन्फर्म झाली आहे!\n\nसदर स्लॉटसाठी ${c.customerName} यांची विनंती रद्द करण्यात आली आहे.\n\nत्यांना मराठीत WhatsApp संदेश पाठवण्यासाठी OK दाबा.`);
-            if (sendNow) {
-              window.sendCancellationWhatsAppOnly(eventDate, venue, slot, c.customerName, c.mobile);
-            }
-          });
-        }, 1000);
-      }
-    };
-
-    window.cancelDirectSingle = async (id, eventDate, venue, slot, name, mobile) => {
-      await updateDoc(doc(db, "bookings", id), { status: "Cancelled", cancelReason: "Admin cancelled booking" });
-      window.sendCancellationWhatsAppOnly(eventDate, venue, slot, name, mobile);
-    };
-
-    window.openWhatsAppUser = (num) => {
-      const defaultUserMsg = "नमस्कार पांडुरंग लॉन्स, मला लॉन बुकिंग संदर्भात चौकशी करायची आहे.";
-      window.open(`https://wa.me/${num}?text=${encodeURIComponent(defaultUserMsg)}`, '_blank');
-    };
-
-    window.toggleMobileMenu = () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    };
-    document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
 
     renderFacilities();
     renderGallery('all');
