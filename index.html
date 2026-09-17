@@ -7,12 +7,15 @@
   <title>Pandurang Lawns | Luxury Wedding, Banquet & Event Venue</title>
   <meta name="description" content="Pandurang Lawns is an exquisite destination with Open Lawn, Grand Hall and AC Banquet Hall for weddings, receptions, meetings and events." />
   
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
+  <!-- FontAwesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   
   <script>
@@ -95,6 +98,7 @@
 
 <body class="bg-brand-ivory text-brand-charcoal font-sans antialiased selection:bg-brand-gold selection:text-brand-dark flex flex-col min-h-screen">
 
+  <!-- Top Contact Bar -->
   <div class="bg-brand-forest text-brand-goldLight text-[11px] sm:text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-brand-gold/30 tracking-wider">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
       <div class="flex items-center justify-center gap-2 sm:gap-4 flex-wrap text-center">
@@ -119,6 +123,7 @@
     </div>
   </div>
 
+  <!-- Sticky Navbar -->
   <header id="mainNavbar" class="sticky top-0 z-40 bg-brand-forest/95 backdrop-blur-md border-b border-brand-gold/20 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-14 sm:h-20">
@@ -162,6 +167,7 @@
           </button>
         </div>
 
+        <!-- Clean Mobile Navbar -->
         <div class="flex lg:hidden items-center space-x-2">
           <button onclick="openBookingModal()" class="px-3 py-1 text-xs font-bold uppercase bg-brand-gold text-brand-dark rounded-full">Book</button>
           <button id="mobileMenuBtn" aria-label="Toggle Menu" class="text-brand-ivory p-2 focus:outline-none hover:text-brand-gold text-xl">
@@ -171,6 +177,7 @@
       </div>
     </div>
 
+    <!-- Mobile Dropdown Menu -->
     <div id="mobileMenu" class="hidden lg:hidden bg-brand-forest border-t border-brand-gold/20 px-6 py-4 space-y-3">
       <a href="#home" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Home</a>
       <a href="#venues" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Venues & Halls</a>
@@ -190,6 +197,7 @@
     </div>
   </header>
 
+  <!-- 1. Hero Section -->
   <section id="home" class="relative flex items-center justify-center text-center overflow-hidden pt-6 pb-10 sm:py-16">
     <img 
       src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80" 
@@ -237,6 +245,7 @@
     </div>
   </section>
 
+  <!-- 2. Venues & Slots Section -->
   <section id="venues" class="py-16 sm:py-20 bg-brand-cream/60 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
@@ -246,6 +255,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Open Lawn -->
         <div class="bg-white rounded-3xl border border-brand-border overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="relative h-48 overflow-hidden">
@@ -268,6 +278,7 @@
           </div>
         </div>
 
+        <!-- Main Function Hall -->
         <div class="bg-white rounded-3xl border border-brand-border overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
           <div>
             <div class="relative h-48 overflow-hidden">
@@ -290,6 +301,7 @@
           </div>
         </div>
 
+        <!-- AC Banquet Hall -->
         <div class="bg-white rounded-3xl border-2 border-brand-gold/60 overflow-hidden shadow-gold-sm hover:shadow-gold-lg transition-all duration-300 flex flex-col justify-between relative">
           <div class="absolute top-0 right-0 bg-brand-gold text-brand-dark text-[9px] font-cinzel font-extrabold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
             Luxury AC Hall
@@ -318,6 +330,7 @@
     </div>
   </section>
 
+  <!-- 3. Availability Calendar -->
   <section id="calendar-section" class="py-16 sm:py-20 bg-brand-ivory">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-8">
@@ -380,6 +393,7 @@
     </div>
   </section>
 
+  <!-- 4. About Pandurang Lawns -->
   <section id="about" class="py-16 sm:py-20 bg-brand-cream/40 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -437,6 +451,7 @@
     </div>
   </section>
 
+  <!-- 5. Facilities Section -->
   <section id="facilities" class="py-16 sm:py-20 bg-brand-ivory border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
@@ -448,6 +463,7 @@
     </div>
   </section>
 
+  <!-- 6. Photo Gallery -->
   <section id="gallery" class="py-16 sm:py-20 bg-brand-cream/30 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
@@ -468,6 +484,7 @@
     </div>
   </section>
 
+  <!-- Lightbox Modal -->
   <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm">
     <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-brand-gold transition z-10"><i class="fa-solid fa-xmark"></i></button>
     <button onclick="prevLightboxImage()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-brand-gold text-2xl sm:text-4xl p-2 z-10"><i class="fa-solid fa-chevron-left"></i></button>
@@ -478,6 +495,7 @@
     </div>
   </div>
 
+  <!-- 7. Contact Section -->
   <section id="contact" class="py-16 sm:py-20 bg-brand-ivory">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
@@ -543,6 +561,7 @@
     </div>
   </section>
 
+  <!-- 8. Footer -->
   <footer class="bg-brand-forest border-t border-brand-gold/20 text-brand-ivory pt-14 pb-8 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -551,6 +570,7 @@
         <p class="font-serif italic text-xs sm:text-sm text-brand-goldLight mt-1">“Where Beautiful Celebrations Begin”</p>
       </div>
 
+      <!-- Developer Publicity Section -->
       <div class="py-8 flex justify-center">
         <div class="dev-badge-glow max-w-xl w-full rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div class="flex items-center gap-3.5">
@@ -584,6 +604,7 @@
     </div>
   </footer>
 
+  <!-- Floating WhatsApp Button -->
   <aside aria-label="Quick WhatsApp Inquiry" class="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40">
     <button onclick="openWhatsAppUser('919579520187')" class="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-600 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all p-3 sm:p-4">
       <i class="fa-brands fa-whatsapp text-xl sm:text-2xl"></i>
@@ -591,6 +612,7 @@
     </button>
   </aside>
 
+  <!-- Track / Manage Booking Modal -->
   <div id="trackBookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="relative bg-white w-full max-w-lg rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 max-h-[90vh] flex flex-col">
       <div class="bg-brand-forest px-5 sm:px-6 py-4 border-b border-brand-gold/30 flex items-center justify-between flex-shrink-0">
@@ -607,11 +629,11 @@
         <form id="trackLookupForm" class="space-y-3">
           <div>
             <label class="block text-xs font-semibold text-brand-charcoal mb-1">Enter Booking ID *</label>
-            <input type="text" id="trackBookingIdInput" placeholder="e.g. PL-748291" required class="w-full px-3.5 py-2.5 text-xs uppercase font-mono rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
+            <input type="text" id="trackBookingIdInput" placeholder="उदा. PL-850471 किंवा 850471" required class="w-full px-3.5 py-2.5 text-xs uppercase font-mono rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
           </div>
           <div>
             <label class="block text-xs font-semibold text-brand-charcoal mb-1">Registered Mobile Number *</label>
-            <input type="tel" id="trackMobileInput" placeholder="10-digit mobile used while booking" required pattern="[0-9]{10}" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
+            <input type="tel" id="trackMobileInput" placeholder="१० अंकी मोबाईल नंबर" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
           </div>
           <button type="submit" class="w-full py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-brand-forestLight transition">
             Find My Booking
@@ -623,6 +645,7 @@
     </div>
   </div>
 
+  <!-- Cancellation Reason Modal -->
   <div id="cancelReasonModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-rose-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
@@ -650,9 +673,11 @@
     </div>
   </div>
 
+  <!-- Mobile Responsive Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
       
+      <!-- Fixed Modal Header -->
       <div class="bg-brand-forest px-4 sm:px-8 py-3.5 sm:py-4 border-b border-brand-gold/30 flex items-center justify-between flex-shrink-0">
         <div>
           <span class="text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Online Reservation</span>
@@ -663,6 +688,7 @@
         </button>
       </div>
 
+      <!-- Scrollable Form Container -->
       <form id="bookingForm" class="p-4 sm:p-8 space-y-4 overflow-y-auto text-left flex-grow">
         <div id="bookingFormAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
 
@@ -709,6 +735,7 @@
             </div>
           </div>
 
+          <!-- Haldi Checkbox - ONLY VISIBLE IF 'Grand Wedding' is selected -->
           <div id="haldiOptionWrapper" class="mt-4 p-3 rounded-xl bg-amber-50/80 border border-amber-200 transition-all">
             <label class="flex items-start gap-2.5 cursor-pointer">
               <input type="checkbox" id="bIncludeHaldi" class="mt-1 w-4 h-4 text-amber-600 rounded border-gray-300 focus:ring-amber-500">
@@ -769,6 +796,7 @@
           </div>
         </div>
 
+        <!-- Sticky Footer Buttons inside form -->
         <div class="pt-3 border-t flex flex-col sm:flex-row items-center justify-between gap-3 sticky bottom-0 bg-white py-2">
           <p class="text-[10px] sm:text-[11px] text-brand-muted hidden sm:block">
             <i class="fa-solid fa-cloud text-brand-gold mr-1"></i> Instant Notification to Venue Manager
@@ -784,9 +812,11 @@
     </div>
   </div>
 
+  <!-- Admin Portal Modal -->
   <div id="adminPortalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 max-h-[92vh] flex flex-col">
       
+      <!-- Login View -->
       <div id="adminLoginView" class="p-6 sm:p-12 max-w-md mx-auto text-center my-auto overflow-y-auto">
         <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-xl sm:text-2xl mb-4 shadow-md">
           <i class="fa-solid fa-user-shield"></i>
@@ -811,6 +841,7 @@
         </form>
       </div>
 
+      <!-- Dashboard View -->
       <div id="adminDashboardView" class="hidden flex flex-col h-full overflow-hidden">
         <div class="bg-brand-forest text-white px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b border-brand-gold/30 flex-shrink-0">
           <div class="flex items-center space-x-2.5">
@@ -825,6 +856,7 @@
           </div>
         </div>
 
+        <!-- Bookings Management -->
         <div id="adminTabBookings" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-grow">
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
@@ -869,6 +901,7 @@
           </div>
         </div>
 
+        <!-- Tab 2: Settings -->
         <div id="adminTabSettings" class="p-5 sm:p-6 space-y-5 hidden max-w-xl mx-auto w-full text-left overflow-y-auto">
           <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm">
             <h3 class="font-cinzel text-sm sm:text-base font-bold text-brand-forest mb-4 border-b pb-2">Update Admin Username & Password</h3>
@@ -892,6 +925,7 @@
     </div>
   </div>
 
+  <!-- Firebase Script Logic -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
@@ -1368,7 +1402,7 @@
       modal.classList.remove('hidden');
       modal.classList.add('modal-active');
       document.body.style.overflow = 'hidden';
-      handleOccasionChange(); // Ensure Haldi visibility is properly toggled
+      handleOccasionChange();
     };
 
     window.closeBookingModal = () => {
@@ -1470,9 +1504,7 @@
     document.getElementById('bHaldiVenue')?.addEventListener('change', verifyFormSlotConflict);
     document.getElementById('bHaldiSlot')?.addEventListener('change', verifyFormSlotConflict);
 
-    // ====================================================
-    // SUBMIT & INSTANT DIRECT OPEN WHATSAPP (NO POPUP BUG)
-    // ====================================================
+    // SUBMIT & INSTANT DIRECT OPEN WHATSAPP
     document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
@@ -1537,7 +1569,6 @@
         const indianDate = formatToIndianDate(eventDate);
         const websiteCurrentUrl = window.location.origin + window.location.pathname;
 
-        // Clean WhatsApp Message containing live site link
         const rakeshWhatsAppMsg = `नमस्कार राकेश सर,
 
 मी पांडुरंग लॉन्सच्या वेबसाइटवरून नवीन बुकिंग विनंती सबमिट केली आहे. कृपया तपासून कन्फर्म करावी.
@@ -1559,7 +1590,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         document.getElementById('bookingForm').reset();
         document.getElementById('haldiVenueDetailsBox')?.classList.add('hidden');
 
-        // Direct instant redirection to Rakesh Chavan's WhatsApp without browser popup blocking
+        // Direct instant redirection to WhatsApp
         const targetMobile = VENUE_CONFIG.contactRakesh.wa;
         window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(rakeshWhatsAppMsg)}`;
 
@@ -1570,7 +1601,9 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // CUSTOMER TRACK / MANAGE BOOKING
+    // ==========================================
+    // CUSTOMER TRACK / MANAGE BOOKING (ROBUST SEARCH)
+    // ==========================================
     window.openTrackModal = () => {
       document.getElementById('trackBookingModal').classList.remove('hidden');
       document.getElementById('trackBookingModal').classList.add('modal-active');
@@ -1587,21 +1620,32 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
     document.getElementById('trackLookupForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
-      const lookupId = document.getElementById('trackBookingIdInput').value.trim().toUpperCase();
-      const lookupMobile = document.getElementById('trackMobileInput').value.trim();
+      const rawInputId = document.getElementById('trackBookingIdInput').value.trim();
+      const cleanDigitsOnly = rawInputId.replace(/\D/g, ''); // Extract only digits
+      const rawMobile = document.getElementById('trackMobileInput').value.trim();
+      const cleanMobileDigits = rawMobile.replace(/\D/g, '').slice(-10); // Extract last 10 digits
 
-      const matched = liveBookings.find(b => 
-        (b.bookingId && b.bookingId.toUpperCase() === lookupId) && 
-        b.mobile.includes(lookupMobile)
-      );
+      const matched = liveBookings.find(b => {
+        if (!b.bookingId) return false;
+        const bIdDigits = b.bookingId.replace(/\D/g, '');
+        const bMobDigits = (b.mobile || '').replace(/\D/g, '').slice(-10);
+
+        // Flexible match: PL ID digits or direct string match AND mobile last 10 digits
+        const isIdMatched = (cleanDigitsOnly && bIdDigits.includes(cleanDigitsOnly)) || 
+                             b.bookingId.toUpperCase().includes(rawInputId.toUpperCase());
+        const isMobMatched = cleanMobileDigits ? bMobDigits === cleanMobileDigits : true;
+
+        return isIdMatched && isMobMatched;
+      });
 
       const resultBox = document.getElementById('trackResultBox');
       resultBox.classList.remove('hidden');
 
       if (!matched) {
         resultBox.innerHTML = `
-          <div class="text-rose-800 text-xs font-semibold">
-            <i class="fa-solid fa-circle-exclamation mr-1"></i> कोणतीही बुकिंग सापडली नाही. कृपया Booking ID आणि मोबाईल नंबर बरोबर तपासा.
+          <div class="text-rose-800 text-xs font-semibold space-y-1">
+            <p><i class="fa-solid fa-circle-exclamation mr-1"></i> कोणतीही बुकिंग सापडली नाही.</p>
+            <p class="text-[11px] text-brand-muted font-normal">कृपया आपण भरलेला Booking ID आणि १० अंकी मोबाईल नंबर तपासा. (उदा. ID: <strong>${rawInputId}</strong>)</p>
           </div>
         `;
         return;
@@ -1699,7 +1743,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // Admin Portal & Persistent Login
+    // Admin Portal
     window.openAdminModal = () => {
       document.getElementById('adminPortalModal').classList.remove('hidden');
       document.getElementById('adminPortalModal').classList.add('modal-active');
