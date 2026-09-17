@@ -98,17 +98,17 @@
 
 <body class="bg-brand-ivory text-brand-charcoal font-sans antialiased selection:bg-brand-gold selection:text-brand-dark flex flex-col min-h-screen">
 
-  <!-- Top Contact Bar -->
+  <!-- Top Contact Bar (English Names) -->
   <div class="bg-brand-forest text-brand-goldLight text-[11px] sm:text-xs py-1.5 sm:py-2 px-3 sm:px-4 border-b border-brand-gold/30 tracking-wider">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
       <div class="flex items-center justify-center gap-2 sm:gap-4 flex-wrap text-center">
-        <a href="tel:9579520187" class="inline-flex items-center gap-1 hover:text-white transition px-2 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
+        <a href="tel:9579520187" class="inline-flex items-center gap-1 hover:text-white transition px-2.5 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
           <i class="fa-solid fa-phone text-[10px] text-brand-gold"></i>
-          <span>राकेश: <strong>+91 95795 20187</strong></span>
+          <span>Rakesh: <strong>+91 95795 20187</strong></span>
         </a>
-        <a href="tel:9021567601" class="inline-flex items-center gap-1 hover:text-white transition px-2 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
+        <a href="tel:9021567601" class="inline-flex items-center gap-1 hover:text-white transition px-2.5 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
           <i class="fa-solid fa-phone text-[10px] text-brand-gold"></i>
-          <span>संतोष: <strong>+91 90215 67601</strong></span>
+          <span>Santosh: <strong>+91 90215 67601</strong></span>
         </a>
       </div>
       <div class="flex items-center space-x-3">
@@ -363,7 +363,6 @@
             <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 border border-rose-200">
               <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Confirmed Booked
             </span>
-            <!-- Only shown / visible in admin context -->
             <span id="adminLegendDone" class="hidden flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-300">
               <span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span> Done (Past Event - Admin Only)
             </span>
@@ -645,7 +644,7 @@
     </div>
   </div>
 
-  <!-- Cancellation Reason Modal (FOR CONFIRMED BOOKINGS) -->
+  <!-- Cancellation Reason Modal -->
   <div id="cancelReasonModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-rose-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
@@ -732,7 +731,6 @@
             </div>
           </div>
 
-          <!-- Haldi Checkbox - ONLY VISIBLE IF 'Grand Wedding' is selected -->
           <div id="haldiOptionWrapper" class="mt-4 p-3 rounded-xl bg-amber-50/80 border border-amber-200 transition-all">
             <label class="flex items-start gap-2.5 cursor-pointer">
               <input type="checkbox" id="bIncludeHaldi" class="mt-1 w-4 h-4 text-amber-600 rounded border-gray-300 focus:ring-amber-500">
@@ -808,7 +806,6 @@
   <div id="adminPortalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 max-h-[92vh] flex flex-col">
       
-      <!-- Login View -->
       <div id="adminLoginView" class="p-6 sm:p-12 max-w-md mx-auto text-center my-auto overflow-y-auto">
         <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-xl sm:text-2xl mb-4 shadow-md">
           <i class="fa-solid fa-user-shield"></i>
@@ -833,7 +830,6 @@
         </form>
       </div>
 
-      <!-- Dashboard View -->
       <div id="adminDashboardView" class="hidden flex flex-col h-full overflow-hidden">
         <div class="bg-brand-forest text-white px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b border-brand-gold/30 flex-shrink-0">
           <div class="flex items-center space-x-2.5">
@@ -848,7 +844,6 @@
           </div>
         </div>
 
-        <!-- Bookings Management -->
         <div id="adminTabBookings" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-grow">
           <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
@@ -893,7 +888,6 @@
           </div>
         </div>
 
-        <!-- Tab 2: Settings -->
         <div id="adminTabSettings" class="p-5 sm:p-6 space-y-5 hidden max-w-xl mx-auto w-full text-left overflow-y-auto">
           <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm">
             <h3 class="font-cinzel text-sm sm:text-base font-bold text-brand-forest mb-4 border-b pb-2">Update Admin Username & Password</h3>
@@ -1133,7 +1127,6 @@
       checkDate.setHours(0, 0, 0, 0);
       const isPast = checkDate < today;
 
-      // PAST DATE LOGIC: ONLY ADMIN SEES 'DONE' DETAILS
       if (isPast) {
         if (isAdminLoggedIn && confirmed.length > 0) {
           return { status: "Completed", label: "Done", color: "slate", count: confirmed.length };
@@ -1193,7 +1186,6 @@
         let statusClasses = "";
 
         if (overall.status === "Completed") {
-          // Visible only to Admin
           statusClasses = "bg-slate-100 text-slate-700 border border-slate-300 cursor-pointer hover:border-slate-500";
           statusBadge = `
             <div class="flex items-center justify-center sm:justify-start gap-1">
@@ -1202,7 +1194,6 @@
             </div>
           `;
         } else if (overall.status === "PastFree") {
-          // Regular users see standard past gray cell without any booking details
           statusClasses = "bg-slate-50 text-slate-400 border border-slate-200 cursor-pointer hover:border-slate-400 opacity-60";
           statusBadge = `<span class="text-[8px] sm:text-[9px] font-mono block text-center sm:text-left text-slate-400">Past</span>`;
         } else if (overall.status === "FullyBooked") {
@@ -1281,7 +1272,6 @@
       const dateBookings = liveBookings.filter(b => b.eventDate === dateStr);
       const confirmedCount = dateBookings.filter(b => b.status === "Booked").length;
 
-      // TOP SUMMARY BADGE LOGIC
       if (isPast) {
         if (isAdminLoggedIn && confirmedCount > 0) {
           badgeEl.className = "text-slate-800 bg-slate-200 px-3 py-1 rounded-full text-xs font-semibold";
@@ -1298,7 +1288,6 @@
         badgeEl.textContent = `Certain Slot(s) Booked • Remaining Slots Open`;
       }
 
-      // SLOTS BREAKDOWN: STRICT PRIVACY FOR USERS ON PAST DATES
       container.innerHTML = ALL_VENUE_SLOTS.map(item => {
         const bookingMatch = dateBookings.find(b => 
           (b.venue || "Open Lawn") === item.venue && 
@@ -1307,7 +1296,6 @@
         );
 
         if (isPast) {
-          // If past date AND admin is logged in -> show event done details
           if (isAdminLoggedIn && bookingMatch && bookingMatch.status === "Booked") {
             return `
               <div class="p-3.5 rounded-xl border border-slate-300 bg-slate-50 flex items-center justify-between">
@@ -1323,7 +1311,6 @@
             `;
           }
 
-          // If normal user -> show neutral past date info without any event history
           return `
             <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-between opacity-60">
               <div>
@@ -1337,7 +1324,6 @@
           `;
         }
 
-        // UPCOMING DATES LOGIC
         if (bookingMatch) {
           const effective = getEffectiveStatus(bookingMatch);
           const privacyExtra = isAdminLoggedIn 
@@ -1507,7 +1493,6 @@
     document.getElementById('bHaldiVenue')?.addEventListener('change', verifyFormSlotConflict);
     document.getElementById('bHaldiSlot')?.addEventListener('change', verifyFormSlotConflict);
 
-    // SUBMIT & DIRECT OPEN WHATSAPP FOR OWNER
     document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
@@ -1592,7 +1577,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         document.getElementById('bookingForm').reset();
         document.getElementById('haldiVenueDetailsBox')?.classList.add('hidden');
 
-        // Direct instant redirection to Rakesh Chavan WhatsApp
         const targetMobile = VENUE_CONFIG.contactRakesh.wa;
         window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(rakeshWhatsAppMsg)}`;
 
@@ -1603,9 +1587,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // ==========================================
-    // CUSTOMER TRACK / MANAGE BOOKING
-    // ==========================================
     window.openTrackModal = () => {
       document.getElementById('trackBookingModal').classList.remove('hidden');
       document.getElementById('trackBookingModal').classList.add('modal-active');
@@ -1701,7 +1682,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       `;
     });
 
-    // 1. PENDING CANCEL - DIRECT WHATSAPP ALERT TO OWNER
     window.customerDirectCancelPending = async (docId) => {
       const b = liveBookings.find(item => item.id === docId);
       if (!b) return;
@@ -1739,7 +1719,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     };
 
-    // 2. CONFIRMED BOOKING CANCEL REQUEST - DIRECT WHATSAPP ALERT TO OWNER
     window.openCancelReasonModal = (docId) => {
       document.getElementById('cancelReasonBookingDocId').value = docId;
       document.getElementById('cancelReasonText').value = "";
@@ -1800,7 +1779,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // Admin Portal Functions
     window.openAdminModal = () => {
       document.getElementById('adminPortalModal').classList.remove('hidden');
       document.getElementById('adminPortalModal').classList.add('modal-active');
@@ -1923,8 +1901,8 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 • गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
 
 अधिक माहितीसाठी संपर्क:
-• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
-• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
+• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
 
 आपल्या सेवेसाठी पांडुरंग लॉन्स सदैव तत्पर आहे. धन्यवाद!`;
 
@@ -1945,8 +1923,8 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 आपल्या विनंतीनुसार, दिनांक *${indianDate}* रोजीसाठीची [${slotText}] ची आपली बुकिंग *रद्द (Cancelled)* करण्यात आली आहे आणि स्लॉट मोकळा करण्यात आला आहे.
 
 काही शंका असल्यास संपर्क:
-• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
-• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
+• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
 
 धन्यवाद!`;
 
@@ -2083,8 +2061,8 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 आपणास विनंती आहे की आपण दुसऱ्या तारखेसाठी किंवा दुसऱ्या वेळेसाठी बुकिंग करावी. गैरसोयीबद्दल आम्ही दिलगीर आहोत.
 
 संपर्क व चौकशी:
-• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
-• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
+• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
 
 धन्यवाद!`;
 
@@ -2115,8 +2093,8 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 • गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
 
 व्यवस्थापक संपर्क क्रमांक:
-• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
-• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
+• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
 
 पांडुरंग लॉन्सची निवड केल्याबद्दल आपले खूप खूप धन्यवाद!`;
 
