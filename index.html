@@ -583,7 +583,7 @@
             <a href="tel:9175943224" class="px-3.5 py-1.5 bg-white/10 hover:bg-brand-gold hover:text-brand-dark rounded-xl border border-brand-gold/40 text-xs font-semibold transition flex items-center gap-1.5 text-brand-goldLight">
               <i class="fa-solid fa-phone text-[11px]"></i> +91 91759 43224
             </a>
-            <a href="https://wa.me/919175943224?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%97%E0%A5%8C%E0%A4%B0%E0%A4%B5,%20%E0%A4%AE%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A5%81%E0%A4%B0%E0%A4%82%E0%A4%97%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A4%9A%E0%A5%80%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AA%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A5%80.%20%E0%A4%AE%E0%A4%B2%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%80%E0%A4%B2%20%E0%A4%8F%E0%A4%95%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AC%E0%A4%A8%E0%A4%B5%E0%A5%82%E0%A4%A8%20%E0%A4%98%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AF%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%B9%E0%A5%87." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+            <a href="https://wa.me/919175943224?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%97%E0%A5%8C%E0%A4%B0%E0%A4%B5,%20%E0%A4%AE%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A5%81%E0%A4%B0%E0%A4%82%E0%A4%97%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A4%9A%E0%A5%80%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AA%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A5%80.%20%E0%A4%AE%E0%A4%BE%E0%A4%B2%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%80%E0%A4%B2%20%E0%A4%8F%E0%A4%95%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AC%E0%A4%A8%E0%A4%B5%E0%A5%82%E0%A4%A8%20%E0%A4%98%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AF%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%B9%E0%A5%87." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
               <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
             </a>
           </div>
@@ -1200,7 +1200,7 @@
       html2pdf().set(opt).from(printableElement).save();
     };
 
-    // पावती थेट ग्राहकाला अतिशय सुटसुटीत मराठी संदेशसह पाठवणे (प्रश्नचिन्ह येणारे सर्व शब्द/चिन्हे काढून टाकली आहेत)
+    // पावती थेट ग्राहकाला अस्सल मराठी भाषेत व्हॉट्सॲपवर पाठवणे (encodeURIComponent मुळे आता सर्व मराठी शब्द एकदम बरोबर जातील)
     window.sendReceiptToCustomer = function(docId) {
       if (typeof window.getLiveBookingById !== 'function') return;
       const b = window.getLiveBookingById(docId);
@@ -1218,30 +1218,30 @@
       const baseUrl = window.location.origin + window.location.pathname;
       const directReceiptUrl = `${baseUrl}?receipt=${encodeURIComponent(b.bookingId || b.id)}`;
 
-      const receiptWhatsAppMsg = `PANDURANG LAWNS
-Where Beautiful Celebrations Begin
+      const marathiWhatsAppMsg = `💐 पांडुरंग लॉन्स (PANDURANG LAWNS) 💐
+“Where Beautiful Celebrations Begin”
 
-Namaskar ${b.customerName} ji,
-Pandurang Lawns kadun aapli adhikarut booking pavati tayar karnyat ali ahe.
+नमस्कार ${b.customerName} जी,
+पांडुरंग लॉन्सकडून आपली अधिकृत बुकिंग पावती (Official Booking Receipt) तयार करण्यात आली आहे.
 
-• Booking ID: ${b.bookingId || "PL-RECORD"}
-• Karyakram Tarikh: ${indianDate}
-• Venue: ${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})
+• बुकिंग आयडी: ${b.bookingId || "PL-RECORD"}
+• कार्यक्रमाची तारीख: ${indianDate}
+• व्हेन्यू व वेळ: ${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})
 
-Apali adhikarut PDF pavati thet mobile madhe download karnyasathi khalil link var click kara:
+आपली अधिकृत PDF पावती थेट मोबाईलमध्ये डाउनलोड करण्यासाठी खालील लिंकवर क्लिक करा:
 ${directReceiptUrl}
 
-Adhik mahitisathi sampark:
-• Rakesh Chavan: +91 95795 20187
-• Santosh Chavan: +91 90215 67601
+अधिक माहितीसाठी संपर्क:
+• राकेश चव्हाण: +91 95795 20187
+• संतोष चव्हाण: +91 90215 67601
 
-Pandurang Lawns chi niwad kelyabaddal dhanyawad!`;
+पांडुरंग लॉन्सची निवड केल्याबद्दल धन्यवाद! 🙏`;
 
       let formatted = b.mobile.replace(/\D/g, '');
       if (formatted.length === 10) formatted = '91' + formatted;
 
       setTimeout(() => {
-        window.open(`https://wa.me/${formatted}?text=${encodeURIComponent(receiptWhatsAppMsg)}`, '_blank');
+        window.open(`https://wa.me/${formatted}?text=${encodeURIComponent(marathiWhatsAppMsg)}`, '_blank');
       }, 500);
     };
   </script>
@@ -1975,7 +1975,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
       }
-    });
+    };
 
     window.closeSuccessModal = () => {
       const modal = document.getElementById('bookingSuccessModal');
@@ -2767,19 +2767,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       const indianDate = formatToIndianDate(eventDate);
       const slotText = getMarathiSlotDetails(venue, slot);
 
-      const cancelMsg = `नमस्कार *${name}* जी,
-
-*पांडुरंग लॉन्स (Pandurang Lawns)* कडून हा संदेश पाठवत आहोत.
-
-आपण दिनांक *${indianDate}* रोजीसाठी *${slotText}* ची बुकिंग विनंती केली होती. परंतु हा स्लॉट आधीच इतर ग्राहकासाठी कन्फर्म झाल्यामुळे आपली ही विनंती *रद्द (Cancelled)* करण्यात आली आहे.
-
-आपणास विनंती आहे की आपण दुसऱ्या तारखेसाठी किंवा दुसऱ्या वेळेसाठी बुकिंग करावी. गैरसोयीबद्दल आम्ही दिलगीर आहोत.
-
-संपर्क व चौकशी:
-• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
-• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
-
-धन्यवाद!`;
+      const cancelMsg = `नमस्कार ${name} जी,\n\nपांडुरंग लॉन्स (Pandurang Lawns) कडून हा संदेश पाठवत आहोत.\n\nआपण दिनांक ${indianDate} रोजीसाठी ${slotText} ची बुकिंग विनंती केली होती. परंतु हा स्लॉट आधीच इतर ग्राहकासाठी कन्फर्म झाल्यामुळे आपली ही विनंती रद्द (Cancelled) करण्यात आली आहे.\n\nआपणास विनंती आहे की आपण दुसऱ्या तारखेसाठी किंवा दुसऱ्या वेळेसाठी बुकिंग करावी.\n\nसंपर्क व चौकशी:\n• राकेश चव्हाण: +91 95795 20187\n• संतोष चव्हाण: +91 90215 67601\n\nधन्यवाद!`;
 
       dispatchWhatsAppDirect(mobile, cancelMsg);
     };
@@ -2797,21 +2785,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         (b.slot === slot || b.slot === "Full Day (Day + Night)" || slot === "Full Day (Day + Night)")
       );
 
-      const confirmMsg = `नमस्कार *${name}* जी,
-
-*पांडुरंग लॉन्स (Pandurang Lawns)* कडून मनःपूर्वक स्वागत!
-
-आपल्या विनंतीनुसार, दिनांक *${indianDate}* रोजीसाठी *${slotText}* ची आपली बुकिंग यशस्वीरित्या *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
-
-• Booking ID: *${bookingId}*
-• पत्ता: ${VENUE_CONFIG.address}
-• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
-
-व्यवस्थापक संपर्क क्रमांक:
-• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
-• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
-
-पांडुरंग लॉन्सची निवड केल्याबद्दल आपले खूप खूप धन्यवाद!`;
+      const confirmMsg = `नमस्कार ${name} जी,\n\nपांडुरंग लॉन्स (Pandurang Lawns) कडून मनःपूर्वक स्वागत!\n\nआपल्या विनंतीनुसार, दिनांक ${indianDate} रोजीसाठी ${slotText} ची आपली बुकिंग यशस्वीरित्या कन्फर्म (CONFIRMED) करण्यात आली आहे.\n\n• बुकिंग आयडी (Booking ID): ${bookingId}\n• पत्ता: ${VENUE_CONFIG.address}\n• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}\n\nव्यवस्थापक संपर्क क्रमांक:\n• राकेश चव्हाण: +91 95795 20187\n• संतोष चव्हाण: +91 90215 67601\n\nपांडुरंग लॉन्सची निवड केल्याबद्दल आपले खूप खूप धन्यवाद!`;
 
       dispatchWhatsAppDirect(mobile, confirmMsg);
 
