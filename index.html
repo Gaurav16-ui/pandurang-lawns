@@ -363,8 +363,9 @@
             <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-rose-50 text-rose-800 border border-rose-200">
               <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Confirmed Booked
             </span>
-            <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-300">
-              <span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span> Done (Past Event)
+            <!-- Only shown / visible in admin context -->
+            <span id="adminLegendDone" class="hidden flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-300">
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span> Done (Past Event - Admin Only)
             </span>
           </div>
         </div>
@@ -870,7 +871,7 @@
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
             <div class="p-3 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
-              Smart Actions: Complete privacy is maintained on the public calendar. Cancellation reasons appear below.
+              Smart Actions: Complete privacy is maintained on the public calendar. Past events are only visible to the owner.
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
@@ -1132,9 +1133,10 @@
       checkDate.setHours(0, 0, 0, 0);
       const isPast = checkDate < today;
 
+      // PAST DATE LOGIC: ONLY ADMIN SEES 'DONE' DETAILS
       if (isPast) {
-        if (confirmed.length > 0) {
-          return { status: "Completed", label: `Done`, color: "slate", count: confirmed.length };
+        if (isAdminLoggedIn && confirmed.length > 0) {
+          return { status: "Completed", label: "Done", color: "slate", count: confirmed.length };
         }
         return { status: "PastFree", label: "Past", color: "slate" };
       }
@@ -1154,7 +1156,13 @@
     function renderCalendar() {
       const monthYearLabel = document.getElementById('currentMonthYearLabel');
       const calendarGrid = document.getElementById('calendarGrid');
+      const adminLegend = document.getElementById('adminLegendDone');
       if (!monthYearLabel || !calendarGrid) return;
+
+      if (adminLegend) {
+        if (isAdminLoggedIn) adminLegend.classList.remove('hidden');
+        else adminLegend.classList.add('hidden');
+      }
 
       const year = calendarDate.getFullYear();
       const month = calendarDate.getMonth();
@@ -1185,6 +1193,7 @@
         let statusClasses = "";
 
         if (overall.status === "Completed") {
+          // Visible only to Admin
           statusClasses = "bg-slate-100 text-slate-700 border border-slate-300 cursor-pointer hover:border-slate-500";
           statusBadge = `
             <div class="flex items-center justify-center sm:justify-start gap-1">
@@ -1193,8 +1202,9 @@
             </div>
           `;
         } else if (overall.status === "PastFree") {
-          statusClasses = "bg-slate-50 text-slate-400 border border-slate-200 cursor-pointer hover:border-slate-400 opacity-70";
-          statusBadge = `<span class="text-[8px] sm:text-[9px] font-mono block text-center sm:text-left">Past</span>`;
+          // Regular users see standard past gray cell without any booking details
+          statusClasses = "bg-slate-50 text-slate-400 border border-slate-200 cursor-pointer hover:border-slate-400 opacity-60";
+          statusBadge = `<span class="text-[8px] sm:text-[9px] font-mono block text-center sm:text-left text-slate-400">Past</span>`;
         } else if (overall.status === "FullyBooked") {
           statusClasses = "bg-rose-50 text-rose-900 border border-rose-300 cursor-pointer";
           statusBadge = `
@@ -1271,13 +1281,14 @@
       const dateBookings = liveBookings.filter(b => b.eventDate === dateStr);
       const confirmedCount = dateBookings.filter(b => b.status === "Booked").length;
 
+      // TOP SUMMARY BADGE LOGIC
       if (isPast) {
-        if (confirmedCount > 0) {
+        if (isAdminLoggedIn && confirmedCount > 0) {
           badgeEl.className = "text-slate-800 bg-slate-200 px-3 py-1 rounded-full text-xs font-semibold";
-          badgeEl.textContent = `Past Date • Event Successfully Hosted (Done)`;
+          badgeEl.textContent = `Past Date • Event Completed (Done - Admin View)`;
         } else {
           badgeEl.className = "text-slate-600 bg-slate-100 px-3 py-1 rounded-full text-xs font-semibold";
-          badgeEl.textContent = "Past Date (No events recorded)";
+          badgeEl.textContent = "Past Date";
         }
       } else if (confirmedCount === 0) {
         badgeEl.className = "text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full text-xs font-semibold";
@@ -1287,6 +1298,7 @@
         badgeEl.textContent = `Certain Slot(s) Booked • Remaining Slots Open`;
       }
 
+      // SLOTS BREAKDOWN: STRICT PRIVACY FOR USERS ON PAST DATES
       container.innerHTML = ALL_VENUE_SLOTS.map(item => {
         const bookingMatch = dateBookings.find(b => 
           (b.venue || "Open Lawn") === item.venue && 
@@ -1294,26 +1306,43 @@
           (b.slot === item.slot || b.slot === "Full Day (Day + Night)")
         );
 
-        if (bookingMatch) {
-          const effective = getEffectiveStatus(bookingMatch);
-          const privacyExtra = isAdminLoggedIn 
-            ? `<div class="text-[11px] text-brand-forest font-bold mt-0.5">👤 ${bookingMatch.customerName} (${bookingMatch.guestCount || 0} पाहुणे)</div>` 
-            : ``;
-
-          if (effective === "Completed") {
+        if (isPast) {
+          // If past date AND admin is logged in -> show event done details
+          if (isAdminLoggedIn && bookingMatch && bookingMatch.status === "Booked") {
             return `
               <div class="p-3.5 rounded-xl border border-slate-300 bg-slate-50 flex items-center justify-between">
                 <div>
                   <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
                     <i class="fa-solid ${item.icon}"></i> ${item.label}
                   </div>
-                  <div class="text-[11px] text-slate-700 font-medium mt-0.5">Event Completed (Done)</div>
-                  ${privacyExtra}
+                  <div class="text-[11px] text-slate-700 font-medium mt-0.5">Event Done (Admin View)</div>
+                  <div class="text-[11px] text-brand-forest font-bold mt-0.5">👤 ${bookingMatch.customerName} (${bookingMatch.guestCount || 0} पाहुणे)</div>
                 </div>
                 <span class="px-2.5 py-1 bg-slate-300 text-slate-800 text-[10px] font-bold rounded-md uppercase">Done</span>
               </div>
             `;
           }
+
+          // If normal user -> show neutral past date info without any event history
+          return `
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-between opacity-60">
+              <div>
+                <div class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
+                  <i class="fa-solid ${item.icon}"></i> ${item.label}
+                </div>
+                <div class="text-[11px] text-slate-400 mt-0.5">Past Date</div>
+              </div>
+              <span class="text-[10px] text-slate-400">Past</span>
+            </div>
+          `;
+        }
+
+        // UPCOMING DATES LOGIC
+        if (bookingMatch) {
+          const effective = getEffectiveStatus(bookingMatch);
+          const privacyExtra = isAdminLoggedIn 
+            ? `<div class="text-[11px] text-brand-forest font-bold mt-0.5">👤 ${bookingMatch.customerName} (${bookingMatch.guestCount || 0} पाहुणे)</div>` 
+            : ``;
 
           if (effective === "Booked") {
             return `
@@ -1342,28 +1371,12 @@
                   <div class="text-[11px] text-amber-700 mt-0.5">Booking Under Review</div>
                   ${privacyExtra}
                 </div>
-                ${!isPast ? `
-                  <button onclick="prefillVenueAndBook('${item.venue}', '${item.slot}', '${dateStr}')" class="px-3 py-1 bg-amber-600 text-white text-[10px] font-bold rounded-lg uppercase hover:bg-amber-700 transition">
-                    Request Slot
-                  </button>
-                ` : `<span class="text-[10px] text-slate-400">Expired</span>`}
+                <button onclick="prefillVenueAndBook('${item.venue}', '${item.slot}', '${dateStr}')" class="px-3 py-1 bg-amber-600 text-white text-[10px] font-bold rounded-lg uppercase hover:bg-amber-700 transition">
+                  Request Slot
+                </button>
               </div>
             `;
           }
-        }
-
-        if (isPast) {
-          return `
-            <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 flex items-center justify-between opacity-60">
-              <div>
-                <div class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
-                  <i class="fa-solid ${item.icon}"></i> ${item.label}
-                </div>
-                <div class="text-[11px] text-slate-400 mt-0.5">Past Date</div>
-              </div>
-              <span class="text-[10px] text-slate-400">Past</span>
-            </div>
-          `;
         }
 
         return `
@@ -1726,7 +1739,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     };
 
-    // 2. CONFIRMED BOOKING CANCEL REQUEST - DIRECT WHATSAPP ALERT TO OWNER (REFINED)
+    // 2. CONFIRMED BOOKING CANCEL REQUEST - DIRECT WHATSAPP ALERT TO OWNER
     window.openCancelReasonModal = (docId) => {
       document.getElementById('cancelReasonBookingDocId').value = docId;
       document.getElementById('cancelReasonText').value = "";
@@ -1820,6 +1833,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         document.getElementById('adminDashboardView').classList.remove('hidden');
         renderAdminDashboard();
         renderCalendar();
+        if (selectedCalendarDateStr) selectCalendarDate(selectedCalendarDateStr);
       } else {
         const err = document.getElementById('adminLoginError');
         err.textContent = "चुकीचा युझरनेम किंवा पासवर्ड!";
@@ -1837,6 +1851,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         document.getElementById('adminLoginView').classList.remove('hidden');
         document.getElementById('adminDashboardView').classList.add('hidden');
         renderCalendar();
+        if (selectedCalendarDateStr) selectCalendarDate(selectedCalendarDateStr);
       }
     };
 
