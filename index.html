@@ -113,7 +113,7 @@
       </div>
       <div class="flex items-center space-x-3">
         <button onclick="openTrackModal()" class="text-[11px] text-brand-goldLight hover:text-white underline transition">
-          <i class="fa-solid fa-receipt text-[10px] mr-1 text-brand-gold"></i>Track / Cancel Booking
+          <i class="fa-solid fa-receipt text-[10px] mr-1 text-brand-gold"></i>Track / Reschedule Booking
         </button>
         <span class="text-brand-gold/40">|</span>
         <button onclick="openAdminModal()" class="text-[11px] text-brand-gold hover:text-white underline transition">
@@ -660,12 +660,71 @@
         <input type="hidden" id="cancelReasonBookingDocId" />
         <div>
           <label class="block text-xs font-semibold text-brand-charcoal mb-1">रद्द करण्याचे कारण (Reason) *</label>
-          <textarea id="cancelReasonText" rows="3" required placeholder="उदा. घरगुती कारणामुळे तारीख पुढे ढकलली आहे..." class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+          <textarea id="cancelReasonText" rows="3" required placeholder="उदा. घरगुती कारणामुळे तारीख रद्द करायची आहे..." class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-rose-400"></textarea>
         </div>
         <div class="flex justify-end gap-2 pt-1">
           <button type="button" onclick="closeCancelReasonModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold">मागे जा</button>
           <button type="submit" id="submitCancelReqBtn" class="px-5 py-2 bg-rose-700 text-white font-semibold text-xs rounded-xl hover:bg-rose-800 transition">
             रद्द करण्याची विनंती पाठवा
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- User Reschedule / Date Change Modal (OPTION 3) -->
+  <div id="userRescheduleModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
+    <div class="relative bg-white w-full max-w-md rounded-2xl border border-indigo-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-2">
+        <h4 class="font-cinzel text-sm font-bold text-indigo-900">
+          <i class="fa-solid fa-calendar-days mr-1.5 text-indigo-600"></i> Request Date Change (तारीख बदला)
+        </h4>
+        <button onclick="closeUserRescheduleModal()" class="text-brand-muted hover:text-brand-dark"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed">
+        आपल्याला नियोजित तारीख बदलून नवीन तारीख हवी असल्यास कृपया खाली नवीन तारीख आणि कारण निवडा. विनंती सबमिट करताच व्यवस्थापकांना थेट व्हॉट्सॲपवर अलर्ट जाईल.
+      </p>
+      <form id="userRescheduleForm" class="space-y-3">
+        <input type="hidden" id="reschedBookingDocId" />
+        <div>
+          <label class="block text-xs font-semibold text-brand-charcoal mb-1">हवी असलेली नवीन तारीख (Preferred New Date) *</label>
+          <input type="date" id="reschedNewDate" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-indigo-400" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-brand-charcoal mb-1">तारीख बदलण्याचे कारण (Reason) *</label>
+          <textarea id="reschedReasonText" rows="2" required placeholder="उदा. मुहूर्त बदलल्यामुळे तारीख पुढे ढकलायची आहे..." class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-indigo-400"></textarea>
+        </div>
+        <div class="flex justify-end gap-2 pt-1">
+          <button type="button" onclick="closeUserRescheduleModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold">मागे जा</button>
+          <button type="submit" id="submitReschedReqBtn" class="px-5 py-2 bg-indigo-700 text-white font-semibold text-xs rounded-xl hover:bg-indigo-800 transition">
+            तारीख बदला विनंती पाठवा
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Shift Date Modal (OPTION 1) -->
+  <div id="adminShiftDateModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
+    <div class="relative bg-white w-full max-w-md rounded-2xl border border-brand-gold p-5 sm:p-6 text-left space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-2">
+        <h4 class="font-cinzel text-sm font-bold text-brand-forest">
+          <i class="fa-solid fa-arrows-split-up-and-left mr-1.5 text-brand-gold"></i> Shift Booking to New Date (Admin)
+        </h4>
+        <button onclick="closeAdminShiftModal()" class="text-brand-muted hover:text-brand-dark"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="adminShiftInfo" class="text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200"></div>
+      <form id="adminShiftForm" class="space-y-3">
+        <input type="hidden" id="shiftDocId" />
+        <div>
+          <label class="block text-xs font-semibold text-brand-charcoal mb-1">Select New Event Date *</label>
+          <input type="date" id="shiftNewDate" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-brand-gold" />
+        </div>
+        <p class="text-[11px] text-brand-muted">टीप: तारीख शिफ्ट केल्यावर जुनी तारीख कॅलेंडरवर लगेच मोकळी (Available) होईल आणि ग्राहकाला नवीन तारखेचा WhatsApp मेसेज पाठवला जाईल.</p>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeAdminShiftModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold">Cancel</button>
+          <button type="submit" id="submitAdminShiftBtn" class="px-5 py-2 bg-brand-forest text-brand-gold font-bold text-xs rounded-xl hover:bg-brand-forestLight transition">
+            Confirm Shift Date
           </button>
         </div>
       </form>
@@ -859,14 +918,14 @@
               <div id="statConfirmedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-emerald-700 mt-1">0</div>
             </div>
             <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-rose-700">Cancel Requests</span>
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-rose-700">Cancel/Shift Requests</span>
               <div id="statCancelRequestedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-rose-600 mt-1">0</div>
             </div>
           </div>
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
             <div class="p-3 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
-              Smart Actions: Complete privacy is maintained on the public calendar. Past events are only visible to the owner.
+              Smart Actions: Past events are owner-only. Use 'Shift Date' to seamlessly reschedule bookings without manual entry.
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
@@ -1436,8 +1495,9 @@
       verifyFormSlotConflict();
     });
 
-    function isSlotBooked(date, venue, slot) {
+    function isSlotBooked(date, venue, slot, excludeDocId = null) {
       return liveBookings.find(b => 
+        b.id !== excludeDocId &&
         b.eventDate === date && 
         (b.venue || "Open Lawn") === venue && 
         b.status === "Booked" &&
@@ -1587,6 +1647,9 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
+    // ==========================================
+    // CUSTOMER TRACK / MANAGE BOOKING
+    // ==========================================
     window.openTrackModal = () => {
       document.getElementById('trackBookingModal').classList.remove('hidden');
       document.getElementById('trackBookingModal').classList.add('modal-active');
@@ -1637,6 +1700,8 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       let statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-100 text-amber-800">Pending (प्रलंबित)</span>`;
       if (matched.status === "Cancellation Requested") {
         statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-rose-100 text-rose-800">Cancellation Requested</span>`;
+      } else if (matched.status === "Date Change Requested") {
+        statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-indigo-100 text-indigo-800">Date Change Requested</span>`;
       } else if (eff === "Booked") {
         statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800">Confirmed (कन्फर्म)</span>`;
       } else if (eff === "Completed") {
@@ -1652,30 +1717,33 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
             <div>${statusBadge}</div>
           </div>
           <div><strong>नाव:</strong> ${matched.customerName}</div>
-          <div><strong>तारीख:</strong> ${formatToIndianDate(matched.eventDate)}</div>
+          <div><strong>सध्याची तारीख:</strong> ${formatToIndianDate(matched.eventDate)}</div>
+          ${matched.requestedNewDate ? `<div class="text-indigo-900 font-bold"><strong>हवी असलेली नवीन तारीख:</strong> ${formatToIndianDate(matched.requestedNewDate)}</div>` : ''}
           <div><strong>व्हेन्यू व स्लॉट:</strong> ${matched.venue || "Open Lawn"} (${matched.slot || "Night Slot"})</div>
           <div><strong>पाहुणे:</strong> 👥 ${matched.guestCount || 0} लोक</div>
-          ${matched.cancelReason ? `<div class="p-2 bg-rose-50 border border-rose-200 rounded text-rose-900 mt-1"><strong>रद्द करण्याचे कारण:</strong> ${matched.cancelReason}</div>` : ''}
+          ${matched.cancelReason ? `<div class="p-2 bg-rose-50 border border-rose-200 rounded text-rose-900 mt-1"><strong>नोंद / कारण:</strong> ${matched.cancelReason}</div>` : ''}
 
-          <div class="pt-3 border-t flex items-center justify-between gap-2">
+          <div class="pt-3 border-t flex flex-wrap items-center gap-2">
             ${matched.status === 'Pending' ? `
-              <button onclick="customerDirectCancelPending('${matched.id}')" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold transition">
-                <i class="fa-solid fa-xmark mr-1"></i> विनंती रद्द करा
+              <button onclick="customerDirectCancelPending('${matched.id}')" class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold transition">
+                <i class="fa-solid fa-xmark mr-1"></i> रद्द करा
+              </button>
+            ` : ''}
+
+            ${(matched.status === 'Booked' || matched.status === 'Pending') && eff !== 'Completed' ? `
+              <button onclick="openUserRescheduleModal('${matched.id}')" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-800 text-white rounded-xl text-xs font-semibold transition">
+                <i class="fa-solid fa-calendar-days mr-1"></i> तारीख बदला (Reschedule)
               </button>
             ` : ''}
 
             ${matched.status === 'Booked' && eff !== 'Completed' ? `
-              <button onclick="openCancelReasonModal('${matched.id}')" class="px-4 py-2 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-semibold transition">
-                <i class="fa-solid fa-triangle-exclamation mr-1"></i> रद्द करण्याची विनंती करा
+              <button onclick="openCancelReasonModal('${matched.id}')" class="px-3 py-1.5 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-semibold transition">
+                <i class="fa-solid fa-triangle-exclamation mr-1"></i> रद्द विनंती
               </button>
             ` : ''}
 
-            ${matched.status === 'Cancellation Requested' ? `
-              <span class="text-[11px] text-amber-700 font-semibold italic">आपली रद्द करण्याची विनंती व्यवस्थापकांकडे प्रलंबित आहे.</span>
-            ` : ''}
-
-            <a href="tel:9579520187" class="px-3.5 py-2 border border-brand-border text-brand-forest rounded-xl text-xs font-semibold hover:bg-brand-cream/50 transition ml-auto">
-              <i class="fa-solid fa-phone mr-1"></i> संपर्क साधा
+            <a href="tel:9579520187" class="px-3 py-1.5 border border-brand-border text-brand-forest rounded-xl text-xs font-semibold hover:bg-brand-cream/50 transition ml-auto">
+              <i class="fa-solid fa-phone mr-1"></i> संपर्क
             </a>
           </div>
         </div>
@@ -1757,7 +1825,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         const cancelAlertWhatsAppMsg = `🚨 *तातडीची सूचना: कन्फर्म बुकिंग रद्द करण्याची विनंती!*
 
 नमस्कार राकेश सर,
-एका ग्राहकाने त्यांची *कन्फर्म बुकिंग* रद्द करण्याची विनंती पाठवली आहे. कृपया ग्राहकाशी तातडीने संपर्क साधावा.
+एका ग्राहकाने त्यांची *कन्फर्म बुकिंग* रद्द करण्याची विनंती पाठवली आहे. कृपया ग्राहकाशी संपर्क साधावा.
 
 • Booking ID: *${bId}*
 • नाव: *${customerName}*
@@ -1779,6 +1847,172 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
+    // ==========================================
+    // OPTION 3: USER RESCHEDULE MODAL LOGIC
+    // ==========================================
+    window.openUserRescheduleModal = (docId) => {
+      document.getElementById('reschedBookingDocId').value = docId;
+      document.getElementById('reschedNewDate').min = new Date().toISOString().split('T')[0];
+      document.getElementById('reschedNewDate').value = "";
+      document.getElementById('reschedReasonText').value = "";
+      document.getElementById('userRescheduleModal').classList.remove('hidden');
+      document.getElementById('userRescheduleModal').classList.add('modal-active');
+    };
+
+    window.closeUserRescheduleModal = () => {
+      document.getElementById('userRescheduleModal').classList.add('hidden');
+      document.getElementById('userRescheduleModal').classList.remove('modal-active');
+    };
+
+    document.getElementById('userRescheduleForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const docId = document.getElementById('reschedBookingDocId').value;
+      const newDate = document.getElementById('reschedNewDate').value;
+      const reason = document.getElementById('reschedReasonText').value.trim();
+      const submitBtn = document.getElementById('submitReschedReqBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "पाठवत आहे...";
+
+      const b = liveBookings.find(item => item.id === docId);
+
+      try {
+        await updateDoc(doc(db, "bookings", docId), {
+          status: "Date Change Requested",
+          requestedNewDate: newDate,
+          cancelReason: `तारीख बदल विनंती: ${reason} (नवीन तारीख: ${formatToIndianDate(newDate)})`
+        });
+
+        const oldDateIndian = b ? formatToIndianDate(b.eventDate) : "";
+        const newDateIndian = formatToIndianDate(newDate);
+        const cleanMobile = b ? '+91' + b.mobile.replace(/\D/g, '').slice(-10) : "";
+        const customerName = b ? b.customerName : "ग्राहक";
+        const bId = b ? b.bookingId : "PL-XXXX";
+        const venueDetails = b ? `${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})` : "";
+
+        const rescheduleWhatsAppMsg = `🗓️ *तारीख बदलण्याची विनंती (Date Change Request)*
+
+नमस्कार राकेश सर,
+ग्राहकाला त्यांची नियोजित तारीख बदलून नवीन तारीख हवी आहे:
+
+• Booking ID: *${bId}*
+• नाव: *${customerName}*
+• मोबाईल: *${cleanMobile}*
+• व्हेन्यू व वेळ: *${venueDetails}*
+• ❌ *जुनी तारीख:* ${oldDateIndian}
+• 🔄 *हवी असलेली नवीन तारीख:* ${newDateIndian}
+• *कारण:* "${reason}"
+
+कृपया नवीन तारखेचा स्लॉट तपासून ॲडमिन पॅनेलमधून 'Shift Date' करून कन्फर्म करावा.`;
+
+        closeUserRescheduleModal();
+        closeTrackModal();
+
+        const targetMobile = VENUE_CONFIG.contactRakesh.wa;
+        window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(rescheduleWhatsAppMsg)}`;
+
+      } catch (err) {
+        alert("त्रुटी आली. कृपया पुन्हा प्रयत्न करा.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "तारीख बदला विनंती पाठवा";
+      }
+    });
+
+    // ==========================================
+    // OPTION 1: ADMIN SHIFT DATE MODAL LOGIC
+    // ==========================================
+    window.openAdminShiftModal = (docId, currentEventDate, venue, slot, customerName) => {
+      const b = liveBookings.find(item => item.id === docId);
+      document.getElementById('shiftDocId').value = docId;
+      document.getElementById('shiftNewDate').min = new Date().toISOString().split('T')[0];
+      
+      // Auto pre-fill if user requested a specific date
+      if (b && b.requestedNewDate) {
+        document.getElementById('shiftNewDate').value = b.requestedNewDate;
+      } else {
+        document.getElementById('shiftNewDate').value = "";
+      }
+
+      const infoBox = document.getElementById('adminShiftInfo');
+      infoBox.innerHTML = `
+        <strong>Customer:</strong> ${customerName}<br>
+        <strong>Current Date:</strong> ${formatToIndianDate(currentEventDate)}<br>
+        <strong>Venue/Slot:</strong> ${venue} (${slot})
+        ${b && b.requestedNewDate ? `<br><span class="text-indigo-700 font-bold">User Suggested Date: ${formatToIndianDate(b.requestedNewDate)}</span>` : ''}
+      `;
+
+      document.getElementById('adminShiftDateModal').classList.remove('hidden');
+      document.getElementById('adminShiftDateModal').classList.add('modal-active');
+    };
+
+    window.closeAdminShiftModal = () => {
+      document.getElementById('adminShiftDateModal').classList.add('hidden');
+      document.getElementById('adminShiftDateModal').classList.remove('modal-active');
+    };
+
+    document.getElementById('adminShiftForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const docId = document.getElementById('shiftDocId').value;
+      const newDate = document.getElementById('shiftNewDate').value;
+      const submitBtn = document.getElementById('submitAdminShiftBtn');
+
+      const b = liveBookings.find(item => item.id === docId);
+      if (!b) return;
+
+      const venueName = b.venue || "Open Lawn";
+      const slotName = b.slot || "Night Slot";
+
+      // Check conflict on new date
+      const conflict = isSlotBooked(newDate, venueName, slotName, docId);
+      if (conflict) {
+        alert(`अडचण! निवडलेली नवीन तारीख ${formatToIndianDate(newDate)} रोजी ${venueName} (${slotName}) आधीच दुसऱ्या ग्राहकासाठी कन्फर्म आहे!\nकृपया दुसरी तारीख निवडा.`);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Shift होत आहे...";
+
+      try {
+        const oldDateIndian = formatToIndianDate(b.eventDate);
+        const newDateIndian = formatToIndianDate(newDate);
+
+        await updateDoc(doc(db, "bookings", docId), {
+          eventDate: newDate,
+          status: "Booked",
+          requestedNewDate: null,
+          cancelReason: `Date shifted from ${oldDateIndian} to ${newDateIndian}`
+        });
+
+        const slotText = getMarathiSlotDetails(venueName, slotName);
+        const shiftWhatsAppMsg = `नमस्कार *${b.customerName}* जी,
+
+*पांडुरंग लॉन्स (Pandurang Lawns)* कडून महत्त्वाची सूचना!
+
+आपल्या विनंतीनुसार, आपली [${slotText}] ची बुकिंग जुन्या तारखेवरून (${oldDateIndian}) यशस्वीरित्या नवीन तारखेवर दिनांक *${newDateIndian}* रोजी *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
+
+• Booking ID: *${b.bookingId || "PL-CONFIRMED"}*
+• नवीन तारीख: *${newDateIndian}*
+• पत्ता: ${VENUE_CONFIG.address}
+• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
+
+अधिक माहितीसाठी संपर्क:
+• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
+• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
+
+पांडुरंग लॉन्सची निवड केल्याबद्दल धन्यवाद!`;
+
+        closeAdminShiftModal();
+        dispatchWhatsAppDirect(b.mobile, shiftWhatsAppMsg);
+        alert(`बुकिंग यशस्वीरित्या ${newDateIndian} वर शिफ्ट करण्यात आली आहे आणि ग्राहकाला WhatsApp संदेश पाठवला आहे!`);
+
+      } catch(err) {
+        alert("त्रुटी आली: " + err.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Confirm Shift Date";
+      }
+    });
+
+    // Admin Portal Functions
     window.openAdminModal = () => {
       document.getElementById('adminPortalModal').classList.remove('hidden');
       document.getElementById('adminPortalModal').classList.add('modal-active');
@@ -1880,8 +2114,11 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       return `${venue} - ${s}`;
     }
 
+    // ==========================================
+    // OPTION 2: RE-APPROVE & CANCEL HANDLERS
+    // ==========================================
     window.reApproveBooking = async (id, eventDate, venue, slot, name, mobile) => {
-      const conflict = isSlotBooked(eventDate, venue, slot);
+      const conflict = isSlotBooked(eventDate, venue, slot, id);
       if (conflict) {
         alert(`पुन्हा कन्फर्म करता येत नाही! ${venue} (${slot}) हा स्लॉट आधीच दुसऱ्या ग्राहकासाठी कन्फर्म झालेला आहे.`);
         return;
@@ -1935,7 +2172,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
     window.adminRejectCancellation = async (id, name) => {
       if (confirm(`तुम्हाला ${name} यांची कॅन्सलेशन विनंती नाकारून बुकिंग 'Booked' ठेवायची आहे का?`)) {
-        await updateDoc(doc(db, "bookings", id), { status: "Booked" });
+        await updateDoc(doc(db, "bookings", id), { status: "Booked", requestedNewDate: null });
         alert("कॅन्सलेशन विनंती नाकारली असून बुकिंग Confirmed राहिली आहे.");
       }
     };
@@ -1950,7 +2187,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         const eff = getEffectiveStatus(b);
         if (eff === "Pending") pending++;
         else if (eff === "Booked") confirmed++;
-        if (b.status === "Cancellation Requested") cancelReqCount++;
+        if (b.status === "Cancellation Requested" || b.status === "Date Change Requested") cancelReqCount++;
       });
 
       document.getElementById('statTotalBookings').textContent = total;
@@ -1964,6 +2201,8 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">Pending</span>`;
         if (b.status === "Cancellation Requested") {
           statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800 animate-pulse">Cancel Requested</span>`;
+        } else if (b.status === "Date Change Requested") {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-800 animate-pulse">Date Change Requested</span>`;
         } else if (effStatus === "Booked") {
           statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Booked</span>`;
         } else if (effStatus === "Completed") {
@@ -1978,7 +2217,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         const guestCountDisplay = b.guestCount ? `👥 ${b.guestCount} लोक` : "—";
         const bId = b.bookingId || "PL-LEGACY";
 
-        const slotIsFree = !isSlotBooked(b.eventDate, venueName, slotName);
+        const slotIsFree = !isSlotBooked(b.eventDate, venueName, slotName, b.id);
 
         return `
           <tr class="hover:bg-brand-cream/30">
@@ -1998,13 +2237,19 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
             </td>
             <td class="py-3 px-3 sm:px-4">${b.eventType}</td>
             <td class="py-3 px-3 sm:px-4 font-bold text-brand-forest whitespace-nowrap">${guestCountDisplay}</td>
-            <td class="py-3 px-3 sm:px-4 max-w-[200px]">
+            <td class="py-3 px-3 sm:px-4 max-w-[220px]">
               <div>${statusBadge}</div>
-              ${b.cancelReason ? `<div class="text-[10px] text-rose-800 mt-1 bg-rose-50 p-1.5 rounded border border-rose-200"><strong>कॅन्सलेशन कारण:</strong> ${b.cancelReason}</div>` : ''}
+              ${b.requestedNewDate ? `<div class="text-[10px] font-bold text-indigo-900 mt-1 bg-indigo-50 p-1 rounded border border-indigo-200">हवी असलेली तारीख: ${formatToIndianDate(b.requestedNewDate)}</div>` : ''}
+              ${b.cancelReason ? `<div class="text-[10px] text-rose-800 mt-1 bg-rose-50 p-1.5 rounded border border-rose-200"><strong>नोंद:</strong> ${b.cancelReason}</div>` : ''}
             </td>
             <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
+              <!-- OPTION 1: SHIFT DATE BUTTON -->
+              <button onclick="openAdminShiftModal('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख पुढे ढकला / बदला">
+                <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift Date
+              </button>
+
               ${b.status === 'Cancellation Requested' ? `
-                <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs" title="Approve user request to cancel and free slot">
+                <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs" title="Approve user request to cancel and free slot">
                   Approve Cancel
                 </button>
                 <button onclick="adminRejectCancellation('${b.id}', '${b.customerName}')" class="px-2 py-1 rounded bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs" title="Reject request and keep booked">
