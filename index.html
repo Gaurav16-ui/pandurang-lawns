@@ -195,6 +195,9 @@
         <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-2.5 text-center text-xs font-cinzel font-bold tracking-wider uppercase bg-brand-gold text-brand-dark rounded-md">
           Book Your Date
         </button>
+        <button onclick="openAdminModal(); toggleMobileMenu();" class="w-full py-2 text-center text-xs font-cinzel font-bold bg-white/10 text-brand-gold rounded-md border border-brand-gold/30 mt-1">
+          <i class="fa-solid fa-lock text-[10px] mr-1"></i> Owner Portal (Login)
+        </button>
       </div>
     </div>
   </header>
@@ -736,6 +739,279 @@
     </div>
   </div>
 
+  <!-- Booking Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
+      
+      <div class="bg-brand-forest px-4 sm:px-8 py-3.5 sm:py-4 border-b border-brand-gold/30 flex items-center justify-between flex-shrink-0">
+        <div>
+          <span class="text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Online Reservation</span>
+          <h3 class="text-base sm:text-xl font-serif font-bold text-white leading-tight">Reserve Your Special Date</h3>
+        </div>
+        <button onclick="closeBookingModal()" class="text-brand-ivory/70 hover:text-brand-gold text-2xl transition p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="bookingForm" class="p-4 sm:p-8 space-y-4 overflow-y-auto text-left flex-grow">
+        <div id="bookingFormAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+
+        <div class="border-b border-brand-border pb-3 sm:pb-4">
+          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">1. Select Venue & Timing</h4>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3">
+            <div>
+              <label for="bVenue" class="block text-xs font-medium text-brand-charcoal mb-1">Preferred Main Venue *</label>
+              <select id="bVenue" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none bg-white">
+                <option value="Open Lawn">Open Lawn (Recommended for Night)</option>
+                <option value="Main Function Hall">Main Function Hall (Recommended for Day)</option>
+                <option value="AC Banquet Hall">AC Banquet Hall (Luxury AC Day/Night)</option>
+              </select>
+            </div>
+            <div>
+              <label for="bSlot" class="block text-xs font-medium text-brand-charcoal mb-1">Event Time Slot *</label>
+              <select id="bSlot" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none bg-white">
+                <option value="Night Slot">Night Slot (Evening / Reception / Dinner)</option>
+                <option value="Day Slot">Day Slot (Morning / Traditional Wedding / Lunch)</option>
+                <option value="Full Day (Day + Night)">Full Day (Day + Night Complete Access)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div>
+              <label for="bEventDate" class="block text-xs font-medium text-brand-charcoal mb-1">Select Event Date *</label>
+              <input type="date" id="bEventDate" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
+              <span id="dateValidationFeedback" class="text-[11px] block mt-1"></span>
+            </div>
+            <div>
+              <label for="bEventType" class="block text-xs font-medium text-brand-charcoal mb-1">Event Occasion *</label>
+              <select id="bEventType" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none bg-white">
+                <option value="Grand Wedding">Grand Wedding (लग्नसोहळा)</option>
+                <option value="Evening Reception">Evening Reception</option>
+                <option value="Engagement Ceremony">Engagement Ceremony</option>
+                <option value="Sangeet / Haldi">Sangeet / Haldi Ceremony</option>
+                <option value="Meeting">Meeting (Corporate / Business)</option>
+                <option value="Birthday / Anniversary">Birthday / Anniversary</option>
+                <option value="Other Social Function">Other Social Function</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="haldiOptionWrapper" class="mt-4 p-3 rounded-xl bg-amber-50/80 border border-amber-200 transition-all">
+            <label class="flex items-start gap-2.5 cursor-pointer">
+              <input type="checkbox" id="bIncludeHaldi" class="mt-1 w-4 h-4 text-amber-600 rounded border-gray-300 focus:ring-amber-500">
+              <div class="text-xs">
+                <span class="font-bold text-amber-900"><i class="fa-solid fa-ring text-amber-600 mr-1"></i> Include Previous Day Haldi Ceremony (आदल्या दिवशी हळद)</span>
+                <p class="text-amber-800 text-[11px] mt-0.5">Check if wedding ceremony also requires hall/lawn on the previous evening for Haldi.</p>
+              </div>
+            </label>
+            <div id="haldiVenueDetailsBox" class="hidden mt-3 pt-3 border-t border-amber-200/80 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-semibold text-amber-900 mb-1">Venue for Haldi</label>
+                <select id="bHaldiVenue" class="w-full px-3 py-1.5 text-xs rounded-lg border border-amber-300 bg-white">
+                  <option value="Main Function Hall">Main Function Hall (Recommended for Haldi)</option>
+                  <option value="AC Banquet Hall">AC Banquet Hall (AC Haldi/Sangeet)</option>
+                  <option value="Open Lawn">Open Lawn (Evening Haldi Setup)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-amber-900 mb-1">Haldi Slot</label>
+                <select id="bHaldiSlot" class="w-full px-3 py-1.5 text-xs rounded-lg border border-amber-300 bg-white">
+                  <option value="Night Slot">Night Slot (Evening / Haldi Night)</option>
+                  <option value="Day Slot">Day Slot (Afternoon Haldi)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-b border-brand-border pb-3 sm:pb-4">
+          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">2. Personal Details</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div>
+              <label for="bFullName" class="block text-xs font-medium text-brand-charcoal mb-1">Full Name *</label>
+              <input type="text" id="bFullName" placeholder="e.g. Rahul Patil" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
+            </div>
+            <div>
+              <label for="bMobile" class="block text-xs font-medium text-brand-charcoal mb-1">Mobile (WhatsApp) *</label>
+              <input type="tel" id="bMobile" placeholder="10-digit mobile" required pattern="[0-9]{10}" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">3. Gathering Details</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <div>
+              <label for="bGuests" class="block text-xs font-medium text-brand-charcoal mb-1">Approximate Guests (पाहुण्यांची संख्या) *</label>
+              <input type="number" id="bGuests" placeholder="e.g. 500" min="20" max="5000" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
+            </div>
+            <div>
+              <label for="bNotes" class="block text-xs font-medium text-brand-charcoal mb-1">Special Requirements</label>
+              <textarea id="bNotes" rows="2" placeholder="Catering setup, decoration..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t flex flex-col sm:flex-row items-center justify-between gap-3 sticky bottom-0 bg-white py-2">
+          <p class="text-[10px] sm:text-[11px] text-brand-muted hidden sm:block">
+            <i class="fa-solid fa-cloud text-brand-gold mr-1"></i> Instant Notification to Venue Manager
+          </p>
+          <div class="flex items-center gap-3 w-full sm:w-auto">
+            <button type="button" onclick="closeBookingModal()" class="w-1/2 sm:w-auto px-5 py-2.5 border border-brand-border text-xs font-cinzel rounded-xl hover:bg-slate-100 transition">Cancel</button>
+            <button type="submit" id="submitBookingBtn" class="w-1/2 sm:w-auto px-6 py-2.5 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:shadow-gold-lg transition">
+              Submit Request
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Post-Booking Success Confirmation Modal -->
+  <div id="bookingSuccessModal" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
+    <div class="relative bg-white w-full max-w-lg rounded-3xl border-2 border-brand-gold shadow-2xl p-6 text-center space-y-4">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-3xl shadow-sm">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div>
+        <span class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-goldDark font-bold">Request Lodged</span>
+        <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest mt-0.5">Booking Request Submitted!</h3>
+        <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+          आपली बुकिंग विनंती यशस्वीरित्या सबमिट झाली असून व्यवस्थापक राकेश चव्हाण यांच्याशी व्हॉट्सॲपवर चॅट सुरू झाली आहे.
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-brand-ivory border border-brand-border text-left text-xs space-y-1.5">
+        <div><strong>Booking ID:</strong> <span id="successModalBookingId" class="font-mono font-bold text-brand-forest"></span></div>
+        <div><strong>नाव:</strong> <span id="successModalName"></span></div>
+        <div><strong>तारीख:</strong> <span id="successModalDate"></span></div>
+        <div><strong>व्हेन्यू व वेळ:</strong> <span id="successModalVenue"></span></div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+        <button id="successDownloadPdfBtn" class="w-full py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-brand-forestLight transition flex items-center justify-center gap-2 shadow">
+          <i class="fa-solid fa-file-arrow-down text-sm"></i> Download Booking Slip (PDF)
+        </button>
+        <button onclick="closeSuccessModal()" class="w-full sm:w-auto px-5 py-2.5 border border-brand-border rounded-xl text-xs font-semibold hover:bg-slate-100 transition">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Portal Modal (Z-INDEX 100 FOR GUARANTEED TOP VISIBILITY) -->
+  <div id="adminPortalModal" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border-2 border-brand-gold shadow-2xl overflow-hidden my-auto max-h-[94vh] flex flex-col">
+      
+      <!-- Login View -->
+      <div id="adminLoginView" class="w-full max-w-md mx-auto p-6 sm:p-10 text-center my-auto overflow-y-auto">
+        <div class="w-14 h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-2xl mb-4 shadow-md">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest">Pandurang Lawns Owner Portal</h3>
+        <p class="text-xs text-brand-muted mt-1 mb-6">कृपया व्यवस्थापक लॉगिन युझरनेम आणि पासवर्ड प्रविष्ट करा.</p>
+
+        <form id="adminLoginForm" autocomplete="off" class="space-y-4 text-left">
+          <div>
+            <label class="block text-xs font-medium text-brand-charcoal mb-1">Username (युझरनेम)</label>
+            <input type="text" id="adminUsername" autocomplete="off" placeholder="उदा. admin" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border bg-white outline-none focus:ring-2 focus:ring-brand-gold" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-brand-charcoal mb-1">Password (पासवर्ड)</label>
+            <input type="password" id="adminPassword" autocomplete="new-password" placeholder="पासवर्ड टाका" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border bg-white outline-none focus:ring-2 focus:ring-brand-gold" />
+          </div>
+          <div id="adminLoginError" class="hidden p-2.5 rounded-lg bg-rose-100 text-rose-800 text-xs font-semibold"></div>
+          <div class="flex items-center justify-between pt-2">
+            <button type="button" onclick="closeAdminModal()" class="text-xs text-brand-muted hover:underline p-2">रद्द करा (Cancel)</button>
+            <button type="submit" class="px-6 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl hover:bg-brand-forestLight transition shadow">Login करा</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Dashboard View -->
+      <div id="adminDashboardView" class="hidden flex flex-col h-full overflow-hidden">
+        <div class="bg-brand-forest text-white px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b border-brand-gold/30 flex-shrink-0">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-brand-gold flex items-center justify-center text-brand-gold text-xs"><i class="fa-solid fa-crown"></i></div>
+            <h2 class="text-sm sm:text-base font-cinzel font-bold">Pandurang Lawns Command Center</h2>
+          </div>
+          <div class="flex items-center space-x-2 sm:space-x-3">
+            <button onclick="showAdminTab('bookings')" id="tabBtnBookings" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark">Bookings</button>
+            <button onclick="showAdminTab('settings')" id="tabBtnSettings" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white">Settings</button>
+            <button onclick="handleAdminLogout()" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-rose-900/80 hover:bg-rose-900 text-xs font-semibold text-white">Logout</button>
+            <button onclick="closeAdminModal()" class="text-brand-ivory/70 hover:text-brand-gold text-lg sm:text-xl ml-1"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        </div>
+
+        <div id="adminTabBookings" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-grow">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-brand-muted">Total Requests</span>
+              <div id="statTotalBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-brand-forest mt-1">0</div>
+            </div>
+            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-amber-700">Pending Review</span>
+              <div id="statPendingBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-amber-600 mt-1">0</div>
+            </div>
+            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-emerald-700">Upcoming Confirmed</span>
+              <div id="statConfirmedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-emerald-700 mt-1">0</div>
+            </div>
+            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-rose-700">Cancel/Shift Requests</span>
+              <div id="statCancelRequestedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-rose-600 mt-1">0</div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
+            <div class="p-3 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
+              ✨ Active bookings are sorted by date automatically. Download PDF Receipt is available for all records.
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs border-collapse">
+                <thead class="bg-brand-forest text-brand-gold text-[11px] uppercase tracking-wider font-cinzel">
+                  <tr>
+                    <th class="py-3 px-3 sm:px-4">ID & Date</th>
+                    <th class="py-3 px-3 sm:px-4">Venue & Slot</th>
+                    <th class="py-3 px-3 sm:px-4">Customer</th>
+                    <th class="py-3 px-3 sm:px-4">Contact</th>
+                    <th class="py-3 px-3 sm:px-4">Occasion</th>
+                    <th class="py-3 px-3 sm:px-4">👥 Guests</th>
+                    <th class="py-3 px-3 sm:px-4">Status & Notes</th>
+                    <th class="py-3 px-3 sm:px-4 text-right">Actions & Receipt</th>
+                  </tr>
+                </thead>
+                <tbody id="adminBookingsTableBody" class="divide-y divide-brand-border"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="adminTabSettings" class="p-5 sm:p-6 space-y-5 hidden max-w-xl mx-auto w-full text-left overflow-y-auto">
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm">
+            <h3 class="font-cinzel text-sm sm:text-base font-bold text-brand-forest mb-4 border-b pb-2">Update Admin Username & Password</h3>
+            <form id="adminSettingsForm" autocomplete="off" class="space-y-4">
+              <div>
+                <label class="block text-xs font-medium mb-1">New Admin Username</label>
+                <input type="text" id="setAdminUser" autocomplete="off" required class="w-full px-3 py-2 text-xs rounded-xl border outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium mb-1">New Password</label>
+                <input type="password" id="setAdminPass" autocomplete="new-password" placeholder="Enter new password" required class="w-full px-3 py-2 text-xs rounded-xl border outline-none" />
+              </div>
+              <button type="submit" class="px-5 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl hover:bg-brand-forestLight transition">
+                Update Admin Profile
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- COMPLETELY REDESIGNED & FIXED PDF RECEIPT TEMPLATE (A4 Centered, No Right Cut, Perfect Marathi Fonts) -->
   <div id="pdfReceiptWrapper" style="position: fixed; left: -9999px; top: 0; width: 800px; background: #ffffff; z-index: -10;">
     <div id="pdfPrintableArea" style="width: 740px; margin: 0 auto; padding: 24px 28px; font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif; color: #1e293b; background: #ffffff; box-sizing: border-box; border: 1.5px solid #C5A059; border-radius: 4px;">
@@ -827,7 +1103,105 @@
     </div>
   </div>
 
-  <!-- COMPLETE FIREBASE & APPLICATION LOGIC SCRIPT (100% COMPLETE) -->
+  <!-- GUARANTEED GLOBAL POPUP HANDLER SCRIPT (IMMEDIATELY AVAILABLE) -->
+  <script>
+    window.openAdminModal = function() {
+      const modal = document.getElementById('adminPortalModal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      modal.classList.add('modal-active');
+      document.body.style.overflow = 'hidden';
+
+      const isLogged = (localStorage.getItem("pandurang_admin_logged_in") === "true");
+      const loginView = document.getElementById('adminLoginView');
+      const dashView = document.getElementById('adminDashboardView');
+
+      if (isLogged) {
+        if (loginView) loginView.classList.add('hidden');
+        if (dashView) dashView.classList.remove('hidden');
+        if (typeof window.renderAdminDashboard === 'function') {
+          try { window.renderAdminDashboard(); } catch(e) { console.error(e); }
+        }
+      } else {
+        if (loginView) loginView.classList.remove('hidden');
+        if (dashView) dashView.classList.add('hidden');
+        const u = document.getElementById('adminUsername');
+        const p = document.getElementById('adminPassword');
+        if (u) u.value = "";
+        if (p) p.value = "";
+        const err = document.getElementById('adminLoginError');
+        if (err) err.classList.add('hidden');
+      }
+    };
+
+    window.closeAdminModal = function() {
+      const modal = document.getElementById('adminPortalModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('modal-active');
+      }
+      document.body.style.overflow = 'auto';
+    };
+
+    // PDF Download Helper
+    window.downloadBookingReceiptPDF = function(bookingData) {
+      if (!bookingData) return;
+      const bId = bookingData.bookingId || "PL-RECORD";
+
+      document.getElementById('pdfSlipBookingId').textContent = bId;
+      document.getElementById('pdfSlipCustomerName').textContent = bookingData.customerName || "—";
+      document.getElementById('pdfSlipCustomerMobile').textContent = bookingData.mobile || "—";
+      
+      const parts = (bookingData.eventDate || "").split('-');
+      const formattedDate = (parts.length === 3) ? `${parts[2]}-${parts[1]}-${parts[0]}` : bookingData.eventDate;
+      document.getElementById('pdfSlipEventDate').textContent = formattedDate;
+
+      document.getElementById('pdfSlipOccasion').textContent = bookingData.eventType || "Grand Event";
+      document.getElementById('pdfSlipVenue').textContent = bookingData.venue || "Open Lawn";
+      document.getElementById('pdfSlipSlot').textContent = bookingData.slot || "Night Slot";
+      document.getElementById('pdfSlipGuests').textContent = (bookingData.guestCount || "—") + " Guests";
+      document.getElementById('pdfSlipIssueDate').textContent = new Date().toLocaleDateString('en-GB');
+
+      const statusBadge = document.getElementById('pdfSlipStatusBadge');
+      if (bookingData.status === "Booked") {
+        statusBadge.textContent = "CONFIRMED (BOOKED)";
+        statusBadge.style.background = "#dcfce7";
+        statusBadge.style.color = "#15803d";
+        statusBadge.style.border = "1px solid #86efac";
+      } else if (bookingData.status === "Cancelled") {
+        statusBadge.textContent = "CANCELLED";
+        statusBadge.style.background = "#ffe4e6";
+        statusBadge.style.color = "#be123c";
+        statusBadge.style.border = "1px solid #fecdd3";
+      } else {
+        statusBadge.textContent = "PENDING REVIEW";
+        statusBadge.style.background = "#fef3c7";
+        statusBadge.style.color = "#b45309";
+        statusBadge.style.border = "1px solid #fde68a";
+      }
+
+      const notesText = document.getElementById('pdfSlipNotesText');
+      if (bookingData.message) {
+        notesText.textContent = bookingData.message;
+        document.getElementById('pdfSlipNotesWrapper').style.display = "block";
+      } else {
+        document.getElementById('pdfSlipNotesWrapper').style.display = "none";
+      }
+
+      const printableElement = document.getElementById('pdfPrintableArea');
+      const opt = {
+        margin: [6, 6, 6, 6],
+        filename: `Pandurang_Lawns_Receipt_${bId}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, letterRendering: true, scrollY: 0, scrollX: 0 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(printableElement).save();
+    };
+  </script>
+
+  <!-- FIREBASE APPLICATION SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
@@ -860,8 +1234,6 @@
     let liveBookings = [];
     let calendarDate = new Date();
     let selectedCalendarDateStr = null;
-
-    let isAdminLoggedIn = (localStorage.getItem("pandurang_admin_logged_in") === "true");
 
     const ALL_VENUE_SLOTS = [
       { venue: "Open Lawn", slot: "Night Slot", label: "Open Lawn (Night)", icon: "fa-moon text-indigo-700" },
@@ -910,80 +1282,6 @@
       return booking.status || "Pending";
     }
 
-    // PDF Generation Engine using html2pdf with A4 Fit
-    window.downloadBookingReceiptPDF = (bookingData) => {
-      if (!bookingData) return;
-
-      const effStatus = getEffectiveStatus(bookingData);
-      const bId = bookingData.bookingId || "PL-RECORD";
-
-      document.getElementById('pdfSlipBookingId').textContent = bId;
-      document.getElementById('pdfSlipCustomerName').textContent = bookingData.customerName || "—";
-      document.getElementById('pdfSlipCustomerMobile').textContent = bookingData.mobile || "—";
-      document.getElementById('pdfSlipEventDate').textContent = formatToIndianDate(bookingData.eventDate);
-      document.getElementById('pdfSlipOccasion').textContent = bookingData.eventType || "Grand Event";
-      document.getElementById('pdfSlipVenue').textContent = bookingData.venue || "Open Lawn";
-      document.getElementById('pdfSlipSlot').textContent = bookingData.slot || "Night Slot";
-      document.getElementById('pdfSlipGuests').textContent = (bookingData.guestCount || "—") + " Guests";
-      document.getElementById('pdfSlipIssueDate').textContent = new Date().toLocaleDateString('en-GB');
-
-      const haldiBooking = liveBookings.find(b => b.bookingId === (bId + "-H"));
-      if (haldiBooking) {
-        document.getElementById('pdfSlipHaldi').textContent = `${formatToIndianDate(haldiBooking.eventDate)} (${haldiBooking.venue || 'Hall'})`;
-      } else {
-        document.getElementById('pdfSlipHaldi').textContent = "None";
-      }
-
-      const statusBadge = document.getElementById('pdfSlipStatusBadge');
-      if (effStatus === "Booked") {
-        statusBadge.textContent = "CONFIRMED (BOOKED)";
-        statusBadge.style.background = "#dcfce7";
-        statusBadge.style.color = "#15803d";
-        statusBadge.style.border = "1px solid #86efac";
-      } else if (effStatus === "Completed") {
-        statusBadge.textContent = "EVENT COMPLETED";
-        statusBadge.style.background = "#e2e8f0";
-        statusBadge.style.color = "#334155";
-        statusBadge.style.border = "1px solid #cbd5e1";
-      } else if (effStatus === "Cancelled") {
-        statusBadge.textContent = "CANCELLED";
-        statusBadge.style.background = "#ffe4e6";
-        statusBadge.style.color = "#be123c";
-        statusBadge.style.border = "1px solid #fecdd3";
-      } else {
-        statusBadge.textContent = "PENDING REVIEW";
-        statusBadge.style.background = "#fef3c7";
-        statusBadge.style.color = "#b45309";
-        statusBadge.style.border = "1px solid #fde68a";
-      }
-
-      const notesText = document.getElementById('pdfSlipNotesText');
-      if (bookingData.message) {
-        notesText.textContent = bookingData.message;
-        document.getElementById('pdfSlipNotesWrapper').style.display = "block";
-      } else {
-        document.getElementById('pdfSlipNotesWrapper').style.display = "none";
-      }
-
-      const printableElement = document.getElementById('pdfPrintableArea');
-
-      const opt = {
-        margin: [6, 6, 6, 6],
-        filename: `Pandurang_Lawns_Receipt_${bId}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-          scale: 2, 
-          useCORS: true,
-          letterRendering: true,
-          scrollY: 0,
-          scrollX: 0
-        },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-
-      html2pdf().set(opt).from(printableElement).save();
-    };
-
     async function initAdminCredentials() {
       try {
         const snap = await getDoc(adminDocRef);
@@ -1004,7 +1302,9 @@
         liveBookings.push({ id: docSnap.id, ...docSnap.data() });
       });
       renderCalendar();
-      if (isAdminLoggedIn) renderAdminDashboard();
+      if (localStorage.getItem("pandurang_admin_logged_in") === "true") {
+        window.renderAdminDashboard();
+      }
       if (selectedCalendarDateStr) {
         selectCalendarDate(selectedCalendarDateStr);
       }
@@ -1117,8 +1417,10 @@
       checkDate.setHours(0, 0, 0, 0);
       const isPast = checkDate < today;
 
+      const isLogged = (localStorage.getItem("pandurang_admin_logged_in") === "true");
+
       if (isPast) {
-        if (isAdminLoggedIn && confirmed.length > 0) {
+        if (isLogged && confirmed.length > 0) {
           return { status: "Completed", label: "Done", color: "slate", count: confirmed.length };
         }
         return { status: "PastFree", label: "Past", color: "slate" };
@@ -1142,8 +1444,9 @@
       const adminLegend = document.getElementById('adminLegendDone');
       if (!monthYearLabel || !calendarGrid) return;
 
+      const isLogged = (localStorage.getItem("pandurang_admin_logged_in") === "true");
       if (adminLegend) {
-        if (isAdminLoggedIn) adminLegend.classList.remove('hidden');
+        if (isLogged) adminLegend.classList.remove('hidden');
         else adminLegend.classList.add('hidden');
       }
 
@@ -1261,9 +1564,10 @@
 
       const dateBookings = liveBookings.filter(b => b.eventDate === dateStr);
       const confirmedCount = dateBookings.filter(b => b.status === "Booked").length;
+      const isLogged = (localStorage.getItem("pandurang_admin_logged_in") === "true");
 
       if (isPast) {
-        if (isAdminLoggedIn && confirmedCount > 0) {
+        if (isLogged && confirmedCount > 0) {
           badgeEl.className = "text-slate-800 bg-slate-200 px-3 py-1 rounded-full text-xs font-semibold";
           badgeEl.textContent = `Past Date • Event Completed (Done - Admin View)`;
         } else {
@@ -1286,7 +1590,7 @@
         );
 
         if (isPast) {
-          if (isAdminLoggedIn && bookingMatch && bookingMatch.status === "Booked") {
+          if (isLogged && bookingMatch && bookingMatch.status === "Booked") {
             return `
               <div class="p-3.5 rounded-xl border border-slate-300 bg-slate-50 flex items-center justify-between">
                 <div>
@@ -1319,7 +1623,7 @@
 
         if (bookingMatch) {
           const effective = getEffectiveStatus(bookingMatch);
-          const privacyExtra = isAdminLoggedIn 
+          const privacyExtra = isLogged 
             ? `<div class="text-[11px] text-brand-forest font-bold mt-0.5">👤 ${bookingMatch.customerName} (${bookingMatch.guestCount || 0} पाहुणे)</div>` 
             : ``;
 
@@ -1337,7 +1641,7 @@
                 </div>
                 <div class="flex items-center gap-1">
                   <span class="px-2.5 py-1 bg-rose-200 text-rose-800 text-[10px] font-bold rounded-md uppercase">Booked</span>
-                  ${isAdminLoggedIn ? `<button onclick="triggerPdfDirect('${bookingMatch.id}')" class="p-1 text-rose-800 hover:text-rose-950 text-xs" title="Download Slip"><i class="fa-solid fa-file-pdf"></i></button>` : ''}
+                  ${isLogged ? `<button onclick="triggerPdfDirect('${bookingMatch.id}')" class="p-1 text-rose-800 hover:text-rose-950 text-xs" title="Download Slip"><i class="fa-solid fa-file-pdf"></i></button>` : ''}
                 </div>
               </div>
             `;
@@ -1490,7 +1794,7 @@
     document.getElementById('bHaldiVenue')?.addEventListener('change', verifyFormSlotConflict);
     document.getElementById('bHaldiSlot')?.addEventListener('change', verifyFormSlotConflict);
 
-    // Form Submit Handler with Pop-up & Instant PDF Receipt Hook
+    // Form Submit Handler
     document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
@@ -1577,7 +1881,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         document.getElementById('bookingForm').reset();
         document.getElementById('haldiVenueDetailsBox')?.classList.add('hidden');
 
-        // Show Instant Confirmation Modal with Download Receipt Button
         document.getElementById('successModalBookingId').textContent = generatedId;
         document.getElementById('successModalName').textContent = customerName;
         document.getElementById('successModalDate').textContent = indianDate;
@@ -1590,7 +1893,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         document.getElementById('bookingSuccessModal').classList.remove('hidden');
         document.getElementById('bookingSuccessModal').classList.add('modal-active');
 
-        // Open WhatsApp in new tab
         const targetMobile = VENUE_CONFIG.contactRakesh.wa;
         setTimeout(() => {
           window.open(`https://wa.me/${targetMobile}?text=${encodeURIComponent(rakeshWhatsAppMsg)}`, '_blank');
@@ -1683,7 +1985,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
           <div><strong>पाहुणे:</strong> 👥 ${matched.guestCount || 0} लोक</div>
           ${matched.cancelReason ? `<div class="p-2 bg-rose-50 border border-rose-200 rounded text-rose-900 mt-1"><strong>नोंद / कारण:</strong> ${matched.cancelReason}</div>` : ''}
 
-          <!-- PDF Download Button in Track Modal -->
           <div class="pt-2">
             <button onclick="triggerPdfDirect('${matched.id}')" class="w-full py-2 bg-gradient-to-r from-brand-forest to-brand-forestLight text-brand-gold font-cinzel font-bold text-xs rounded-xl hover:brightness-110 transition flex items-center justify-center gap-2 border border-brand-gold/40 shadow-sm">
               <i class="fa-solid fa-file-pdf text-sm"></i> Download Official Booking Receipt (PDF)
@@ -2097,38 +2398,15 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // Admin Handlers
-    window.openAdminModal = () => {
-      document.getElementById('adminPortalModal').classList.remove('hidden');
-      document.getElementById('adminPortalModal').classList.add('modal-active');
-      document.body.style.overflow = 'hidden';
-      if (isAdminLoggedIn) {
-        document.getElementById('adminLoginView').classList.add('hidden');
-        document.getElementById('adminDashboardView').classList.remove('hidden');
-        renderAdminDashboard();
-      } else {
-        document.getElementById('adminUsername').value = "";
-        document.getElementById('adminPassword').value = "";
-        document.getElementById('adminLoginError').classList.add('hidden');
-      }
-    };
-
-    window.closeAdminModal = () => {
-      document.getElementById('adminPortalModal').classList.add('hidden');
-      document.getElementById('adminPortalModal').classList.remove('modal-active');
-      document.body.style.overflow = 'auto';
-    };
-
     document.getElementById('adminLoginForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
       const u = document.getElementById('adminUsername').value.trim();
       const p = document.getElementById('adminPassword').value;
       if (u === currentAdminAuth.username && p === currentAdminAuth.password) {
-        isAdminLoggedIn = true;
         localStorage.setItem("pandurang_admin_logged_in", "true");
         document.getElementById('adminLoginView').classList.add('hidden');
         document.getElementById('adminDashboardView').classList.remove('hidden');
-        renderAdminDashboard();
+        window.renderAdminDashboard();
         renderCalendar();
         if (selectedCalendarDateStr) selectCalendarDate(selectedCalendarDateStr);
       } else {
@@ -2140,7 +2418,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
     window.handleAdminLogout = () => {
       if (confirm("आपण या डिव्हाइसवरून लॉगआऊट करू इच्छिता का?")) {
-        isAdminLoggedIn = false;
         localStorage.removeItem("pandurang_admin_logged_in");
         document.getElementById('adminUsername').value = "";
         document.getElementById('adminPassword').value = "";
@@ -2259,7 +2536,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     };
 
-    function renderAdminDashboard() {
+    window.renderAdminDashboard = function() {
       let total = liveBookings.length;
       let pending = 0;
       let confirmed = 0;
@@ -2272,10 +2549,15 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         if (b.status === "Cancellation Requested" || b.status === "Date Change Requested") cancelReqCount++;
       });
 
-      document.getElementById('statTotalBookings').textContent = total;
-      document.getElementById('statPendingBookings').textContent = pending;
-      document.getElementById('statConfirmedBookings').textContent = confirmed;
-      document.getElementById('statCancelRequestedBookings').textContent = cancelReqCount;
+      const totEl = document.getElementById('statTotalBookings');
+      const penEl = document.getElementById('statPendingBookings');
+      const conEl = document.getElementById('statConfirmedBookings');
+      const canEl = document.getElementById('statCancelRequestedBookings');
+
+      if (totEl) totEl.textContent = total;
+      if (penEl) penEl.textContent = pending;
+      if (conEl) conEl.textContent = confirmed;
+      if (canEl) canEl.textContent = cancelReqCount;
 
       const activeBookings = [];
       const doneBookings = [];
@@ -2293,8 +2575,9 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       doneBookings.sort((a, b) => (b.eventDate || "0000-00-00").localeCompare(a.eventDate || "0000-00-00"));
 
       const sortedBookings = [...activeBookings, ...doneBookings];
-
       const tbody = document.getElementById('adminBookingsTableBody');
+      if (!tbody) return;
+
       tbody.innerHTML = sortedBookings.map(b => {
         const effStatus = getEffectiveStatus(b);
         const isCompleted = (effStatus === "Completed");
@@ -2319,7 +2602,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         const bId = b.bookingId || "PL-LEGACY";
 
         const slotIsFree = !isSlotBooked(b.eventDate, venueName, slotName, b.id);
-
         const rowStyle = isCompleted 
           ? "bg-slate-50/70 opacity-60 hover:opacity-100 transition-opacity" 
           : "hover:bg-brand-cream/30";
@@ -2348,12 +2630,10 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
               ${b.cancelReason ? `<div class="text-[10px] text-rose-800 mt-1 bg-rose-50 p-1.5 rounded border border-rose-200"><strong>नोंद:</strong> ${b.cancelReason}</div>` : ''}
             </td>
             <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
-              <!-- PDF Receipt Button for Every Booking -->
               <button onclick="triggerPdfDirect('${b.id}')" class="px-2 py-1 rounded bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs" title="Download Official Receipt (PDF)">
                 <i class="fa-solid fa-file-pdf mr-0.5"></i> Receipt
               </button>
 
-              <!-- CANCELLATION OR DATE CHANGE REQUEST ACTIONS -->
               ${(b.status === 'Cancellation Requested' || b.status === 'Date Change Requested') ? `
                 <button onclick="openAdminShiftModal('${b.id}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख पुढे ढकला / बदला">
                   <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift
@@ -2366,14 +2646,12 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
                 </button>
               ` : ''}
 
-              <!-- PENDING ACTIONS -->
               ${b.status === 'Pending' ? `
                 <button onclick="approveDirectSmart('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}', '${bId}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs">
                   Approve & Notify
                 </button>
               ` : ''}
 
-              <!-- NORMAL ACTIVE BOOKED ACTIONS -->
               ${b.status === 'Booked' && !isCompleted ? `
                 <button onclick="openAdminShiftModal('${b.id}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख बदला / पुढे ढकला">
                   <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift
@@ -2383,7 +2661,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
                 </button>
               ` : ''}
 
-              <!-- CANCELLED ACTIONS -->
               ${b.status === 'Cancelled' ? `
                 <button onclick="openAdminShiftModal('${b.id}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="कॅन्सल झालेली बुकिंग नवीन तारखेवर शिफ्ट करा">
                   <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift
@@ -2402,7 +2679,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
           </tr>
         `;
       }).join('');
-    }
+    };
 
     function dispatchWhatsAppDirect(mobile, message) {
       let formatted = mobile.replace(/\D/g, '');
