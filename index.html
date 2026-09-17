@@ -672,7 +672,7 @@
     </div>
   </div>
 
-  <!-- User Reschedule / Date Change Modal (OPTION 3) -->
+  <!-- User Reschedule / Date Change Modal -->
   <div id="userRescheduleModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-indigo-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
@@ -704,7 +704,7 @@
     </div>
   </div>
 
-  <!-- Admin Shift Date Modal (OPTION 1) -->
+  <!-- Admin Shift Date Modal -->
   <div id="adminShiftDateModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-brand-gold p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
@@ -738,7 +738,7 @@
       <div class="bg-brand-forest px-4 sm:px-8 py-3.5 sm:py-4 border-b border-brand-gold/30 flex items-center justify-between flex-shrink-0">
         <div>
           <span class="text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Online Reservation</span>
-          <h3 class="text-base sm:text-xl font-serif font-bold text-white leading-tight">Reserve Your Special Date</h3>
+          <h3 class="text-base sm:xl font-serif font-bold text-white leading-tight">Reserve Your Special Date</h3>
         </div>
         <button onclick="closeBookingModal()" class="text-brand-ivory/70 hover:text-brand-gold text-2xl transition p-1">
           <i class="fa-solid fa-xmark"></i>
@@ -925,7 +925,7 @@
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
             <div class="p-3 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
-              Smart Actions: Past events are owner-only. Use 'Shift Date' to seamlessly reschedule bookings without manual entry.
+              ✨ Bookings are sorted by date automatically. Use 'Shift Date' whenever a date change or cancellation is requested.
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
@@ -1647,9 +1647,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // ==========================================
-    // CUSTOMER TRACK / MANAGE BOOKING
-    // ==========================================
+    // Customer Track / Manage Booking
     window.openTrackModal = () => {
       document.getElementById('trackBookingModal').classList.remove('hidden');
       document.getElementById('trackBookingModal').classList.add('modal-active');
@@ -1847,9 +1845,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // ==========================================
-    // OPTION 3: USER RESCHEDULE MODAL LOGIC
-    // ==========================================
+    // Reschedule User Form Logic
     window.openUserRescheduleModal = (docId) => {
       document.getElementById('reschedBookingDocId').value = docId;
       document.getElementById('reschedNewDate').min = new Date().toISOString().split('T')[0];
@@ -1917,15 +1913,12 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // ==========================================
-    // OPTION 1: ADMIN SHIFT DATE MODAL LOGIC
-    // ==========================================
+    // Admin Shift Date Modal Logic
     window.openAdminShiftModal = (docId, currentEventDate, venue, slot, customerName) => {
       const b = liveBookings.find(item => item.id === docId);
       document.getElementById('shiftDocId').value = docId;
       document.getElementById('shiftNewDate').min = new Date().toISOString().split('T')[0];
       
-      // Auto pre-fill if user requested a specific date
       if (b && b.requestedNewDate) {
         document.getElementById('shiftNewDate').value = b.requestedNewDate;
       } else {
@@ -1961,7 +1954,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       const venueName = b.venue || "Open Lawn";
       const slotName = b.slot || "Night Slot";
 
-      // Check conflict on new date
       const conflict = isSlotBooked(newDate, venueName, slotName, docId);
       if (conflict) {
         alert(`अडचण! निवडलेली नवीन तारीख ${formatToIndianDate(newDate)} रोजी ${venueName} (${slotName}) आधीच दुसऱ्या ग्राहकासाठी कन्फर्म आहे!\nकृपया दुसरी तारीख निवडा.`);
@@ -2012,7 +2004,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // Admin Portal Functions
+    // Admin Portal Handlers
     window.openAdminModal = () => {
       document.getElementById('adminPortalModal').classList.remove('hidden');
       document.getElementById('adminPortalModal').classList.add('modal-active');
@@ -2114,9 +2106,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       return `${venue} - ${s}`;
     }
 
-    // ==========================================
-    // OPTION 2: RE-APPROVE & CANCEL HANDLERS
-    // ==========================================
     window.reApproveBooking = async (id, eventDate, venue, slot, name, mobile) => {
       const conflict = isSlotBooked(eventDate, venue, slot, id);
       if (conflict) {
@@ -2177,6 +2166,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     };
 
+    // DATE-WISE SORTING & CONDITIONAL SHIFT DATE LOGIC
     function renderAdminDashboard() {
       let total = liveBookings.length;
       let pending = 0;
@@ -2195,8 +2185,15 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       document.getElementById('statConfirmedBookings').textContent = confirmed;
       document.getElementById('statCancelRequestedBookings').textContent = cancelReqCount;
 
+      // Sort chronological by Event Date (earliest date first)
+      const sortedBookings = [...liveBookings].sort((a, b) => {
+        const dateA = a.eventDate || "9999-99-99";
+        const dateB = b.eventDate || "9999-99-99";
+        return dateA.localeCompare(dateB);
+      });
+
       const tbody = document.getElementById('adminBookingsTableBody');
-      tbody.innerHTML = liveBookings.map(b => {
+      tbody.innerHTML = sortedBookings.map(b => {
         const effStatus = getEffectiveStatus(b);
         let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">Pending</span>`;
         if (b.status === "Cancellation Requested") {
@@ -2243,33 +2240,38 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
               ${b.cancelReason ? `<div class="text-[10px] text-rose-800 mt-1 bg-rose-50 p-1.5 rounded border border-rose-200"><strong>नोंद:</strong> ${b.cancelReason}</div>` : ''}
             </td>
             <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
-              <!-- OPTION 1: SHIFT DATE BUTTON -->
-              <button onclick="openAdminShiftModal('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख पुढे ढकला / बदला">
-                <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift Date
-              </button>
-
-              ${b.status === 'Cancellation Requested' ? `
-                <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs" title="Approve user request to cancel and free slot">
+              <!-- CANCELLATION OR DATE CHANGE REQUEST ACTIONS -->
+              ${(b.status === 'Cancellation Requested' || b.status === 'Date Change Requested') ? `
+                <button onclick="openAdminShiftModal('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख पुढे ढकला / बदला">
+                  <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift Date
+                </button>
+                <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs" title="Approve cancel & free slot">
                   Approve Cancel
                 </button>
-                <button onclick="adminRejectCancellation('${b.id}', '${b.customerName}')" class="px-2 py-1 rounded bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs" title="Reject request and keep booked">
+                <button onclick="adminRejectCancellation('${b.id}', '${b.customerName}')" class="px-2 py-1 rounded bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs" title="Keep booked">
                   Keep Booked
                 </button>
               ` : ''}
 
+              <!-- PENDING ACTIONS -->
               ${b.status === 'Pending' ? `
                 <button onclick="approveDirectSmart('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}', '${bId}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs">
                   Approve & Notify
                 </button>
               ` : ''}
 
+              <!-- NORMAL BOOKED ACTIONS (CLEAN TABLE) -->
               ${b.status === 'Booked' && effStatus !== 'Completed' ? `
                 <button onclick="cancelDirectSingle('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
                   Cancel
                 </button>
               ` : ''}
 
+              <!-- CANCELLED ACTIONS (SHIFT DATE + RE-APPROVE AVAILABLE) -->
               ${b.status === 'Cancelled' ? `
+                <button onclick="openAdminShiftModal('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="कॅन्सल झालेली बुकिंग नवीन तारखेवर शिफ्ट करा">
+                  <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift Date
+                </button>
                 ${slotIsFree ? `
                   <button onclick="reApproveBooking('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs" title="Slot is vacant! Re-Approve this customer">
                     <i class="fa-solid fa-rotate-left mr-1"></i> Re-Approve
