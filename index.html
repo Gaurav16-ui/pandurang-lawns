@@ -10,13 +10,16 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- FontAwesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- html2pdf Library for Instant PDF Generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   
   <script>
     tailwind.config = {
@@ -42,7 +45,7 @@
           fontFamily: {
             cinzel: ['Cinzel', 'serif'],
             serif: ['"Playfair Display"', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans Devanagari"', 'sans-serif']
           },
           boxShadow: {
             'gold-sm': '0 2px 10px rgba(197, 160, 89, 0.15)',
@@ -98,7 +101,7 @@
 
 <body class="bg-brand-ivory text-brand-charcoal font-sans antialiased selection:bg-brand-gold selection:text-brand-dark flex flex-col min-h-screen">
 
-  <!-- Top Contact Bar (Responsive Mobile Optimized) -->
+  <!-- Top Contact Bar -->
   <div class="bg-brand-forest text-brand-goldLight text-[10px] sm:text-xs py-1.5 px-2 sm:px-4 border-b border-brand-gold/30 tracking-wider">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
       <div class="flex items-center justify-center gap-1.5 sm:gap-3 flex-nowrap w-full sm:w-auto overflow-x-auto">
@@ -113,7 +116,7 @@
       </div>
       <div class="flex items-center space-x-2 sm:space-x-3 text-[10px] sm:text-[11px]">
         <button onclick="openTrackModal()" class="text-brand-goldLight hover:text-white underline transition flex items-center gap-1">
-          <i class="fa-solid fa-receipt text-[9px] text-brand-gold"></i> Track / Reschedule
+          <i class="fa-solid fa-receipt text-[9px] text-brand-gold"></i> Track / Receipt
         </button>
         <span class="text-brand-gold/40">|</span>
         <button onclick="openAdminModal()" class="text-brand-gold hover:text-white underline transition flex items-center gap-1">
@@ -160,7 +163,7 @@
 
         <div class="hidden lg:flex items-center space-x-3">
           <button onclick="openTrackModal()" class="px-4 py-2 text-xs font-cinzel font-semibold tracking-wider text-brand-goldLight border border-brand-gold/40 hover:border-brand-gold rounded-full transition">
-            <i class="fa-solid fa-magnifying-glass mr-1"></i> Track Booking
+            <i class="fa-solid fa-file-invoice mr-1"></i> Track & Receipt
           </button>
           <button onclick="openBookingModal()" class="px-5 py-2.5 text-xs font-cinzel font-bold tracking-widest uppercase bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark rounded-full shadow-gold-sm hover:shadow-gold-lg hover:scale-105 active:scale-95 transition-all duration-200">
             Book Now
@@ -187,7 +190,7 @@
       <a href="#contact" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Contact & Location</a>
       <div class="pt-2 flex flex-col gap-2">
         <button onclick="openTrackModal(); toggleMobileMenu();" class="w-full py-2 text-center text-xs font-cinzel font-semibold border border-brand-gold text-brand-gold rounded-md">
-          Track / Manage Booking
+          Track / Download Receipt
         </button>
         <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-2.5 text-center text-xs font-cinzel font-bold tracking-wider uppercase bg-brand-gold text-brand-dark rounded-md">
           Book Your Date
@@ -196,7 +199,7 @@
     </div>
   </header>
 
-  <!-- 1. Hero Section -->
+  <!-- Hero Section -->
   <section id="home" class="relative flex items-center justify-center text-center overflow-hidden pt-6 pb-10 sm:py-16">
     <img 
       src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80" 
@@ -206,7 +209,6 @@
     <div class="absolute inset-0 bg-gradient-to-b from-brand-forest/90 via-brand-dark/85 to-brand-forest/95"></div>
 
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 flex flex-col items-center">
-      
       <div class="mb-3 sm:mb-4 flex items-center justify-center">
         <div class="w-28 sm:w-44 h-44 sm:h-64 rounded-2xl overflow-hidden border-2 border-brand-gold/80 shadow-gold-lg bg-black/50 backdrop-blur-sm p-1 flex items-center justify-center">
           <img 
@@ -244,7 +246,7 @@
     </div>
   </section>
 
-  <!-- 2. Venues & Slots Section -->
+  <!-- Venues & Slots Section -->
   <section id="venues" class="py-16 sm:py-20 bg-brand-cream/60 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
@@ -286,7 +288,7 @@
             </div>
             <div class="p-6">
               <h3 class="font-cinzel text-lg font-bold text-brand-forest">Spacious Function Hall</h3>
-              <p class="text-xs text-brand-muted mt-2 leading-relaxed">Spacious non-AC ventilated hall with dining infrastructure. Perfect for traditional daytime weddings, Haldi ceremonies, and seminars.</p>
+              <p class="text-xs text-brand-muted mt-2 leading-relaxed">Spacious ventilated hall with dining infrastructure. Perfect for traditional daytime weddings, Haldi ceremonies, and seminars.</p>
               <div class="mt-4 flex flex-wrap gap-2 text-[11px] font-semibold text-brand-forest">
                 <span class="bg-brand-cream px-2.5 py-1 rounded-md"><i class="fa-solid fa-sun text-amber-600 mr-1"></i> Day Slot</span>
                 <span class="bg-brand-cream px-2.5 py-1 rounded-md"><i class="fa-solid fa-moon text-indigo-800 mr-1"></i> Night Slot</span>
@@ -329,7 +331,7 @@
     </div>
   </section>
 
-  <!-- 3. Availability Calendar -->
+  <!-- Availability Calendar -->
   <section id="calendar-section" class="py-16 sm:py-20 bg-brand-ivory">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-8">
@@ -375,6 +377,7 @@
 
         <div id="calendarGrid" class="grid grid-cols-7 gap-1 sm:gap-2"></div>
 
+        <!-- Selected Date Detailed Breakdown Box -->
         <div id="selectedDateBar" class="mt-6 p-4 sm:p-5 rounded-2xl bg-brand-ivory border border-brand-gold/60 space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-brand-border pb-3">
             <div>
@@ -384,6 +387,7 @@
             <div id="selectedDateSummaryBadge" class="text-xs font-semibold"></div>
           </div>
 
+          <!-- Slots Breakdown Container -->
           <div id="slotsBreakdownContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             <p class="text-xs text-brand-muted col-span-full">Select any date to view individual availability of Open Lawn, Function Hall, and AC Banquet Hall.</p>
           </div>
@@ -392,7 +396,7 @@
     </div>
   </section>
 
-  <!-- 4. About Pandurang Lawns -->
+  <!-- About Pandurang Lawns -->
   <section id="about" class="py-16 sm:py-20 bg-brand-cream/40 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -450,7 +454,7 @@
     </div>
   </section>
 
-  <!-- 5. Facilities Section -->
+  <!-- Facilities Section -->
   <section id="facilities" class="py-16 sm:py-20 bg-brand-ivory border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
@@ -462,7 +466,7 @@
     </div>
   </section>
 
-  <!-- 6. Photo Gallery -->
+  <!-- Photo Gallery -->
   <section id="gallery" class="py-16 sm:py-20 bg-brand-cream/30 border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
@@ -484,7 +488,7 @@
   </section>
 
   <!-- Lightbox Modal -->
-  <div id="lightboxModal" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm">
+  <div id="lightboxModal" class="fixed inset-0 z-[120] bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm">
     <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-brand-gold transition z-10"><i class="fa-solid fa-xmark"></i></button>
     <button onclick="prevLightboxImage()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-brand-gold text-2xl sm:text-4xl p-2 z-10"><i class="fa-solid fa-chevron-left"></i></button>
     <button onclick="nextLightboxImage()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-brand-gold text-2xl sm:text-4xl p-2 z-10"><i class="fa-solid fa-chevron-right"></i></button>
@@ -494,7 +498,7 @@
     </div>
   </div>
 
-  <!-- 7. Contact Section -->
+  <!-- Contact Section -->
   <section id="contact" class="py-16 sm:py-20 bg-brand-ivory">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
@@ -535,7 +539,7 @@
               <a href="tel:9021567601" class="px-3.5 py-1.5 bg-brand-ivory border border-brand-gold text-brand-forest rounded-lg text-xs font-cinzel font-semibold hover:bg-brand-gold hover:text-brand-dark transition">
                 <i class="fa-solid fa-phone mr-1"></i> Call Now
               </a>
-              <button onclick="openWhatsAppUser('919021567601')" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-cinzel font-semibold hover:bg-emerald-700 transition">
+              <button onclick="openWhatsAppUser('919021567601')" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-semibold hover:bg-emerald-700 transition">
                 <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp
               </button>
             </div>
@@ -560,7 +564,7 @@
     </div>
   </section>
 
-  <!-- 8. Footer -->
+  <!-- Footer -->
   <footer class="bg-brand-forest border-t border-brand-gold/20 text-brand-ivory pt-14 pb-8 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -587,7 +591,7 @@
             <a href="tel:9175943224" class="px-3.5 py-1.5 bg-white/10 hover:bg-brand-gold hover:text-brand-dark rounded-xl border border-brand-gold/40 text-xs font-semibold transition flex items-center gap-1.5 text-brand-goldLight">
               <i class="fa-solid fa-phone text-[11px]"></i> +91 91759 43224
             </a>
-            <a href="https://wa.me/919175943224?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%97%E0%A5%8C%E0%A4%B0%E0%A4%B5,%20%E0%A4%AE%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A5%81%E0%A4%B0%E0%A4%82%E0%A4%97%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A4%9A%E0%A5%80%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AA%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A5%80.%20%E0%A4%AE%E0%A4%B2%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%80%E0%A4%B2%20%E0%A4%8F%E0%A4%95%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AC%E0%A4%A8%E0%A4%B5%E0%A5%82%E0%A4%A8%20%E0%A4%98%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AF%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%B9%E0%A5%87." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+            <a href="https://wa.me/919175943224?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%97%E0%A5%8C%E0%A4%B0%E0%A4%B5,%20%E0%A4%AE%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A5%81%E0%A4%B0%E0%A4%82%E0%A4%97%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A4%9A%E0%A5%80%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AA%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A5%80.%20%E0%A4%AE%E0%A4%BE%E0%A4%B2%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%80%E0%A4%B2%20%E0%A4%8F%E0%A4%95%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AC%E0%A4%A8%E0%A4%B5%E0%A5%82%E0%A4%A8%20%E0%A4%98%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AF%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%B9%E0%A5%87." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
               <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
             </a>
           </div>
@@ -617,7 +621,7 @@
       <div class="bg-brand-forest px-5 sm:px-6 py-4 border-b border-brand-gold/30 flex items-center justify-between flex-shrink-0">
         <div>
           <span class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Customer Self-Service</span>
-          <h3 class="text-base sm:text-lg font-serif font-bold text-white">Track or Manage Your Booking</h3>
+          <h3 class="text-base sm:text-lg font-serif font-bold text-white">Track or Download Receipt</h3>
         </div>
         <button onclick="closeTrackModal()" class="text-brand-ivory/70 hover:text-brand-gold text-xl transition">
           <i class="fa-solid fa-xmark"></i>
@@ -644,7 +648,7 @@
     </div>
   </div>
 
-  <!-- Cancellation Reason Modal (High z-index: z-[100]) -->
+  <!-- Cancellation Reason Modal -->
   <div id="cancelReasonModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-rose-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
@@ -672,7 +676,7 @@
     </div>
   </div>
 
-  <!-- User Reschedule / Date Change Modal with Real-time Slot Checking (High z-index: z-[100]) -->
+  <!-- User Reschedule / Date Change Modal -->
   <div id="userRescheduleModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-indigo-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
@@ -705,14 +709,14 @@
     </div>
   </div>
 
-  <!-- Admin Shift Date Modal (High z-index: z-[100] to sit directly above Admin Portal) -->
-  <div id="adminShiftDateModal" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
+  <!-- Admin Shift Date Modal (High z-index: z-[120] for guaranteed visibility) -->
+  <div id="adminShiftDateModal" class="fixed inset-0 z-[120] bg-black/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border-2 border-brand-gold p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
         <h4 class="font-cinzel text-sm sm:text-base font-bold text-brand-forest">
           <i class="fa-solid fa-arrows-split-up-and-left mr-1.5 text-brand-gold"></i> Shift Booking to New Date (Admin)
         </h4>
-        <button onclick="closeAdminShiftModal()" class="text-brand-muted hover:text-brand-dark text-xl p-1"><i class="fa-solid fa-xmark"></i></button>
+        <button type="button" onclick="closeAdminShiftModal()" class="text-brand-muted hover:text-brand-dark text-xl p-1"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div id="adminShiftInfo" class="text-xs bg-slate-50 p-3 rounded-xl border border-slate-200"></div>
       <form id="adminShiftForm" class="space-y-3">
@@ -722,7 +726,7 @@
           <input type="date" id="shiftNewDate" required class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-brand-gold" />
           <div id="adminShiftConflictFeedback" class="text-[11px] font-semibold mt-1"></div>
         </div>
-        <p class="text-[11px] text-brand-muted">टीप: तारीख शिफ्ट केल्यावर जुनी तारीख कॅलेंडरवर लगेच मोकळी (Available) होईल आणि ग्राहकाला नवीन तारखेचा WhatsApp मेसेज लगेच पाठवला जाईल.</p>
+        <p class="text-[11px] text-brand-muted">टीप: तारीख शिफ्ट केल्यावर जुनी तारीख कॅलेंडरवर लगेच मोकळी (Available) होईल आणि ग्राहकाला नवीन तारखेचा WhatsApp मेसेज पाठवला जाईल.</p>
         <div class="flex justify-end gap-2 pt-2">
           <button type="button" onclick="closeAdminShiftModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold">Cancel</button>
           <button type="submit" id="submitAdminShiftBtn" class="px-5 py-2 bg-brand-forest text-brand-gold font-bold text-xs rounded-xl hover:bg-brand-forestLight transition">
@@ -733,10 +737,9 @@
     </div>
   </div>
 
-  <!-- Mobile Responsive Booking Modal -->
+  <!-- Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
-      
       <div class="bg-brand-forest px-4 sm:px-8 py-3.5 sm:py-4 border-b border-brand-gold/30 flex items-center justify-between flex-shrink-0">
         <div>
           <span class="text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Online Reservation</span>
@@ -863,34 +866,68 @@
     </div>
   </div>
 
-  <!-- Admin Portal Modal (z-index: 50) -->
-  <div id="adminPortalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
-    <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 max-h-[92vh] flex flex-col">
+  <!-- Post-Booking Success Confirmation Modal -->
+  <div id="bookingSuccessModal" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
+    <div class="relative bg-white w-full max-w-lg rounded-3xl border-2 border-brand-gold shadow-2xl p-6 text-center space-y-4">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-3xl shadow-sm">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div>
+        <span class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-goldDark font-bold">Request Lodged</span>
+        <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest mt-0.5">Booking Request Submitted!</h3>
+        <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+          आपली बुकिंग विनंती यशस्वीरित्या सबमिट झाली असून व्यवस्थापक राकेश चव्हाण यांच्याशी व्हॉट्सॲपवर चॅट सुरू झाली आहे.
+        </p>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-brand-ivory border border-brand-border text-left text-xs space-y-1.5">
+        <div><strong>Booking ID:</strong> <span id="successModalBookingId" class="font-mono font-bold text-brand-forest"></span></div>
+        <div><strong>नाव:</strong> <span id="successModalName"></span></div>
+        <div><strong>तारीख:</strong> <span id="successModalDate"></span></div>
+        <div><strong>व्हेन्यू व वेळ:</strong> <span id="successModalVenue"></span></div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
+        <button id="successDownloadPdfBtn" class="w-full py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-brand-forestLight transition flex items-center justify-center gap-2 shadow">
+          <i class="fa-solid fa-file-arrow-down text-sm"></i> Download Booking Slip (PDF)
+        </button>
+        <button onclick="closeSuccessModal()" class="w-full sm:w-auto px-5 py-2.5 border border-brand-border rounded-xl text-xs font-semibold hover:bg-slate-100 transition">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Portal Modal -->
+  <div id="adminPortalModal" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border-2 border-brand-gold shadow-2xl overflow-hidden my-auto max-h-[94vh] flex flex-col">
       
-      <div id="adminLoginView" class="p-6 sm:p-12 max-w-md mx-auto text-center my-auto overflow-y-auto">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-xl sm:text-2xl mb-4 shadow-md">
+      <!-- Login View -->
+      <div id="adminLoginView" class="w-full max-w-md mx-auto p-6 sm:p-10 text-center my-auto overflow-y-auto">
+        <div class="w-14 h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-2xl mb-4 shadow-md">
           <i class="fa-solid fa-user-shield"></i>
         </div>
-        <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest">Pandurang Lawns Admin</h3>
-        <p class="text-xs text-brand-muted mt-1 mb-6">Enter credentials to manage bookings.</p>
+        <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest">Pandurang Lawns Owner Portal</h3>
+        <p class="text-xs text-brand-muted mt-1 mb-6">कृपया व्यवस्थापक लॉगिन युझरनेम आणि पासवर्ड प्रविष्ट करा.</p>
 
         <form id="adminLoginForm" autocomplete="off" class="space-y-4 text-left">
           <div>
-            <label class="block text-xs font-medium text-brand-charcoal mb-1">Username</label>
-            <input type="text" id="adminUsername" autocomplete="off" placeholder="Enter username" required class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border bg-white outline-none" />
+            <label class="block text-xs font-medium text-brand-charcoal mb-1">Username (युझरनेम)</label>
+            <input type="text" id="adminUsername" autocomplete="off" placeholder="उदा. admin" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border bg-white outline-none focus:ring-2 focus:ring-brand-gold" />
           </div>
           <div>
-            <label class="block text-xs font-medium text-brand-charcoal mb-1">Password</label>
-            <input type="password" id="adminPassword" autocomplete="new-password" placeholder="Enter password" required class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border bg-white outline-none" />
+            <label class="block text-xs font-medium text-brand-charcoal mb-1">Password (पासवर्ड)</label>
+            <input type="password" id="adminPassword" autocomplete="new-password" placeholder="पासवर्ड टाका" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border bg-white outline-none focus:ring-2 focus:ring-brand-gold" />
           </div>
           <div id="adminLoginError" class="hidden p-2.5 rounded-lg bg-rose-100 text-rose-800 text-xs font-semibold"></div>
           <div class="flex items-center justify-between pt-2">
-            <button type="button" onclick="closeAdminModal()" class="text-xs text-brand-muted hover:underline">Cancel</button>
-            <button type="submit" class="px-6 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl">Login</button>
+            <button type="button" onclick="closeAdminModal()" class="text-xs text-brand-muted hover:underline p-2">रद्द करा (Cancel)</button>
+            <button type="submit" class="px-6 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl hover:bg-brand-forestLight transition shadow">Login करा</button>
           </div>
         </form>
       </div>
 
+      <!-- Dashboard View -->
       <div id="adminDashboardView" class="hidden flex flex-col h-full overflow-hidden">
         <div class="bg-brand-forest text-white px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b border-brand-gold/30 flex-shrink-0">
           <div class="flex items-center space-x-2.5">
@@ -927,7 +964,7 @@
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
             <div class="p-3 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
-              ✨ Active bookings are sorted by date automatically. Completed (Done) events are subtly listed at the bottom.
+              ✨ Active bookings are sorted by date automatically. Receipt button dispatches PDF + WhatsApp message directly.
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
@@ -940,7 +977,7 @@
                     <th class="py-3 px-3 sm:px-4">Occasion</th>
                     <th class="py-3 px-3 sm:px-4">👥 Guests</th>
                     <th class="py-3 px-3 sm:px-4">Status & Notes</th>
-                    <th class="py-3 px-3 sm:px-4 text-right">Instant Action</th>
+                    <th class="py-3 px-3 sm:px-4 text-right">Actions & Receipt</th>
                   </tr>
                 </thead>
                 <tbody id="adminBookingsTableBody" class="divide-y divide-brand-border"></tbody>
@@ -972,7 +1009,300 @@
     </div>
   </div>
 
-  <!-- Firebase Script Logic -->
+  <!-- COMPLETELY REDESIGNED PDF RECEIPT TEMPLATE WITH TIME OF ISSUE -->
+  <div id="pdfReceiptWrapper" style="position: fixed; left: -9999px; top: 0; width: 800px; background: #ffffff; z-index: -10;">
+    <div id="pdfPrintableArea" style="width: 740px; margin: 0 auto; padding: 24px 28px; font-family: 'Plus Jakarta Sans', sans-serif; color: #1e293b; background: #ffffff; box-sizing: border-box; border: 1.5px solid #C5A059; border-radius: 4px;">
+      
+      <!-- Top Brand Header -->
+      <div style="text-align: center; border-bottom: 2px solid #C5A059; padding-bottom: 12px;">
+        <h1 style="font-family: 'Cinzel', serif; font-size: 24px; font-weight: 900; color: #0C2B22; margin: 0; letter-spacing: 2px;">PANDURANG LAWNS</h1>
+        <p style="font-style: italic; font-size: 13px; color: #9F7B33; margin: 3px 0 0 0; font-family: 'Playfair Display', serif;">“Where Beautiful Celebrations Begin”</p>
+        <p style="font-size: 10px; color: #64748b; margin: 3px 0 0 0;">Pandurang Lawns Ugaon, Shivadi, Maharashtra 422304 | Mob: +91 95795 20187 / +91 90215 67601</p>
+      </div>
+
+      <!-- Receipt Meta Header with Date & Accurate Time -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 10px;">
+        <div style="text-align: left; width: 33%;">
+          <span style="font-size: 10px; color: #64748b; text-transform: uppercase;">Receipt / Slip No:</span><br>
+          <strong id="pdfSlipBookingId" style="font-size: 14px; font-family: monospace; color: #0C2B22;">PL-000000</strong>
+        </div>
+        <div style="text-align: center; width: 34%;">
+          <span id="pdfSlipStatusBadge" style="display: inline-block; padding: 3px 14px; font-size: 11px; font-weight: bold; border-radius: 16px; text-transform: uppercase;">CONFIRMED</span>
+        </div>
+        <div style="text-align: right; width: 33%;">
+          <span style="font-size: 10px; color: #64748b; text-transform: uppercase;">Generated / Issued At:</span><br>
+          <strong id="pdfSlipIssueDateTime" style="font-size: 11px; color: #0C2B22;">--</strong>
+        </div>
+      </div>
+
+      <!-- Customer & Event Grid -->
+      <div style="margin-top: 14px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed;">
+          <tbody>
+            <tr style="background: #FAF8F5;">
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; width: 22%; font-weight: bold; color: #0C2B22;">Customer Name:</td>
+              <td id="pdfSlipCustomerName" style="padding: 8px 10px; border: 1px solid #EAE4DC; width: 28%; font-weight: 600; color: #1e293b;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; width: 22%; font-weight: bold; color: #0C2B22;">Contact Mobile:</td>
+              <td id="pdfSlipCustomerMobile" style="padding: 8px 10px; border: 1px solid #EAE4DC; width: 28%; font-family: monospace;">--</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Event Date:</td>
+              <td id="pdfSlipEventDate" style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Event Occasion:</td>
+              <td id="pdfSlipOccasion" style="padding: 8px 10px; border: 1px solid #EAE4DC;">--</td>
+            </tr>
+            <tr style="background: #FAF8F5;">
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Venue Allocated:</td>
+              <td id="pdfSlipVenue" style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: 600;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Time Slot:</td>
+              <td id="pdfSlipSlot" style="padding: 8px 10px; border: 1px solid #EAE4DC;">--</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Approx Guests:</td>
+              <td id="pdfSlipGuests" style="padding: 8px 10px; border: 1px solid #EAE4DC;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Pre-Wedding Haldi:</td>
+              <td id="pdfSlipHaldi" style="padding: 8px 10px; border: 1px solid #EAE4DC;">None</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Notes / Special Instructions -->
+      <div id="pdfSlipNotesWrapper" style="margin-top: 10px; padding: 7px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; color: #475569;">
+        <strong>Special Notes / Requirements:</strong> <span id="pdfSlipNotesText">None</span>
+      </div>
+
+      <!-- Clean Rendered Terms & Conditions -->
+      <div style="margin-top: 16px; border-top: 1.5px solid #C5A059; padding-top: 10px;">
+        <h4 style="font-family: 'Cinzel', serif; font-size: 11px; font-weight: bold; color: #0C2B22; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+          TERMS & CONDITIONS:
+        </h4>
+        <div style="font-size: 9.5px; line-height: 1.7; color: #334155; font-family: 'Plus Jakarta Sans', sans-serif;">
+          <p style="margin: 3px 0;"><strong>1. Advance & Payment:</strong> Mandatory token advance is required to confirm booking. Remaining balance must be cleared prior to event date.</p>
+          <p style="margin: 3px 0;"><strong>2. Slot Timings:</strong> Strict adherence to allotted time slots (Day or Night) is required. Overtime usage will incur extra charges.</p>
+          <p style="margin: 3px 0;"><strong>3. Cancellation Policy:</strong> Token refund is subject to management policy. Last-minute cancellations are non-refundable.</p>
+          <p style="margin: 3px 0;"><strong>4. Property Damages:</strong> Organizers will be held financially liable for any damage caused to lawn structures, lighting, AC, or venue property.</p>
+          <p style="margin: 3px 0;"><strong>5. Sound & Govt. Guidelines:</strong> Loud DJ/music is strictly prohibited after 10:00 PM as per government regulations. Firecrackers require safety precautions.</p>
+          <p style="margin: 3px 0;"><strong>6. Cleanliness:</strong> Maintaining venue hygiene is compulsory. Illegal items or substances are strictly prohibited inside premises.</p>
+        </div>
+      </div>
+
+      <!-- Signatures Footer -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 28px; padding-top: 6px;">
+        <div style="text-align: center; width: 180px; border-top: 1px solid #94a3b8; padding-top: 4px; font-size: 10px; color: #64748b;">
+          Customer / Organizer Signature
+        </div>
+        <div style="text-align: center; width: 180px; border-top: 1px solid #94a3b8; padding-top: 4px; font-size: 10px; color: #0C2B22; font-weight: bold;">
+          For Pandurang Lawns<br><span style="font-size: 8.5px; font-weight: normal; color: #64748b;">Authorized Signatory</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GUARANTEED GLOBAL POPUP & RECEIPT DISPATCH SCRIPT -->
+  <script>
+    window.openAdminModal = function() {
+      const modal = document.getElementById('adminPortalModal');
+      if (!modal) return;
+      modal.style.display = 'flex';
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      const isLogged = (localStorage.getItem("pandurang_admin_logged_in") === "true");
+      const loginView = document.getElementById('adminLoginView');
+      const dashView = document.getElementById('adminDashboardView');
+
+      if (isLogged) {
+        if (loginView) loginView.classList.add('hidden');
+        if (dashView) dashView.classList.remove('hidden');
+        if (typeof window.renderAdminDashboard === 'function') {
+          try { window.renderAdminDashboard(); } catch(e) { console.error(e); }
+        }
+      } else {
+        if (loginView) loginView.classList.remove('hidden');
+        if (dashView) dashView.classList.add('hidden');
+        const u = document.getElementById('adminUsername');
+        const p = document.getElementById('adminPassword');
+        if (u) u.value = "";
+        if (p) p.value = "";
+        const err = document.getElementById('adminLoginError');
+        if (err) err.classList.add('hidden');
+      }
+    };
+
+    window.closeAdminModal = function() {
+      const modal = document.getElementById('adminPortalModal');
+      if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+      }
+      document.body.style.overflow = 'auto';
+    };
+
+    function getCurrentFormattedDateTime() {
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-GB');
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; 
+      const timeStr = `${hours}:${minutes} ${ampm}`;
+      return `${dateStr}, ${timeStr}`;
+    }
+
+    window.downloadBookingReceiptPDF = function(bookingData) {
+      if (!bookingData) return;
+      const bId = bookingData.bookingId || "PL-RECORD";
+
+      document.getElementById('pdfSlipBookingId').textContent = bId;
+      document.getElementById('pdfSlipCustomerName').textContent = bookingData.customerName || "—";
+      document.getElementById('pdfSlipCustomerMobile').textContent = bookingData.mobile || "—";
+      
+      const parts = (bookingData.eventDate || "").split('-');
+      const formattedDate = (parts.length === 3) ? `${parts[2]}-${parts[1]}-${parts[0]}` : bookingData.eventDate;
+      document.getElementById('pdfSlipEventDate').textContent = formattedDate;
+
+      document.getElementById('pdfSlipOccasion').textContent = bookingData.eventType || "Grand Event";
+      document.getElementById('pdfSlipVenue').textContent = bookingData.venue || "Open Lawn";
+      document.getElementById('pdfSlipSlot').textContent = bookingData.slot || "Night Slot";
+      document.getElementById('pdfSlipGuests').textContent = (bookingData.guestCount || "—") + " Guests";
+      document.getElementById('pdfSlipIssueDateTime').textContent = getCurrentFormattedDateTime();
+
+      const statusBadge = document.getElementById('pdfSlipStatusBadge');
+      if (bookingData.status === "Booked") {
+        statusBadge.textContent = "CONFIRMED (BOOKED)";
+        statusBadge.style.background = "#dcfce7";
+        statusBadge.style.color = "#15803d";
+        statusBadge.style.border = "1px solid #86efac";
+      } else if (bookingData.status === "Cancelled") {
+        statusBadge.textContent = "CANCELLED";
+        statusBadge.style.background = "#ffe4e6";
+        statusBadge.style.color = "#be123c";
+        statusBadge.style.border = "1px solid #fecdd3";
+      } else {
+        statusBadge.textContent = "PENDING REVIEW";
+        statusBadge.style.background = "#fef3c7";
+        statusBadge.style.color = "#b45309";
+        statusBadge.style.border = "1px solid #fde68a";
+      }
+
+      const notesText = document.getElementById('pdfSlipNotesText');
+      if (bookingData.message) {
+        notesText.textContent = bookingData.message;
+        document.getElementById('pdfSlipNotesWrapper').style.display = "block";
+      } else {
+        document.getElementById('pdfSlipNotesWrapper').style.display = "none";
+      }
+
+      const printableElement = document.getElementById('pdfPrintableArea');
+      const opt = {
+        margin: [6, 6, 6, 6],
+        filename: `Pandurang_Lawns_Receipt_${bId}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, letterRendering: true, scrollY: 0, scrollX: 0 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(printableElement).save();
+    };
+
+    // पावती थेट ग्राहकाला अस्सल मराठी भाषेत पाठवणे
+    window.sendReceiptToCustomer = function(docId) {
+      if (typeof window.getLiveBookingById !== 'function') return;
+      const b = window.getLiveBookingById(docId);
+      if (!b) {
+        alert("Booking details not found!");
+        return;
+      }
+
+      window.downloadBookingReceiptPDF(b);
+
+      const indianDate = (b.eventDate && b.eventDate.split('-').length === 3) 
+        ? `${b.eventDate.split('-')[2]}-${b.eventDate.split('-')[1]}-${b.eventDate.split('-')[0]}` 
+        : b.eventDate;
+
+      const baseUrl = window.location.origin + window.location.pathname;
+      const directReceiptUrl = `${baseUrl}?receipt=${encodeURIComponent(b.bookingId || b.id)}`;
+
+      const marathiWhatsAppMsg = `PANDURANG LAWNS
+Where Beautiful Celebrations Begin
+
+नमस्कार ${b.customerName} जी,
+पांडुरंग लॉन्सकडून आपली अधिकृत बुकिंग पावती तयार करण्यात आली आहे.
+
+• बुकिंग आयडी: ${b.bookingId || "PL-RECORD"}
+• कार्यक्रमाची तारीख: ${indianDate}
+• व्हेन्यू व वेळ: ${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})
+
+आपली अधिकृत PDF पावती थेट मोबाईलमध्ये डाउनलोड करण्यासाठी खालील लिंकवर क्लिक करा:
+${directReceiptUrl}
+
+अधिक माहितीसाठी संपर्क:
+• राकेश चव्हाण: +91 95795 20187
+• संतोष चव्हाण: +91 90215 67601
+
+पांडुरंग लॉन्सची निवड केल्याबद्दल धन्यवाद!`;
+
+      let formatted = b.mobile.replace(/\D/g, '');
+      if (formatted.length === 10) formatted = '91' + formatted;
+
+      setTimeout(() => {
+        window.open(`https://wa.me/${formatted}?text=${encodeURIComponent(marathiWhatsAppMsg)}`, '_blank');
+      }, 500);
+    };
+
+    // Global Admin Shift Modal Opener
+    window.openAdminShiftModal = function(docId) {
+      if (typeof window.getLiveBookingById !== 'function') return;
+      const b = window.getLiveBookingById(docId);
+      if (!b) {
+        alert("Booking not found!");
+        return;
+      }
+
+      const shiftIdInput = document.getElementById('shiftDocId');
+      if (shiftIdInput) shiftIdInput.value = docId;
+
+      const shiftDateInput = document.getElementById('shiftNewDate');
+      if (shiftDateInput) {
+        shiftDateInput.min = new Date().toISOString().split('T')[0];
+        shiftDateInput.value = b.requestedNewDate || "";
+      }
+
+      const venue = b.venue || "Open Lawn";
+      const slot = b.slot || "Night Slot";
+      const customerName = b.customerName || "Customer";
+      const currentEventDate = b.eventDate || "";
+
+      const infoBox = document.getElementById('adminShiftInfo');
+      if (infoBox) {
+        infoBox.innerHTML = `
+          <strong>Customer:</strong> ${customerName}<br>
+          <strong>Current Date:</strong> ${currentEventDate}<br>
+          <strong>Venue/Slot:</strong> ${venue} (${slot})
+          ${b.requestedNewDate ? `<br><span class="text-indigo-700 font-bold">User Suggested Date: ${b.requestedNewDate}</span>` : ''}
+        `;
+      }
+
+      const modal = document.getElementById('adminShiftDateModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('modal-active');
+      }
+    };
+
+    window.closeAdminShiftModal = function() {
+      const modal = document.getElementById('adminShiftDateModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('modal-active');
+      }
+    };
+  </script>
+
+  <!-- FIREBASE APPLICATION SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
@@ -1005,8 +1335,30 @@
     let liveBookings = [];
     let calendarDate = new Date();
     let selectedCalendarDateStr = null;
+    let autoReceiptChecked = false;
 
-    let isAdminLoggedIn = (localStorage.getItem("pandurang_admin_logged_in") === "true");
+    window.getLiveBookingById = (docId) => {
+      return liveBookings.find(b => b.id === docId);
+    };
+
+    function checkUrlForAutoReceiptDownload() {
+      if (autoReceiptChecked || liveBookings.length === 0) return;
+      const urlParams = new URLSearchParams(window.location.search);
+      const receiptParam = urlParams.get('receipt');
+      if (receiptParam) {
+        autoReceiptChecked = true;
+        const cleanParam = receiptParam.trim().toUpperCase();
+        const matched = liveBookings.find(b => 
+          (b.bookingId && b.bookingId.toUpperCase() === cleanParam) || 
+          b.id === receiptParam
+        );
+        if (matched) {
+          setTimeout(() => {
+            window.downloadBookingReceiptPDF(matched);
+          }, 1200);
+        }
+      }
+    }
 
     const ALL_VENUE_SLOTS = [
       { venue: "Open Lawn", slot: "Night Slot", label: "Open Lawn (Night)", icon: "fa-moon text-indigo-700" },
@@ -1075,10 +1427,13 @@
         liveBookings.push({ id: docSnap.id, ...docSnap.data() });
       });
       renderCalendar();
-      if (isAdminLoggedIn) renderAdminDashboard();
+      if (localStorage.getItem("pandurang_admin_logged_in") === "true") {
+        window.renderAdminDashboard();
+      }
       if (selectedCalendarDateStr) {
         selectCalendarDate(selectedCalendarDateStr);
       }
+      checkUrlForAutoReceiptDownload();
     });
 
     const VENUE_FACILITIES = [
@@ -1156,12 +1511,12 @@
       document.getElementById('lightboxImg').src = item.url;
       document.getElementById('lightboxCaption').textContent = `${item.title} — ${item.category}`;
       document.getElementById('lightboxModal').classList.remove('hidden');
-      document.getElementById('lightboxModal').classList.add('modal-active');
+      document.getElementById('lightboxModal').style.display = 'flex';
     };
 
     window.closeLightbox = () => {
       document.getElementById('lightboxModal').classList.add('hidden');
-      document.getElementById('lightboxModal').classList.remove('modal-active');
+      document.getElementById('lightboxModal').style.display = 'none';
     };
 
     window.nextLightboxImage = () => {
@@ -1367,7 +1722,10 @@
                   <div class="text-[11px] text-slate-700 font-medium mt-0.5">Event Done (Admin View)</div>
                   <div class="text-[11px] text-brand-forest font-bold mt-0.5">👤 ${bookingMatch.customerName} (${bookingMatch.guestCount || 0} पाहुणे)</div>
                 </div>
-                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200 text-slate-600 border border-slate-300 whitespace-nowrap"><i class="fa-solid fa-check text-[9px]"></i> Done</span>
+                <div class="flex items-center gap-1.5">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200 text-slate-600 border border-slate-300 whitespace-nowrap"><i class="fa-solid fa-check text-[9px]"></i> Done</span>
+                  <button onclick="sendReceiptToCustomer('${bookingMatch.id}')" class="p-1 text-purple-700 hover:text-purple-900 text-xs" title="Send Receipt via WhatsApp"><i class="fa-solid fa-file-pdf"></i></button>
+                </div>
               </div>
             `;
           }
@@ -1403,7 +1761,10 @@
                   </div>
                   ${privacyExtra}
                 </div>
-                <span class="px-2.5 py-1 bg-rose-200 text-rose-800 text-[10px] font-bold rounded-md uppercase">Booked</span>
+                <div class="flex items-center gap-1">
+                  <span class="px-2.5 py-1 bg-rose-200 text-rose-800 text-[10px] font-bold rounded-md uppercase">Booked</span>
+                  ${isAdminLoggedIn ? `<button onclick="sendReceiptToCustomer('${bookingMatch.id}')" class="p-1 text-purple-700 hover:text-purple-900 text-xs" title="Send Receipt via WhatsApp"><i class="fa-solid fa-file-pdf"></i></button>` : ''}
+                </div>
               </div>
             `;
           }
@@ -1737,7 +2098,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
             ` : ''}
 
             ${matched.status === 'Booked' && eff !== 'Completed' ? `
-              <button onclick="openCancelReasonModal('${matched.id}')" class="px-3 py-1.5 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-semibold transition">
+              <button onclick="openCancelReasonModal('${matched.id}')" class="px-3.5 py-1.5 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-semibold transition">
                 <i class="fa-solid fa-triangle-exclamation mr-1"></i> रद्द विनंती
               </button>
             ` : ''}
@@ -1983,83 +2344,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // Admin Shift Date Modal Logic (Fully Functional with 100% Guaranteed Visibility)
-    window.openAdminShiftModal = (docId) => {
-      const b = liveBookings.find(item => item.id === docId);
-      if (!b) {
-        alert("Booking not found!");
-        return;
-      }
-
-      document.getElementById('shiftDocId').value = docId;
-      const shiftDateInput = document.getElementById('shiftNewDate');
-      shiftDateInput.min = new Date().toISOString().split('T')[0];
-      
-      if (b.requestedNewDate) {
-        shiftDateInput.value = b.requestedNewDate;
-      } else {
-        shiftDateInput.value = "";
-      }
-
-      const venue = b.venue || "Open Lawn";
-      const slot = b.slot || "Night Slot";
-      const customerName = b.customerName || "Customer";
-      const currentEventDate = b.eventDate || "";
-
-      const infoBox = document.getElementById('adminShiftInfo');
-      infoBox.innerHTML = `
-        <strong>Customer:</strong> ${customerName}<br>
-        <strong>Current Date:</strong> ${formatToIndianDate(currentEventDate)}<br>
-        <strong>Venue/Slot:</strong> ${venue} (${slot})
-        ${b.requestedNewDate ? `<br><span class="text-indigo-700 font-bold">User Suggested Date: ${formatToIndianDate(b.requestedNewDate)}</span>` : ''}
-      `;
-
-      verifyAdminShiftConflict();
-
-      const modal = document.getElementById('adminShiftDateModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('modal-active');
-    };
-
-    window.closeAdminShiftModal = () => {
-      const modal = document.getElementById('adminShiftDateModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('modal-active');
-    };
-
-    function verifyAdminShiftConflict() {
-      const docId = document.getElementById('shiftDocId').value;
-      const newDate = document.getElementById('shiftNewDate').value;
-      const feedback = document.getElementById('adminShiftConflictFeedback');
-      const submitBtn = document.getElementById('submitAdminShiftBtn');
-
-      if (!newDate) {
-        feedback.textContent = "कृपया नवीन तारीख निवडा.";
-        feedback.className = "text-[11px] font-semibold mt-1 text-slate-500";
-        submitBtn.disabled = true;
-        return;
-      }
-
-      const b = liveBookings.find(item => item.id === docId);
-      if (!b) return;
-
-      const venueName = b.venue || "Open Lawn";
-      const slotName = b.slot || "Night Slot";
-
-      const conflict = isSlotBooked(newDate, venueName, slotName, docId);
-      if (conflict) {
-        feedback.innerHTML = `⚠️ लक्ष द्या: ${formatToIndianDate(newDate)} रोजी ${venueName} (${slotName}) आधीच दुसऱ्या ग्राहकासाठी कन्फर्म आहे!`;
-        feedback.className = "text-[11px] font-semibold mt-1 text-rose-600";
-        submitBtn.disabled = true;
-      } else {
-        feedback.innerHTML = `✅ ही तारीख मोकळी आहे. शिफ्ट केल्यास ग्राहकाला WhatsApp कन्फर्मेशन जाईल.`;
-        feedback.className = "text-[11px] font-semibold mt-1 text-emerald-700";
-        submitBtn.disabled = false;
-      }
-    }
-
-    document.getElementById('shiftNewDate')?.addEventListener('change', verifyAdminShiftConflict);
-
+    // Admin Shift Date Form Submit Handler
     document.getElementById('adminShiftForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const docId = document.getElementById('shiftDocId').value;
@@ -2093,22 +2378,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         });
 
         const slotText = getMarathiSlotDetails(venueName, slotName);
-        const shiftWhatsAppMsg = `नमस्कार *${b.customerName}* जी,
-
-*पांडुरंग लॉन्स (Pandurang Lawns)* कडून महत्त्वाची सूचना!
-
-आपल्या विनंतीनुसार, आपली [${slotText}] ची बुकिंग जुन्या तारखेवरून (${oldDateIndian}) यशस्वीरित्या नवीन तारखेवर दिनांक *${newDateIndian}* रोजी *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
-
-• Booking ID: *${b.bookingId || "PL-CONFIRMED"}*
-• नवीन तारीख: *${newDateIndian}*
-• पत्ता: ${VENUE_CONFIG.address}
-• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
-
-अधिक माहितीसाठी संपर्क:
-• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
-• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
-
-पांडुरंग लॉन्सची निवड केल्याबद्दल धन्यवाद!`;
+        const shiftWhatsAppMsg = `नमस्कार *${b.customerName}* जी,\n\n*पांडुरंग लॉन्स (Pandurang Lawns)* कडून महत्त्वाची सूचना!\n\nआपल्या विनंतीनुसार, आपली [${slotText}] ची बुकिंग जुन्या तारखेवरून (${oldDateIndian}) यशस्वीरित्या नवीन तारखेवर दिनांक *${newDateIndian}* रोजी *कन्फर्म (CONFIRMED)* करण्यात आली आहे.\n\n• Booking ID: *${b.bookingId || "PL-CONFIRMED"}*\n• नवीन तारीख: *${newDateIndian}*\n• पत्ता: ${VENUE_CONFIG.address}\n• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}\n\nअधिक माहितीसाठी संपर्क:\n• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}\n• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}\n\nपांडुरंग लॉन्सची निवड केल्याबद्दल धन्यवाद!`;
 
         closeAdminShiftModal();
         dispatchWhatsAppDirect(b.mobile, shiftWhatsAppMsg);
@@ -2122,28 +2392,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // Admin Portal Handlers
-    window.openAdminModal = () => {
-      document.getElementById('adminPortalModal').classList.remove('hidden');
-      document.getElementById('adminPortalModal').classList.add('modal-active');
-      document.body.style.overflow = 'hidden';
-      if (isAdminLoggedIn) {
-        document.getElementById('adminLoginView').classList.add('hidden');
-        document.getElementById('adminDashboardView').classList.remove('hidden');
-        renderAdminDashboard();
-      } else {
-        document.getElementById('adminUsername').value = "";
-        document.getElementById('adminPassword').value = "";
-        document.getElementById('adminLoginError').classList.add('hidden');
-      }
-    };
-
-    window.closeAdminModal = () => {
-      document.getElementById('adminPortalModal').classList.add('hidden');
-      document.getElementById('adminPortalModal').classList.remove('modal-active');
-      document.body.style.overflow = 'auto';
-    };
-
     document.getElementById('adminLoginForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
       const u = document.getElementById('adminUsername').value.trim();
@@ -2153,7 +2401,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         localStorage.setItem("pandurang_admin_logged_in", "true");
         document.getElementById('adminLoginView').classList.add('hidden');
         document.getElementById('adminDashboardView').classList.remove('hidden');
-        renderAdminDashboard();
+        window.renderAdminDashboard();
         renderCalendar();
         if (selectedCalendarDateStr) selectCalendarDate(selectedCalendarDateStr);
       } else {
@@ -2235,20 +2483,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       const indianDate = formatToIndianDate(eventDate);
       const slotText = getMarathiSlotDetails(venue, slot);
 
-      const reApproveMsg = `नमस्कार *${name}* जी,
-
-*पांडुरंग लॉन्स (Pandurang Lawns)* कडून आनंदाची बातमी!
-
-आपली दिनांक *${indianDate}* रोजीसाठीची *${slotText}* ची बुकिंग पुन्हा *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
-
-• पत्ता: ${VENUE_CONFIG.address}
-• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
-
-अधिक माहितीसाठी संपर्क:
-• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
-• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
-
-आपल्या सेवेसाठी पांडुरंग लॉन्स सदैव तत्पर आहे. धन्यवाद!`;
+      const reApproveMsg = `नमस्कार *${name}* जी,\n\n*पांडुरंग लॉन्स (Pandurang Lawns)* कडून आनंदाची बातमी!\n\nआपली दिनांक *${indianDate}* रोजीसाठीची *${slotText}* ची बुकिंग पुन्हा *कन्फर्म (CONFIRMED)* करण्यात आली आहे.\n\n• पत्ता: ${VENUE_CONFIG.address}\n• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}\n\nअधिक माहितीसाठी संपर्क:\n• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}\n• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}\n\nआपल्या सेवेसाठी पांडुरंग लॉन्स सदैव तत्पर आहे. धन्यवाद!`;
 
       dispatchWhatsAppDirect(mobile, reApproveMsg);
       alert(`${name} यांची बुकिंग पुन्हा कन्फर्म झाली असून व्हॉट्सअ‍ॅप मेसेज पाठवला आहे!`);
@@ -2260,17 +2495,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         const indianDate = formatToIndianDate(eventDate);
         const slotText = getMarathiSlotDetails(venue, slot);
 
-        const cancelApprovedMsg = `नमस्कार *${name}* जी,
-
-*पांडुरंग लॉन्स (Pandurang Lawns)* कडून हा संदेश पाठवत आहोत.
-
-आपल्या विनंतीनुसार, दिनांक *${indianDate}* रोजीसाठीची [${slotText}] ची आपली बुकिंग *रद्द (Cancelled)* करण्यात आली आहे आणि स्लॉट मोकळा करण्यात आला आहे.
-
-काही शंका असल्यास संपर्क:
-• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
-• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
-
-धन्यवाद!`;
+        const cancelApprovedMsg = `नमस्कार *${name}* जी,\n\n*पांडुरंग लॉन्स (Pandurang Lawns)* कडून हा संदेश पाठवत आहोत.\n\nआपल्या विनंतीनुसार, दिनांक *${indianDate}* रोजीसाठीची [${slotText}] ची आपली बुकिंग *रद्द (Cancelled)* करण्यात आली आहे आणि स्लॉट मोकळा करण्यात आला आहे.\n\nकाही शंका असल्यास संपर्क:\n• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}\n• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}\n\nधन्यवाद!`;
 
         dispatchWhatsAppDirect(mobile, cancelApprovedMsg);
         alert("कॅन्सलेशन मंजूर झाले असून स्लॉट मोकळा झाला आहे.");
@@ -2284,7 +2509,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     };
 
-    function renderAdminDashboard() {
+    window.renderAdminDashboard = function() {
       let total = liveBookings.length;
       let pending = 0;
       let confirmed = 0;
@@ -2373,10 +2598,15 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
               ${b.cancelReason ? `<div class="text-[10px] text-rose-800 mt-1 bg-rose-50 p-1.5 rounded border border-rose-200"><strong>नोंद:</strong> ${b.cancelReason}</div>` : ''}
             </td>
             <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
+              <!-- Send Receipt to Customer via WhatsApp + Direct Download Link -->
+              <button onclick="sendReceiptToCustomer('${b.id}')" class="px-2.5 py-1 rounded bg-purple-700 hover:bg-purple-800 text-white font-bold text-xs" title="Send Receipt to Customer on WhatsApp">
+                <i class="fa-solid fa-receipt mr-0.5"></i> Receipt
+              </button>
+
               <!-- CANCELLATION OR DATE CHANGE REQUEST ACTIONS -->
               ${(b.status === 'Cancellation Requested' || b.status === 'Date Change Requested') ? `
                 <button onclick="openAdminShiftModal('${b.id}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख पुढे ढकला / बदला">
-                  <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift Date
+                  <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift
                 </button>
                 <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs" title="Approve cancel & free slot">
                   Approve Cancel
@@ -2403,10 +2633,10 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
                 </button>
               ` : ''}
 
-              <!-- CANCELLED ACTIONS (SHIFT DATE + RE-APPROVE AVAILABLE) -->
+              <!-- CANCELLED ACTIONS -->
               ${b.status === 'Cancelled' ? `
                 <button onclick="openAdminShiftModal('${b.id}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="कॅन्सल झालेली बुकिंग नवीन तारखेवर शिफ्ट करा">
-                  <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift Date
+                  <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift
                 </button>
                 ${slotIsFree ? `
                   <button onclick="reApproveBooking('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs" title="Slot is vacant! Re-Approve this customer">
@@ -2422,97 +2652,9 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
           </tr>
         `;
       }).join('');
-    }
-
-    function dispatchWhatsAppDirect(mobile, message) {
-      let formatted = mobile.replace(/\D/g, '');
-      if (formatted.length === 10) formatted = '91' + formatted;
-      const url = `https://wa.me/${formatted}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-    }
-
-    window.sendCancellationWhatsAppOnly = (eventDate, venue, slot, name, mobile) => {
-      const indianDate = formatToIndianDate(eventDate);
-      const slotText = getMarathiSlotDetails(venue, slot);
-
-      const cancelMsg = `नमस्कार *${name}* जी,
-
-*पांडुरंग लॉन्स (Pandurang Lawns)* कडून हा संदेश पाठवत आहोत.
-
-आपण दिनांक *${indianDate}* रोजीसाठी *${slotText}* ची बुकिंग विनंती केली होती. परंतु हा स्लॉट आधीच इतर ग्राहकासाठी कन्फर्म झाल्यामुळे आपली ही विनंती *रद्द (Cancelled)* करण्यात आली आहे.
-
-आपणास विनंती आहे की आपण दुसऱ्या तारखेसाठी किंवा दुसऱ्या वेळेसाठी बुकिंग करावी. गैरसोयीबद्दल आम्ही दिलगीर आहोत.
-
-संपर्क व चौकशी:
-• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
-• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
-
-धन्यवाद!`;
-
-      dispatchWhatsAppDirect(mobile, cancelMsg);
     };
 
-    window.approveDirectSmart = async (selectedId, eventDate, venue, slot, name, mobile, bookingId) => {
-      await updateDoc(doc(db, "bookings", selectedId), { status: "Booked" });
-      const indianDate = formatToIndianDate(eventDate);
-      const slotText = getMarathiSlotDetails(venue, slot);
-
-      const conflictPendings = liveBookings.filter(b => 
-        b.eventDate === eventDate && 
-        (b.venue || "Open Lawn") === venue && 
-        b.id !== selectedId && 
-        b.status === "Pending" &&
-        (b.slot === slot || b.slot === "Full Day (Day + Night)" || slot === "Full Day (Day + Night)")
-      );
-
-      const confirmMsg = `नमस्कार *${name}* जी,
-
-*पांडुरंग लॉन्स (Pandurang Lawns)* कडून मनःपूर्वक स्वागत!
-
-आपल्या विनंतीनुसार, दिनांक *${indianDate}* रोजीसाठी *${slotText}* ची आपली बुकिंग यशस्वीरित्या *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
-
-• Booking ID: *${bookingId}*
-• पत्ता: ${VENUE_CONFIG.address}
-• गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
-
-व्यवस्थापक संपर्क क्रमांक:
-• Rakesh Chavan: ${VENUE_CONFIG.contactRakesh.phone}
-• Santosh Chavan: ${VENUE_CONFIG.contactSantosh.phone}
-
-पांडुरंग लॉन्सची निवड केल्याबद्दल आपले खूप खूप धन्यवाद!`;
-
-      dispatchWhatsAppDirect(mobile, confirmMsg);
-
-      for (let c of conflictPendings) {
-        await updateDoc(doc(db, "bookings", c.id), { status: "Cancelled", cancelReason: "Slot allocated to confirmed booking" });
-      }
-
-      if (conflictPendings.length > 0) {
-        setTimeout(() => {
-          conflictPendings.forEach(c => {
-            const sendNow = confirm(`${name} यांची बुकिंग कन्फर्म झाली आहे!\n\nसदर स्लॉटसाठी ${c.customerName} यांची विनंती रद्द करण्यात आली आहे.\n\nत्यांना मराठीत WhatsApp संदेश पाठवण्यासाठी OK दाबा.`);
-            if (sendNow) {
-              window.sendCancellationWhatsAppOnly(eventDate, venue, slot, c.customerName, c.mobile);
-            }
-          });
-        }, 1000);
-      }
-    };
-
-    window.cancelDirectSingle = async (id, eventDate, venue, slot, name, mobile) => {
-      await updateDoc(doc(db, "bookings", id), { status: "Cancelled", cancelReason: "Admin cancelled booking" });
-      window.sendCancellationWhatsAppOnly(eventDate, venue, slot, name, mobile);
-    };
-
-    window.openWhatsAppUser = (num) => {
-      const defaultUserMsg = "नमस्कार पांडुरंग लॉन्स, मला लॉन बुकिंग संदर्भात चौकशी करायची आहे.";
-      window.open(`https://wa.me/${num}?text=${encodeURIComponent(defaultUserMsg)}`, '_blank');
-    };
-
-    window.toggleMobileMenu = () => {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    };
-    document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
+    window.renderAdminDashboard = renderAdminDashboard;
 
     renderFacilities();
     renderGallery('all');
