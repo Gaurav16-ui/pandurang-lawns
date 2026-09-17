@@ -1487,13 +1487,13 @@
     document.getElementById('bHaldiSlot')?.addEventListener('change', verifyFormSlotConflict);
 
     // ==========================================
-    // SUBMIT & DIRECT NOTIFY TO RAKESH CHAVAN
+    // SUBMIT & INSTANT DIRECT OPEN WHATSAPP (NO POPUP)
     // ==========================================
     document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
       submitBtn.disabled = true;
-      submitBtn.innerText = "Submitting...";
+      submitBtn.innerText = "कृपया थांबा...";
 
       const eventDate = document.getElementById('bEventDate').value;
       const venue = document.getElementById('bVenue').value;
@@ -1506,7 +1506,7 @@
       const includeHaldi = document.getElementById('bIncludeHaldi').checked;
 
       if (isSlotBooked(eventDate, venue, slot)) {
-        alert(`क्षमस्व! ${formatToIndianDate(eventDate)} रोजी ${venue} (${slot}) आधीच कन्फर्म झालेले आहे.`);
+        alert(`क्षमस्व! ${formatToIndianDate(eventDate)} रोजी ${venue} (${slot}) आधीच बुक झालेला आहे.`);
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
         return;
@@ -1551,8 +1551,9 @@
         }
 
         const indianDate = formatToIndianDate(eventDate);
-        
-        // Formulate Marathi message sent directly to Rakesh Chavan's WhatsApp
+        const websiteCurrentUrl = window.location.origin + window.location.pathname;
+
+        // Clean message with Live Website Link
         const rakeshWhatsAppMsg = `नमस्कार राकेश सर,
 
 मी पांडुरंग लॉन्सच्या वेबसाइटवरून नवीन बुकिंग विनंती सबमिट केली आहे. कृपया तपासून कन्फर्म करावी.
@@ -1566,20 +1567,20 @@
 • कार्यक्रम: *${occasion}*
 • पाहुण्यांची संख्या: *${guestCount} लोक*${haldiText}
 ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
+• वेबसाइट लिंक: ${websiteCurrentUrl}
+
 धन्यवाद!`;
 
-        alert(`आपली विनंती यशस्वीरित्या नोंदवली गेली आहे!\n\nBooking ID: ${generatedId}\n\nआता राकेश चव्हाण (व्यवस्थापक) यांच्या WhatsApp वर थेट ही माहिती पाठवली जात आहे.`);
-        
         closeBookingModal();
         document.getElementById('bookingForm').reset();
-        document.getElementById('haldiVenueDetailsBox').classList.add('hidden');
+        document.getElementById('haldiVenueDetailsBox')?.classList.add('hidden');
 
-        // Direct WhatsApp redirection to Rakesh Chavan (9579520187)
-        dispatchWhatsAppDirect(VENUE_CONFIG.contactRakesh.wa, rakeshWhatsAppMsg);
+        // Direct Instant Redirect to WhatsApp App without popup block
+        const targetMobile = VENUE_CONFIG.contactRakesh.wa;
+        window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(rakeshWhatsAppMsg)}`;
 
       } catch (err) {
         alert("इंटरनेट एरर. कृपया पुन्हा प्रयत्न करा.");
-      } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
       }
@@ -1934,10 +1935,10 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
             </td>
             <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
               ${b.status === 'Cancellation Requested' ? `
-                <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs">
+                <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs" title="Approve user request to cancel and free slot">
                   Approve Cancel
                 </button>
-                <button onclick="adminRejectCancellation('${b.id}', '${b.customerName}')" class="px-2 py-1 rounded bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs">
+                <button onclick="adminRejectCancellation('${b.id}', '${b.customerName}')" class="px-2 py-1 rounded bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs" title="Reject request and keep booked">
                   Keep Booked
                 </button>
               ` : ''}
