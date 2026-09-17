@@ -654,7 +654,7 @@
         <button onclick="closeCancelReasonModal()" class="text-brand-muted hover:text-brand-dark"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <p class="text-xs text-brand-muted leading-relaxed">
-        आपली बुकिंग आधीच <strong>कन्फर्म (Booked)</strong> झालेली असल्याने कृपया रद्द करण्याचे कारण नमूद करा. सबमिट करताच व्यवस्थापक राकेश चव्हाण यांच्या व्हॉट्सॲपवर तात्काळ थेट संदेश उघडेल.
+        आपली बुकिंग आधीच <strong>कन्फर्म (Booked)</strong> झालेली असल्याने कृपया रद्द करण्याचे कारण नमूद करा. सबमिट करताच व्यवस्थापक राकेश चव्हाण यांच्या व्हॉट्सॲपवर थेट संदेश पाठवला जाईल.
       </p>
       <form id="cancelReasonForm" class="space-y-3">
         <input type="hidden" id="cancelReasonBookingDocId" />
@@ -726,7 +726,6 @@
                 <option value="Sangeet / Haldi">Sangeet / Haldi Ceremony</option>
                 <option value="Meeting">Meeting (Corporate / Business)</option>
                 <option value="Birthday / Anniversary">Birthday / Anniversary</option>
-                <option value="AC Banquet Party">AC Banquet Hall Party</option>
                 <option value="Other Social Function">Other Social Function</option>
               </select>
             </div>
@@ -763,7 +762,7 @@
 
         <div class="border-b border-brand-border pb-3 sm:pb-4">
           <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">2. Personal Details</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <label for="bFullName" class="block text-xs font-medium text-brand-charcoal mb-1">Full Name *</label>
               <input type="text" id="bFullName" placeholder="e.g. Rahul Patil" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
@@ -771,10 +770,6 @@
             <div>
               <label for="bMobile" class="block text-xs font-medium text-brand-charcoal mb-1">Mobile (WhatsApp) *</label>
               <input type="tel" id="bMobile" placeholder="10-digit mobile" required pattern="[0-9]{10}" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-            </div>
-            <div>
-              <label for="bEmail" class="block text-xs font-medium text-brand-charcoal mb-1">Email (Optional)</label>
-              <input type="email" id="bEmail" placeholder="e.g. rahul@example.com" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
             </div>
           </div>
         </div>
@@ -1528,7 +1523,6 @@
         bookingId: generatedId,
         customerName: customerName,
         mobile: mobile,
-        email: document.getElementById('bEmail').value.trim(),
         guestCount: guestCount,
         message: notes,
         status: "Pending",
@@ -1715,7 +1709,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
 • Booking ID: *${b.bookingId}*
 • नाव: *${b.customerName}*
-• मोबाईल: *tel:${b.mobile}* (कॉल करण्यासाठी येथे टॅप करा)
+• मोबाईल: *+91${b.mobile.replace(/\D/g, '').slice(-10)}*
 • तारीख: *${indianDate}*
 • व्हेन्यू व वेळ: *${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})*
 • कार्यक्रम: *${b.eventType}*
@@ -1723,7 +1717,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 कृपया नोंद घ्यावी.`;
 
           closeTrackModal();
-          // Direct open WhatsApp
           const targetMobile = VENUE_CONFIG.contactRakesh.wa;
           window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(cancelPendingWhatsAppMsg)}`;
 
@@ -1733,7 +1726,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     };
 
-    // 2. CONFIRMED BOOKING CANCEL REQUEST - MODAL & DIRECT WHATSAPP ALERT TO OWNER
+    // 2. CONFIRMED BOOKING CANCEL REQUEST - DIRECT WHATSAPP ALERT TO OWNER (REFINED)
     window.openCancelReasonModal = (docId) => {
       document.getElementById('cancelReasonBookingDocId').value = docId;
       document.getElementById('cancelReasonText').value = "";
@@ -1764,7 +1757,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         });
 
         const indianDate = b ? formatToIndianDate(b.eventDate) : "";
-        const customerPhone = b ? b.mobile : "";
+        const cleanMobile = b ? '+91' + b.mobile.replace(/\D/g, '').slice(-10) : "";
         const customerName = b ? b.customerName : "ग्राहक";
         const bId = b ? b.bookingId : "PL-XXXX";
         const venueDetails = b ? `${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})` : "";
@@ -1776,17 +1769,14 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
 • Booking ID: *${bId}*
 • नाव: *${customerName}*
-• मोबाईल: *tel:${customerPhone}* (थेट कॉल करण्यासाठी टॅप करा)
+• मोबाईल: *${cleanMobile}*
 • नियोजित तारीख: *${indianDate}*
 • व्हेन्यू व स्लॉट: *${venueDetails}*
-• 🔴 *रद्द करण्याचे कारण:* "${reason}"
-
-सदर तारीख मोकळी करायची की ग्राहकाशी बोलून तारीख पुढे ढकलायची, यासाठी कृपया पडताळणी करावी.`;
+• 🔴 *रद्द करण्याचे कारण:* "${reason}"`;
 
         closeCancelReasonModal();
         closeTrackModal();
 
-        // Directly open WhatsApp with ready message for Rakesh Chavan
         const targetMobile = VENUE_CONFIG.contactRakesh.wa;
         window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(cancelAlertWhatsAppMsg)}`;
 
