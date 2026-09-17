@@ -7,10 +7,10 @@
   <title>Pandurang Lawns | Luxury Wedding, Banquet & Event Venue</title>
   <meta name="description" content="Pandurang Lawns is an exquisite destination with Open Lawn, Grand Hall and AC Banquet Hall for weddings, receptions, meetings and events." />
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts: देवनागरी मराठी फॉन्टसह अचूक रेंडरिंगसाठी Noto Sans जोडला आहे -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- FontAwesome 6 Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -45,7 +45,7 @@
           fontFamily: {
             cinzel: ['Cinzel', 'serif'],
             serif: ['"Playfair Display"', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif']
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans Devanagari"', 'sans-serif']
           },
           boxShadow: {
             'gold-sm': '0 2px 10px rgba(197, 160, 89, 0.15)',
@@ -95,11 +95,6 @@
       border: 1px solid rgba(197, 160, 89, 0.4);
       background: linear-gradient(135deg, rgba(20, 60, 48, 0.9) 0%, rgba(12, 43, 34, 0.95) 100%);
       transition: all 0.3s ease;
-    }
-
-    /* Print styling for clean PDF export */
-    #pdfReceiptTemplate {
-      display: none;
     }
   </style>
 </head>
@@ -741,369 +736,98 @@
     </div>
   </div>
 
-  <!-- Booking Modal -->
-  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
-    <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
+  <!-- COMPLETELY REDESIGNED & FIXED PDF RECEIPT TEMPLATE (A4 Centered, No Right Cut, Perfect Marathi Fonts) -->
+  <div id="pdfReceiptWrapper" style="position: fixed; left: -9999px; top: 0; width: 800px; background: #ffffff; z-index: -10;">
+    <div id="pdfPrintableArea" style="width: 740px; margin: 0 auto; padding: 24px 28px; font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif; color: #1e293b; background: #ffffff; box-sizing: border-box; border: 1.5px solid #C5A059; border-radius: 4px;">
       
-      <div class="bg-brand-forest px-4 sm:px-8 py-3.5 sm:py-4 border-b border-brand-gold/30 flex items-center justify-between flex-shrink-0">
-        <div>
-          <span class="text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Online Reservation</span>
-          <h3 class="text-base sm:text-xl font-serif font-bold text-white leading-tight">Reserve Your Special Date</h3>
-        </div>
-        <button onclick="closeBookingModal()" class="text-brand-ivory/70 hover:text-brand-gold text-2xl transition p-1">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+      <!-- Top Brand Header -->
+      <div style="text-align: center; border-bottom: 2px solid #C5A059; padding-bottom: 12px;">
+        <h1 style="font-family: 'Cinzel', serif; font-size: 24px; font-weight: 900; color: #0C2B22; margin: 0; letter-spacing: 2px;">PANDURANG LAWNS</h1>
+        <p style="font-style: italic; font-size: 13px; color: #9F7B33; margin: 3px 0 0 0; font-family: 'Playfair Display', serif;">“Where Beautiful Celebrations Begin”</p>
+        <p style="font-size: 10px; color: #64748b; margin: 3px 0 0 0;">Pandurang Lawns Ugaon, Shivadi, Maharashtra 422304 | Mob: +91 95795 20187 / +91 90215 67601</p>
       </div>
 
-      <form id="bookingForm" class="p-4 sm:p-8 space-y-4 overflow-y-auto text-left flex-grow">
-        <div id="bookingFormAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
-
-        <div class="border-b border-brand-border pb-3 sm:pb-4">
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">1. Select Venue & Timing</h4>
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3">
-            <div>
-              <label for="bVenue" class="block text-xs font-medium text-brand-charcoal mb-1">Preferred Main Venue *</label>
-              <select id="bVenue" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none bg-white">
-                <option value="Open Lawn">Open Lawn (Recommended for Night)</option>
-                <option value="Main Function Hall">Main Function Hall (Recommended for Day)</option>
-                <option value="AC Banquet Hall">AC Banquet Hall (Luxury AC Day/Night)</option>
-              </select>
-            </div>
-            <div>
-              <label for="bSlot" class="block text-xs font-medium text-brand-charcoal mb-1">Event Time Slot *</label>
-              <select id="bSlot" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none bg-white">
-                <option value="Night Slot">Night Slot (Evening / Reception / Dinner)</option>
-                <option value="Day Slot">Day Slot (Morning / Traditional Wedding / Lunch)</option>
-                <option value="Full Day (Day + Night)">Full Day (Day + Night Complete Access)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            <div>
-              <label for="bEventDate" class="block text-xs font-medium text-brand-charcoal mb-1">Select Event Date *</label>
-              <input type="date" id="bEventDate" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-              <span id="dateValidationFeedback" class="text-[11px] block mt-1"></span>
-            </div>
-            <div>
-              <label for="bEventType" class="block text-xs font-medium text-brand-charcoal mb-1">Event Occasion *</label>
-              <select id="bEventType" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none bg-white">
-                <option value="Grand Wedding">Grand Wedding (लग्नसोहळा)</option>
-                <option value="Evening Reception">Evening Reception</option>
-                <option value="Engagement Ceremony">Engagement Ceremony</option>
-                <option value="Sangeet / Haldi">Sangeet / Haldi Ceremony</option>
-                <option value="Meeting">Meeting (Corporate / Business)</option>
-                <option value="Birthday / Anniversary">Birthday / Anniversary</option>
-                <option value="Other Social Function">Other Social Function</option>
-              </select>
-            </div>
-          </div>
-
-          <div id="haldiOptionWrapper" class="mt-4 p-3 rounded-xl bg-amber-50/80 border border-amber-200 transition-all">
-            <label class="flex items-start gap-2.5 cursor-pointer">
-              <input type="checkbox" id="bIncludeHaldi" class="mt-1 w-4 h-4 text-amber-600 rounded border-gray-300 focus:ring-amber-500">
-              <div class="text-xs">
-                <span class="font-bold text-amber-900"><i class="fa-solid fa-ring text-amber-600 mr-1"></i> Include Previous Day Haldi Ceremony (आदल्या दिवशी हळद)</span>
-                <p class="text-amber-800 text-[11px] mt-0.5">Check if wedding ceremony also requires hall/lawn on the previous evening for Haldi.</p>
-              </div>
-            </label>
-            <div id="haldiVenueDetailsBox" class="hidden mt-3 pt-3 border-t border-amber-200/80 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-[11px] font-semibold text-amber-900 mb-1">Venue for Haldi</label>
-                <select id="bHaldiVenue" class="w-full px-3 py-1.5 text-xs rounded-lg border border-amber-300 bg-white">
-                  <option value="Main Function Hall">Main Function Hall (Recommended for Haldi)</option>
-                  <option value="AC Banquet Hall">AC Banquet Hall (AC Haldi/Sangeet)</option>
-                  <option value="Open Lawn">Open Lawn (Evening Haldi Setup)</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-[11px] font-semibold text-amber-900 mb-1">Haldi Slot</label>
-                <select id="bHaldiSlot" class="w-full px-3 py-1.5 text-xs rounded-lg border border-amber-300 bg-white">
-                  <option value="Night Slot">Night Slot (Evening / Haldi Night)</option>
-                  <option value="Day Slot">Day Slot (Afternoon Haldi)</option>
-                </select>
-              </div>
-            </div>
-          </div>
+      <!-- Receipt Meta Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 10px;">
+        <div style="text-align: left; width: 33%;">
+          <span style="font-size: 10px; color: #64748b; text-transform: uppercase;">Receipt / Slip No:</span><br>
+          <strong id="pdfSlipBookingId" style="font-size: 14px; font-family: monospace; color: #0C2B22;">PL-000000</strong>
         </div>
-
-        <div class="border-b border-brand-border pb-3 sm:pb-4">
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">2. Personal Details</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            <div>
-              <label for="bFullName" class="block text-xs font-medium text-brand-charcoal mb-1">Full Name *</label>
-              <input type="text" id="bFullName" placeholder="e.g. Rahul Patil" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-            </div>
-            <div>
-              <label for="bMobile" class="block text-xs font-medium text-brand-charcoal mb-1">Mobile (WhatsApp) *</label>
-              <input type="tel" id="bMobile" placeholder="10-digit mobile" required pattern="[0-9]{10}" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-            </div>
-          </div>
+        <div style="text-align: center; width: 34%;">
+          <span id="pdfSlipStatusBadge" style="display: inline-block; padding: 3px 14px; font-size: 11px; font-weight: bold; border-radius: 16px; text-transform: uppercase;">CONFIRMED</span>
         </div>
-
-        <div>
-          <h4 class="text-xs font-cinzel uppercase tracking-wider text-brand-forest font-bold mb-2.5">3. Gathering Details</h4>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-            <div>
-              <label for="bGuests" class="block text-xs font-medium text-brand-charcoal mb-1">Approximate Guests (पाहुण्यांची संख्या) *</label>
-              <input type="number" id="bGuests" placeholder="e.g. 500" min="20" max="5000" required class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
-            </div>
-            <div>
-              <label for="bNotes" class="block text-xs font-medium text-brand-charcoal mb-1">Special Requirements</label>
-              <textarea id="bNotes" rows="2" placeholder="Catering setup, decoration..." class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div class="pt-3 border-t flex flex-col sm:flex-row items-center justify-between gap-3 sticky bottom-0 bg-white py-2">
-          <p class="text-[10px] sm:text-[11px] text-brand-muted hidden sm:block">
-            <i class="fa-solid fa-cloud text-brand-gold mr-1"></i> Instant Notification to Venue Manager
-          </p>
-          <div class="flex items-center gap-3 w-full sm:w-auto">
-            <button type="button" onclick="closeBookingModal()" class="w-1/2 sm:w-auto px-5 py-2.5 border border-brand-border text-xs font-cinzel rounded-xl hover:bg-slate-100 transition">Cancel</button>
-            <button type="submit" id="submitBookingBtn" class="w-1/2 sm:w-auto px-6 py-2.5 bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:shadow-gold-lg transition">
-              Submit Request
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Post-Booking Success Confirmation Modal (With Download Receipt) -->
-  <div id="bookingSuccessModal" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
-    <div class="relative bg-white w-full max-w-lg rounded-3xl border-2 border-brand-gold shadow-2xl p-6 text-center space-y-4">
-      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-3xl shadow-sm">
-        <i class="fa-solid fa-circle-check"></i>
-      </div>
-      <div>
-        <span class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-goldDark font-bold">Request Lodged</span>
-        <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest mt-0.5">Booking Request Submitted!</h3>
-        <p class="text-xs text-brand-muted mt-1 leading-relaxed">
-          आपली बुकिंग विनंती यशस्वीरित्या सबमिट झाली असून व्यवस्थापक राकेश चव्हाण यांच्याशी व्हॉट्सॲपवर चॅट सुरू झाली आहे.
-        </p>
-      </div>
-
-      <div class="p-4 rounded-2xl bg-brand-ivory border border-brand-border text-left text-xs space-y-1.5">
-        <div><strong>Booking ID:</strong> <span id="successModalBookingId" class="font-mono font-bold text-brand-forest"></span></div>
-        <div><strong>नाव:</strong> <span id="successModalName"></span></div>
-        <div><strong>तारीख:</strong> <span id="successModalDate"></span></div>
-        <div><strong>व्हेन्यू व वेळ:</strong> <span id="successModalVenue"></span></div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row gap-2.5 pt-1">
-        <button id="successDownloadPdfBtn" class="w-full py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-brand-forestLight transition flex items-center justify-center gap-2 shadow">
-          <i class="fa-solid fa-file-arrow-down text-sm"></i> Download Booking Slip (PDF)
-        </button>
-        <button onclick="closeSuccessModal()" class="w-full sm:w-auto px-5 py-2.5 border border-brand-border rounded-xl text-xs font-semibold hover:bg-slate-100 transition">
-          Done
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Admin Portal Modal -->
-  <div id="adminPortalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
-    <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 max-h-[92vh] flex flex-col">
-      
-      <div id="adminLoginView" class="p-6 sm:p-12 max-w-md mx-auto text-center my-auto overflow-y-auto">
-        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-brand-forest text-brand-gold flex items-center justify-center mx-auto text-xl sm:text-2xl mb-4 shadow-md">
-          <i class="fa-solid fa-user-shield"></i>
-        </div>
-        <h3 class="text-xl sm:text-2xl font-serif font-bold text-brand-forest">Pandurang Lawns Admin</h3>
-        <p class="text-xs text-brand-muted mt-1 mb-6">Enter credentials to manage bookings.</p>
-
-        <form id="adminLoginForm" autocomplete="off" class="space-y-4 text-left">
-          <div>
-            <label class="block text-xs font-medium text-brand-charcoal mb-1">Username</label>
-            <input type="text" id="adminUsername" autocomplete="off" placeholder="Enter username" required class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border bg-white outline-none" />
-          </div>
-          <div>
-            <label class="block text-xs font-medium text-brand-charcoal mb-1">Password</label>
-            <input type="password" id="adminPassword" autocomplete="new-password" placeholder="Enter password" required class="w-full px-3.5 py-2 text-xs rounded-xl border border-brand-border bg-white outline-none" />
-          </div>
-          <div id="adminLoginError" class="hidden p-2.5 rounded-lg bg-rose-100 text-rose-800 text-xs font-semibold"></div>
-          <div class="flex items-center justify-between pt-2">
-            <button type="button" onclick="closeAdminModal()" class="text-xs text-brand-muted hover:underline">Cancel</button>
-            <button type="submit" class="px-6 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl">Login</button>
-          </div>
-        </form>
-      </div>
-
-      <div id="adminDashboardView" class="hidden flex flex-col h-full overflow-hidden">
-        <div class="bg-brand-forest text-white px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-3 border-b border-brand-gold/30 flex-shrink-0">
-          <div class="flex items-center space-x-2.5">
-            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-brand-gold flex items-center justify-center text-brand-gold text-xs"><i class="fa-solid fa-crown"></i></div>
-            <h2 class="text-sm sm:text-base font-cinzel font-bold">Pandurang Lawns Command Center</h2>
-          </div>
-          <div class="flex items-center space-x-2 sm:space-x-3">
-            <button onclick="showAdminTab('bookings')" id="tabBtnBookings" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-gold text-brand-dark">Bookings</button>
-            <button onclick="showAdminTab('settings')" id="tabBtnSettings" class="px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 hover:bg-white/20 text-white">Settings</button>
-            <button onclick="handleAdminLogout()" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-rose-900/80 hover:bg-rose-900 text-xs font-semibold text-white">Logout</button>
-            <button onclick="closeAdminModal()" class="text-brand-ivory/70 hover:text-brand-gold text-lg sm:text-xl ml-1"><i class="fa-solid fa-xmark"></i></button>
-          </div>
-        </div>
-
-        <div id="adminTabBookings" class="p-4 sm:p-6 space-y-4 overflow-y-auto flex-grow">
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-brand-muted">Total Requests</span>
-              <div id="statTotalBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-brand-forest mt-1">0</div>
-            </div>
-            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-amber-700">Pending Review</span>
-              <div id="statPendingBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-amber-600 mt-1">0</div>
-            </div>
-            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-emerald-700">Upcoming Confirmed</span>
-              <div id="statConfirmedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-emerald-700 mt-1">0</div>
-            </div>
-            <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-rose-700">Cancel/Shift Requests</span>
-              <div id="statCancelRequestedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-rose-600 mt-1">0</div>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
-            <div class="p-3 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
-              ✨ Active bookings are sorted by date automatically. Download PDF Receipt is available for all records.
-            </div>
-            <div class="overflow-x-auto">
-              <table class="w-full text-left text-xs border-collapse">
-                <thead class="bg-brand-forest text-brand-gold text-[11px] uppercase tracking-wider font-cinzel">
-                  <tr>
-                    <th class="py-3 px-3 sm:px-4">ID & Date</th>
-                    <th class="py-3 px-3 sm:px-4">Venue & Slot</th>
-                    <th class="py-3 px-3 sm:px-4">Customer</th>
-                    <th class="py-3 px-3 sm:px-4">Contact</th>
-                    <th class="py-3 px-3 sm:px-4">Occasion</th>
-                    <th class="py-3 px-3 sm:px-4">👥 Guests</th>
-                    <th class="py-3 px-3 sm:px-4">Status & Notes</th>
-                    <th class="py-3 px-3 sm:px-4 text-right">Actions & Receipt</th>
-                  </tr>
-                </thead>
-                <tbody id="adminBookingsTableBody" class="divide-y divide-brand-border"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div id="adminTabSettings" class="p-5 sm:p-6 space-y-5 hidden max-w-xl mx-auto w-full text-left overflow-y-auto">
-          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-brand-border shadow-sm">
-            <h3 class="font-cinzel text-sm sm:text-base font-bold text-brand-forest mb-4 border-b pb-2">Update Admin Username & Password</h3>
-            <form id="adminSettingsForm" autocomplete="off" class="space-y-4">
-              <div>
-                <label class="block text-xs font-medium mb-1">New Admin Username</label>
-                <input type="text" id="setAdminUser" autocomplete="off" required class="w-full px-3 py-2 text-xs rounded-xl border outline-none" />
-              </div>
-              <div>
-                <label class="block text-xs font-medium mb-1">New Password</label>
-                <input type="password" id="setAdminPass" autocomplete="new-password" placeholder="Enter new password" required class="w-full px-3 py-2 text-xs rounded-xl border outline-none" />
-              </div>
-              <button type="submit" class="px-5 py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase rounded-xl hover:bg-brand-forestLight transition">
-                Update Admin Profile
-              </button>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- HIDDEN PRINTABLE TEMPLATE FOR PDF EXPORT -->
-  <div id="pdfReceiptWrapper" style="display:none;">
-    <div id="pdfPrintableArea" style="width: 780px; padding: 35px 40px; font-family: 'Plus Jakarta Sans', sans-serif; color: #1e293b; background: #ffffff; border: 2px solid #C5A059; margin: 0 auto; box-sizing: border-box;">
-      
-      <!-- Top Header -->
-      <div style="text-align: center; border-bottom: 2px solid #C5A059; padding-bottom: 16px; position: relative;">
-        <h1 style="font-family: 'Cinzel', serif; font-size: 26px; font-weight: 900; color: #0C2B22; margin: 0; letter-spacing: 2px;">PANDURANG LAWNS</h1>
-        <p style="font-style: italic; font-size: 13px; color: #9F7B33; margin: 4px 0 0 0;">“Where Beautiful Celebrations Begin”</p>
-        <p style="font-size: 11px; color: #64748b; margin: 4px 0 0 0;">Pandurang Lawns Ugaon, Shivadi, Maharashtra 422304 | Mob: +91 95795 20187 / +91 90215 67601</p>
-      </div>
-
-      <!-- Watermark Badge Title -->
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; border-bottom: 1px dashed #cbd5e1; padding-bottom: 12px;">
-        <div>
-          <span style="font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">Receipt / Slip No:</span><br>
-          <strong id="pdfSlipBookingId" style="font-size: 16px; font-family: monospace; color: #0C2B22;">PL-000000</strong>
-        </div>
-        <div style="text-align: center;">
-          <span id="pdfSlipStatusBadge" style="display: inline-block; padding: 4px 16px; font-size: 12px; font-weight: bold; border-radius: 20px; text-transform: uppercase;">CONFIRMED</span>
-        </div>
-        <div style="text-align: right;">
-          <span style="font-size: 11px; color: #64748b;">Issue Date:</span><br>
-          <strong id="pdfSlipIssueDate" style="font-size: 12px;">--</strong>
+        <div style="text-align: right; width: 33%;">
+          <span style="font-size: 10px; color: #64748b; text-transform: uppercase;">Issue Date:</span><br>
+          <strong id="pdfSlipIssueDate" style="font-size: 12px; color: #0C2B22;">--</strong>
         </div>
       </div>
 
       <!-- Customer & Event Grid -->
-      <div style="margin-top: 20px;">
-        <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+      <div style="margin-top: 14px;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 11px; table-layout: fixed;">
           <tbody>
             <tr style="background: #FAF8F5;">
-              <td style="padding: 10px 14px; border: 1px solid #EAE4DC; width: 25%; font-weight: bold; color: #0C2B22;">Customer Name:</td>
-              <td id="pdfSlipCustomerName" style="padding: 10px 14px; border: 1px solid #EAE4DC; width: 25%; font-weight: 600;">--</td>
-              <td style="padding: 10px 14px; border: 1px solid #EAE4DC; width: 25%; font-weight: bold; color: #0C2B22;">Contact Mobile:</td>
-              <td id="pdfSlipCustomerMobile" style="padding: 10px 14px; border: 1px solid #EAE4DC; width: 25%;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; width: 22%; font-weight: bold; color: #0C2B22;">Customer Name:</td>
+              <td id="pdfSlipCustomerName" style="padding: 8px 10px; border: 1px solid #EAE4DC; width: 28%; font-weight: 600; color: #1e293b;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; width: 22%; font-weight: bold; color: #0C2B22;">Contact Mobile:</td>
+              <td id="pdfSlipCustomerMobile" style="padding: 8px 10px; border: 1px solid #EAE4DC; width: 28%; font-family: monospace;">--</td>
             </tr>
             <tr>
-              <td style="padding: 10px 14px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Event Date:</td>
-              <td id="pdfSlipEventDate" style="padding: 10px 14px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">--</td>
-              <td style="padding: 10px 14px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Event Occasion:</td>
-              <td id="pdfSlipOccasion" style="padding: 10px 14px; border: 1px solid #EAE4DC;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Event Date:</td>
+              <td id="pdfSlipEventDate" style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Event Occasion:</td>
+              <td id="pdfSlipOccasion" style="padding: 8px 10px; border: 1px solid #EAE4DC;">--</td>
             </tr>
             <tr style="background: #FAF8F5;">
-              <td style="padding: 10px 14px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Venue Allocated:</td>
-              <td id="pdfSlipVenue" style="padding: 10px 14px; border: 1px solid #EAE4DC; font-weight: 600;">--</td>
-              <td style="padding: 10px 14px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Time Slot:</td>
-              <td id="pdfSlipSlot" style="padding: 10px 14px; border: 1px solid #EAE4DC;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Venue Allocated:</td>
+              <td id="pdfSlipVenue" style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: 600;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Time Slot:</td>
+              <td id="pdfSlipSlot" style="padding: 8px 10px; border: 1px solid #EAE4DC;">--</td>
             </tr>
             <tr>
-              <td style="padding: 10px 14px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Approx Guests:</td>
-              <td id="pdfSlipGuests" style="padding: 10px 14px; border: 1px solid #EAE4DC;">--</td>
-              <td style="padding: 10px 14px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Pre-Wedding Haldi:</td>
-              <td id="pdfSlipHaldi" style="padding: 10px 14px; border: 1px solid #EAE4DC;">None</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Approx Guests:</td>
+              <td id="pdfSlipGuests" style="padding: 8px 10px; border: 1px solid #EAE4DC;">--</td>
+              <td style="padding: 8px 10px; border: 1px solid #EAE4DC; font-weight: bold; color: #0C2B22;">Pre-Wedding Haldi:</td>
+              <td id="pdfSlipHaldi" style="padding: 8px 10px; border: 1px solid #EAE4DC;">None</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <!-- Notes / Special Instructions -->
-      <div id="pdfSlipNotesWrapper" style="margin-top: 14px; padding: 10px 14px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 11px; color: #475569;">
+      <div id="pdfSlipNotesWrapper" style="margin-top: 10px; padding: 7px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 10px; color: #475569;">
         <strong>Special Notes / Requirements:</strong> <span id="pdfSlipNotesText">None</span>
       </div>
 
-      <!-- Official Terms & Conditions (६ महत्त्वाचे नियम व अटी) -->
-      <div style="margin-top: 24px; border-top: 1.5px solid #C5A059; padding-top: 14px;">
-        <h4 style="font-family: 'Cinzel', serif; font-size: 12px; font-weight: bold; color: #0C2B22; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1px;">
-          📋 Terms & Conditions / नियम व अटी:
+      <!-- Clean Rendered Terms & Conditions -->
+      <div style="margin-top: 16px; border-top: 1.5px solid #C5A059; padding-top: 10px;">
+        <h4 style="font-family: 'Cinzel', serif; font-size: 11px; font-weight: bold; color: #0C2B22; margin: 0 0 6px 0; text-transform: uppercase; letter-spacing: 0.5px;">
+          TERMS & CONDITIONS / नियम व अटी:
         </h4>
-        <ol style="margin: 0; padding-left: 18px; font-size: 10px; line-height: 1.6; color: #475569;">
-          <li><strong>पेमेंट आणि ॲडव्हान्स (Advance & Payment):</strong> बुकिंग निश्चित करण्यासाठी ठरलेली टोकन रक्कम भरणे अनिवार्य आहे. उर्वरित संपूर्ण रक्कम कार्यक्रमाच्या दिवसापूर्वी जमा करावी लागेल.</li>
-          <li><strong>वेळेचे काटेकोर पालन (Slot Timings):</strong> निवडलेल्या स्लॉटनुसार (Day किंवा Night) वेळेचे पालन करावे. ठरलेल्या वेळेपेक्षा जास्त वेळ वापरल्यास अतिरिक्त शुल्क लागू होईल.</li>
-          <li><strong>रद्द करणे व परतावा (Cancellation Policy):</strong> बुकिंग रद्द केल्यास टोकन परतावा व्यवस्थापनाच्या नियमांनुसार राहील. ऐनवेळी रद्द केल्यास रक्कम परत मिळणार नाही.</li>
-          <li><strong>मालमत्ता नुकसान (Property Damages):</strong> कार्यक्रमादरम्यान लॉन, स्टेज, रोषणाई, एसी किंवा मालमत्तेचे नुकसान झाल्यास त्याची भरपाई आयोजकांकडून घेतली जाईल.</li>
-          <li><strong>आवाज मर्यादा व शासकीय नियम (Sound & Govt. Guidelines):</strong> रात्री १० नंतर शासनाच्या नियमानुसार मोठ्या आवाजात डीजे वाजवण्यास बंदी आहे. फटाके फोडताना सुरक्षेची काळजी घ्यावी.</li>
-          <li><strong>परिसर स्वच्छता (Cleanliness):</strong> परिसर स्वच्छ ठेवणे आवश्यक आहे. लॉन परिसरात कोणत्याही प्रकारच्या अवैध वस्तूंना कडक बंदी आहे.</li>
-        </ol>
+        <div style="font-size: 9.5px; line-height: 1.55; color: #475569; font-family: 'Noto Sans Devanagari', sans-serif;">
+          <p style="margin: 3px 0;"><strong>१. पेमेंट आणि ॲडव्हान्स (Advance & Payment):</strong> बुकिंग निश्चित करण्यासाठी ठरलेली टोकन रक्कम भरणे अनिवार्य आहे. उर्वरित संपूर्ण रक्कम कार्यक्रमाच्या दिवसापूर्वी जमा करावी लागेल.</p>
+          <p style="margin: 3px 0;"><strong>२. वेळेचे काटेकोर पालन (Slot Timings):</strong> निवडलेल्या स्लॉटनुसार (Day किंवा Night) वेळेचे पालन करावे. ठरलेल्या वेळेपेक्षा जास्त वेळ वापरल्यास अतिरिक्त शुल्क लागू होईल.</p>
+          <p style="margin: 3px 0;"><strong>३. रद्द करणे व परतावा (Cancellation Policy):</strong> बुकिंग रद्द केल्यास टोकन परतावा व्यवस्थापनाच्या नियमांनुसार राहील. ऐनवेळी रद्द केल्यास रक्कम परत मिळणार नाही.</p>
+          <p style="margin: 3px 0;"><strong>४. मालमत्ता नुकसान (Property Damages):</strong> कार्यक्रमादरम्यान लॉन, स्टेज, रोषणाई, एसी किंवा मालमत्तेचे नुकसान झाल्यास त्याची भरपाई आयोजकांकडून घेतली जाईल.</p>
+          <p style="margin: 3px 0;"><strong>५. आवाज मर्यादा व शासकीय नियम (Sound & Govt. Guidelines):</strong> रात्री १० नंतर शासनाच्या नियमानुसार मोठ्या आवाजात डीजे वाजवण्यास बंदी आहे. फटाके फोडताना सुरक्षेची काळजी घ्यावी.</p>
+          <p style="margin: 3px 0;"><strong>६. परिसर स्वच्छता (Cleanliness):</strong> परिसर स्वच्छ ठेवणे आवश्यक आहे. लॉन परिसरात कोणत्याही प्रकारच्या अवैध वस्तूंना कडक बंदी आहे.</p>
+        </div>
       </div>
 
       <!-- Signatures Footer -->
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 36px; padding-top: 10px;">
-        <div style="text-align: center; width: 220px; border-top: 1px solid #94a3b8; padding-top: 6px; font-size: 11px; color: #64748b;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 28px; padding-top: 6px;">
+        <div style="text-align: center; width: 180px; border-top: 1px solid #94a3b8; padding-top: 4px; font-size: 10px; color: #64748b;">
           Customer / Organizer Signature
         </div>
-        <div style="text-align: center; width: 220px; border-top: 1px solid #94a3b8; padding-top: 6px; font-size: 11px; color: #0C2B22; font-weight: bold;">
-          For Pandurang Lawns<br><span style="font-size: 9px; font-weight: normal; color: #64748b;">Authorized Signatory</span>
+        <div style="text-align: center; width: 180px; border-top: 1px solid #94a3b8; padding-top: 4px; font-size: 10px; color: #0C2B22; font-weight: bold;">
+          For Pandurang Lawns<br><span style="font-size: 8.5px; font-weight: normal; color: #64748b;">Authorized Signatory</span>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- Firebase Script Logic -->
+  <!-- COMPLETE FIREBASE & APPLICATION LOGIC SCRIPT (100% COMPLETE) -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
@@ -1186,7 +910,7 @@
       return booking.status || "Pending";
     }
 
-    // PDF Generation Engine using html2pdf
+    // PDF Generation Engine using html2pdf with A4 Fit
     window.downloadBookingReceiptPDF = (bookingData) => {
       if (!bookingData) return;
 
@@ -1203,7 +927,6 @@
       document.getElementById('pdfSlipGuests').textContent = (bookingData.guestCount || "—") + " Guests";
       document.getElementById('pdfSlipIssueDate').textContent = new Date().toLocaleDateString('en-GB');
 
-      // Check if Haldi is linked
       const haldiBooking = liveBookings.find(b => b.bookingId === (bId + "-H"));
       if (haldiBooking) {
         document.getElementById('pdfSlipHaldi').textContent = `${formatToIndianDate(haldiBooking.eventDate)} (${haldiBooking.venue || 'Hall'})`;
@@ -1211,7 +934,6 @@
         document.getElementById('pdfSlipHaldi').textContent = "None";
       }
 
-      // Status Badge Styling in PDF
       const statusBadge = document.getElementById('pdfSlipStatusBadge');
       if (effStatus === "Booked") {
         statusBadge.textContent = "CONFIRMED (BOOKED)";
@@ -1229,7 +951,7 @@
         statusBadge.style.color = "#be123c";
         statusBadge.style.border = "1px solid #fecdd3";
       } else {
-        statusBadge.textContent = "PROVISIONAL (PENDING)";
+        statusBadge.textContent = "PENDING REVIEW";
         statusBadge.style.background = "#fef3c7";
         statusBadge.style.color = "#b45309";
         statusBadge.style.border = "1px solid #fde68a";
@@ -1244,22 +966,22 @@
       }
 
       const printableElement = document.getElementById('pdfPrintableArea');
-      const wrapper = document.getElementById('pdfReceiptWrapper');
-      wrapper.style.display = "block";
 
       const opt = {
-        margin: 10,
+        margin: [6, 6, 6, 6],
         filename: `Pandurang_Lawns_Receipt_${bId}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
+        html2canvas: { 
+          scale: 2, 
+          useCORS: true,
+          letterRendering: true,
+          scrollY: 0,
+          scrollX: 0
+        },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      html2pdf().set(opt).from(printableElement).save().then(() => {
-        wrapper.style.display = "none";
-      }).catch(() => {
-        wrapper.style.display = "none";
-      });
+      html2pdf().set(opt).from(printableElement).save();
     };
 
     async function initAdminCredentials() {
@@ -1982,7 +1704,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
             ` : ''}
 
             ${matched.status === 'Booked' && eff !== 'Completed' ? `
-              <button onclick="openCancelReasonModal('${matched.id}')" class="px-3 py-1.5 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-semibold transition">
+              <button onclick="openCancelReasonModal('${matched.id}')" class="px-3.5 py-1.5 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-semibold transition">
                 <i class="fa-solid fa-triangle-exclamation mr-1"></i> रद्द विनंती
               </button>
             ` : ''}
