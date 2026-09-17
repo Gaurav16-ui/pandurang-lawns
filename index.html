@@ -117,7 +117,10 @@
         </a>
       </div>
       <div class="flex items-center space-x-3">
-        <span class="hidden md:inline text-brand-ivory/80"><i class="fa-solid fa-gem mr-1 text-brand-gold"></i> Open Lawn • Function Hall • AC Banquet</span>
+        <button onclick="openTrackModal()" class="text-[11px] text-brand-goldLight hover:text-white underline transition">
+          <i class="fa-solid fa-receipt text-[10px] mr-1 text-brand-gold"></i>Track / Cancel Booking
+        </button>
+        <span class="text-brand-gold/40">|</span>
         <button onclick="openAdminModal()" class="text-[11px] text-brand-gold hover:text-white underline transition">
           <i class="fa-solid fa-lock text-[10px] mr-1"></i>Owner Portal
         </button>
@@ -160,13 +163,17 @@
           <a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a>
         </nav>
 
-        <div class="hidden lg:flex items-center space-x-4">
+        <div class="hidden lg:flex items-center space-x-3">
+          <button onclick="openTrackModal()" class="px-4 py-2 text-xs font-cinzel font-semibold tracking-wider text-brand-goldLight border border-brand-gold/40 hover:border-brand-gold rounded-full transition">
+            <i class="fa-solid fa-magnifying-glass mr-1"></i> Track Booking
+          </button>
           <button onclick="openBookingModal()" class="px-5 py-2.5 text-xs font-cinzel font-bold tracking-widest uppercase bg-gradient-to-r from-brand-gold to-brand-goldDark text-brand-dark rounded-full shadow-gold-sm hover:shadow-gold-lg hover:scale-105 active:scale-95 transition-all duration-200">
             Book Now
           </button>
         </div>
 
         <div class="flex lg:hidden items-center space-x-2">
+          <button onclick="openTrackModal()" class="px-2.5 py-1.5 text-[11px] font-semibold text-brand-goldLight border border-brand-gold/40 rounded-full">Track</button>
           <button onclick="openBookingModal()" class="px-3 py-1.5 text-xs font-bold uppercase bg-brand-gold text-brand-dark rounded-full">Book</button>
           <button id="mobileMenuBtn" aria-label="Toggle Menu" class="text-brand-ivory p-1.5 focus:outline-none hover:text-brand-gold text-lg">
             <i class="fa-solid fa-bars-staggered"></i>
@@ -184,7 +191,10 @@
       <a href="#gallery" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Photo Gallery</a>
       <a href="#calendar-section" class="mobile-nav-link block text-brand-gold font-semibold py-1">Check Availability</a>
       <a href="#contact" class="mobile-nav-link block text-brand-ivory hover:text-brand-gold py-1">Contact & Location</a>
-      <div class="pt-2">
+      <div class="pt-2 flex flex-col gap-2">
+        <button onclick="openTrackModal(); toggleMobileMenu();" class="w-full py-2 text-center text-xs font-cinzel font-semibold border border-brand-gold text-brand-gold rounded-md">
+          Track / Manage Booking
+        </button>
         <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-2.5 text-center text-xs font-cinzel font-bold tracking-wider uppercase bg-brand-gold text-brand-dark rounded-md">
           Book Your Date
         </button>
@@ -611,6 +621,68 @@
     </button>
   </aside>
 
+  <!-- Track / Manage Booking Modal -->
+  <div id="trackBookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="relative bg-white w-full max-w-lg rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4">
+      <div class="bg-brand-forest px-5 sm:px-6 py-4 border-b border-brand-gold/30 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Customer Self-Service</span>
+          <h3 class="text-base sm:text-lg font-serif font-bold text-white">Track or Manage Your Booking</h3>
+        </div>
+        <button onclick="closeTrackModal()" class="text-brand-ivory/70 hover:text-brand-gold text-xl transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6 space-y-4 text-left">
+        <!-- Lookup Form -->
+        <form id="trackLookupForm" class="space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-brand-charcoal mb-1">Enter Booking ID *</label>
+            <input type="text" id="trackBookingIdInput" placeholder="e.g. PL-748291" required class="w-full px-3.5 py-2.5 text-xs uppercase font-mono rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-brand-charcoal mb-1">Registered Mobile Number *</label>
+            <input type="tel" id="trackMobileInput" placeholder="10-digit mobile used while booking" required pattern="[0-9]{10}" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-brand-border focus:ring-2 focus:ring-brand-gold outline-none" />
+          </div>
+          <button type="submit" class="w-full py-2.5 bg-brand-forest text-brand-gold font-cinzel font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-brand-forestLight transition">
+            Find My Booking
+          </button>
+        </form>
+
+        <div id="trackResultBox" class="hidden border border-brand-border rounded-2xl p-4 bg-brand-ivory space-y-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancellation Reason Modal (For Confirmed Bookings) -->
+  <div id="cancelReasonModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
+    <div class="relative bg-white w-full max-w-md rounded-2xl border border-rose-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b pb-2">
+        <h4 class="font-cinzel text-sm font-bold text-rose-800">
+          <i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Request Booking Cancellation
+        </h4>
+        <button onclick="closeCancelReasonModal()" class="text-brand-muted hover:text-brand-dark"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed">
+        आपली बुकिंग आधीच <strong>कन्फर्म (Booked)</strong> झालेली असल्याने ती थेट रद्द करता येत नाही. कृपया रद्द करण्याचे कारण नमूद करा. आपली विनंती लॉन व्यवस्थापकांकडे मंजुरीसाठी पाठवली जाईल.
+      </p>
+      <form id="cancelReasonForm" class="space-y-3">
+        <input type="hidden" id="cancelReasonBookingId" />
+        <div>
+          <label class="block text-xs font-semibold text-brand-charcoal mb-1">रद्द करण्याचे कारण (Reason for Cancellation) *</label>
+          <textarea id="cancelReasonText" rows="3" required placeholder="उदा. घरगुती कारणामुळे तारीख पुढे ढकलली आहे..." class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+        </div>
+        <div class="flex justify-end gap-2 pt-1">
+          <button type="button" onclick="closeCancelReasonModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold">मागे जा</button>
+          <button type="submit" class="px-5 py-2 bg-rose-700 text-white font-semibold text-xs rounded-xl hover:bg-rose-800 transition">
+            विनंती पाठवा
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 sm:my-8">
@@ -816,26 +888,26 @@
               <div id="statConfirmedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-emerald-700 mt-1">0</div>
             </div>
             <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-brand-border shadow-sm">
-              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-slate-700">Completed (Done)</span>
-              <div id="statCompletedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-slate-700 mt-1">0</div>
+              <span class="text-[11px] sm:text-xs font-cinzel uppercase text-rose-700">Cancel Requests</span>
+              <div id="statCancelRequestedBookings" class="text-xl sm:text-2xl font-cinzel font-bold text-rose-600 mt-1">0</div>
             </div>
           </div>
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
             <div class="p-3.5 sm:p-4 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
-              Smart Actions: Past events automatically show as Done. All WhatsApp messages are sent in clean Marathi format.
+              Smart Actions: Complete privacy is maintained on the live calendar. Customer cancellation reasons appear below for review.
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
                 <thead class="bg-brand-forest text-brand-gold text-[11px] uppercase tracking-wider font-cinzel">
                   <tr>
-                    <th class="py-3 px-3 sm:px-4">Date</th>
+                    <th class="py-3 px-3 sm:px-4">ID & Date</th>
                     <th class="py-3 px-3 sm:px-4">Venue & Slot</th>
                     <th class="py-3 px-3 sm:px-4">Customer</th>
                     <th class="py-3 px-3 sm:px-4">Contact</th>
                     <th class="py-3 px-3 sm:px-4">Occasion</th>
-                    <th class="py-3 px-3 sm:px-4">👥 Guests (लोक)</th>
-                    <th class="py-3 px-3 sm:px-4">Status</th>
+                    <th class="py-3 px-3 sm:px-4">👥 Guests</th>
+                    <th class="py-3 px-3 sm:px-4">Status & Notes</th>
                     <th class="py-3 px-3 sm:px-4 text-right">Instant Action</th>
                   </tr>
                 </thead>
@@ -914,6 +986,10 @@
       { venue: "AC Banquet Hall", slot: "Night Slot", label: "AC Banquet (Night)", icon: "fa-snowflake text-sky-600" }
     ];
 
+    function generateBookingId() {
+      return "PL-" + Math.floor(100000 + Math.random() * 900000);
+    }
+
     function formatToIndianDate(isoDateStr) {
       if (!isoDateStr) return "";
       const parts = isoDateStr.split('-');
@@ -933,7 +1009,6 @@
       return `${y}-${m}-${day}`;
     }
 
-    // Auto calculate effective status: past Booked events become "Completed"
     function getEffectiveStatus(booking) {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
@@ -1084,7 +1159,7 @@
 
       if (isPast) {
         if (confirmed.length > 0) {
-          return { status: "Completed", label: `Done (${confirmed.length})`, color: "slate", count: confirmed.length };
+          return { status: "Completed", label: `Done`, color: "slate", count: confirmed.length };
         }
         return { status: "PastFree", label: "Past", color: "slate" };
       }
@@ -1093,7 +1168,7 @@
         return { status: "FullyBooked", label: "Booked", color: "rose", count: confirmed.length };
       }
       if (confirmed.length > 0) {
-        return { status: "PartiallyBooked", label: `${confirmed.length} Booked`, color: "amber", bookedCount: confirmed.length };
+        return { status: "PartiallyBooked", label: `Booked`, color: "amber", bookedCount: confirmed.length };
       }
       if (pendings.length > 0) {
         return { status: "Pending", label: `Pending`, color: "amber", count: pendings.length };
@@ -1200,6 +1275,7 @@
       renderCalendar();
     };
 
+    // PRIVACY-ENFORCED DATE SELECTION: Hides user names and guest count for public
     function selectCalendarDate(dateStr) {
       selectedCalendarDateStr = dateStr;
       renderCalendar();
@@ -1224,17 +1300,17 @@
       if (isPast) {
         if (confirmedCount > 0) {
           badgeEl.className = "text-slate-800 bg-slate-200 px-3 py-1 rounded-full text-xs font-semibold";
-          badgeEl.textContent = `Past Date • ${confirmedCount} Event(s) Successfully Hosted (Done)`;
+          badgeEl.textContent = `Past Date • Event Successfully Hosted (Done)`;
         } else {
           badgeEl.className = "text-slate-600 bg-slate-100 px-3 py-1 rounded-full text-xs font-semibold";
           badgeEl.textContent = "Past Date (No events recorded)";
         }
       } else if (confirmedCount === 0) {
         badgeEl.className = "text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full text-xs font-semibold";
-        badgeEl.textContent = "All 6 Venue Slots Available";
+        badgeEl.textContent = "All Venue Slots Available";
       } else {
         badgeEl.className = "text-amber-800 bg-amber-100 px-3 py-1 rounded-full text-xs font-semibold";
-        badgeEl.textContent = `${confirmedCount} Slot(s) Booked • Remaining Slots Open`;
+        badgeEl.textContent = `Certain Slot(s) Booked • Remaining Slots Open`;
       }
 
       container.innerHTML = ALL_VENUE_SLOTS.map(item => {
@@ -1246,8 +1322,11 @@
 
         if (bookingMatch) {
           const effective = getEffectiveStatus(bookingMatch);
-          const guestCountDisplay = bookingMatch.guestCount ? `👥 ${bookingMatch.guestCount} लोक` : "👥 माहिती नाही";
-          const occText = (bookingMatch.eventType === "Haldi Ceremony (Pre-Wedding)") ? "Haldi Ceremony" : (bookingMatch.eventType || "Event");
+          
+          // PRIVACY RULE: Show client details ONLY if admin is authenticated
+          const privacyExtra = isAdminLoggedIn 
+            ? `<div class="text-[11px] text-brand-forest font-bold mt-0.5">👤 ${bookingMatch.customerName} (${bookingMatch.guestCount || 0} पाहुणे)</div>` 
+            : ``;
 
           if (effective === "Completed") {
             return `
@@ -1256,10 +1335,8 @@
                   <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
                     <i class="fa-solid ${item.icon}"></i> ${item.label}
                   </div>
-                  <div class="text-[11px] text-slate-700 font-semibold mt-0.5">
-                    <i class="fa-solid fa-circle-check text-slate-500 mr-1"></i> Hosted: ${occText} (${bookingMatch.customerName})
-                  </div>
-                  <div class="text-[10px] text-slate-500 font-medium mt-0.5">${guestCountDisplay}</div>
+                  <div class="text-[11px] text-slate-700 font-medium mt-0.5">Event Completed (Done)</div>
+                  ${privacyExtra}
                 </div>
                 <span class="px-2.5 py-1 bg-slate-300 text-slate-800 text-[10px] font-bold rounded-md uppercase">Done</span>
               </div>
@@ -1274,9 +1351,9 @@
                     <i class="fa-solid ${item.icon}"></i> ${item.label}
                   </div>
                   <div class="text-[11px] text-rose-700 font-semibold mt-0.5">
-                    <i class="fa-solid fa-lock mr-1"></i> Booked: ${occText} (${bookingMatch.customerName})
+                    <i class="fa-solid fa-lock mr-1"></i> Slot Confirmed (Booked)
                   </div>
-                  <div class="text-[10px] text-rose-800 font-medium mt-0.5">${guestCountDisplay}</div>
+                  ${privacyExtra}
                 </div>
                 <span class="px-2.5 py-1 bg-rose-200 text-rose-800 text-[10px] font-bold rounded-md uppercase">Booked</span>
               </div>
@@ -1290,7 +1367,8 @@
                   <div class="text-xs font-bold text-amber-900 flex items-center gap-1.5">
                     <i class="fa-solid ${item.icon}"></i> ${item.label}
                   </div>
-                  <div class="text-[11px] text-amber-700 mt-0.5">Request Pending (${guestCountDisplay})</div>
+                  <div class="text-[11px] text-amber-700 mt-0.5">Booking Under Review</div>
+                  ${privacyExtra}
                 </div>
                 ${!isPast ? `
                   <button onclick="prefillVenueAndBook('${item.venue}', '${item.slot}', '${dateStr}')" class="px-3 py-1 bg-amber-600 text-white text-[10px] font-bold rounded-lg uppercase hover:bg-amber-700 transition">
@@ -1424,7 +1502,7 @@
     document.getElementById('bHaldiVenue')?.addEventListener('change', verifyFormSlotConflict);
     document.getElementById('bHaldiSlot')?.addEventListener('change', verifyFormSlotConflict);
 
-    // Online Booking Submission
+    // Online Booking Submission with UNIQUE BOOKING ID
     document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
@@ -1443,7 +1521,9 @@
         return;
       }
 
+      const generatedId = generateBookingId();
       const commonInfo = {
+        bookingId: generatedId,
         customerName: document.getElementById('bFullName').value.trim(),
         mobile: document.getElementById('bMobile').value.trim(),
         email: document.getElementById('bEmail').value.trim(),
@@ -1468,6 +1548,7 @@
           const haldiSlot = document.getElementById('bHaldiSlot').value;
           await addDoc(bookingsCol, {
             ...commonInfo,
+            bookingId: generatedId + "-H",
             venue: haldiVenue,
             slot: haldiSlot,
             eventType: "Haldi Ceremony (Pre-Wedding)",
@@ -1476,7 +1557,7 @@
           });
         }
 
-        alert(`आपली विनंती यशस्वीरित्या नोंदवली गेली आहे! तारीख: ${formatToIndianDate(eventDate)} (${venue}). आमचे व्यवस्थापक लवकरच आपल्याशी संपर्क साधतील.`);
+        alert(`आपली विनंती यशस्वीरित्या नोंदवली गेली आहे!\n\nतुमचा Booking ID: ${generatedId}\nतारीख: ${formatToIndianDate(eventDate)} (${venue})\n\nहा Booking ID जपून ठेवा. तुम्ही 'Track Booking' पर्यायातून तुमच्या बुकिंगची स्थिती तपासू शकता.`);
         closeBookingModal();
         document.getElementById('bookingForm').reset();
         document.getElementById('haldiVenueDetailsBox').classList.add('hidden');
@@ -1485,6 +1566,135 @@
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
+      }
+    });
+
+    // CUSTOMER TRACK / MANAGE BOOKING
+    window.openTrackModal = () => {
+      document.getElementById('trackBookingModal').classList.remove('hidden');
+      document.getElementById('trackBookingModal').classList.add('modal-active');
+      document.getElementById('trackResultBox').classList.add('hidden');
+      document.getElementById('trackLookupForm').reset();
+    };
+
+    window.closeTrackModal = () => {
+      document.getElementById('trackBookingModal').classList.add('hidden');
+      document.getElementById('trackBookingModal').classList.remove('modal-active');
+    };
+
+    document.getElementById('trackLookupForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const lookupId = document.getElementById('trackBookingIdInput').value.trim().toUpperCase();
+      const lookupMobile = document.getElementById('trackMobileInput').value.trim();
+
+      const matched = liveBookings.find(b => 
+        (b.bookingId && b.bookingId.toUpperCase() === lookupId) && 
+        b.mobile.includes(lookupMobile)
+      );
+
+      const resultBox = document.getElementById('trackResultBox');
+      resultBox.classList.remove('hidden');
+
+      if (!matched) {
+        resultBox.innerHTML = `
+          <div class="text-rose-800 text-xs font-semibold">
+            <i class="fa-solid fa-circle-exclamation mr-1"></i> कोणतीही बुकिंग सापडली नाही. कृपया Booking ID आणि मोबाईल नंबर बरोबर तपासा.
+          </div>
+        `;
+        return;
+      }
+
+      const eff = getEffectiveStatus(matched);
+      let statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-amber-100 text-amber-800">Pending (प्रलंबित)</span>`;
+      if (matched.status === "Cancellation Requested") {
+        statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-rose-100 text-rose-800">Cancellation Requested (रद्द करण्याची विनंती पाठवली आहे)</span>`;
+      } else if (eff === "Booked") {
+        statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800">Confirmed (कन्फर्म)</span>`;
+      } else if (eff === "Completed") {
+        statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-200 text-slate-800">Done (कार्यक्रम पूर्ण)</span>`;
+      } else if (eff === "Cancelled") {
+        statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-rose-100 text-rose-800">Cancelled (रद्द)</span>`;
+      }
+
+      resultBox.innerHTML = `
+        <div class="space-y-2 text-xs">
+          <div class="flex justify-between items-center border-b pb-2">
+            <span class="font-mono font-bold text-brand-forest">ID: ${matched.bookingId}</span>
+            <div>${statusBadge}</div>
+          </div>
+          <div><strong>नाव:</strong> ${matched.customerName}</div>
+          <div><strong>तारीख:</strong> ${formatToIndianDate(matched.eventDate)}</div>
+          <div><strong>व्हेन्यू व स्लॉट:</strong> ${matched.venue || "Open Lawn"} (${matched.slot || "Night Slot"})</div>
+          <div><strong>पाहुणे:</strong> 👥 ${matched.guestCount || 0} लोक</div>
+          ${matched.cancelReason ? `<div class="p-2 bg-rose-50 border border-rose-200 rounded text-rose-900 mt-1"><strong>रद्द करण्याचे कारण:</strong> ${matched.cancelReason}</div>` : ''}
+
+          <div class="pt-3 border-t flex items-center justify-between gap-2">
+            ${matched.status === 'Pending' ? `
+              <button onclick="customerDirectCancel('${matched.id}', '${matched.customerName}')" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold transition">
+                <i class="fa-solid fa-xmark mr-1"></i> विनंती रद्द करा (Cancel Request)
+              </button>
+            ` : ''}
+
+            ${matched.status === 'Booked' && eff !== 'Completed' ? `
+              <button onclick="openCancelReasonModal('${matched.id}')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold transition">
+                <i class="fa-solid fa-triangle-exclamation mr-1"></i> रद्द करण्याची विनंती करा (Request Cancellation)
+              </button>
+            ` : ''}
+
+            ${matched.status === 'Cancellation Requested' ? `
+              <span class="text-[11px] text-amber-700 font-semibold italic">आपली विनंती व्यवस्थापकांकडे प्रलंबित आहे. लवकरच निर्णय कळवला जाईल.</span>
+            ` : ''}
+
+            <a href="tel:9579520187" class="px-3.5 py-2 border border-brand-border text-brand-forest rounded-xl text-xs font-semibold hover:bg-brand-cream/50 transition ml-auto">
+              <i class="fa-solid fa-phone mr-1"></i> व्यवस्थापकांशी बोला
+            </a>
+          </div>
+        </div>
+      `;
+    });
+
+    // Customer can directly cancel if status is still Pending
+    window.customerDirectCancel = async (docId, name) => {
+      if (confirm(`नमस्कार ${name} जी, तुम्हाला ही बुकिंग विनंती नक्की रद्द करायची आहे का?`)) {
+        try {
+          await updateDoc(doc(db, "bookings", docId), { status: "Cancelled", cancelReason: "Customer cancelled while pending" });
+          alert("आपली बुकिंग विनंती यशस्वीरित्या रद्द करण्यात आली आहे.");
+          closeTrackModal();
+        } catch (err) {
+          alert("एरर: विनंती रद्द करता आली नाही.");
+        }
+      }
+    };
+
+    // For Booked events: open reason modal
+    window.openCancelReasonModal = (docId) => {
+      document.getElementById('cancelReasonBookingId').value = docId;
+      document.getElementById('cancelReasonText').value = "";
+      document.getElementById('cancelReasonModal').classList.remove('hidden');
+      document.getElementById('cancelReasonModal').classList.add('modal-active');
+    };
+
+    window.closeCancelReasonModal = () => {
+      document.getElementById('cancelReasonModal').classList.add('hidden');
+      document.getElementById('cancelReasonModal').classList.remove('modal-active');
+    };
+
+    document.getElementById('cancelReasonForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const docId = document.getElementById('cancelReasonBookingId').value;
+      const reason = document.getElementById('cancelReasonText').value.trim();
+
+      try {
+        await updateDoc(doc(db, "bookings", docId), {
+          status: "Cancellation Requested",
+          cancelReason: reason,
+          cancelRequestedAt: new Date().toISOString()
+        });
+        alert("रद्द करण्याची विनंती कारणासह व्यवस्थापकांकडे पाठवण्यात आली आहे. व्यवस्थापकांच्या मान्यतेनंतर अंतिम निर्णय कळवला जाईल.");
+        closeCancelReasonModal();
+        closeTrackModal();
+      } catch (err) {
+        alert("त्रुटी आली. कृपया पुन्हा प्रयत्न करा.");
       }
     });
 
@@ -1518,6 +1728,7 @@
         document.getElementById('adminLoginView').classList.add('hidden');
         document.getElementById('adminDashboardView').classList.remove('hidden');
         renderAdminDashboard();
+        renderCalendar();
       } else {
         const err = document.getElementById('adminLoginError');
         err.textContent = "चुकीचा युझरनेम किंवा पासवर्ड!";
@@ -1534,6 +1745,7 @@
         document.getElementById('adminLoginForm').reset();
         document.getElementById('adminLoginView').classList.remove('hidden');
         document.getElementById('adminDashboardView').classList.add('hidden');
+        renderCalendar();
       }
     };
 
@@ -1576,7 +1788,6 @@
       }
     };
 
-    // Helper to translate venue/slot in Marathi messages clearly without nested brackets
     function getMarathiSlotDetails(venue, slot) {
       let s = slot;
       if (slot === "Night Slot") s = "रात्र वेळ (Night Slot)";
@@ -1585,7 +1796,7 @@
       return `${venue} - ${s}`;
     }
 
-    // 1. RE-APPROVE IN MARATHI (Clean - No Emoji Bugs)
+    // RE-APPROVE IN MARATHI (Clean)
     window.reApproveBooking = async (id, eventDate, venue, slot, name, mobile) => {
       const conflict = isSlotBooked(eventDate, venue, slot);
       if (conflict) {
@@ -1593,7 +1804,7 @@
         return;
       }
 
-      await updateDoc(doc(db, "bookings", id), { status: "Booked" });
+      await updateDoc(doc(db, "bookings", id), { status: "Booked", cancelReason: "" });
       const indianDate = formatToIndianDate(eventDate);
       const slotText = getMarathiSlotDetails(venue, slot);
 
@@ -1616,42 +1827,84 @@
       alert(`${name} यांची बुकिंग पुन्हा कन्फर्म झाली असून व्हॉट्सअ‍ॅप मेसेज पाठवला आहे!`);
     };
 
+    // ADMIN APPROVES CANCELLATION REQUEST
+    window.adminApproveCancellation = async (id, eventDate, venue, slot, name, mobile) => {
+      if (confirm(`तुम्ही ${name} यांची रद्द करण्याची विनंती मंजूर करत आहात का?\nमंजूर केल्यास हा स्लॉट कॅलेंडरवर पुन्हा सर्व लोकांसाठी उपलब्ध (Free) होईल.`)) {
+        await updateDoc(doc(db, "bookings", id), { status: "Cancelled" });
+        const indianDate = formatToIndianDate(eventDate);
+        const slotText = getMarathiSlotDetails(venue, slot);
+
+        const cancelApprovedMsg = `नमस्कार *${name}* जी,
+
+*पांडुरंग लॉन्स (Pandurang Lawns)* कडून हा संदेश पाठवत आहोत.
+
+आपल्या विनंतीनुसार, दिनांक *${indianDate}* रोजीसाठीची [${slotText}] ची आपली बुकिंग *रद्द (Cancelled)* करण्यात आली आहे आणि स्लॉट मोकळा करण्यात आला आहे.
+
+काही शंका असल्यास संपर्क:
+• राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
+• संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+
+धन्यवाद!`;
+
+        dispatchWhatsAppDirect(mobile, cancelApprovedMsg);
+        alert("कॅन्सलेशन मंजूर झाले असून स्लॉट मोकळा झाला आहे.");
+      }
+    };
+
+    // ADMIN REJECTS CANCELLATION REQUEST (KEEPS IT BOOKED)
+    window.adminRejectCancellation = async (id, name) => {
+      if (confirm(`तुम्हाला ${name} यांची कॅन्सलेशन विनंती नाकारून बुकिंग 'Booked' ठेवायची आहे का?`)) {
+        await updateDoc(doc(db, "bookings", id), { status: "Booked" });
+        alert("कॅन्सलेशन विनंती नाकारली असून बुकिंग Confirmed राहिली आहे.");
+      }
+    };
+
     function renderAdminDashboard() {
       let total = liveBookings.length;
       let pending = 0;
       let confirmed = 0;
-      let completed = 0;
+      let cancelReqCount = 0;
 
       liveBookings.forEach(b => {
         const eff = getEffectiveStatus(b);
         if (eff === "Pending") pending++;
         else if (eff === "Booked") confirmed++;
-        else if (eff === "Completed") completed++;
+        if (b.status === "Cancellation Requested") cancelReqCount++;
       });
 
       document.getElementById('statTotalBookings').textContent = total;
       document.getElementById('statPendingBookings').textContent = pending;
       document.getElementById('statConfirmedBookings').textContent = confirmed;
-      document.getElementById('statCompletedBookings').textContent = completed;
+      document.getElementById('statCancelRequestedBookings').textContent = cancelReqCount;
 
       const tbody = document.getElementById('adminBookingsTableBody');
       tbody.innerHTML = liveBookings.map(b => {
         const effStatus = getEffectiveStatus(b);
         let statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">Pending</span>`;
-        if (effStatus === "Booked") statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Booked</span>`;
-        if (effStatus === "Completed") statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-800"><i class="fa-solid fa-check mr-1"></i>Done</span>`;
-        if (effStatus === "Cancelled") statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">Cancelled</span>`;
+        if (b.status === "Cancellation Requested") {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800 animate-pulse">Cancel Requested</span>`;
+        } else if (effStatus === "Booked") {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Booked</span>`;
+        } else if (effStatus === "Completed") {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-200 text-slate-800"><i class="fa-solid fa-check mr-1"></i>Done</span>`;
+        } else if (effStatus === "Cancelled") {
+          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">Cancelled</span>`;
+        }
 
         const displayDate = formatToIndianDate(b.eventDate);
         const venueName = b.venue || "Open Lawn";
         const slotName = b.slot || "Night Slot";
         const guestCountDisplay = b.guestCount ? `👥 ${b.guestCount} लोक` : "—";
+        const bId = b.bookingId || "PL-LEGACY";
 
         const slotIsFree = !isSlotBooked(b.eventDate, venueName, slotName);
 
         return `
           <tr class="hover:bg-brand-cream/30">
-            <td class="py-3 px-3 sm:px-4 font-bold text-brand-forest whitespace-nowrap">${displayDate}</td>
+            <td class="py-3 px-3 sm:px-4 whitespace-nowrap">
+              <span class="font-mono text-[10px] font-bold text-brand-goldDark bg-brand-cream px-1.5 py-0.5 rounded">${bId}</span><br>
+              <strong class="text-brand-forest">${displayDate}</strong>
+            </td>
             <td class="py-3 px-3 sm:px-4">
               <span class="font-bold text-brand-forest">${venueName}</span><br>
               <span class="text-[11px] text-brand-muted"><i class="fa-solid fa-clock text-[10px] mr-1"></i>${slotName}</span>
@@ -1660,10 +1913,22 @@
             <td class="py-3 px-3 sm:px-4">${b.mobile}</td>
             <td class="py-3 px-3 sm:px-4">${b.eventType}</td>
             <td class="py-3 px-3 sm:px-4 font-bold text-brand-forest whitespace-nowrap">${guestCountDisplay}</td>
-            <td class="py-3 px-3 sm:px-4">${statusBadge}</td>
+            <td class="py-3 px-3 sm:px-4 max-w-[200px]">
+              <div>${statusBadge}</div>
+              ${b.cancelReason ? `<div class="text-[10px] text-rose-800 mt-1 bg-rose-50 p-1 rounded border border-rose-200"><strong>कारण:</strong> ${b.cancelReason}</div>` : ''}
+            </td>
             <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
+              ${b.status === 'Cancellation Requested' ? `
+                <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs" title="Approve user request to cancel and free slot">
+                  Approve Cancel
+                </button>
+                <button onclick="adminRejectCancellation('${b.id}', '${b.customerName}')" class="px-2 py-1 rounded bg-slate-600 hover:bg-slate-700 text-white font-bold text-xs" title="Reject request and keep booked">
+                  Keep Booked
+                </button>
+              ` : ''}
+
               ${b.status === 'Pending' ? `
-                <button onclick="approveDirectSmart('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs">
+                <button onclick="approveDirectSmart('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}', '${bId}')" class="px-2.5 py-1 rounded bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs">
                   Approve & Notify
                 </button>
               ` : ''}
@@ -1680,9 +1945,6 @@
                     <i class="fa-solid fa-rotate-left mr-1"></i> Re-Approve
                   </button>
                 ` : ''}
-                <button onclick="sendCancellationWhatsAppOnly('${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2.5 py-1 rounded bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs" title="Send cancellation message">
-                  <i class="fa-brands fa-whatsapp mr-1"></i> Send Cancel Msg
-                </button>
               ` : ''}
 
               <button onclick="deleteBookingById('${b.id}')" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs">
@@ -1701,7 +1963,7 @@
       window.open(url, '_blank');
     }
 
-    // 2. CANCELLATION NOTIFICATION IN MARATHI (Clean)
+    // CANCELLATION NOTIFICATION IN MARATHI (Clean)
     window.sendCancellationWhatsAppOnly = (eventDate, venue, slot, name, mobile) => {
       const indianDate = formatToIndianDate(eventDate);
       const slotText = getMarathiSlotDetails(venue, slot);
@@ -1723,8 +1985,8 @@
       dispatchWhatsAppDirect(mobile, cancelMsg);
     };
 
-    // 3. APPROVAL & NOTIFY IN MARATHI (Clean)
-    window.approveDirectSmart = async (selectedId, eventDate, venue, slot, name, mobile) => {
+    // APPROVAL & NOTIFY IN MARATHI (Includes Booking ID)
+    window.approveDirectSmart = async (selectedId, eventDate, venue, slot, name, mobile, bookingId) => {
       await updateDoc(doc(db, "bookings", selectedId), { status: "Booked" });
       const indianDate = formatToIndianDate(eventDate);
       const slotText = getMarathiSlotDetails(venue, slot);
@@ -1743,6 +2005,7 @@
 
 आपल्या विनंतीनुसार, दिनांक *${indianDate}* रोजीसाठी *${slotText}* ची आपली बुकिंग यशस्वीरित्या *कन्फर्म (CONFIRMED)* करण्यात आली आहे.
 
+• Booking ID: *${bookingId}*
 • पत्ता: ${VENUE_CONFIG.address}
 • गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
 
@@ -1755,7 +2018,7 @@
       dispatchWhatsAppDirect(mobile, confirmMsg);
 
       for (let c of conflictPendings) {
-        await updateDoc(doc(db, "bookings", c.id), { status: "Cancelled" });
+        await updateDoc(doc(db, "bookings", c.id), { status: "Cancelled", cancelReason: "Slot allocated to confirmed booking" });
       }
 
       if (conflictPendings.length > 0) {
@@ -1771,11 +2034,10 @@
     };
 
     window.cancelDirectSingle = async (id, eventDate, venue, slot, name, mobile) => {
-      await updateDoc(doc(db, "bookings", id), { status: "Cancelled" });
+      await updateDoc(doc(db, "bookings", id), { status: "Cancelled", cancelReason: "Admin cancelled booking" });
       window.sendCancellationWhatsAppOnly(eventDate, venue, slot, name, mobile);
     };
 
-    // 4. FLOATING WHATSAPP BUTTON IN MARATHI
     window.openWhatsAppUser = (num) => {
       const defaultUserMsg = "नमस्कार पांडुरंग लॉन्स, मला लॉन बुकिंग संदर्भात चौकशी करायची आहे.";
       window.open(`https://wa.me/${num}?text=${encodeURIComponent(defaultUserMsg)}`, '_blank');
