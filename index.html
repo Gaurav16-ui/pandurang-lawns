@@ -109,11 +109,11 @@
       <div class="flex items-center justify-center gap-2 sm:gap-4 flex-wrap text-center">
         <a href="tel:9579520187" class="inline-flex items-center gap-1 hover:text-white transition px-2 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
           <i class="fa-solid fa-phone text-[10px] text-brand-gold"></i>
-          <span>Rakesh: <strong>+91 95795 20187</strong></span>
+          <span>राकेश: <strong>+91 95795 20187</strong></span>
         </a>
         <a href="tel:9021567601" class="inline-flex items-center gap-1 hover:text-white transition px-2 py-0.5 rounded bg-brand-forestLight/60 border border-brand-gold/30">
           <i class="fa-solid fa-phone text-[10px] text-brand-gold"></i>
-          <span>Santosh: <strong>+91 90215 67601</strong></span>
+          <span>संतोष: <strong>+91 90215 67601</strong></span>
         </a>
       </div>
       <div class="flex items-center space-x-3">
@@ -587,7 +587,7 @@
             <a href="tel:9175943224" class="px-3.5 py-1.5 bg-white/10 hover:bg-brand-gold hover:text-brand-dark rounded-xl border border-brand-gold/40 text-xs font-semibold transition flex items-center gap-1.5 text-brand-goldLight">
               <i class="fa-solid fa-phone text-[11px]"></i> +91 91759 43224
             </a>
-            <a href="https://wa.me/919175943224?text=Hello%20Gaurav,%20I%20saw%20the%20Pandurang%20Lawns%20website%20and%20would%20like%20to%20develop%20a%20website%20with%20you." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+            <a href="https://wa.me/919175943224?text=%E0%A4%A8%E0%A4%AE%E0%A4%B8%E0%A5%8D%E0%A4%95%E0%A4%BE%E0%A4%B0%20%E0%A4%97%E0%A5%8C%E0%A4%B0%E0%A4%B5,%20%E0%A4%AE%E0%A5%80%20%E0%A4%AA%E0%A4%BE%E0%A4%82%E0%A4%A1%E0%A5%81%E0%A4%B0%E0%A4%82%E0%A4%97%20%E0%A4%B2%E0%A5%89%E0%A4%A8%E0%A5%8D%E0%A4%B8%E0%A4%9A%E0%A5%80%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AA%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%B2%E0%A5%80.%20%E0%A4%AE%E0%A4%B2%E0%A4%BE%20%E0%A4%A6%E0%A5%87%E0%A4%96%E0%A5%80%E0%A4%B2%20%E0%A4%8F%E0%A4%95%20%E0%A4%B5%E0%A5%87%E0%A4%AC%E0%A4%B8%E0%A4%BE%E0%A4%88%E0%A4%9F%20%E0%A4%AC%E0%A4%A8%E0%A4%B5%E0%A5%82%E0%A4%A8%20%E0%A4%98%E0%A5%8D%E0%A4%AF%E0%A4%BE%E0%A4%AF%E0%A4%9A%E0%A5%80%20%E0%A4%86%E0%A4%B9%E0%A5%87." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
               <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
             </a>
           </div>
@@ -823,7 +823,7 @@
 
           <div class="bg-white rounded-2xl border border-brand-border shadow-sm overflow-hidden">
             <div class="p-3.5 sm:p-4 bg-slate-50 border-b border-brand-border text-xs font-semibold text-brand-forest">
-              Smart Actions: Past events automatically show as Done. If cancelled booking's slot becomes free, you can Re-Approve anytime!
+              Smart Actions: Past events automatically show as Done. All WhatsApp messages are sent in Marathi.
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs border-collapse">
@@ -1190,7 +1190,6 @@
           <div class="mt-1">${statusBadge}</div>
         `;
 
-        // Every date is clickable so users/admins can see historical booking details too!
         cell.onclick = () => selectCalendarDate(dateStr);
         calendarGrid.appendChild(cell);
       }
@@ -1401,20 +1400,20 @@
 
       if (mainConflict) {
         alertBox.className = "p-3 rounded-xl text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300 block";
-        alertBox.innerHTML = `⚠️ <strong>${v} (${s})</strong> is officially booked on ${formatToIndianDate(d)}! Please select another venue or slot.`;
+        alertBox.innerHTML = `⚠️ <strong>${v} (${s})</strong> हा स्लॉट ${formatToIndianDate(d)} रोजी आधीच बुक झालेला आहे! कृपया दुसरा व्हेन्यू किंवा वेळ निवडा.`;
         feedback.className = "text-[11px] block mt-1 text-rose-600 font-semibold";
-        feedback.textContent = "Slot already booked!";
+        feedback.textContent = "हा स्लॉट आधीच बुक आहे!";
         submitBtn.disabled = true;
       } else if (haldiConflict) {
         alertBox.className = "p-3 rounded-xl text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300 block";
-        alertBox.innerHTML = `⚠️ For Previous Day Haldi on ${formatToIndianDate(prevDate)}, the selected venue/slot is already booked! Please change Haldi venue/slot.`;
+        alertBox.innerHTML = `⚠️ आदल्या दिवशीच्या हळदीसाठी (${formatToIndianDate(prevDate)}) निवडलेला व्हेन्यू/स्लॉट आधीच बुक आहे! कृपया हळदीचा व्हेन्यू किंवा वेळ बदला.`;
         feedback.className = "text-[11px] block mt-1 text-rose-600 font-semibold";
-        feedback.textContent = "Haldi date/slot booked!";
+        feedback.textContent = "हळदीची तारीख/स्लॉट बुक आहे!";
         submitBtn.disabled = true;
       } else {
         alertBox.className = "hidden";
         feedback.className = "text-[11px] block mt-1 text-emerald-700 font-semibold";
-        feedback.textContent = `This Slot is available for booking!`;
+        feedback.textContent = `हा स्लॉट बुकिंगसाठी उपलब्ध आहे!`;
         submitBtn.disabled = false;
       }
     }
@@ -1438,7 +1437,7 @@
       const includeHaldi = document.getElementById('bIncludeHaldi').checked;
 
       if (isSlotBooked(eventDate, venue, slot)) {
-        alert(`Sorry! ${venue} (${slot}) on ${formatToIndianDate(eventDate)} was already confirmed.`);
+        alert(`क्षमस्व! ${formatToIndianDate(eventDate)} रोजी ${venue} (${slot}) आधीच कन्फर्म झालेले आहे.`);
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
         return;
@@ -1477,12 +1476,12 @@
           });
         }
 
-        alert(`Your request for ${venue} on ${formatToIndianDate(eventDate)} ${includeHaldi ? '(Including Previous Day Haldi)' : ''} has been submitted!`);
+        alert(`आपली विनंती यशस्वीरित्या नोंदवली गेली आहे! तारीख: ${formatToIndianDate(eventDate)} (${venue}). आमचे व्यवस्थापक लवकरच आपल्याशी संपर्क साधतील.`);
         closeBookingModal();
         document.getElementById('bookingForm').reset();
         document.getElementById('haldiVenueDetailsBox').classList.add('hidden');
       } catch (err) {
-        alert("Network error. Please try again.");
+        alert("इंटरनेट एरर. कृपया पुन्हा प्रयत्न करा.");
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = "Submit Request";
@@ -1521,13 +1520,13 @@
         renderAdminDashboard();
       } else {
         const err = document.getElementById('adminLoginError');
-        err.textContent = "Invalid username or password!";
+        err.textContent = "चुकीचा युझरनेम किंवा पासवर्ड!";
         err.classList.remove('hidden');
       }
     });
 
     window.handleAdminLogout = () => {
-      if (confirm("Do you want to log out from this device?")) {
+      if (confirm("आपण या डिव्हाइसवरून लॉगआऊट करू इच्छिता का?")) {
         isAdminLoggedIn = false;
         localStorage.removeItem("pandurang_admin_logged_in");
         document.getElementById('adminUsername').value = "";
@@ -1559,36 +1558,63 @@
       try {
         currentAdminAuth = { username: newU, password: newP };
         await setDoc(adminDocRef, currentAdminAuth);
-        alert("Admin profile updated successfully in Cloud!");
+        alert("ॲडमिन प्रोफाईल यशस्वीरित्या अपडेट करण्यात आले!");
         showAdminTab('bookings');
       } catch (err) {
-        alert("Failed to update credentials.");
+        alert("अपडेट अयशस्वी झाले.");
       }
     });
 
     window.deleteBookingById = async (bookingId) => {
-      if (confirm("Are you sure you want to permanently delete this booking record?")) {
+      if (confirm("तुम्हाला खात्री आहे का की ही बुकिंग कायमची हटवायची आहे?")) {
         try {
           await deleteDoc(doc(db, "bookings", bookingId));
-          alert("Booking deleted successfully!");
+          alert("बुकिंग रेकॉर्ड यशस्वीरित्या हटवला!");
         } catch (error) {
-          alert("Could not delete record: " + error.message);
+          alert("रेकॉर्ड हटवता आला नाही: " + error.message);
         }
       }
     };
 
+    // Helper to translate venue/slot in Marathi messages
+    function getMarathiSlotDetails(venue, slot) {
+      let v = venue;
+      let s = slot;
+      if (slot === "Night Slot") s = "रात्र वेळ (Night)";
+      else if (slot === "Day Slot") s = "दिवस वेळ (Day)";
+      else if (slot === "Full Day (Day + Night)") s = "संपूर्ण दिवस (Full Day)";
+      return `${v} [${s}]`;
+    }
+
+    // 1. RE-APPROVE IN MARATHI
     window.reApproveBooking = async (id, eventDate, venue, slot, name, mobile) => {
       const conflict = isSlotBooked(eventDate, venue, slot);
       if (conflict) {
-        alert(`Cannot Re-Approve! ${venue} (${slot}) on this date is already confirmed for another customer (${conflict.customerName}).`);
+        alert(`पुन्हा कन्फर्म करता येत नाही! ${venue} (${slot}) हा स्लॉट आधीच दुसऱ्या ग्राहकासाठी (${conflict.customerName}) कन्फर्म झालेला आहे.`);
         return;
       }
 
       await updateDoc(doc(db, "bookings", id), { status: "Booked" });
       const indianDate = formatToIndianDate(eventDate);
-      const reApproveMsg = `Namaskar ${name} ji, Pandurang Lawns kadun आनंदाची बातमी: ${indianDate} roji sathi [${venue} - ${slot}] chi booking punha CONFIRM zali ahe! Dhanyawad! Contact: ${VENUE_CONFIG.contactRakesh.phone}, ${VENUE_CONFIG.contactSantosh.phone}. Location: ${VENUE_CONFIG.mapUrl}`;
+      const slotText = getMarathiSlotDetails(venue, slot);
+
+      const reApproveMsg = `नमस्कार ${name} जी, 
+
+पांडुरंग लॉन्स (Pandurang Lawns) कडून आनंदाची बातमी! 🌸
+
+आपली दिनांक ${indianDate} रोजीसाठीची [${slotText}] ची बुकिंग पुन्हा कन्फर्म (CONFIRMED) करण्यात आली आहे. 
+
+📍 लॉन पत्ता: ${VENUE_CONFIG.address}
+🗺️ गुगल मॅप लोकेशन: ${VENUE_CONFIG.mapUrl}
+
+अधिक माहिती किंवा मदतीसाठी संपर्क:
+📞 राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
+📞 संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+
+आपल्या शुभकार्यासाठी पांडुरंग लॉन्स सदैव तत्पर आहे! धन्यवाद!`;
+
       dispatchWhatsAppDirect(mobile, reApproveMsg);
-      alert(`Booking has been RE-APPROVED and confirmed for ${name}!`);
+      alert(`${name} यांची बुकिंग पुन्हा कन्फर्म झाली असून व्हॉट्सअ‍ॅप मेसेज पाठवला आहे!`);
     };
 
     function renderAdminDashboard() {
@@ -1676,15 +1702,32 @@
       window.open(url, '_blank');
     }
 
+    // 2. CANCELLATION NOTIFICATION IN MARATHI
     window.sendCancellationWhatsAppOnly = (eventDate, venue, slot, name, mobile) => {
       const indianDate = formatToIndianDate(eventDate);
-      const cancelMsg = `Namaskar ${name} ji, Pandurang Lawns madhe ${indianDate} roji [${venue} - ${slot}] sathi aapan request kelela slot dusrya customer sathi CONFIRM zalya mule aapli hi request CANCEL zali ahe. Krupaya apan dusra slot kiwa date select karavi. Dhanyawad! Contact: Rakesh Chavan (${VENUE_CONFIG.contactRakesh.phone}), Santosh Chavan (${VENUE_CONFIG.contactSantosh.phone}).`;
+      const slotText = getMarathiSlotDetails(venue, slot);
+
+      const cancelMsg = `नमस्कार ${name} जी,
+
+पांडुरंग लॉन्स (Pandurang Lawns) कडून हा संदेश पाठवत आहोत.
+
+आपण दिनांक ${indianDate} रोजीसाठी [${slotText}] ची बुकिंग विनंती केली होती. परंतु हा स्लॉट आधीच इतर ग्राहकासाठी कन्फर्म झाल्यामुळे आपली ही विनंती रद्द (Cancel) करण्यात आली आहे.
+
+आपणास विनंती आहे की आपण दुसऱ्या तारखेसाठी किंवा दुसऱ्या स्लॉटसाठी बुकिंग करावी. गैरसोयीबद्दल आम्ही दिलगीर आहोत.
+
+संपर्क व चौकशी:
+📞 राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
+📞 संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+धन्यवाद!`;
+
       dispatchWhatsAppDirect(mobile, cancelMsg);
     };
 
+    // 3. APPROVAL & NOTIFY IN MARATHI
     window.approveDirectSmart = async (selectedId, eventDate, venue, slot, name, mobile) => {
       await updateDoc(doc(db, "bookings", selectedId), { status: "Booked" });
       const indianDate = formatToIndianDate(eventDate);
+      const slotText = getMarathiSlotDetails(venue, slot);
 
       const conflictPendings = liveBookings.filter(b => 
         b.eventDate === eventDate && 
@@ -1694,7 +1737,21 @@
         (b.slot === slot || b.slot === "Full Day (Day + Night)" || slot === "Full Day (Day + Night)")
       );
 
-      const confirmMsg = `Namaskar ${name} ji, Pandurang Lawns kadun aapan kelyelya vinantinusar ${indianDate} roji [${venue} - ${slot}] chi booking CONFIRM zali ahe. Dhanyawad! Contact: Rakesh Chavan (${VENUE_CONFIG.contactRakesh.phone}), Santosh Chavan (${VENUE_CONFIG.contactSantosh.phone}). Location: ${VENUE_CONFIG.mapUrl}`;
+      const confirmMsg = `नमस्कार ${name} जी,
+
+पांडुरंग लॉन्स (Pandurang Lawns) कडून मनःपूर्वक स्वागत! 🌸
+
+आपल्या विनंतीनुसार, दिनांक ${indianDate} रोजीसाठी [${slotText}] ची आपली बुकिंग यशस्वीरित्या कन्फर्म (CONFIRMED) करण्यात आली आहे.
+
+📍 पत्ता: ${VENUE_CONFIG.address}
+🗺️ गुगल मॅप: ${VENUE_CONFIG.mapUrl}
+
+आपल्या सोयीसाठी व्यवस्थापक संपर्क क्रमांक:
+📞 राकेश चव्हाण: ${VENUE_CONFIG.contactRakesh.phone}
+📞 संतोष चव्हाण: ${VENUE_CONFIG.contactSantosh.phone}
+
+पांडुरंग लॉन्सची निवड केल्याबद्दल आपले खूप खूप धन्यवाद!`;
+
       dispatchWhatsAppDirect(mobile, confirmMsg);
 
       for (let c of conflictPendings) {
@@ -1704,7 +1761,7 @@
       if (conflictPendings.length > 0) {
         setTimeout(() => {
           conflictPendings.forEach(c => {
-            const sendNow = confirm(`Booking for ${name} is CONFIRMED!\n\n${c.customerName}'s request was CANCELLED because it was for the same slot (${venue} - ${slot}).\n\nClick OK to open WhatsApp and notify ${c.customerName} immediately.`);
+            const sendNow = confirm(`${name} यांची बुकिंग कन्फर्म झाली आहे!\n\nसदर स्लॉटसाठी ${c.customerName} यांची विनंती रद्द करण्यात आली आहे.\n\nत्यांना मराठीत WhatsApp संदेश पाठवण्यासाठी OK दाबा.`);
             if (sendNow) {
               window.sendCancellationWhatsAppOnly(eventDate, venue, slot, c.customerName, c.mobile);
             }
@@ -1718,8 +1775,10 @@
       window.sendCancellationWhatsAppOnly(eventDate, venue, slot, name, mobile);
     };
 
+    // 4. FLOATING WHATSAPP BUTTON IN MARATHI
     window.openWhatsAppUser = (num) => {
-      window.open(`https://wa.me/${num}?text=Hello%20Pandurang%20Lawns,%20I%20am%20interested%20in%20booking%20a%20date`, '_blank');
+      const defaultUserMsg = "नमस्कार पांडुरंग लॉन्स, मला लॉन बुकिंग संदर्भात चौकशी करायची आहे.";
+      window.open(`https://wa.me/${num}?text=${encodeURIComponent(defaultUserMsg)}`, '_blank');
     };
 
     window.toggleMobileMenu = () => {
