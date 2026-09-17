@@ -607,11 +607,11 @@
     </div>
   </footer>
 
-  <!-- Floating WhatsApp Button -->
+  <!-- Floating WhatsApp Button (Fixed with direct click handler) -->
   <aside aria-label="Quick WhatsApp Inquiry" class="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 z-40">
-    <button onclick="openWhatsAppUser('919579520187')" class="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-600 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all p-3 sm:p-4">
+    <button onclick="openWhatsAppUser('919579520187')" class="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-600 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all p-3 sm:p-4 cursor-pointer">
       <i class="fa-brands fa-whatsapp text-xl sm:text-2xl"></i>
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-30"></span>
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-30 pointer-events-none"></span>
     </button>
   </aside>
 
@@ -1094,8 +1094,18 @@
     </div>
   </div>
 
-  <!-- SCRIPT -->
+  <!-- GLOBAL SCRIPT FOR WHATSAPP, MODALS & PDF -->
   <script>
+    // FIXED: Global WhatsApp Opening Function with proper Country Code (91)
+    window.openWhatsAppUser = function(num) {
+      let cleanNum = String(num).replace(/\D/g, '');
+      if (cleanNum.length === 10) {
+        cleanNum = '91' + cleanNum;
+      }
+      const defaultUserMsg = "नमस्कार पांडुरंग लॉन्स, मला लॉन बुकिंग संदर्भात चौकशी करायची आहे.";
+      window.open(`https://wa.me/${cleanNum}?text=${encodeURIComponent(defaultUserMsg)}`, '_blank');
+    };
+
     window.openAdminModal = function() {
       const modal = document.getElementById('adminPortalModal');
       if (!modal) return;
@@ -1294,7 +1304,7 @@ ${directReceiptUrl}
     };
   </script>
 
-  <!-- FIREBASE APPLICATION SCRIPT WITH FIXED DASHBOARD RENDER TRIGGER -->
+  <!-- FIREBASE APPLICATION SCRIPT -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
     import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
@@ -2438,7 +2448,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
     }
 
     function dispatchWhatsAppDirect(mobile, messageText) {
-      let formatted = mobile.replace(/\D/g, '');
+      let formatted = String(mobile).replace(/\D/g, '');
       if (formatted.length === 10) formatted = '91' + formatted;
       window.open(`https://wa.me/${formatted}?text=${encodeURIComponent(messageText)}`, '_blank');
     }
