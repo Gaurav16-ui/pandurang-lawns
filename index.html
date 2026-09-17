@@ -101,7 +101,7 @@
   <!-- Top Contact Bar (Responsive Mobile Optimized) -->
   <div class="bg-brand-forest text-brand-goldLight text-[10px] sm:text-xs py-1.5 px-2 sm:px-4 border-b border-brand-gold/30 tracking-wider">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-2">
-      <!-- Phone numbers in neat inline single line on mobile -->
+      <!-- Phone numbers inline on mobile -->
       <div class="flex items-center justify-center gap-1.5 sm:gap-3 flex-nowrap w-full sm:w-auto overflow-x-auto">
         <a href="tel:9579520187" class="inline-flex items-center gap-1 hover:text-white transition px-2 py-0.5 rounded bg-brand-forestLight/80 border border-brand-gold/30 whitespace-nowrap">
           <i class="fa-solid fa-phone text-[9px] text-brand-gold"></i>
@@ -1366,7 +1366,7 @@
                   <div class="text-[11px] text-slate-700 font-medium mt-0.5">Event Done (Admin View)</div>
                   <div class="text-[11px] text-brand-forest font-bold mt-0.5">👤 ${bookingMatch.customerName} (${bookingMatch.guestCount || 0} पाहुणे)</div>
                 </div>
-                <span class="px-2.5 py-1 bg-slate-300 text-slate-800 text-[10px] font-bold rounded-md uppercase">Done</span>
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200 text-slate-600 border border-slate-300 whitespace-nowrap"><i class="fa-solid fa-check text-[9px]"></i> Done</span>
               </div>
             `;
           }
@@ -1704,7 +1704,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       } else if (eff === "Booked") {
         statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800">Confirmed (कन्फर्म)</span>`;
       } else if (eff === "Completed") {
-        statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-slate-200 text-slate-800">Done (कार्यक्रम पूर्ण)</span>`;
+        statusBadge = `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200 text-slate-600 border border-slate-300 whitespace-nowrap"><i class="fa-solid fa-check text-[9px]"></i> Done</span>`;
       } else if (eff === "Cancelled") {
         statusBadge = `<span class="px-2.5 py-1 rounded-md text-[11px] font-bold bg-rose-100 text-rose-800">Cancelled (रद्द)</span>`;
       }
@@ -1768,7 +1768,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 ग्राहकाने खालील प्रलंबित बुकिंग विनंती रद्द केली आहे:
 
 • Booking ID: *${b.bookingId}*
-• नाव: *${b.customerName}*
+• नाव: *${customerName}*
 • मोबाईल: *+91${b.mobile.replace(/\D/g, '').slice(-10)}*
 • तारीख: *${indianDate}*
 • व्हेन्यू व वेळ: *${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})*
@@ -2217,7 +2217,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         } else if (effStatus === "Booked") {
           statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">Booked</span>`;
         } else if (isCompleted) {
-          statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-200 text-slate-600 border border-slate-300"><i class="fa-solid fa-check text-[9px] mr-1"></i>Done (Past)</span>`;
+          statusBadge = `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200 text-slate-600 border border-slate-300 whitespace-nowrap"><i class="fa-solid fa-check text-[9px]"></i> Done</span>`;
         } else if (effStatus === "Cancelled") {
           statusBadge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">Cancelled</span>`;
         }
@@ -2230,7 +2230,6 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
         const slotIsFree = !isSlotBooked(b.eventDate, venueName, slotName, b.id);
 
-        // Mute row style if completed
         const rowStyle = isCompleted 
           ? "bg-slate-50/70 opacity-60 hover:opacity-100 transition-opacity" 
           : "hover:bg-brand-cream/30";
