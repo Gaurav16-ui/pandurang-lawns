@@ -484,7 +484,7 @@
   </section>
 
   <!-- Lightbox Modal -->
-  <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm">
+  <div id="lightboxModal" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm">
     <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-brand-gold transition z-10"><i class="fa-solid fa-xmark"></i></button>
     <button onclick="prevLightboxImage()" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-brand-gold text-2xl sm:text-4xl p-2 z-10"><i class="fa-solid fa-chevron-left"></i></button>
     <button onclick="nextLightboxImage()" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-brand-gold text-2xl sm:text-4xl p-2 z-10"><i class="fa-solid fa-chevron-right"></i></button>
@@ -644,8 +644,8 @@
     </div>
   </div>
 
-  <!-- Cancellation Reason Modal -->
-  <div id="cancelReasonModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
+  <!-- Cancellation Reason Modal (High z-index: z-[100]) -->
+  <div id="cancelReasonModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-rose-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
         <h4 class="font-cinzel text-sm font-bold text-rose-800">
@@ -672,8 +672,8 @@
     </div>
   </div>
 
-  <!-- User Reschedule / Date Change Modal with Real-time Slot Checking -->
-  <div id="userRescheduleModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
+  <!-- User Reschedule / Date Change Modal with Real-time Slot Checking (High z-index: z-[100]) -->
+  <div id="userRescheduleModal" class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-indigo-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
         <h4 class="font-cinzel text-sm font-bold text-indigo-900">
@@ -705,16 +705,16 @@
     </div>
   </div>
 
-  <!-- Admin Shift Date Modal (Updated & Functional) -->
-  <div id="adminShiftDateModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
-    <div class="relative bg-white w-full max-w-md rounded-2xl border border-brand-gold p-5 sm:p-6 text-left space-y-4 shadow-2xl">
+  <!-- Admin Shift Date Modal (High z-index: z-[100] to sit directly above Admin Portal) -->
+  <div id="adminShiftDateModal" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md hidden items-center justify-center p-3 sm:p-4">
+    <div class="relative bg-white w-full max-w-md rounded-2xl border-2 border-brand-gold p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
-        <h4 class="font-cinzel text-sm font-bold text-brand-forest">
+        <h4 class="font-cinzel text-sm sm:text-base font-bold text-brand-forest">
           <i class="fa-solid fa-arrows-split-up-and-left mr-1.5 text-brand-gold"></i> Shift Booking to New Date (Admin)
         </h4>
-        <button onclick="closeAdminShiftModal()" class="text-brand-muted hover:text-brand-dark"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="closeAdminShiftModal()" class="text-brand-muted hover:text-brand-dark text-xl p-1"><i class="fa-solid fa-xmark"></i></button>
       </div>
-      <div id="adminShiftInfo" class="text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200"></div>
+      <div id="adminShiftInfo" class="text-xs bg-slate-50 p-3 rounded-xl border border-slate-200"></div>
       <form id="adminShiftForm" class="space-y-3">
         <input type="hidden" id="shiftDocId" />
         <div>
@@ -863,7 +863,7 @@
     </div>
   </div>
 
-  <!-- Admin Portal Modal -->
+  <!-- Admin Portal Modal (z-index: 50) -->
   <div id="adminPortalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="relative bg-brand-ivory w-full max-w-6xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-4 max-h-[92vh] flex flex-col">
       
@@ -1983,35 +1983,48 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       }
     });
 
-    // Admin Shift Date Modal Logic (Fully Exposed to Window)
-    window.openAdminShiftModal = (docId, currentEventDate, venue, slot, customerName) => {
+    // Admin Shift Date Modal Logic (Fully Functional with 100% Guaranteed Visibility)
+    window.openAdminShiftModal = (docId) => {
       const b = liveBookings.find(item => item.id === docId);
+      if (!b) {
+        alert("Booking not found!");
+        return;
+      }
+
       document.getElementById('shiftDocId').value = docId;
       const shiftDateInput = document.getElementById('shiftNewDate');
       shiftDateInput.min = new Date().toISOString().split('T')[0];
       
-      if (b && b.requestedNewDate) {
+      if (b.requestedNewDate) {
         shiftDateInput.value = b.requestedNewDate;
       } else {
         shiftDateInput.value = "";
       }
+
+      const venue = b.venue || "Open Lawn";
+      const slot = b.slot || "Night Slot";
+      const customerName = b.customerName || "Customer";
+      const currentEventDate = b.eventDate || "";
 
       const infoBox = document.getElementById('adminShiftInfo');
       infoBox.innerHTML = `
         <strong>Customer:</strong> ${customerName}<br>
         <strong>Current Date:</strong> ${formatToIndianDate(currentEventDate)}<br>
         <strong>Venue/Slot:</strong> ${venue} (${slot})
-        ${b && b.requestedNewDate ? `<br><span class="text-indigo-700 font-bold">User Suggested Date: ${formatToIndianDate(b.requestedNewDate)}</span>` : ''}
+        ${b.requestedNewDate ? `<br><span class="text-indigo-700 font-bold">User Suggested Date: ${formatToIndianDate(b.requestedNewDate)}</span>` : ''}
       `;
 
       verifyAdminShiftConflict();
-      document.getElementById('adminShiftDateModal').classList.remove('hidden');
-      document.getElementById('adminShiftDateModal').classList.add('modal-active');
+
+      const modal = document.getElementById('adminShiftDateModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('modal-active');
     };
 
     window.closeAdminShiftModal = () => {
-      document.getElementById('adminShiftDateModal').classList.add('hidden');
-      document.getElementById('adminShiftDateModal').classList.remove('modal-active');
+      const modal = document.getElementById('adminShiftDateModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('modal-active');
     };
 
     function verifyAdminShiftConflict() {
@@ -2021,7 +2034,9 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       const submitBtn = document.getElementById('submitAdminShiftBtn');
 
       if (!newDate) {
-        feedback.textContent = "";
+        feedback.textContent = "कृपया नवीन तारीख निवडा.";
+        feedback.className = "text-[11px] font-semibold mt-1 text-slate-500";
+        submitBtn.disabled = true;
         return;
       }
 
@@ -2360,7 +2375,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
             <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
               <!-- CANCELLATION OR DATE CHANGE REQUEST ACTIONS -->
               ${(b.status === 'Cancellation Requested' || b.status === 'Date Change Requested') ? `
-                <button onclick="openAdminShiftModal('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख पुढे ढकला / बदला">
+                <button onclick="openAdminShiftModal('${b.id}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख पुढे ढकला / बदला">
                   <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift Date
                 </button>
                 <button onclick="adminApproveCancellation('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-rose-700 hover:bg-rose-800 text-white font-bold text-xs" title="Approve cancel & free slot">
@@ -2378,9 +2393,9 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
                 </button>
               ` : ''}
 
-              <!-- NORMAL ACTIVE BOOKED ACTIONS (SHIFT DATE NOW ALWAYS AVAILABLE) -->
+              <!-- NORMAL ACTIVE BOOKED ACTIONS -->
               ${b.status === 'Booked' && !isCompleted ? `
-                <button onclick="openAdminShiftModal('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख बदला / पुढे ढकला">
+                <button onclick="openAdminShiftModal('${b.id}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="तारीख बदला / पुढे ढकला">
                   <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift
                 </button>
                 <button onclick="cancelDirectSingle('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}', '${b.mobile}')" class="px-2 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs">
@@ -2390,7 +2405,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
               <!-- CANCELLED ACTIONS (SHIFT DATE + RE-APPROVE AVAILABLE) -->
               ${b.status === 'Cancelled' ? `
-                <button onclick="openAdminShiftModal('${b.id}', '${b.eventDate}', '${venueName}', '${slotName}', '${b.customerName}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="कॅन्सल झालेली बुकिंग नवीन तारखेवर शिफ्ट करा">
+                <button onclick="openAdminShiftModal('${b.id}')" class="px-2 py-1 rounded bg-indigo-700 hover:bg-indigo-800 text-white font-bold text-xs" title="कॅन्सल झालेली बुकिंग नवीन तारखेवर शिफ्ट करा">
                   <i class="fa-solid fa-calendar-days mr-0.5"></i> Shift Date
                 </button>
                 ${slotIsFree ? `
