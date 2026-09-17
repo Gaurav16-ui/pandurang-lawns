@@ -9,7 +9,7 @@
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- FontAwesome 6 Icons -->
@@ -167,7 +167,6 @@
           </button>
         </div>
 
-        <!-- Clean Mobile Navbar -->
         <div class="flex lg:hidden items-center space-x-2">
           <button onclick="openBookingModal()" class="px-3 py-1 text-xs font-bold uppercase bg-brand-gold text-brand-dark rounded-full">Book</button>
           <button id="mobileMenuBtn" aria-label="Toggle Menu" class="text-brand-ivory p-2 focus:outline-none hover:text-brand-gold text-xl">
@@ -645,7 +644,7 @@
     </div>
   </div>
 
-  <!-- Cancellation Reason Modal -->
+  <!-- Cancellation Reason Modal (FOR CONFIRMED BOOKINGS) -->
   <div id="cancelReasonModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4">
     <div class="relative bg-white w-full max-w-md rounded-2xl border border-rose-400 p-5 sm:p-6 text-left space-y-4 shadow-2xl">
       <div class="flex items-center justify-between border-b pb-2">
@@ -655,18 +654,18 @@
         <button onclick="closeCancelReasonModal()" class="text-brand-muted hover:text-brand-dark"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <p class="text-xs text-brand-muted leading-relaxed">
-        आपली बुकिंग आधीच <strong>कन्फर्म (Booked)</strong> झालेली असल्याने ती थेट रद्द करता येत नाही. कृपया रद्द करण्याचे कारण नमूद करा. आपली विनंती लॉन व्यवस्थापकांकडे मंजुरीसाठी पाठवली जाईल.
+        आपली बुकिंग आधीच <strong>कन्फर्म (Booked)</strong> झालेली असल्याने कृपया रद्द करण्याचे कारण नमूद करा. सबमिट करताच व्यवस्थापक राकेश चव्हाण यांच्या व्हॉट्सॲपवर तात्काळ थेट संदेश उघडेल.
       </p>
       <form id="cancelReasonForm" class="space-y-3">
-        <input type="hidden" id="cancelReasonBookingId" />
+        <input type="hidden" id="cancelReasonBookingDocId" />
         <div>
           <label class="block text-xs font-semibold text-brand-charcoal mb-1">रद्द करण्याचे कारण (Reason) *</label>
           <textarea id="cancelReasonText" rows="3" required placeholder="उदा. घरगुती कारणामुळे तारीख पुढे ढकलली आहे..." class="w-full px-3 py-2 text-xs rounded-xl border border-brand-border outline-none focus:ring-2 focus:ring-rose-400"></textarea>
         </div>
         <div class="flex justify-end gap-2 pt-1">
           <button type="button" onclick="closeCancelReasonModal()" class="px-4 py-2 border rounded-xl text-xs font-semibold">मागे जा</button>
-          <button type="submit" class="px-5 py-2 bg-rose-700 text-white font-semibold text-xs rounded-xl hover:bg-rose-800 transition">
-            विनंती पाठवा
+          <button type="submit" id="submitCancelReqBtn" class="px-5 py-2 bg-rose-700 text-white font-semibold text-xs rounded-xl hover:bg-rose-800 transition">
+            रद्द करण्याची विनंती पाठवा
           </button>
         </div>
       </form>
@@ -677,7 +676,6 @@
   <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-2 sm:p-4 overflow-y-auto">
     <div class="relative bg-white w-full max-w-2xl rounded-3xl border border-brand-gold shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
       
-      <!-- Fixed Modal Header -->
       <div class="bg-brand-forest px-4 sm:px-8 py-3.5 sm:py-4 border-b border-brand-gold/30 flex items-center justify-between flex-shrink-0">
         <div>
           <span class="text-[9px] sm:text-[10px] font-cinzel uppercase tracking-[0.2em] text-brand-gold">Online Reservation</span>
@@ -688,7 +686,6 @@
         </button>
       </div>
 
-      <!-- Scrollable Form Container -->
       <form id="bookingForm" class="p-4 sm:p-8 space-y-4 overflow-y-auto text-left flex-grow">
         <div id="bookingFormAlert" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
 
@@ -796,7 +793,6 @@
           </div>
         </div>
 
-        <!-- Sticky Footer Buttons inside form -->
         <div class="pt-3 border-t flex flex-col sm:flex-row items-center justify-between gap-3 sticky bottom-0 bg-white py-2">
           <p class="text-[10px] sm:text-[11px] text-brand-muted hidden sm:block">
             <i class="fa-solid fa-cloud text-brand-gold mr-1"></i> Instant Notification to Venue Manager
@@ -1418,7 +1414,6 @@
       verifyFormSlotConflict();
     };
 
-    // HALDI CONDITIONAL LOGIC: Only show if 'Grand Wedding' is selected
     function handleOccasionChange() {
       const occasion = document.getElementById('bEventType').value;
       const haldiWrapper = document.getElementById('haldiOptionWrapper');
@@ -1504,7 +1499,7 @@
     document.getElementById('bHaldiVenue')?.addEventListener('change', verifyFormSlotConflict);
     document.getElementById('bHaldiSlot')?.addEventListener('change', verifyFormSlotConflict);
 
-    // SUBMIT & INSTANT DIRECT OPEN WHATSAPP
+    // SUBMIT & DIRECT OPEN WHATSAPP FOR OWNER
     document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('submitBookingBtn');
@@ -1590,7 +1585,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
         document.getElementById('bookingForm').reset();
         document.getElementById('haldiVenueDetailsBox')?.classList.add('hidden');
 
-        // Direct instant redirection to WhatsApp
+        // Direct instant redirection to Rakesh Chavan WhatsApp
         const targetMobile = VENUE_CONFIG.contactRakesh.wa;
         window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(rakeshWhatsAppMsg)}`;
 
@@ -1602,7 +1597,7 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
     });
 
     // ==========================================
-    // CUSTOMER TRACK / MANAGE BOOKING (ROBUST SEARCH)
+    // CUSTOMER TRACK / MANAGE BOOKING
     // ==========================================
     window.openTrackModal = () => {
       document.getElementById('trackBookingModal').classList.remove('hidden');
@@ -1621,16 +1616,15 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
     document.getElementById('trackLookupForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
       const rawInputId = document.getElementById('trackBookingIdInput').value.trim();
-      const cleanDigitsOnly = rawInputId.replace(/\D/g, ''); // Extract only digits
+      const cleanDigitsOnly = rawInputId.replace(/\D/g, ''); 
       const rawMobile = document.getElementById('trackMobileInput').value.trim();
-      const cleanMobileDigits = rawMobile.replace(/\D/g, '').slice(-10); // Extract last 10 digits
+      const cleanMobileDigits = rawMobile.replace(/\D/g, '').slice(-10);
 
       const matched = liveBookings.find(b => {
         if (!b.bookingId) return false;
         const bIdDigits = b.bookingId.replace(/\D/g, '');
         const bMobDigits = (b.mobile || '').replace(/\D/g, '').slice(-10);
 
-        // Flexible match: PL ID digits or direct string match AND mobile last 10 digits
         const isIdMatched = (cleanDigitsOnly && bIdDigits.includes(cleanDigitsOnly)) || 
                              b.bookingId.toUpperCase().includes(rawInputId.toUpperCase());
         const isMobMatched = cleanMobileDigits ? bMobDigits === cleanMobileDigits : true;
@@ -1677,19 +1671,19 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
           <div class="pt-3 border-t flex items-center justify-between gap-2">
             ${matched.status === 'Pending' ? `
-              <button onclick="customerDirectCancel('${matched.id}', '${matched.customerName}')" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold transition">
+              <button onclick="customerDirectCancelPending('${matched.id}')" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold transition">
                 <i class="fa-solid fa-xmark mr-1"></i> विनंती रद्द करा
               </button>
             ` : ''}
 
             ${matched.status === 'Booked' && eff !== 'Completed' ? `
-              <button onclick="openCancelReasonModal('${matched.id}')" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-semibold transition">
+              <button onclick="openCancelReasonModal('${matched.id}')" class="px-4 py-2 bg-rose-700 hover:bg-rose-800 text-white rounded-xl text-xs font-semibold transition">
                 <i class="fa-solid fa-triangle-exclamation mr-1"></i> रद्द करण्याची विनंती करा
               </button>
             ` : ''}
 
             ${matched.status === 'Cancellation Requested' ? `
-              <span class="text-[11px] text-amber-700 font-semibold italic">आपली विनंती व्यवस्थापकांकडे प्रलंबित आहे.</span>
+              <span class="text-[11px] text-amber-700 font-semibold italic">आपली रद्द करण्याची विनंती व्यवस्थापकांकडे प्रलंबित आहे.</span>
             ` : ''}
 
             <a href="tel:9579520187" class="px-3.5 py-2 border border-brand-border text-brand-forest rounded-xl text-xs font-semibold hover:bg-brand-cream/50 transition ml-auto">
@@ -1700,20 +1694,48 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
       `;
     });
 
-    window.customerDirectCancel = async (docId, name) => {
-      if (confirm(`नमस्कार ${name} जी, तुम्हाला ही बुकिंग विनंती नक्की रद्द करायची आहे का?`)) {
+    // 1. PENDING CANCEL - DIRECT WHATSAPP ALERT TO OWNER
+    window.customerDirectCancelPending = async (docId) => {
+      const b = liveBookings.find(item => item.id === docId);
+      if (!b) return;
+
+      if (confirm(`नमस्कार ${b.customerName} जी, तुम्हाला ही प्रलंबित बुकिंग विनंती नक्की रद्द करायची आहे का?`)) {
         try {
-          await updateDoc(doc(db, "bookings", docId), { status: "Cancelled", cancelReason: "Customer cancelled while pending" });
-          alert("आपली बुकिंग विनंती यशस्वीरित्या रद्द करण्यात आली आहे.");
+          await updateDoc(doc(db, "bookings", docId), { 
+            status: "Cancelled", 
+            cancelReason: "Customer cancelled while pending" 
+          });
+
+          const indianDate = formatToIndianDate(b.eventDate);
+          const cancelPendingWhatsAppMsg = `नमस्कार राकेश सर,
+
+⚠️ *प्रलंबित बुकिंग रद्द (Pending Request Cancelled)*
+
+ग्राहकाने खालील प्रलंबित बुकिंग विनंती रद्द केली आहे:
+
+• Booking ID: *${b.bookingId}*
+• नाव: *${b.customerName}*
+• मोबाईल: *tel:${b.mobile}* (कॉल करण्यासाठी येथे टॅप करा)
+• तारीख: *${indianDate}*
+• व्हेन्यू व वेळ: *${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})*
+• कार्यक्रम: *${b.eventType}*
+
+कृपया नोंद घ्यावी.`;
+
           closeTrackModal();
+          // Direct open WhatsApp
+          const targetMobile = VENUE_CONFIG.contactRakesh.wa;
+          window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(cancelPendingWhatsAppMsg)}`;
+
         } catch (err) {
           alert("एरर: विनंती रद्द करता आली नाही.");
         }
       }
     };
 
+    // 2. CONFIRMED BOOKING CANCEL REQUEST - MODAL & DIRECT WHATSAPP ALERT TO OWNER
     window.openCancelReasonModal = (docId) => {
-      document.getElementById('cancelReasonBookingId').value = docId;
+      document.getElementById('cancelReasonBookingDocId').value = docId;
       document.getElementById('cancelReasonText').value = "";
       document.getElementById('cancelReasonModal').classList.remove('hidden');
       document.getElementById('cancelReasonModal').classList.add('modal-active');
@@ -1726,8 +1748,13 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
 
     document.getElementById('cancelReasonForm')?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const docId = document.getElementById('cancelReasonBookingId').value;
+      const docId = document.getElementById('cancelReasonBookingDocId').value;
       const reason = document.getElementById('cancelReasonText').value.trim();
+      const submitBtn = document.getElementById('submitCancelReqBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "पाठवत आहे...";
+
+      const b = liveBookings.find(item => item.id === docId);
 
       try {
         await updateDoc(doc(db, "bookings", docId), {
@@ -1735,15 +1762,42 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
           cancelReason: reason,
           cancelRequestedAt: new Date().toISOString()
         });
-        alert("रद्द करण्याची विनंती कारणासह व्यवस्थापकांकडे पाठवण्यात आली आहे.");
+
+        const indianDate = b ? formatToIndianDate(b.eventDate) : "";
+        const customerPhone = b ? b.mobile : "";
+        const customerName = b ? b.customerName : "ग्राहक";
+        const bId = b ? b.bookingId : "PL-XXXX";
+        const venueDetails = b ? `${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})` : "";
+
+        const cancelAlertWhatsAppMsg = `🚨 *तातडीची सूचना: कन्फर्म बुकिंग रद्द करण्याची विनंती!*
+
+नमस्कार राकेश सर,
+एका ग्राहकाने त्यांची *कन्फर्म बुकिंग* रद्द करण्याची विनंती पाठवली आहे. कृपया ग्राहकाशी तातडीने संपर्क साधावा.
+
+• Booking ID: *${bId}*
+• नाव: *${customerName}*
+• मोबाईल: *tel:${customerPhone}* (थेट कॉल करण्यासाठी टॅप करा)
+• नियोजित तारीख: *${indianDate}*
+• व्हेन्यू व स्लॉट: *${venueDetails}*
+• 🔴 *रद्द करण्याचे कारण:* "${reason}"
+
+सदर तारीख मोकळी करायची की ग्राहकाशी बोलून तारीख पुढे ढकलायची, यासाठी कृपया पडताळणी करावी.`;
+
         closeCancelReasonModal();
         closeTrackModal();
+
+        // Directly open WhatsApp with ready message for Rakesh Chavan
+        const targetMobile = VENUE_CONFIG.contactRakesh.wa;
+        window.location.href = `https://wa.me/${targetMobile}?text=${encodeURIComponent(cancelAlertWhatsAppMsg)}`;
+
       } catch (err) {
         alert("त्रुटी आली. कृपया पुन्हा प्रयत्न करा.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "रद्द करण्याची विनंती पाठवा";
       }
     });
 
-    // Admin Portal
+    // Admin Portal Functions
     window.openAdminModal = () => {
       document.getElementById('adminPortalModal').classList.remove('hidden');
       document.getElementById('adminPortalModal').classList.add('modal-active');
@@ -1954,12 +2008,16 @@ ${notes ? `• विशेष सूचना: ${notes}\n` : ''}
               <span class="text-[11px] text-brand-muted"><i class="fa-solid fa-clock text-[10px] mr-1"></i>${slotName}</span>
             </td>
             <td class="py-3 px-3 sm:px-4 font-semibold">${b.customerName}</td>
-            <td class="py-3 px-3 sm:px-4">${b.mobile}</td>
+            <td class="py-3 px-3 sm:px-4 whitespace-nowrap">
+              <a href="tel:${b.mobile}" class="font-bold text-brand-forest hover:underline flex items-center gap-1">
+                <i class="fa-solid fa-phone text-emerald-700 text-[10px]"></i> ${b.mobile}
+              </a>
+            </td>
             <td class="py-3 px-3 sm:px-4">${b.eventType}</td>
             <td class="py-3 px-3 sm:px-4 font-bold text-brand-forest whitespace-nowrap">${guestCountDisplay}</td>
             <td class="py-3 px-3 sm:px-4 max-w-[200px]">
               <div>${statusBadge}</div>
-              ${b.cancelReason ? `<div class="text-[10px] text-rose-800 mt-1 bg-rose-50 p-1 rounded border border-rose-200"><strong>कारण:</strong> ${b.cancelReason}</div>` : ''}
+              ${b.cancelReason ? `<div class="text-[10px] text-rose-800 mt-1 bg-rose-50 p-1.5 rounded border border-rose-200"><strong>कॅन्सलेशन कारण:</strong> ${b.cancelReason}</div>` : ''}
             </td>
             <td class="py-3 px-3 sm:px-4 text-right space-x-1 whitespace-nowrap">
               ${b.status === 'Cancellation Requested' ? `
