@@ -1200,7 +1200,7 @@
       html2pdf().set(opt).from(printableElement).save();
     };
 
-    // पावती थेट ग्राहकाला शॉर्ट आणि सुटसुटीत मेसेजसह WhatsApp वर पाठवणे
+    // पावती थेट ग्राहकाला अतिशय सुटसुटीत (Clean & Short) मेसेजसह WhatsApp वर पाठवणे
     window.sendReceiptToCustomer = function(docId) {
       if (typeof window.getLiveBookingById !== 'function') return;
       const b = window.getLiveBookingById(docId);
@@ -1219,25 +1219,25 @@
       const baseUrl = window.location.origin + window.location.pathname;
       const directReceiptUrl = `${baseUrl}?receipt=${encodeURIComponent(b.bookingId || b.id)}`;
 
-      // स्वच्छ, संक्षिप्त आणि व्यावसायिक संदेश
-      const receiptWhatsAppMsg = `💐 *पांडुरंग लॉन्स (PANDURANG LAWNS)* 💐
-“Where Beautiful Celebrations Begin”
+      // एकदम स्वच्छ आणि संक्षिप्त संदेश (कोणतीही इमोजी नाही, त्यामुळे प्रश्नचिन्ह येणार नाही)
+      const receiptWhatsAppMsg = `PANDURANG LAWNS
+Where Beautiful Celebrations Begin
 
-नमस्कार *${b.customerName}* जी,
-पांडुरंग लॉन्स कडून आपली अधिकृत बुकिंग पावती (Official Booking Receipt) तयार करण्यात आली आहे.
+Namaskar ${b.customerName} ji,
+Pandurang Lawns kadun aapli adhikarut booking pavati (Official Booking Receipt) tayar karnyat ali ahe.
 
-• Booking ID: *${b.bookingId || "PL-RECORD"}*
-• कार्यक्रम तारीख: *${indianDate}*
-• व्हेन्यू: *${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})*
+• Booking ID: ${b.bookingId || "PL-RECORD"}
+• Karyakram Tarikh: ${indianDate}
+• Venue: ${b.venue || "Open Lawn"} (${b.slot || "Night Slot"})
 
-📥 *आपली अधिकृत PDF पावती थेट मोबाईलमध्ये डाऊनलोड करण्यासाठी खालील लिंकवर क्लिक करा:*
+Apali adhikarut PDF pavati thet mobile madhe download karnyasathi khalil link var click kara:
 👉 ${directReceiptUrl}
 
-अधिक माहितीसाठी संपर्क:
+Adhik mahitisathi sampark:
 • Rakesh Chavan: +91 95795 20187
 • Santosh Chavan: +91 90215 67601
 
-पांडुरंग लॉन्सची निवड केल्याबद्दल धन्यवाद! 🙏`;
+Pandurang Lawns chi niwad kelyabaddal dhanyawad!`;
 
       let formatted = b.mobile.replace(/\D/g, '');
       if (formatted.length === 10) formatted = '91' + formatted;
